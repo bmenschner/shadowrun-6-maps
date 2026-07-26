@@ -172,5 +172,27 @@
     "width": 2400,
     "height": 1805,
     "image": "../../assets/cities/berlin-2080/detail-maps/berlin-v06-details.webp"
+  },
+  {
+    "key": "berlin-v04-uebersicht",
+    "title": "Berlin 2080 - Übersicht v04",
+    "kind": "Historische Referenzkarte",
+    "source": "SR6_berlin_karte_v04_uebersicht_web.pdf",
+    "summary": "Frühere Gesamtübersicht von Berlin und dem Lore-Umland. Sie dient als zusätzliche Referenz für Gebietsfarben, Bezirke und nummerierte Kartenorte.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2807,
+    "image": "../../assets/cities/berlin-2080/detail-maps/berlin-v04-uebersicht.webp"
+  },
+  {
+    "key": "berlin-v04-details",
+    "title": "Berlin 2080 - Detailkarten v04",
+    "kind": "Historische Referenzkarte",
+    "source": "SR6_berlin_karte_v04_details_web.pdf",
+    "summary": "Frühere Detailansichten der Berliner Innenstadt und ausgewählter Bezirke zur Gegenprüfung der aktuellen v06-Karten.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2807,
+    "image": "../../assets/cities/berlin-2080/detail-maps/berlin-v04-details.webp"
   }
 ]

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "books": [
+    {
+      "id": "hamburg-paket",
+      "title": "Hamburg-Kartenpaket",
+      "edition": "SR6"
+    }
+  ],
+  "citations": []
+}

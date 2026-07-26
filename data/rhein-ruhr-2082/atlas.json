@@ -1,0 +1,24 @@
+[
+  {
+    "key": "rrm-recklinghausen-bochum",
+    "title": "Recklinghausen/Herten und Bochum",
+    "kind": "Straßenkarte",
+    "source": "Shadowrun 6D - Rhein Rhur Megaplex - Revierbericht 2082 - Karte.pdf",
+    "summary": "Großformatige Straßenkarte zwischen Recklinghausen/Herten und der Bochumer Innenstadt.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2959,
+    "image": "../../assets/cities/rhein-ruhr-2082/detail-maps/rrm-recklinghausen-bochum.webp"
+  },
+  {
+    "key": "rrm-revieruebersichten",
+    "title": "Rhein-Ruhr-Megaplex - Revierübersichten",
+    "kind": "Regional- und Detailkarten",
+    "source": "Shadowrun 6D - Rhein Rhur Megaplex - Revierbericht 2082 - Karte.pdf",
+    "summary": "Mehrteilige Regional- und Detailübersicht des Rhein-Ruhr-Megaplexes.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2959,
+    "image": "../../assets/cities/rhein-ruhr-2082/detail-maps/rrm-revieruebersichten.webp"
+  }
+]

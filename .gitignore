@@ -15,6 +15,8 @@
 !assets/**
 !data/
 !data/**
+!docs/
+!docs/**
 !tools/
 tools/*
 !tools/build_geographic_shadowrun_map.py
@@ -22,6 +24,11 @@ tools/*
 !tools/reconcile_zone_topology.py
 !tools/sync_shared_editions.py
 !tools/validate_city_data.py
+!tools/build_map_packages.py
+!tools/build_boundary_packages.py
+!tools/build_us_city_content.py
+!tools/build_toronto_content.py
+!tools/rebuild_search_index.py
 !tmp/
 tmp/*
 !tmp/build-visual/

@@ -1,0 +1,79 @@
+[
+  {
+    "key": "hamburg-gesamt",
+    "title": "Hamburg - Gesamtübersicht",
+    "kind": "Metroplexkarte",
+    "source": "Hamburgpaket - Karte.pdf",
+    "summary": "Großräumige Übersicht des Hamburger Metroplexes mit Bezirken, Grenzräumen und Legende.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 3057,
+    "image": "../../assets/cities/hamburg-2080/detail-maps/hamburg-gesamt.webp"
+  },
+  {
+    "key": "hamburg-wildost-neue-mitte",
+    "title": "Hamburg - Wildost und Neue Mitte",
+    "kind": "Stadtteilkarte",
+    "source": "Hamburgpaket - Karte wildost neue mitte.pdf",
+    "summary": "Kombinierte Detailkarte der Gebiete Wildost und Neue Mitte mit Straßennetz und Kartenlegenden.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 3057,
+    "image": "../../assets/cities/hamburg-2080/detail-maps/hamburg-wildost-neue-mitte.webp"
+  },
+  {
+    "key": "hamburg-bezirke",
+    "title": "Hamburg - Bezirke und Sonderzonen",
+    "kind": "Bezirkskarte",
+    "source": "Hamburgpaket - Karten Karteikarten.pdf",
+    "summary": "Schematische Bezirksübersicht mit farblich getrennten Gebieten und nummerierten Kartenorten.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2961,
+    "image": "../../assets/cities/hamburg-2080/detail-maps/hamburg-bezirke.webp"
+  },
+  {
+    "key": "hamburg-hochbahn",
+    "title": "Hamburg - Hochbahnnetz",
+    "kind": "Verkehrsnetz",
+    "source": "Hamburgpaket - Karten Karteikarten.pdf",
+    "summary": "Liniennetzplan der Hamburger Hochbahn und ihrer Verbindungen in die angrenzenden Gebiete.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2961,
+    "image": "../../assets/cities/hamburg-2080/detail-maps/hamburg-hochbahn.webp"
+  },
+  {
+    "key": "hamburg-innenstadt",
+    "title": "Hamburg - Zentrale Innenstadt",
+    "kind": "Innenstadtplan",
+    "source": "Hamburgpaket - Karten Karteikarten.pdf",
+    "summary": "Straßen- und Blockplan der zentralen Innenstadt mit nummerierten Besonderheiten.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2961,
+    "image": "../../assets/cities/hamburg-2080/detail-maps/hamburg-innenstadt.webp"
+  },
+  {
+    "key": "deutsche-bucht",
+    "title": "Deutsche Bucht",
+    "kind": "Regionalkarte",
+    "source": "Hamburgpaket - Karten Karteikarten.pdf",
+    "summary": "Regionalkarte der Deutschen Bucht mit Inseln, Küstenorten und Verkehrsverbindungen.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2961,
+    "image": "../../assets/cities/hamburg-2080/detail-maps/deutsche-bucht.webp"
+  },
+  {
+    "key": "hamburg-innere-bezirke",
+    "title": "Hamburg - Innere Bezirke",
+    "kind": "Bezirkskarte",
+    "source": "Hamburgpaket - Karten Karteikarten.pdf",
+    "summary": "Übersicht der inneren Bezirke, Verkehrsachsen und besonders markierten Orte.",
+    "markerIds": [],
+    "width": 4200,
+    "height": 2961,
+    "image": "../../assets/cities/hamburg-2080/detail-maps/hamburg-innere-bezirke.webp"
+  }
+]

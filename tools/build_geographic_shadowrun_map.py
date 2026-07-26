@@ -3083,7 +3083,7 @@ def write_city_package(payload: dict, registry: dict) -> dict:
         "id": CITY_ID,
         "name": "Berlin",
         "year": 2080,
-        "dataVersion": 13,
+        "dataVersion": 14,
         "availableEditions": payload["availableEditions"],
         "center": [52.5200066, 13.404954],
         "zoom": 10,

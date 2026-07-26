@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#071018">
-  <meta name="description" content="Interaktive Shadowrun-Karte von Berlin 2080 mit Orten, Personen, Bezirken und Detailkarten.">
+  <meta name="description" content="Interaktiver Shadowrun-Kartenatlas mit Städten, Regionen, Orten, Personen und Quellen.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="SR Stadtkarten">
-  <title>Shadowrun Berlin 2080 - Straßenkarte</title>
+  <title>Shadowrun Stadtkarten</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -187,6 +187,7 @@
     .atlas-viewport { min-height: 0; overflow: auto; padding: 14px; background: #020407; scrollbar-color: #30514d #090c12; }
     .atlas-image { display: block; width: 100%; height: auto; max-width: none; margin: 0 auto; border: 1px solid rgba(255,255,255,.12); background: #fff; box-shadow: 0 12px 48px rgba(0,0,0,.58); }
     .boundary-key { position: absolute; z-index: 900; left: 12px; bottom: 12px; display: grid; gap: 5px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 4px; background: rgba(7,10,15,.9); color: var(--text); font: 10px/1.2 ui-monospace, monospace; pointer-events: none; }
+    .boundary-key[hidden] { display: none; }
     .boundary-key span { display: flex; align-items: center; gap: 8px; }
     .boundary-key .key-title { margin-top: 2px; color: var(--muted); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
     .boundary-key i { display: inline-block; width: 24px; height: 8px; flex: 0 0 auto; }
@@ -194,6 +195,10 @@
     .boundary-key .key-anarcho { border: 1px solid #727b8b; background: rgba(89,97,110,.48); }
     .boundary-key .key-status-corporate { border: 1px solid #f5f06a; background: rgba(245,240,106,.34); }
     .boundary-key .key-corporate { border: 2px solid #f5f06a; background: rgba(245,240,106,.18); }
+    .boundary-key .key-barrens { border: 2px dashed #ff5d3a; background: rgba(255,93,58,.22); }
+    .boundary-key .key-foreign { border: 2px solid #52c7ff; background: rgba(82,199,255,.18); }
+    .boundary-key .key-military { border: 2px solid #8ee36b; background: repeating-linear-gradient(135deg,rgba(142,227,107,.22) 0 4px,transparent 4px 8px); }
+    .boundary-key .key-underground { border: 2px dotted #d68cff; background: rgba(214,140,255,.18); }
     .boundary-key .key-district { height: 0; border-top: 2px solid var(--violet); }
     .boundary-key .key-outskirts { height: 0; border-top: 2px dashed var(--amber); }
     .boundary-key .key-neighborhood { height: 0; border-top: 2px dotted var(--cyan); }
@@ -205,12 +210,16 @@
     .sr-point { filter: drop-shadow(0 0 4px #40f8dd); }
     .sr-city-boundary { filter: drop-shadow(0 0 5px rgba(64,248,221,.68)); }
     .sr-corporate-zone { filter: drop-shadow(0 0 5px rgba(245,240,106,.32)); }
+    .sr-corporate-zone.leaflet-interactive { cursor: pointer; }
     .sr-area-status { filter: saturate(1.08); }
     .sr-district-boundary { filter: drop-shadow(0 0 4px rgba(168,120,255,.24)); }
     .sr-outskirts-boundary { filter: drop-shadow(0 0 5px rgba(255,173,49,.28)); }
     .sr-district-point { filter: drop-shadow(0 0 6px rgba(168,120,255,.78)); }
     .lore-label { pointer-events: none !important; overflow: visible !important; }
-    .lore-label.district, .lore-label.outskirts { pointer-events: auto !important; cursor: pointer; }
+    .lore-label.district,
+    .lore-label.outskirts,
+    .lore-label.special.is-clickable,
+    .lore-label.corporate.is-clickable { pointer-events: auto !important; cursor: pointer; }
     .lore-label span { position: absolute; transform: translate(-50%,-50%); white-space: nowrap; padding: 3px 7px; border-left: 2px solid var(--pink); border-right: 2px solid var(--cyan); background: linear-gradient(90deg, rgba(5,9,15,.84), rgba(20,4,18,.76)); color: #f7ffff; font: 700 11px/1 ui-monospace, monospace; letter-spacing: .11em; text-transform: uppercase; text-shadow: -1px 0 rgba(255,46,166,.9), 1px 0 rgba(64,248,221,.82), 0 0 8px rgba(255,255,255,.35); box-shadow: 0 0 12px rgba(255,46,166,.14); clip-path: polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%); }
     .lore-label.corporate span { color: #fff0be; border-left-color: var(--amber); text-shadow: 0 0 7px rgba(255,173,49,.75); }
     .lore-label.district span { border-left-color: var(--violet); border-right-color: var(--violet); text-shadow: -1px 0 rgba(168,120,255,.9), 1px 0 rgba(64,248,221,.62), 0 0 8px rgba(168,120,255,.42); }
@@ -294,6 +303,10 @@
     :root[data-theme="light"] .boundary-key .key-anarcho { border-color: #505154; background: rgba(80,81,84,.34); }
     :root[data-theme="light"] .boundary-key .key-status-corporate { border-color: #e49b0f; background: rgba(228,155,15,.34); }
     :root[data-theme="light"] .boundary-key .key-corporate { border-color: #d99600; background: rgba(217,150,0,.16); }
+    :root[data-theme="light"] .boundary-key .key-barrens { border-color: #bd3d25; background: rgba(189,61,37,.19); }
+    :root[data-theme="light"] .boundary-key .key-foreign { border-color: #14749b; background: rgba(20,116,155,.14); }
+    :root[data-theme="light"] .boundary-key .key-military { border-color: #4f7d32; background: repeating-linear-gradient(135deg,rgba(79,125,50,.17) 0 4px,transparent 4px 8px); }
+    :root[data-theme="light"] .boundary-key .key-underground { border-color: #7d4fa4; background: rgba(125,79,164,.14); }
     :root[data-theme="light"] .cyber-tiles { filter: grayscale(.84) sepia(.08) saturate(.72) brightness(1.07) contrast(.9); }
     :root[data-theme="light"] .official-tiles { filter: grayscale(.55) saturate(.72) brightness(1.04) contrast(.92); }
     :root[data-theme="light"] .street-label-tiles { filter: contrast(1.14) drop-shadow(0 0 1px rgba(255,255,255,.92)); }
@@ -370,20 +383,20 @@
         <h1 id="city-title">Berlin 2080</h1>
       </div>
       <div class="top-stats">
-        <div class="stat"><b id="placed-count">0</b> Karteneinträge</div>
+        <div class="stat"><b id="placed-count">0</b> Orte</div>
         <div class="stat"><b id="person-count">0</b> Personen &amp; Gruppen</div>
         <div class="stat">Straßenzug-Zoom <b>bis 19</b></div>
         <div class="stat"><span id="city-scope-label">Berlin + Umland</span> <b>aktiv</b></div>
       </div>
       <div class="top-actions">
-        <label class="city-picker" for="city-select"><span>Stadt</span><select id="city-select" aria-label="Stadt auswählen"></select></label>
+        <label class="city-picker" for="city-select"><span>Karte</span><select id="city-select" aria-label="Stadt oder Region auswählen"></select></label>
         <div class="map-mode-toggle" id="map-mode-toggle" role="group" aria-label="Kartenmodus Online oder Offline">
           <button class="map-mode-button" id="map-mode-online" type="button" data-map-mode="online" aria-pressed="true"><span class="mode-dot" aria-hidden="true"></span>Online</button>
           <button class="map-mode-button" id="map-mode-offline" type="button" data-map-mode="offline" aria-pressed="false"><span class="mode-dot" aria-hidden="true"></span>Offline</button>
         </div>
-        <button class="atlas-open" id="atlas-open" type="button">▦ 14 Detailkarten</button>
+        <button class="atlas-open" id="atlas-open" type="button">▦ Karten</button>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Farbschema wechseln" aria-pressed="false"><span data-theme-choice="light">Light</span><span aria-hidden="true">/</span><span data-theme-choice="dark">Dark</span></button>
-        <button class="install-button" id="install-app" type="button" aria-label="Shadowrun Berlin 2080 als App installieren">⇩ App installieren</button>
+        <button class="install-button" id="install-app" type="button" aria-label="Shadowrun Stadtkarten als App installieren">⇩ App installieren</button>
       </div>
       <span class="visually-hidden" id="connection-status" role="status" aria-live="polite"></span>
     </header>
@@ -407,14 +420,18 @@
         <div id="map"></div>
         <div class="update-banner" id="update-banner" role="status" hidden><span>Eine neue Kartenversion ist verfügbar.</span><button id="update-app" type="button">Aktualisieren</button></div>
         <div class="boundary-key" aria-label="Legende der Grenzarten">
-          <span class="key-title">Gebietsstatus</span>
-          <span><i class="key-anarcho"></i>Anarcho-Gebiet</span>
-          <span><i class="key-corporate"></i>Konzerngebiet (EXTER)</span>
-          <span><i class="key-normal"></i>Normales Gebiet</span>
-          <span class="key-title">Weitere Grenzen</span>
-          <span><i class="key-district"></i>Bezirk</span>
-          <span><i class="key-outskirts"></i>Lore-Umland Brandenburg</span>
-          <span><i class="key-neighborhood"></i>Stadtteil</span>
+          <span class="key-title" data-legend-title="status">Gebietsstatus</span>
+          <span data-legend-layer="anarcho"><i class="key-anarcho"></i>Anarcho-Gebiet</span>
+          <span data-legend-layer="corporate"><i class="key-corporate"></i>Konzerngebiet (EXTER)</span>
+          <span data-legend-layer="normal"><i class="key-normal"></i>Normal / Stadt / ADL</span>
+          <span data-legend-layer="barrens"><i class="key-barrens"></i>Barrens</span>
+          <span data-legend-layer="foreign"><i class="key-foreign"></i>Fremdes Staatsgebiet</span>
+          <span data-legend-layer="military"><i class="key-military"></i>Militärisches Gebiet</span>
+          <span data-legend-layer="underground"><i class="key-underground"></i>Unterirdischer Bezirk</span>
+          <span class="key-title" data-legend-title="boundaries">Weitere Grenzen</span>
+          <span data-legend-layer="district"><i class="key-district"></i>Bezirk / Region</span>
+          <span data-legend-layer="outskirts"><i class="key-outskirts"></i>Lore-Umland</span>
+          <span data-legend-layer="neighborhood"><i class="key-neighborhood"></i>Stadtteil</span>
         </div>
         <article class="detail-card" id="detail-card" aria-live="polite">
           <div class="detail-head"><span class="detail-id" id="detail-id"></span><h2 class="detail-title" id="detail-title"></h2><button class="close" id="detail-close" aria-label="Details schließen">×</button></div>
@@ -448,7 +465,7 @@
             </header>
             <div class="atlas-main">
               <nav class="atlas-nav" id="atlas-nav" aria-label="Verfügbare Detailkarten">
-                <p class="atlas-intro">Die v04-Übersicht und ihre Gebietsfarben sind bereits als geografische Ebene der Hauptkarte verarbeitet. Hier liegen die zusätzlichen Orts-, Bezirks- und Netzpläne.</p>
+                <p class="atlas-intro" id="atlas-intro">Kartenmaterial der gewählten Stadt oder Region.</p>
               </nav>
               <section class="atlas-content">
                 <div class="atlas-meta"><p id="atlas-summary"></p><div class="atlas-source" id="atlas-source"></div></div>
@@ -524,7 +541,8 @@
       });
       try { window.localStorage.setItem(cityStorageKey, cityContext.city.id); } catch (error) {}
       document.getElementById('city-title').textContent = cityLabel;
-      document.getElementById('city-scope-label').textContent = `${cityContext.manifest.name || cityContext.city.name} + Umland`;
+      document.getElementById('city-scope-label').textContent = cityContext.manifest.scopeLabel || `${cityContext.manifest.name || cityContext.city.name} + Umland`;
+      document.getElementById('atlas-intro').textContent = DATA.atlasIntro;
       document.querySelector('.map-wrap').setAttribute('aria-label', `Zoombare Karte von ${cityLabel} und seinem Lore-Umland`);
       document.title = `Shadowrun ${cityLabel} – Straßenkarte`;
       document.querySelector('meta[name="description"]').setAttribute('content', `Interaktive Shadowrun-Karte von ${cityLabel} mit Orten, Personen, Bezirken und Detailkarten.`);
@@ -582,10 +600,12 @@
             "Freizeit":"#ff67bd", "Hotels":"#6eb7ff", "Konzerne":"#a878ff",
             "Restaurants":"#ff7b5e", "Sichtseeing und Monumente":"#f5f06a",
             "Sonstige Spots":"#d2dce8", "Verkehr":"#48c8ff", "Bezirke":"#a878ff",
+            "Magie und Erwachte":"#e38aff",
             "Umlandgebiete":"#ffad31", "Matrix und virtuelle Orte":"#40f8dd"
           },
           fallback: '#d2dce8', activeStroke: '#ffffff', personAccent: '#ff2ea6', district: '#a878ff', neighborhood: '#40f8dd',
-          outskirts: '#ffad31', corporate: '#f5f06a', city: '#40f8dd', mask: '#010308', maskOpacity: .72,
+          outskirts: '#ffad31', corporate: '#f5f06a', city: '#40f8dd', barrens: '#ff5d3a',
+          foreign: '#52c7ff', military: '#8ee36b', underground: '#d68cff', mask: '#010308', maskOpacity: .72,
           status: { magenta: '#ff16a4', grau: '#4b515d', orange: '#ffa326' },
           statusOpacity: { magenta: .09, grau: .14, orange: .09 }, labels: 'dark_only_labels'
         },
@@ -595,10 +615,12 @@
             "Freizeit":"#aa1769", "Hotels":"#236ca5", "Konzerne":"#6f4ca1",
             "Restaurants":"#bd472e", "Sichtseeing und Monumente":"#967600",
             "Sonstige Spots":"#59636b", "Verkehr":"#08769d", "Bezirke":"#6f4ca1",
+            "Magie und Erwachte":"#7d4fa4",
             "Umlandgebiete":"#ad5e00", "Matrix und virtuelle Orte":"#087b82"
           },
           fallback: '#59636b', activeStroke: '#17262d', personAccent: '#b11267', district: '#6f4ca1', neighborhood: '#0b8f9b',
-          outskirts: '#ce6e16', corporate: '#d99600', city: '#174b5f', mask: '#d8ddda', maskOpacity: .58,
+          outskirts: '#ce6e16', corporate: '#d99600', city: '#174b5f', barrens: '#bd3d25',
+          foreign: '#14749b', military: '#4f7d32', underground: '#7d4fa4', mask: '#d8ddda', maskOpacity: .58,
           status: { magenta: '#b11267', grau: '#505154', orange: '#efa51a' },
           statusOpacity: { magenta: .2, grau: .18, orange: .24 }, labels: 'light_only_labels'
         }
@@ -612,6 +634,8 @@
         && Array.isArray(feature.geometry.coordinates)
         && feature.geometry.coordinates.length >= 2
       );
+      const hasVisibleMapMarker = feature => hasMapCoordinates(feature)
+        && feature.properties.map_marker !== false;
       const syncThemeButton = () => {
         const button = document.getElementById('theme-toggle');
         button.setAttribute('aria-pressed', currentTheme === 'light' ? 'true' : 'false');
@@ -715,10 +739,12 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende &copy; <a href="https://carto.com/attributions">CARTO</a>'
       });
       map.createPane('statusPane'); map.getPane('statusPane').style.zIndex = 370;
+      map.createPane('securityPane'); map.getPane('securityPane').style.zIndex = 374;
       map.createPane('neighborhoodPane'); map.getPane('neighborhoodPane').style.zIndex = 380;
       map.createPane('outskirtsPane'); map.getPane('outskirtsPane').style.zIndex = 383;
       map.createPane('districtPane'); map.getPane('districtPane').style.zIndex = 385;
       map.createPane('corporatePane'); map.getPane('corporatePane').style.zIndex = 390;
+      map.createPane('specialPane'); map.getPane('specialPane').style.zIndex = 392;
       map.createPane('maskPane'); map.getPane('maskPane').style.zIndex = 395;
       const areaStatusStyle = feature => {
         const zoneType = feature.properties.zone_type;
@@ -734,6 +760,26 @@
       const districtStyle = () => ({ className: 'sr-district-boundary', color: themePalette().district, weight: 2.4, opacity: .94, fillOpacity: 0 });
       const outskirtsStyle = () => ({ className: 'sr-outskirts-boundary', color: themePalette().outskirts, fillColor: themePalette().outskirts, weight: 2.2, opacity: .9, fillOpacity: currentTheme === 'light' ? .065 : .045, dashArray: '9 6' });
       const corporateStyle = () => ({ className: 'sr-corporate-zone', color: themePalette().corporate, fillColor: themePalette().corporate, weight: 2.6, opacity: .98, fillOpacity: currentTheme === 'light' ? .16 : .11 });
+      const securityStyle = feature => {
+        const color = themePalette()[feature.properties.kind] || themePalette().barrens;
+        return {
+          className: 'sr-security-zone', color, fillColor: color, weight: 2.2,
+          opacity: currentTheme === 'light' ? .82 : .9,
+          fillOpacity: currentTheme === 'light' ? .16 : .12,
+          dashArray: '7 5'
+        };
+      };
+      const specialStyle = feature => {
+        const color = themePalette()[feature.properties.kind] || themePalette().foreign;
+        const underground = feature.properties.kind === 'underground';
+        const military = feature.properties.kind === 'military';
+        return {
+          className: `sr-special-zone sr-special-${feature.properties.kind}`, color, fillColor: color,
+          weight: underground ? 2 : 2.4, opacity: currentTheme === 'light' ? .78 : .9,
+          fillOpacity: underground ? (currentTheme === 'light' ? .11 : .08) : (currentTheme === 'light' ? .13 : .09),
+          dashArray: underground ? '2 6' : military ? '9 4 2 4' : null
+        };
+      };
       const cityBoundaryStyle = () => ({ className: 'sr-city-boundary', color: themePalette().city, weight: 2, opacity: .82, fillOpacity: 0, dashArray: '8 8' });
       const areaStatusCollection = status => ({
         type: 'FeatureCollection',
@@ -749,15 +795,77 @@
         });
       const anarchoAreas = createAreaStatusLayer('anarcho');
       const normalAreas = createAreaStatusLayer('normal');
+      const securityCollection = kind => ({
+        type: 'FeatureCollection',
+        features: ((DATA.securityAreas && DATA.securityAreas.features) || [])
+          .filter(feature => feature.properties.kind === kind)
+      });
+      const specialCollection = kind => ({
+        type: 'FeatureCollection',
+        features: ((DATA.specialAreas && DATA.specialAreas.features) || [])
+          .filter(feature => feature.properties.kind === kind)
+      });
+      const createSecurityLayer = kind => L.geoJSON(securityCollection(kind), {
+        pane: 'securityPane',
+        style: securityStyle,
+        onEachFeature: (feature, layer) => layer.bindTooltip(
+          `${escapeHtml(feature.properties.label)}${feature.properties.basis ? `<br><span class="tooltip-basis">Basis: ${escapeHtml(feature.properties.basis)}</span>` : ''}`,
+          { className: 'sr-label', sticky: true }
+        )
+      });
+      const createSpecialLayer = kind => L.geoJSON(specialCollection(kind), {
+        pane: 'specialPane',
+        style: specialStyle,
+        onEachFeature: (feature, layer) => layer.bindTooltip(
+          `${escapeHtml(feature.properties.label)}${feature.properties.basis ? `<br><span class="tooltip-basis">Basis: ${escapeHtml(feature.properties.basis)}</span>` : ''}`,
+          { className: 'sr-label', sticky: true }
+        )
+      });
+      const barrensAreas = createSecurityLayer('barrens');
+      const foreignAreas = createSpecialLayer('foreign');
+      const militaryAreas = createSpecialLayer('military');
+      const undergroundAreas = createSpecialLayer('underground');
       const neighborhoodBoundaries = L.geoJSON(DATA.neighborhoodBoundaries, {
         pane: 'neighborhoodPane',
         style: neighborhoodStyle,
-        onEachFeature: (feature, layer) => layer.bindTooltip(`Stadtteil · ${escapeHtml(feature.properties.name)}`, { className: 'sr-label', sticky: true })
+        onEachFeature: (feature, layer) => {
+          const referenceOnly = feature.properties.boundary_role === 'reference-neighborhood';
+          const label = referenceOnly ? 'Geografische Referenz' : 'Stadtteil';
+          layer.bindTooltip(
+            `${label} · ${escapeHtml(feature.properties.name)}${feature.properties.basis ? `<br><span class="tooltip-basis">Basis: ${escapeHtml(feature.properties.basis)}</span>` : ''}`,
+            { className: 'sr-label', sticky: true }
+          );
+        }
       });
       const districtBoundaries = L.geoJSON(DATA.districtBoundaries, {
         pane: 'districtPane',
         style: districtStyle,
-        onEachFeature: (feature, layer) => layer.bindTooltip(`Bezirk · ${escapeHtml(feature.properties.name)}<br><span class="tooltip-basis">Basis: ${escapeHtml(feature.properties.basis)}</span>`, { className: 'sr-label', sticky: true })
+        onEachFeature: (feature, layer) => {
+          const loreDistrict = feature.properties.boundary_role === 'lore-district';
+          const boundaryLabels = {
+            municipality: 'Stadt / Bezirk',
+            'adl-region': 'ADL-Region',
+            'lore-municipality': 'Lore-Stadt / Kommune',
+            'lore-region': 'Lore-Region',
+            'lore-inner-district': 'Innerer Shadowrun-Bezirk',
+            'lore-outer-district': 'Äußerer Shadowrun-Bezirk',
+            'lore-district': 'Shadowrun-Bezirk',
+            'island-district': 'Shadowrun-Inselbezirk',
+            'military-district': 'Militärischer Shadowrun-Bezirk',
+            'foreign-enclave': 'Fremdes Staatsgebiet',
+          };
+          const boundaryLabel = boundaryLabels[feature.properties.boundary_role] || 'Bezirk';
+          if (loreDistrict) {
+            layer.on('click', () => {
+              const dossier = DATA.geojson.features.find(
+                item => item.properties.name === feature.properties.name
+              );
+              if (dossier) selectFeature(dossier);
+            });
+          } else {
+            layer.bindTooltip(`${boundaryLabel} · ${escapeHtml(feature.properties.name)}<br><span class="tooltip-basis">Basis: ${escapeHtml(feature.properties.basis)}</span>`, { className: 'sr-label', sticky: true });
+          }
+        }
       });
       const umlandBoundaries = L.geoJSON(DATA.umlandBoundaries, {
         pane: 'outskirtsPane',
@@ -767,31 +875,84 @@
       const corporateAreas = L.geoJSON(DATA.corporateAreas, {
         pane: 'corporatePane',
         style: corporateStyle,
-        onEachFeature: (feature, layer) => layer.bindTooltip(
-          `Exterritorial · ${escapeHtml(feature.properties.label)}${feature.properties.boundary_review_label ? `<br><span class="tooltip-basis">Grenzprüfung: ${escapeHtml(feature.properties.boundary_review_label)}</span>` : ''}${feature.properties.basis ? `<br><span class="tooltip-basis">Grenzbasis: ${escapeHtml(feature.properties.basis)}</span>` : ''}`,
-          { className: 'sr-label', sticky: true }
-        )
+        onEachFeature: (feature, layer) => {
+          layer.bindTooltip(
+            `Exterritorial · ${escapeHtml(feature.properties.label)}${feature.properties.boundary_review_label ? `<br><span class="tooltip-basis">Grenzprüfung: ${escapeHtml(feature.properties.boundary_review_label)}</span>` : ''}${feature.properties.basis ? `<br><span class="tooltip-basis">Grenzbasis: ${escapeHtml(feature.properties.basis)}</span>` : ''}`,
+            { className: 'sr-label', sticky: true }
+          );
+          const entityId = Number(feature.properties.entity_id);
+          if (Number.isInteger(entityId)) {
+            layer.on('click', () => {
+              const dossier = DATA.geojson.features.find(
+                item => item.properties.id === entityId
+              );
+              if (dossier) selectFeature(dossier);
+            });
+          }
+        }
       });
-      const cityBoundary = L.geoJSON(DATA.boundary, { style: cityBoundaryStyle });
+      const cityBoundary = L.geoJSON(DATA.boundary, {
+        pane: 'districtPane',
+        style: cityBoundaryStyle,
+        interactive: false
+      });
+      const legendAvailability = {
+        anarcho: anarchoAreas.getLayers().length > 0,
+        corporate: corporateAreas.getLayers().length > 0,
+        normal: normalAreas.getLayers().length > 0,
+        barrens: barrensAreas.getLayers().length > 0,
+        foreign: foreignAreas.getLayers().length > 0,
+        military: militaryAreas.getLayers().length > 0,
+        underground: undergroundAreas.getLayers().length > 0,
+        district: districtBoundaries.getLayers().length > 0,
+        outskirts: umlandBoundaries.getLayers().length > 0,
+        neighborhood: neighborhoodBoundaries.getLayers().length > 0,
+      };
+      Object.entries(legendAvailability).forEach(([key, available]) => {
+        const item = document.querySelector(`[data-legend-layer="${key}"]`);
+        if (item) item.hidden = !available;
+      });
+      document.querySelector('[data-legend-title="status"]').hidden =
+        !legendAvailability.anarcho && !legendAvailability.corporate && !legendAvailability.normal
+        && !legendAvailability.barrens && !legendAvailability.foreign
+        && !legendAvailability.military && !legendAvailability.underground;
+      document.querySelector('[data-legend-title="boundaries"]').hidden =
+        !legendAvailability.district && !legendAvailability.outskirts && !legendAvailability.neighborhood;
       const outerRings = feature => {
         const geometry = feature.geometry;
         const polygons = geometry.type === 'MultiPolygon' ? geometry.coordinates : [geometry.coordinates];
         return polygons.map(polygon => polygon[0].map(([lon, lat]) => [lat, lon]));
       };
       const scopeRings = DATA.scope.features.flatMap(outerRings);
-      const cityMask = L.polygon(
-        [[[-85,-180],[-85,180],[85,180],[85,-180]], ...scopeRings],
-        { pane: 'maskPane', stroke: false, fillColor: themePalette().mask, fillOpacity: themePalette().maskOpacity, fillRule: 'evenodd', interactive: false }
-      );
+      const cityMask = scopeRings.length
+        ? L.polygon(
+          [[[-85,-180],[-85,180],[85,180],[85,-180]], ...scopeRings],
+          { pane: 'maskPane', stroke: false, fillColor: themePalette().mask, fillOpacity: themePalette().maskOpacity, fillRule: 'evenodd', interactive: false }
+        )
+        : L.featureGroup();
       const loreLabels = L.layerGroup();
       DATA.loreLabels.forEach(label => {
         const minor = label.type === 'special' ? ' minor' : '';
-        const clickable = label.type === 'district' || label.type === 'outskirts';
-        const marker = L.marker([label.lat, label.lon], { interactive: clickable, icon: L.divIcon({ className: `lore-label ${label.type}${minor}`, html: `<span>${label.name}</span>`, iconSize: [0,0], iconAnchor: [0,0] }) });
+        const clickable = Number.isInteger(label.entity_id) || label.type === 'district' || label.type === 'outskirts';
+        const clickableClass = clickable ? ' is-clickable' : '';
+        const marker = L.marker([label.lat, label.lon], {
+          interactive: clickable,
+          zIndexOffset: label.type === 'corporate' ? 1000 : 0,
+          icon: L.divIcon({
+            className: `lore-label ${label.type}${minor}${clickableClass}`,
+            html: `<span>${label.name}</span>`,
+            iconSize: [0,0],
+            iconAnchor: [0,0]
+          })
+        });
         if (clickable) {
           marker.on('click', () => {
             const category = label.type === 'district' ? 'Bezirke' : 'Umlandgebiete';
-            const feature = DATA.geojson.features.find(item => item.properties.category === category && item.properties.name === label.name);
+            const feature = DATA.geojson.features.find(item =>
+              Number.isInteger(label.entity_id)
+                ? item.properties.id === label.entity_id
+                : item.properties.category === category && item.properties.name === label.name
+            );
             if (feature) selectFeature(feature);
           });
         }
@@ -801,12 +962,23 @@
       umlandBoundaries.addTo(map);
       normalAreas.addTo(map);
       anarchoAreas.addTo(map);
+      barrensAreas.addTo(map);
+      foreignAreas.addTo(map);
+      militaryAreas.addTo(map);
+      undergroundAreas.addTo(map);
       districtBoundaries.addTo(map);
       corporateAreas.addTo(map);
       cityMask.addTo(map);
       cityBoundary.addTo(map);
       loreLabels.addTo(map);
-      map.attributionControl.addAttribution('Grenzen: Geoportal Berlin / ALKIS, dl-de-zero-2.0 · GeoBasis-DE/LGB, dl-de/by-2-0');
+      const boundarySource = DATA.boundary.features
+        .map(feature => feature.properties || {})
+        .find(properties => properties.source);
+      map.attributionControl.addAttribution(
+        boundarySource
+          ? `Grenzen: <a href="${escapeHtml(boundarySource.source_url)}">${escapeHtml(boundarySource.source)}</a>`
+          : 'Grenzen: Geoportal Berlin / ALKIS, dl-de-zero-2.0 · GeoBasis-DE/LGB, dl-de/by-2-0'
+      );
       const personRelationMarkers = [];
       const personRelationLayer = L.layerGroup();
       function rebuildPersonRelationMarkers() {
@@ -838,21 +1010,35 @@
         editionByLayer.set(layer, edition);
         if (activeEditions.has(edition)) layer.addTo(map);
       });
-      const overlays = {
-        'Gebietsstatus · Anarcho': anarchoAreas,
-        'Gebietsstatus · Konzern (EXTER)': corporateAreas,
-        'Gebietsstatus · Normal': normalAreas,
-        'Straßennamen verstärkt': streetLabels,
-        'Personenbezüge': personRelationLayer,
-        'Lore-Umland Brandenburg': umlandBoundaries,
-        'Bezirksgrenzen': districtBoundaries,
-        'Stadtteilgrenzen': neighborhoodBoundaries,
-        'Shadowrun-Bezirksnamen': loreLabels,
-        'Berliner Stadtgrenze': cityBoundary
-      };
+      const overlays = { 'Straßennamen verstärkt': streetLabels };
+      if (anarchoAreas.getLayers().length) overlays['Gebietsstatus · Anarcho'] = anarchoAreas;
+      if (corporateAreas.getLayers().length) overlays['Gebiet · Konzern (EXTER)'] = corporateAreas;
+      if (normalAreas.getLayers().length) overlays['Gebiet · Normal / Stadt / ADL'] = normalAreas;
+      if (barrensAreas.getLayers().length) overlays['Sicherheitsstatus · Barrens'] = barrensAreas;
+      if (foreignAreas.getLayers().length) overlays['Sondergebiet · Fremdstaat'] = foreignAreas;
+      if (militaryAreas.getLayers().length) overlays['Sondergebiet · Militär'] = militaryAreas;
+      if (undergroundAreas.getLayers().length) overlays['Sondergebiet · Untergrund'] = undergroundAreas;
+      if (personRelationMarkers.length) overlays['Personenbezüge'] = personRelationLayer;
+      if (umlandBoundaries.getLayers().length) overlays['Lore-Umland'] = umlandBoundaries;
+      if (districtBoundaries.getLayers().length) overlays['Bezirksgrenzen'] = districtBoundaries;
+      if (neighborhoodBoundaries.getLayers().length) {
+        const onlyReferenceBoundaries = DATA.neighborhoodBoundaries.features.every(
+          feature => feature.properties.boundary_role === 'reference-neighborhood'
+        );
+        overlays[onlyReferenceBoundaries ? 'Geografische Referenzgrenzen' : 'Stadtteilgrenzen'] = neighborhoodBoundaries;
+      }
+      if (loreLabels.getLayers().length) overlays['Shadowrun-Bezirksnamen'] = loreLabels;
+      if (cityBoundary.getLayers().length) overlays['Stadtgrenze'] = cityBoundary;
+      document.querySelector('.boundary-key').hidden = ![
+        anarchoAreas, corporateAreas, normalAreas, umlandBoundaries,
+        barrensAreas, foreignAreas, militaryAreas, undergroundAreas,
+        districtBoundaries, neighborhoodBoundaries, cityBoundary
+      ].some(layer => layer.getLayers().length);
       availableEditions.forEach(edition => { overlays[`Spielversion · ${edition}`] = editionLayers.get(edition); });
+      const baseLayers = { 'Straßenkarte (OSM)': street };
+      if (cityContext.city.id === 'berlin-2080') baseLayers['Amtliche Berlin-Karte ÜK50'] = official;
       const layerControl = L.control.layers(
-        { 'Straßenkarte (OSM)': street, 'Amtliche Berlin-Karte ÜK50': official },
+        baseLayers,
         overlays,
         { position: 'topright', collapsed: true }
       ).addTo(map);
@@ -977,6 +1163,10 @@
         streetLabels.setUrl(`https://{s}.basemaps.cartocdn.com/${themePalette().labels}/{z}/{x}/{y}{r}.png`);
         anarchoAreas.setStyle(areaStatusStyle);
         normalAreas.setStyle(areaStatusStyle);
+        barrensAreas.setStyle(securityStyle);
+        foreignAreas.setStyle(specialStyle);
+        militaryAreas.setStyle(specialStyle);
+        undergroundAreas.setStyle(specialStyle);
         neighborhoodBoundaries.setStyle(neighborhoodStyle);
         districtBoundaries.setStyle(districtStyle);
         umlandBoundaries.setStyle(outskirtsStyle);
@@ -1063,7 +1253,7 @@
       function buildMarkers() {
         markerLayer.clearLayers(); markerById.clear();
         filtered.forEach(feature => {
-          if (!hasMapCoordinates(feature)) return;
+          if (!hasVisibleMapMarker(feature)) return;
           const coordinates = [feature.geometry.coordinates, ...(feature.properties.alternate_locations || [])];
           const markers = coordinates.map(([lon, lat], index) => {
             const marker = L.circleMarker([lat, lon], markerStyle(feature, markerIsActive(feature.properties.id)));
@@ -1121,7 +1311,7 @@
           nav.appendChild(button);
         });
         const openButton = document.getElementById('atlas-open');
-        openButton.textContent = `▦ ${atlasItems.length} Detailkarten`;
+        openButton.textContent = `▦ ${atlasItems.length} Karten`;
         openButton.hidden = atlasItems.length === 0;
       }
 
@@ -1236,7 +1426,7 @@
       }
 
       function showPersonDetails(person) {
-        document.getElementById('detail-id').textContent = 'POI';
+        document.getElementById('detail-id').textContent = person.entity_type === 'group' ? 'GRUPPE' : 'PERSON';
         document.getElementById('detail-title').textContent = person.name;
         document.getElementById('detail-badges').innerHTML = `<span class="badge">${escapeHtml(person.category)}</span><span class="badge">${escapeHtml(person.status)}</span>${(person.editions || []).map(edition => `<span class="badge">${escapeHtml(edition)}</span>`).join('')}${person.metatype ? `<span class="badge">${escapeHtml(person.metatype)}</span>` : ''}`;
         const detailPlanButton = document.getElementById('detail-plan-open');
@@ -1272,7 +1462,7 @@
       }
 
       function selectFeature(feature, fly = true) {
-        if (!markerById.has(feature.properties.id)) {
+        if (hasVisibleMapMarker(feature) && !markerById.has(feature.properties.id)) {
           filtered = [...filtered, feature];
           buildMarkers();
         }

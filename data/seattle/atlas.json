@@ -1,0 +1,57 @@
+[
+  {
+    "key": "seattle-sr5-detail",
+    "title": "Seattle - Detailkarte",
+    "kind": "Straßenkarte",
+    "source": "SR5 Seattle - Detailkarte.pdf",
+    "summary": "Detaillierte Straßenkarte des zentralen Seattle Metroplexes im SR5-Kartenstil.",
+    "markerIds": [],
+    "width": 2967,
+    "height": 4200,
+    "image": "../../assets/cities/seattle/detail-maps/seattle-sr5-detail.webp"
+  },
+  {
+    "key": "seattle-sr5-metroplex",
+    "title": "Seattle - Metroplex",
+    "kind": "Metroplexkarte",
+    "source": "SR5 Seattle - Karte Metroplex.pdf",
+    "summary": "Gesamtübersicht des Metroplexes mit Bezirken, Sonderzonen und umfangreicher Ortslegende.",
+    "markerIds": [],
+    "width": 2967,
+    "height": 4200,
+    "image": "../../assets/cities/seattle/detail-maps/seattle-sr5-metroplex.webp"
+  },
+  {
+    "key": "seattle-sr5-nordwest-downtown",
+    "title": "Seattle - Nordwesten und Downtown",
+    "kind": "Regionale Detailkarte",
+    "source": "SR5 Seattle - Karte Nordwesten und Downtown.pdf",
+    "summary": "Doppelseitige Übersicht des pazifischen Nordwestens und der Downtown-Bezirke.",
+    "markerIds": [],
+    "width": 2967,
+    "height": 4200,
+    "image": "../../assets/cities/seattle/detail-maps/seattle-sr5-nordwest-downtown.webp"
+  },
+  {
+    "key": "seattle-sr6-poster",
+    "title": "Seattle - Poster Map",
+    "kind": "Metroplexkarte",
+    "source": "Shadowrun 6E - Seattle - Poster Map.pdf",
+    "summary": "SR6-Gesamtkarte des Metroplexes mit Innenstadtplan, Regionalausschnitten und Legende.",
+    "markerIds": [],
+    "width": 3080,
+    "height": 4200,
+    "image": "../../assets/cities/seattle/detail-maps/seattle-sr6-poster.webp"
+  },
+  {
+    "key": "seattle-sr6-schauplatzplaene",
+    "title": "Seattle - Schauplatzpläne",
+    "kind": "Gebäudepläne",
+    "source": "Shadowrun 6E - Seattle - Poster Map.pdf",
+    "summary": "Zwei taktische Gebäudepläne aus dem SR6-Posterkartenpaket.",
+    "markerIds": [],
+    "width": 3080,
+    "height": 4200,
+    "image": "../../assets/cities/seattle/detail-maps/seattle-sr6-schauplatzplaene.webp"
+  }
+]

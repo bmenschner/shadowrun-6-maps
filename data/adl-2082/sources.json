@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "books": [
+    {
+      "id": "adl-regionalkarten",
+      "title": "ADL-Regionalkarten 2082",
+      "edition": "SR6"
+    }
+  ],
+  "citations": []
+}
