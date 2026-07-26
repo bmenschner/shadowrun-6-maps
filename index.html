@@ -984,17 +984,35 @@
       function rebuildPersonRelationMarkers() {
         personRelationLayer.clearLayers();
         personRelationMarkers.splice(0);
-        const visibleLocations = new Set();
+        const visibleLocations = new Map();
         persons.filter(matchesEditionLayers).forEach(person => {
-          (person.locations || []).forEach(link => visibleLocations.add(link.id));
+          (person.locations || []).forEach(link => {
+            if (!visibleLocations.has(link.id)) visibleLocations.set(link.id, []);
+            visibleLocations.get(link.id).push(person);
+          });
         });
-        visibleLocations.forEach(locationId => {
+        visibleLocations.forEach((linkedPersons, locationId) => {
           const feature = DATA.geojson.features.find(item => item.properties.id === locationId);
           if (!hasMapCoordinates(feature)) return;
           const [lon, lat] = feature.geometry.coordinates;
           const ring = L.circleMarker([lat, lon], {
             radius: 10, color: themePalette().personAccent, weight: 2, opacity: .9,
-            fillOpacity: 0, dashArray: '3 3', interactive: false
+            fillOpacity: 0, dashArray: '3 3', interactive: true,
+            bubblingMouseEvents: false, className: 'person-relation-ring'
+          });
+          const names = linkedPersons.map(person => person.name);
+          ring.bindTooltip(
+            names.length === 1
+              ? `Personenbezug · ${escapeHtml(names[0])}`
+              : `Personenbezüge · ${names.length}: ${escapeHtml(names.join(', '))}`,
+            { className: 'sr-label', direction: 'top', offset: [0, -10] }
+          );
+          ring.on('click', () => {
+            if (linkedPersons.length === 1) {
+              selectPerson(linkedPersons[0], false);
+            } else {
+              selectFeature(feature, false);
+            }
           });
           ring.addTo(personRelationLayer);
           personRelationMarkers.push(ring);
