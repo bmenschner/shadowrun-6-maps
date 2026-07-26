@@ -256,6 +256,13 @@ def validate_city(city: dict, global_ids: set[str]) -> tuple[int, int]:
             }
             if "Exterritoriales Konzerngebiet · Renrakusan" not in reviewed:
                 raise ValueError(f"{city['id']}: Renrakusan ist nicht als geprüfte EXTER-Fläche markiert")
+    for key in ("security", "special"):
+        supplemental_path = manifest.get("files", {}).get(key)
+        if supplemental_path:
+            validate_feature_collection(
+                read_json(city_dir / supplemental_path),
+                f"{city['id']} {key}",
+            )
 
     atlas = read_json(city_dir / manifest["files"]["atlas"])
     atlas_ids = set()

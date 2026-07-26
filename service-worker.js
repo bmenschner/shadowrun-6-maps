@@ -1,5 +1,5 @@
-const APP_CACHE = 'sr6-app-v16';
-const RUNTIME_CACHE = 'sr6-runtime-v16';
+const APP_CACHE = 'sr6-app-v37';
+const RUNTIME_CACHE = 'sr6-runtime-v37';
 const APP_ENTRY = new URL('./index.html', self.registration.scope).href;
 const APP_SHELL = [
   './index.html',
@@ -27,6 +27,18 @@ async function cacheCityPackage(manifestUrl) {
   const assetUrls = manifest.assets && manifest.assets.offlineBase
     ? [new URL(manifest.assets.offlineBase, manifestUrl).href]
     : [];
+  if (manifest.files && manifest.files.atlas) {
+    const atlasUrl = new URL(manifest.files.atlas, manifestUrl).href;
+    const atlasResponse = await fetch(atlasUrl, { cache: 'no-cache' });
+    if (atlasResponse.ok) {
+      const atlas = await atlasResponse.json();
+      atlas.forEach(plan => {
+        if (plan.image && !plan.image.startsWith('data:')) {
+          assetUrls.push(new URL(plan.image, atlasUrl).href);
+        }
+      });
+    }
+  }
   await cityCache.put(manifestUrl, manifestResponse);
   await cityCache.addAll([...fileUrls, ...assetUrls]);
   const cityPrefix = `sr6-city-${manifest.id}-v`;

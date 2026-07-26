@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "books": [
+    {
+      "id": "revierbericht-2082",
+      "title": "Revierbericht 2082",
+      "edition": "SR6"
+    },
+    {
+      "id": "rhein-ruhr-megaplex-sr4",
+      "title": "Rhein-Ruhr-Megaplex",
+      "edition": "SR4"
+    }
+  ],
+  "citations": []
+}

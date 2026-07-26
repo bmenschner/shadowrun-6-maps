@@ -105,6 +105,8 @@
       districtBoundaries: packages.districts,
       neighborhoodBoundaries: packages.neighborhoods,
       umlandBoundaries: outskirts,
+      securityAreas: packages.security || featureCollection(`${manifest.name} Sicherheitsstatus`, []),
+      specialAreas: packages.special || featureCollection(`${manifest.name} Sondergebiete`, []),
       boundary,
       scope: featureCollection(
         `${manifest.name} und Lore-Umland`,
@@ -113,6 +115,7 @@
       loreLabels: asArray(packages.labels),
       entities: asArray(places.features).map(feature => feature.properties),
       summary: manifest.summary || {},
+      atlasIntro: manifest.atlasIntro || 'Kartenmaterial der gewählten Stadt oder Region.',
       overlayBounds: manifest.overlayBounds,
       cityBounds: manifest.cityBounds,
       regionBounds: manifest.regionBounds,
@@ -132,7 +135,10 @@
     }));
     const entries = await Promise.all(requiredFiles.map(async key => [key, await fetchJson(fileUrls[key])]));
     const packages = Object.fromEntries(entries);
-    for (const key of ['virtualPlaces', 'historicalPlaces', 'historicalPeople', 'placeAugmentations', 'personAugmentations']) {
+    for (const key of [
+      'virtualPlaces', 'historicalPlaces', 'historicalPeople',
+      'placeAugmentations', 'personAugmentations', 'security', 'special',
+    ]) {
       if (!manifest.files || !manifest.files[key]) continue;
       packages[key] = await fetchJson(new URL(manifest.files[key], manifestUrl).href);
     }

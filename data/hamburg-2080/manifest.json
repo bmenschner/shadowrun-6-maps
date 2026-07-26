@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "hamburg-2080",
+  "name": "Hamburg",
+  "year": 2080,
+  "dataVersion": 3,
+  "availableEditions": [],
+  "center": [
+    53.5511,
+    9.9937
+  ],
+  "zoom": 9,
+  "overlayBounds": [
+    [
+      53.1,
+      8.2
+    ],
+    [
+      54.4,
+      11.4
+    ]
+  ],
+  "cityBounds": [
+    [
+      53.1,
+      8.2
+    ],
+    [
+      54.4,
+      11.4
+    ]
+  ],
+  "regionBounds": [
+    [
+      53.1,
+      8.2
+    ],
+    [
+      54.4,
+      11.4
+    ]
+  ],
+  "scopeLabel": "Hamburg + Deutsche Bucht",
+  "atlasIntro": "Das Kartenpaket enthält zunächst ausschließlich Übersichts-, Bezirks-, Verkehrs- und Innenstadtpläne. Orte und Personen folgen später.",
+  "summary": {
+    "entities": 0,
+    "marker_instances": 0,
+    "overview_marker_instances": 0,
+    "detail_marker_instances": 0,
+    "gangs": 0,
+    "corporations": 0
+  },
+  "files": {
+    "places": "places.geojson",
+    "people": "people.json",
+    "atlas": "atlas.json",
+    "zones": "zones.geojson",
+    "exterritorial": "exterritorial.geojson",
+    "districts": "districts.geojson",
+    "neighborhoods": "neighborhoods.geojson",
+    "outskirts": "outskirts.geojson",
+    "boundary": "city-boundary.geojson",
+    "labels": "labels.json",
+    "sources": "sources.json"
+  }
+}
