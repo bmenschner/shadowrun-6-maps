@@ -109842,6 +109842,28 @@
         "lore_boundary_notes": [
           "AZT Schönwalde ist auf den offiziellen Berlin-2080-Übersichten als orange Exterritorialfläche im Lore-Umland markiert.",
           "Der Straßen-, Gewässer- und Siedlungsabgleich dieser Fläche steht noch aus."
+        ],
+        "entity_id": 452,
+        "description_preview": "Aztech-Schönwalde ist eine von Aztechnology geformte Konzernlandschaft im Nordwesten Berlins. Zwischen Wald, Feuchtwiesen und Mooren liegen Forschungsstationen,…",
+        "description_full": "Aztech-Schönwalde ist eine von Aztechnology geformte Konzernlandschaft im Nordwesten Berlins. Zwischen Wald, Feuchtwiesen und Mooren liegen Forschungsstationen, Zuchtkomplexe, weitläufige Crittergehege und abgeschirmte Hallen. Alte Siedlungen wurden entvölkert oder zu Geisterorten, während neue Anlagen vor allem Forschung, Aufzucht sowie die Verarbeitung und Verteilung von Nahrung bedienen.",
+        "editions": [
+          "SR6"
+        ],
+        "sources": [
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080: 30–32",
+            "purpose": "reference"
+          },
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080 Karte v04 – Lore-Umland",
+            "purpose": "map"
+          }
         ]
       }
     },
@@ -112707,6 +112729,28 @@
           "Alt-Tegel wird bis zur tatsächlichen Außenkante des Tegeler Forsts beansprucht; die Waldfläche selbst bleibt Reinickendorf.",
           "An der Dicken Marie wird nur die im Quellenband belegte lokale Z-IC-Sicherheitszone ergänzt, nicht der umliegende Forst.",
           "Die Grenze zur AGC-Siemensstadt wird beim Standort Gotcha ausdrücklich erwähnt."
+        ],
+        "entity_id": 502,
+        "description_preview": "Z-IC Tegel ist ein wachsendes, vollständig exterritoriales Konzerngebiet rund um den früheren Flughafen Tegel und den Tegeler See. Zeta-ImpChem, Schering und…",
+        "description_full": "Z-IC Tegel ist ein wachsendes, vollständig exterritoriales Konzerngebiet rund um den früheren Flughafen Tegel und den Tegeler See. Zeta-ImpChem, Schering und weitere Töchter verbinden Hochsicherheitsforschung, Produktion, Logistik, Kliniken und neue Wohnprojekte. Der Konzern kontrolliert den See, baut Reiherwerder und Lindwerder aus und gliedert frühere Reinickendorfer Flächen schrittweise in seine Sicherheitsordnung ein.",
+        "editions": [
+          "SR6"
+        ],
+        "sources": [
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080: 74–77",
+            "purpose": "reference"
+          },
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080 Karte v04 – Bezirkslayout",
+            "purpose": "map"
+          }
         ]
       }
     },
@@ -117484,6 +117528,28 @@
           "AGC Siemensstadt umfasst das frühere Siemensstadt und den früher Charlottenburg-Nord genannten Bereich Siemensstätten.",
           "Berlin 2080 bezeichnet den gesamten Konzernbezirk ausdrücklich als exterritorial.",
           "Die Außengrenze folgt deshalb den amtlichen Ortsteilgrenzen von Siemensstadt und Charlottenburg-Nord."
+        ],
+        "entity_id": 503,
+        "description_preview": "AGC Siemensstadt, das sogenannte Jewühl, ist ein vollständig exterritorialer Industriebezirk der AG Chemie. Schwerindustrie, Förderanlagen, Rohre, Transportdrohnen…",
+        "description_full": "AGC Siemensstadt, das sogenannte Jewühl, ist ein vollständig exterritorialer Industriebezirk der AG Chemie. Schwerindustrie, Förderanlagen, Rohre, Transportdrohnen und eng stehende Fabriken prägen das Gebiet. Tagelöhner und untere Beschäftigte leben unter schlechten Arbeits- und Umweltbedingungen; Versorgung und Sicherheit dienen vor allem der ununterbrochenen Produktion.",
+        "editions": [
+          "SR6"
+        ],
+        "sources": [
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080: 27–31",
+            "purpose": "reference"
+          },
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080 Karte v04 – Bezirkslayout",
+            "purpose": "map"
+          }
         ]
       }
     },
@@ -121158,6 +121224,28 @@
           "Nur große historische Straßenverläufe, darunter die frühere Prenzlauer Allee, blieben erhalten.",
           "Die amtliche Ortsteilgrenze von Prenzlauer Berg liefert die Grundlinie an Ringbahn/A100, Bornholmer Straße, Wisbyer Straße, Ostseestraße und den südlichen Hauptstraßen.",
           "Die Grenze wurde defensiv nach außen erweitert, damit Straßen- und Bahnkorridore vollständig zum Konzerngebiet gehören."
+        ],
+        "entity_id": 451,
+        "description_preview": "Renrakusan ist Renrakus dicht bebauter Modellbezirk einer vollständig vernetzten Smart City. Der frühere Prenzlauer Berg wurde weitgehend abgerissen und im…",
+        "description_full": "Renrakusan ist Renrakus dicht bebauter Modellbezirk einer vollständig vernetzten Smart City. Der frühere Prenzlauer Berg wurde weitgehend abgerissen und im Neo-Tokio-Stil mit Arkologien, Passagen, Holos und automatisierten Verkehrs- und Warenströmen neu errichtet. Strenge Sicherheitsgesetze, lückenlose technische Kontrolle und die Konzernpolizei bestimmen den Alltag.",
+        "editions": [
+          "SR6"
+        ],
+        "sources": [
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080: 59–62",
+            "purpose": "reference"
+          },
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080 Karte v04 – Bezirkslayout",
+            "purpose": "map"
+          }
         ]
       }
     },
@@ -121323,6 +121411,28 @@
           "S-K Tempelhof wird durch Flughafen Tempelhof und die angrenzenden Konzernquartiere bestimmt.",
           "Berlin 4D beschreibt die bewachte Flughafenmauer an der Schillerpromenade als Grenze zu Kreuzberg.",
           "Berlin 2080 nennt Alt-Tempelhof südlich und Neukölln beziehungsweise Rixdorf östlich des Flughafens."
+        ],
+        "entity_id": 504,
+        "description_preview": "S-K Tempelhof ist ein vollständig exterritorialer Konzernbezirk unter Saeder-Krupps Kontrolle. Der Geschäfts- und Frachtflughafen SKT, die Arkologie, das…",
+        "description_full": "S-K Tempelhof ist ein vollständig exterritorialer Konzernbezirk unter Saeder-Krupps Kontrolle. Der Geschäfts- und Frachtflughafen SKT, die Arkologie, das Fliegerviertel sowie Alt-Tempelhof und angrenzende Wohnräume bilden einen weitgehend autarken Standort. Schulen, Versorgung, Wohnen und Freizeit sind eng an den Konzern gebunden; auch Nicht-Konzernbürger unterliegen innerhalb des Bezirks der S-K-Sicherheitsordnung.",
+        "editions": [
+          "SR6"
+        ],
+        "sources": [
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080: 64–67",
+            "purpose": "reference"
+          },
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Berlin 2080 Karte v04 – Bezirkslayout",
+            "purpose": "map"
+          }
         ]
       }
     }

@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from build_us_city_content import CityCatalogue, name_key, write_json
+from build_us_city_content import CityCatalogue, city_edition, name_key, write_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -972,6 +972,34 @@ def update_atlas(city: CityCatalogue) -> None:
 
 def main() -> None:
     city = add_content()
+    toronto_preview = (
+        "Toronto ist 2080 eine wirtschaftlich und kulturell bedeutende UCAS-Metropole, "
+        "deren geordnete Fassade während des Blackouts zerbricht."
+    )
+    city.set_city_profile(
+        toronto_preview,
+        toronto_preview + (
+            " Downtown, die Islands, East York, Uptown, West End, Etobicoke, "
+            "North York und Scarborough bilden acht unterschiedliche Lore-Distrikte. "
+            "Medien, Konzerne, organisierte Kriminalität, erwachte Phänomene und die "
+            "Ereignisse der dreißig Nächte verändern Sicherheit und Alltag der Stadt."
+        ),
+        {
+            "SR3": city_edition(
+                "SR3", "sona-toronto-sr3",
+                "Nordamerika in den Schatten / Shadows of North America",
+                "Toronto-Stadtprofil",
+                "Toronto ist ein bedeutendes UCAS-Zentrum für Wirtschaft, Medien, Technik und Kultur.",
+                "Toronto wird als bedeutendes UCAS-Zentrum für Wirtschaft, Medien, Technik und Kultur beschrieben. Konzerninteressen und internationale Verbindungen treffen auf eigenständige lokale Politik, Syndikate und Schatten.",
+            ),
+            "SR6": city_edition(
+                "SR6", "30-nights-sr6", "30 Nächte und 3 Tage",
+                "Toronto 2080 und Stadtteilkapitel",
+                toronto_preview,
+                toronto_preview + " Der aktuelle Quellenstand gliedert Toronto in acht Lore-Distrikte und schildert ihren Wandel während einer dreißigtägigen Folge aus Stromausfall, Gewalt und übernatürlichen Krisen.",
+            ),
+        },
+    )
     city.finish(
         2080,
         (

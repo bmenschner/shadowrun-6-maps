@@ -3,7 +3,7 @@
   "id": "berlin-2080",
   "name": "Berlin",
   "year": 2080,
-  "dataVersion": 14,
+  "dataVersion": 15,
   "availableEditions": [
     "SR1",
     "SR2",
@@ -47,8 +47,138 @@
       13.9786
     ]
   ],
+  "scopeLabel": "Berlin und Lore-Umland",
+  "atlasIntro": "Offizielle Berlin-2080-Übersichten, Detailkarten und Ortspläne mit editionsübergreifenden Quellenprofilen für Stadt, Bezirke, Orte und Personen.",
+  "cityProfile": {
+    "kind": "Stadtprofil",
+    "preview": "Berlin ist 2080 eine geeinte, aber politisch und rechtlich zersplitterte Freistadt zwischen Anarchie, Bezirksautonomie und Konzernherrschaft.",
+    "full": "Berlin ist 2080 eine geeinte, aber politisch und rechtlich zersplitterte Freistadt zwischen Anarchie, Bezirksautonomie und Konzernherrschaft. Alternative Bezirke, Normgebiete, exterritoriale Konzernbezirke und das Brandenburger Lore-Umland bilden einen gemeinsamen Sprawl. BERVAG, Bezirksversammlungen, Konzerne, Syndikate, Gangs und selbstorganisierte Kieze teilen sich Macht, Infrastruktur und Sicherheit.",
+    "hasMore": true,
+    "editions": [
+      "SR1",
+      "SR2",
+      "SR3",
+      "SR4",
+      "SR5",
+      "SR6"
+    ],
+    "sources": [
+      {
+        "bookId": "deutschland-in-den-schatten",
+        "title": "Deutschland in den Schatten (Ausgabe 1992)",
+        "edition": "SR1",
+        "citation": "Berlin-Kapitel, S. 48–62",
+        "purpose": "description"
+      },
+      {
+        "bookId": "berlin-2080",
+        "title": "Berlin 2080",
+        "edition": "SR6",
+        "citation": "Stadtprofil und Bezirke, S. 10–77",
+        "purpose": "description"
+      }
+    ],
+    "edition_descriptions": {
+      "SR1": {
+        "kind": "Stadtprofil",
+        "preview": "Berlin ist eine anarchistische Freistadt, deren Kieze, Konzerne und Schattenmärkte eigene Regeln entwickeln.",
+        "full": "Der frühe Quellenstand beschreibt Berlin als anarchistische Freistadt mit schwacher Zentralgewalt. Kieze, Gangs, Konzerne und Schattenmärkte kontrollieren jeweils eigene Räume; politische Freiheit und alltägliche Gewalt liegen eng beieinander.",
+        "hasMore": true,
+        "hasExcerpt": true,
+        "sources": [
+          {
+            "bookId": "deutschland-in-den-schatten",
+            "title": "Deutschland in den Schatten (Ausgabe 1992)",
+            "edition": "SR1",
+            "citation": "Berlin-Kapitel, S. 48–62",
+            "purpose": "description"
+          }
+        ]
+      },
+      "SR2": {
+        "kind": "Stadtprofil",
+        "preview": "Berlin bleibt eine anarchistische Freistadt aus autonomen Kiezen, Konzerninseln und Schattenmärkten.",
+        "full": "Die SR2-Ausgabe übernimmt den frühen Berliner Quellenstand: eine anarchistische Freistadt aus autonomen Kiezen, Konzerninseln, Gangs und Schattenmärkten, in der lokale Macht wichtiger ist als eine einheitliche Verwaltung.",
+        "hasMore": true,
+        "hasExcerpt": true,
+        "sources": [
+          {
+            "bookId": "deutschland-in-den-schatten-1993",
+            "title": "Deutschland in den Schatten (Ausgabe 1993)",
+            "edition": "SR2",
+            "citation": "Berlin-Kapitel, S. 48–62",
+            "purpose": "description"
+          }
+        ]
+      },
+      "SR3": {
+        "kind": "Stadtprofil",
+        "preview": "Berlin ist ein offener, gefährlicher und politisch umkämpfter Sprawl zwischen Anarchie und wachsendem Konzerninteresse.",
+        "full": "Der SR3-Quellenstand zeigt Berlin als offenen und gefährlichen Sprawl. Autonome Strukturen bestehen fort, während Konzerne, neue Sicherheitsinteressen und organisierte Kriminalität ihren Einfluss ausbauen.",
+        "hasMore": true,
+        "hasExcerpt": true,
+        "sources": [
+          {
+            "bookId": "deutschland-in-den-schatten-ii",
+            "title": "Deutschland in den Schatten II",
+            "edition": "SR3",
+            "citation": "Berlin-Kapitel, S. 69–83",
+            "purpose": "description"
+          }
+        ]
+      },
+      "SR4": {
+        "kind": "Stadtprofil",
+        "preview": "Berlin ist zwischen alternativer Osthälfte und konzernbeherrschtem Westen politisch und räumlich geteilt.",
+        "full": "Berlin 4D beschreibt eine geteilte Metropole: alternative und anarchistische Gebiete stehen Konzernbezirken und stärker regulierten Räumen gegenüber. Bezirke, Kieze und Machtgruppen besitzen jeweils eigene Sicherheits- und Rechtsordnungen.",
+        "hasMore": true,
+        "hasExcerpt": true,
+        "sources": [
+          {
+            "bookId": "berlin-4d",
+            "title": "Berlin 4D",
+            "edition": "SR4",
+            "citation": "Stadt- und Bezirksprofil",
+            "purpose": "description"
+          }
+        ]
+      },
+      "SR5": {
+        "kind": "Stadtprofil",
+        "preview": "Berlin wächst nach der Einigung zu einer gemeinsamen Freistadt mit stark autonomen Bezirken zusammen.",
+        "full": "Der SR5-Quellenstand schildert die Berliner Einheit und den Aufbau gemeinsamer Institutionen. Die Bezirke behalten weitreichende Autonomie; BERVAG, Bezirksvertreter, Konzerne und alternative Netzwerke müssen ihre Interessen fortwährend neu aushandeln.",
+        "hasMore": true,
+        "hasExcerpt": true,
+        "sources": [
+          {
+            "bookId": "datapuls-berlin",
+            "title": "Datapuls: Berlin",
+            "edition": "SR5",
+            "citation": "Stadtprofil und Berliner Einheit",
+            "purpose": "description"
+          }
+        ]
+      },
+      "SR6": {
+        "kind": "Stadtprofil",
+        "preview": "Berlin ist 2080 eine geeinte Freistadt aus autonomen, normalen und exterritorialen Bezirken.",
+        "full": "Berlin 2080 beschreibt eine formal geeinte Freistadt mit stark unterschiedlichen Bezirken. Alternative Selbstorganisation, BERVAG-Verwaltung, Konzernrecht, Syndikate und lokale Kiezmacht bilden ein bewusst widersprüchliches politisches und gesellschaftliches Gefüge.",
+        "hasMore": true,
+        "hasExcerpt": true,
+        "sources": [
+          {
+            "bookId": "berlin-2080",
+            "title": "Berlin 2080",
+            "edition": "SR6",
+            "citation": "Stadtprofil und Bezirke, S. 10–77",
+            "purpose": "description"
+          }
+        ]
+      }
+    }
+  },
   "summary": {
-    "entities": 486,
+    "entities": 656,
     "marker_instances": 457,
     "overview_marker_instances": 292,
     "detail_marker_instances": 133,
