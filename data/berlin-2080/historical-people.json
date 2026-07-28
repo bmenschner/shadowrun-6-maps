@@ -703,9 +703,9 @@
     "source": "Deutschland in den Schatten II, S. 80",
     "locations": [
       {
-        "id": 494,
+        "id": 88,
         "relation": "Besitzer",
-        "global_id": "berlin-2080:place:494-pipeline"
+        "global_id": "berlin-2080:place:88-pipeline"
       }
     ],
     "sources": [

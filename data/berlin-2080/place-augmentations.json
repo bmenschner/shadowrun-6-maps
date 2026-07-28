@@ -1,5 +1,38 @@
 [
   {
+    "id": 88,
+    "sources": [
+      {
+        "bookId": "deutschland-in-den-schatten-ii",
+        "title": "Deutschland in den Schatten II",
+        "edition": "SR3",
+        "citation": "Deutschland in den Schatten II, S. 80",
+        "purpose": "description"
+      }
+    ],
+    "editions": [
+      "SR3"
+    ],
+    "edition_descriptions": {
+      "SR3": {
+        "kind": "Historischer Ort",
+        "preview": "Das Pipeline war bereits in den 2060ern eine Gatower Kneipe mit Verbindungen in die tschechische Unterwelt.",
+        "full": "Der damals von Pavel Hrdlicka geführte Treffpunkt galt als Kontaktstelle für Geschäfte und Gerüchte. In der Szene wurden Verbindungen des Besitzers zur tschechischen Mafia vermutet.",
+        "hasMore": true,
+        "hasExcerpt": true,
+        "sources": [
+          {
+            "bookId": "deutschland-in-den-schatten-ii",
+            "title": "Deutschland in den Schatten II",
+            "edition": "SR3",
+            "citation": "Deutschland in den Schatten II, S. 80",
+            "purpose": "description"
+          }
+        ]
+      }
+    }
+  },
+  {
     "id": 204,
     "aliases": [
       "Messerschmitt-Kawasaki-Vertretung Berlin"

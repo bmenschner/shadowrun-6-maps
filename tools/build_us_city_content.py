@@ -69,6 +69,24 @@ def source(book_id: str, title: str, edition: str, citation: str, purpose: str =
     }
 
 
+def city_edition(
+    edition: str,
+    book_id: str,
+    title: str,
+    citation: str,
+    preview: str,
+    full: str,
+) -> dict:
+    return {
+        "kind": "Stadtprofil",
+        "preview": preview,
+        "full": full,
+        "hasMore": full != preview,
+        "hasExcerpt": True,
+        "sources": [source(book_id, title, edition, citation)],
+    }
+
+
 def infer_place_category(name: str) -> str:
     low = name.casefold()
     rules = [
@@ -137,6 +155,34 @@ class CityCatalogue:
         self.places: OrderedDict[str, dict] = OrderedDict()
         self.people: OrderedDict[str, dict] = OrderedDict()
         self.map_marker_ids: list[int] = []
+        self.city_profile: dict | None = None
+
+    def set_city_profile(
+        self,
+        preview: str,
+        full: str,
+        edition_descriptions: dict[str, dict],
+    ) -> None:
+        """Attach an edition-aware city dossier to the package manifest."""
+        sources = []
+        for description in edition_descriptions.values():
+            sources.extend(description.get("sources", []))
+        unique_sources = []
+        seen = set()
+        for item in sources:
+            signature = (item.get("bookId"), item.get("citation"), item.get("edition"))
+            if signature not in seen:
+                seen.add(signature)
+                unique_sources.append(item)
+        self.city_profile = {
+            "kind": "Stadtprofil",
+            "preview": preview,
+            "full": full,
+            "hasMore": full != preview,
+            "sources": unique_sources,
+            "editions": sorted(edition_descriptions),
+            "edition_descriptions": edition_descriptions,
+        }
 
     def add_place(
         self,
@@ -211,13 +257,19 @@ class CityCatalogue:
         anchor = self.anchors.get(scope, self.default_anchor)
         coords = coordinates or jitter(anchor, f"{self.city_id}:{scope}:{name}")
         category = category or infer_place_category(name)
+        has_authored_summary = summary is not None
         summary = summary or (
-            f"{name} ist ein in {title} belegter Schauplatz im Bereich {scope}."
+            f"{name} ist in {title} als „{category}“ im Bereich {scope} belegt."
         )
         full = (
             f"{summary} Die Position folgt einem erhaltenen heutigen Bezugspunkt."
             if exact
-            else f"{summary} Die Position ist auf den belegten Stadt- oder Teilraum angenähert; eine hausgenaue Lage ist aus dem Datenmaterial nicht sicher ableitbar."
+            else (
+                f"{summary} Die Position ist auf den belegten Stadt- oder Teilraum "
+                "angenähert; eine hausgenaue Lage und eine weitergehende eigene "
+                "Fließtextbeschreibung sind aus dem zugeordneten Datenmaterial "
+                "nicht sicher ableitbar."
+            )
         )
         props = {
             "id": place_id,
@@ -235,7 +287,7 @@ class CityCatalogue:
             "description_preview": summary,
             "description_full": full,
             "description_source": citation,
-            "description_kind": "Ortsprofil",
+            "description_kind": "Ortsprofil" if has_authored_summary else "Quellennachweis",
             "description_has_more": True,
             "detail_plans": [],
             "alternate_locations": [],
@@ -244,11 +296,11 @@ class CityCatalogue:
             "editions": [edition],
             "edition_descriptions": {
                 edition: {
-                    "kind": "Ortsprofil",
+                    "kind": "Ortsprofil" if has_authored_summary else "Quellennachweis",
                     "preview": summary,
                     "full": full,
                     "hasMore": True,
-                    "hasExcerpt": True,
+                    "hasExcerpt": has_authored_summary,
                     "sources": [src],
                 }
             },
@@ -405,7 +457,10 @@ class CityCatalogue:
                     )
             return
 
-        summary = summary or f"{name} wird in {title} als für {self.name} relevante Person oder Gruppe geführt."
+        has_authored_summary = summary is not None
+        summary = summary or (
+            f"{name} ist in {title} als {role} im Umfeld von {affiliation or self.name} belegt."
+        )
         locations = []
         if location_name and name_key(location_name) in self.places:
             place = self.places[name_key(location_name)]["properties"]
@@ -436,11 +491,13 @@ class CityCatalogue:
             "editions": [edition],
             "edition_descriptions": {
                 edition: {
-                    "kind": "Gruppendossier" if entity_type == "group" else "Personendossier",
+                    "kind": (
+                        "Gruppendossier" if entity_type == "group" else "Personendossier"
+                    ) if has_authored_summary else "Quellennachweis",
                     "preview": summary,
                     "full": summary + " Das Dossier ist eine redaktionelle Zusammenfassung des belegten Quellenstands.",
                     "hasMore": True,
-                    "hasExcerpt": True,
+                    "hasExcerpt": has_authored_summary,
                     "sources": [src],
                 }
             },
@@ -482,6 +539,8 @@ class CityCatalogue:
             | {edition for person in people for edition in person["editions"]}
         )
         manifest["atlasIntro"] = atlas_intro
+        if self.city_profile:
+            manifest["cityProfile"] = self.city_profile
         if bounds:
             manifest["overlayBounds"] = bounds
             manifest["cityBounds"] = bounds
@@ -1409,6 +1468,37 @@ MANHATTAN_CAST_EXCLUDE = {
 
 def build_denver() -> CityCatalogue:
     city = CityCatalogue("denver", "Denver", DENVER_ANCHORS["The Hub"], DENVER_ANCHORS, DENVER_BOOKS)
+    denver_preview = (
+        "Denver ist in der Sechsten Welt keine einzelne Stadt, sondern die "
+        "grenzüberschreitende Front Range Free Zone von Denver bis Colorado Springs."
+    )
+    city.set_city_profile(
+        denver_preview,
+        denver_preview + (
+            " Nach der Zeit der geteilten Sektoren ordnet Ghostwalkers Herrschaft den "
+            "Sprawl neu. Neunzehn Distrikte, die zentrale Freistadt, Konzerninteressen, "
+            "Schmuggelrouten und mehrere nationale Rechtsräume machen die Region zu "
+            "einem politischen und nachrichtendienstlichen Brennpunkt."
+        ),
+        {
+            "SR2": city_edition(
+                "SR2", "denver-city-shadows-sr2", "Denver: The City of Shadows",
+                "Stadtprofil und Sektoren",
+                "Denver ist eine zwischen mehreren nordamerikanischen Staaten aufgeteilte Vertragsstadt.",
+                "Denver ist in SR2 eine zwischen mehreren nordamerikanischen Staaten aufgeteilte Vertragsstadt. Grenzübergänge, konkurrierende Sicherheitsapparate und Schmuggel zwischen den Sektoren bestimmen den Alltag und die Schatten.",
+            ),
+            "SR4": city_edition(
+                "SR4", "spy-games-sr4", "Spy Games", "Denver-Kapitel",
+                "Denver ist unter Ghostwalker ein internationaler Knotenpunkt für Spionage und Machtpolitik.",
+                "Denver steht unter Ghostwalkers Kontrolle und bleibt durch seine Grenzen, Nachrichtendienste, Konzerne und diplomatischen Vertretungen ein internationaler Knotenpunkt für Spionage und Machtpolitik.",
+            ),
+            "SR6": city_edition(
+                "SR6", "third-parallel-sr6", "The Third Parallel", "Front Range Free Zone, S. 10–39",
+                denver_preview,
+                denver_preview + " Der aktuelle Quellenstand gliedert die Zone in neunzehn Lore-Distrikte und verbindet urbane Zentren, Barrens, Militäranlagen, Konzernstandorte und erwachte Wildnis.",
+            ),
+        },
+    )
     map_numbers = {name_key(name): index for index, name in enumerate(DENVER_MAP_NAMES, 1)}
     exact_sites = {
         "Fox Theatre": [-105.2709, 40.0191],
@@ -1728,6 +1818,38 @@ def build_denver() -> CityCatalogue:
 
 def build_manhattan() -> CityCatalogue:
     city = CityCatalogue("manhattan", "Manhattan", MANHATTAN_ANCHORS["Manhattan"], MANHATTAN_ANCHORS, MANHATTAN_BOOKS)
+    manhattan_preview = (
+        "Manhattan ist eine hochverdichtete Konzernstadt unter der Kontrolle des "
+        "Manhattan Development Consortiums."
+    )
+    city.set_city_profile(
+        manhattan_preview,
+        manhattan_preview + (
+            " Zugang, Wohnen, Arbeit und Sicherheit sind nach Konzernrang und "
+            "Bürgerstatus gestaffelt. Glänzende Skyraker, Medien- und Finanzmacht "
+            "stehen den überfüllten unteren Ebenen, dem Terminal und einer dichten "
+            "Schatten- und Syndikatslandschaft gegenüber."
+        ),
+        {
+            "SR1": city_edition(
+                "SR1", "nagna-sr1", "The Neo-Anarchist’s Guide to North America",
+                "New York City",
+                "New York ist ein wiederaufgebautes Finanz- und Konzernzentrum mit extremen sozialen Gegensätzen.",
+                "Der frühe Quellenstand beschreibt New York als wiederaufgebautes Finanz- und Konzernzentrum. Wohlstand, Konzernsicherheit und Medienmacht stehen Armut, Kriminalität und den Narben früherer Katastrophen gegenüber.",
+            ),
+            "SR4": city_edition(
+                "SR4", "rotten-apple-sr4", "The Rotten Apple: Manhattan",
+                "Manhattan-Stadtprofil",
+                manhattan_preview,
+                manhattan_preview + " Das MDC kontrolliert Einreise, Sicherheit, Infrastruktur und politische Entscheidungen; die Stadt ist in stark überwachte Konzern- und Sozialräume gegliedert.",
+            ),
+            "SR6": city_edition(
+                "SR6", "fluesternetze-sr6", "Flüsternetze", "Manhattan und Flüsternetze",
+                "Manhattan bleibt 2083 ein Konzern-, Medien- und Finanzzentrum, dessen Machtkämpfe über physische und digitale Flüsternetze ausgetragen werden.",
+                "Manhattan bleibt 2083 ein Konzern-, Medien- und Finanzzentrum. Das MDC, Megakonzerne, Syndikate, magische Gruppen und Schattenakteure führen ihre Machtkämpfe über eng verflochtene physische und digitale Flüsternetze.",
+            ),
+        },
+    )
     exact_sites = {
         "Governors Island": [-74.0168, 40.6895],
         "Randalls Island": [-73.9227, 40.7957],

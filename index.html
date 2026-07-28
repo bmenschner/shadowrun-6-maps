@@ -411,6 +411,7 @@
           <button class="map-mode-button" id="map-mode-online" type="button" data-map-mode="online" aria-pressed="true"><span class="mode-dot" aria-hidden="true"></span>Online</button>
           <button class="map-mode-button" id="map-mode-offline" type="button" data-map-mode="offline" aria-pressed="false"><span class="mode-dot" aria-hidden="true"></span>Offline</button>
         </div>
+        <button class="atlas-open" id="city-info-open" type="button" hidden>ⓘ Stadt</button>
         <button class="atlas-open" id="atlas-open" type="button">▦ Karten</button>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Farbschema wechseln" aria-pressed="false"><span data-theme-choice="light">Light</span><span aria-hidden="true">/</span><span data-theme-choice="dark">Dark</span></button>
         <button class="install-button" id="install-app" type="button" aria-label="Shadowrun Stadtkarten als App installieren">⇩ App installieren</button>
@@ -538,6 +539,8 @@
         : await window.SR6CityLoader.loadSearchIndex().catch(() => ({ items: [] }));
       const OFFLINE_BASE = EMBEDDED_OFFLINE_BASE || cityContext.offlineBase;
       const cityLabel = `${cityContext.manifest.name || cityContext.city.name}${cityContext.manifest.year ? ` ${cityContext.manifest.year}` : ''}`;
+      const cityProfile = cityContext.manifest.cityProfile || null;
+      const regionalProfile = /Free Zone|Megaplex|Deutsche Bucht/i.test(cityContext.manifest.scopeLabel || '');
       const citySelect = document.getElementById('city-select');
       const sidebar = document.getElementById('sidebar');
       const mobileToggle = document.getElementById('mobile-toggle');
@@ -586,6 +589,9 @@
       try { window.localStorage.setItem(cityStorageKey, cityContext.city.id); } catch (error) {}
       document.getElementById('city-title').textContent = cityLabel;
       document.getElementById('city-scope-label').textContent = cityContext.manifest.scopeLabel || `${cityContext.manifest.name || cityContext.city.name} + Umland`;
+      const cityInfoButton = document.getElementById('city-info-open');
+      cityInfoButton.hidden = !cityProfile;
+      cityInfoButton.textContent = regionalProfile ? 'ⓘ Region' : 'ⓘ Stadt';
       document.getElementById('atlas-intro').textContent = DATA.atlasIntro;
       document.querySelector('.map-wrap').setAttribute('aria-label', `Zoombare Karte von ${cityLabel} und seinem Lore-Umland`);
       document.title = `Shadowrun ${cityLabel} – Straßenkarte`;
@@ -885,7 +891,6 @@
         pane: 'districtPane',
         style: districtStyle,
         onEachFeature: (feature, layer) => {
-          const loreDistrict = feature.properties.boundary_role === 'lore-district';
           const boundaryLabels = {
             municipality: 'Stadt / Bezirk',
             'adl-region': 'ADL-Region',
@@ -899,15 +904,19 @@
             'foreign-enclave': 'Fremdes Staatsgebiet',
           };
           const boundaryLabel = boundaryLabels[feature.properties.boundary_role] || 'Bezirk';
-          if (loreDistrict) {
+          const basis = feature.properties.basis || feature.properties.description_preview || 'Shadowrun-Grenzstand';
+          layer.bindTooltip(
+            `${boundaryLabel} · ${escapeHtml(feature.properties.name)}<br><span class="tooltip-basis">Basis: ${escapeHtml(basis)}</span>`,
+            { className: 'sr-label', sticky: true }
+          );
+          const entityId = Number(feature.properties.entity_id);
+          const dossier = Number.isInteger(entityId)
+            ? DATA.geojson.features.find(item => item.properties.id === entityId)
+            : DATA.geojson.features.find(item => item.properties.name === feature.properties.name);
+          if (dossier) {
             layer.on('click', () => {
-              const dossier = DATA.geojson.features.find(
-                item => item.properties.name === feature.properties.name
-              );
-              if (dossier) selectFeature(dossier);
+              selectFeature(dossier);
             });
-          } else {
-            layer.bindTooltip(`${boundaryLabel} · ${escapeHtml(feature.properties.name)}<br><span class="tooltip-basis">Basis: ${escapeHtml(feature.properties.basis)}</span>`, { className: 'sr-label', sticky: true });
           }
         }
       });
@@ -1516,6 +1525,31 @@
         document.getElementById('detail-card').classList.add('open');
       }
 
+      function showCityDetails() {
+        if (!cityProfile) return;
+        const profileEditions = cityProfile.editions || Object.keys(cityProfile.edition_descriptions || {});
+        document.getElementById('detail-id').textContent = regionalProfile ? 'REGION' : 'STADT';
+        document.getElementById('detail-title').textContent = cityLabel;
+        document.getElementById('detail-badges').innerHTML = `<span class="badge">${regionalProfile ? 'Region' : 'Stadt'}</span>${profileEditions.map(edition => `<span class="badge">${escapeHtml(edition)}</span>`).join('')}`;
+        const detailPlanButton = document.getElementById('detail-plan-open');
+        detailPlanButton.hidden = true;
+        detailPlanButton.dataset.key = '';
+        renderEditionDescriptions(cityProfile, {
+          kind: cityProfile.kind || 'Stadtprofil',
+          source: sourceLabels(cityProfile.sources),
+          preview: cityProfile.preview,
+          full: cityProfile.full,
+          hasMore: cityProfile.hasMore,
+        });
+        renderRelated('Verknüpfte Orte und Personen', []);
+        document.getElementById('detail-grid').innerHTML = `
+          <dt>Gebiet</dt><dd>${escapeHtml(cityContext.manifest.scopeLabel || cityLabel)}</dd>
+          <dt>Orte</dt><dd>${DATA.geojson.features.length}</dd>
+          <dt>Personen &amp; Gruppen</dt><dd>${DATA.persons.length}</dd>
+          <dt>Quellen</dt><dd>${(cityProfile.sources || []).map(reference => escapeHtml(sourceLabel(reference))).join('<br>') || 'Redaktionell zusammengeführter Quellenstand'}</dd>`;
+        document.getElementById('detail-card').classList.add('open');
+      }
+
       function refreshMarkerStyles() {
         markerById.forEach((markers, id) => markers.forEach(marker => {
           marker.setStyle(markerStyle(featureById.get(id), markerIsActive(id)));
@@ -1668,6 +1702,7 @@
       document.getElementById('reset').addEventListener('click', () => { document.getElementById('search').value = ''; category.value = ''; applyFilters(); map.fitBounds(DATA.regionBounds); });
       document.getElementById('detail-close').addEventListener('click', () => document.getElementById('detail-card').classList.remove('open'));
       document.getElementById('detail-plan-open').addEventListener('click', event => openAtlas(event.currentTarget.dataset.key));
+      document.getElementById('city-info-open').addEventListener('click', showCityDetails);
       document.getElementById('atlas-open').addEventListener('click', () => openAtlas());
       document.getElementById('atlas-close').addEventListener('click', closeAtlas);
       document.getElementById('atlas-zoom-out').addEventListener('click', () => setAtlasZoom(atlasZoom - .25));

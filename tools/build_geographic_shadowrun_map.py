@@ -46,6 +46,117 @@ SOURCE_BOOKS = [
     {"id": "hinter-dem-vorhang", "title": "Hinter dem Vorhang", "edition": "SR6", "patterns": ["Hinter dem Vorhang"]},
     {"id": "schlagschatten", "title": "Schlagschatten", "edition": "SR6", "patterns": ["Schlagschatten"]},
 ]
+
+
+def city_profile_source(book_id: str, title: str, edition: str, citation: str) -> dict:
+    return {
+        "bookId": book_id,
+        "title": title,
+        "edition": edition,
+        "citation": citation,
+        "purpose": "description",
+    }
+
+
+def city_profile_edition(
+    edition: str,
+    book_id: str,
+    title: str,
+    citation: str,
+    preview: str,
+    full: str,
+) -> dict:
+    return {
+        "kind": "Stadtprofil",
+        "preview": preview,
+        "full": full,
+        "hasMore": full != preview,
+        "hasExcerpt": True,
+        "sources": [city_profile_source(book_id, title, edition, citation)],
+    }
+
+
+BERLIN_CITY_PROFILE = {
+    "kind": "Stadtprofil",
+    "preview": (
+        "Berlin ist 2080 eine geeinte, aber politisch und rechtlich zersplitterte "
+        "Freistadt zwischen Anarchie, Bezirksautonomie und Konzernherrschaft."
+    ),
+    "full": (
+        "Berlin ist 2080 eine geeinte, aber politisch und rechtlich zersplitterte "
+        "Freistadt zwischen Anarchie, Bezirksautonomie und Konzernherrschaft. "
+        "Alternative Bezirke, Normgebiete, exterritoriale Konzernbezirke und das "
+        "Brandenburger Lore-Umland bilden einen gemeinsamen Sprawl. BERVAG, "
+        "Bezirksversammlungen, Konzerne, Syndikate, Gangs und selbstorganisierte "
+        "Kieze teilen sich Macht, Infrastruktur und Sicherheit."
+    ),
+    "hasMore": True,
+    "editions": ["SR1", "SR2", "SR3", "SR4", "SR5", "SR6"],
+    "sources": [
+        city_profile_source(
+            "deutschland-in-den-schatten",
+            "Deutschland in den Schatten (Ausgabe 1992)",
+            "SR1",
+            "Berlin-Kapitel, S. 48–62",
+        ),
+        city_profile_source(
+            "berlin-2080",
+            "Berlin 2080",
+            "SR6",
+            "Stadtprofil und Bezirke, S. 10–77",
+        ),
+    ],
+    "edition_descriptions": {
+        "SR1": city_profile_edition(
+            "SR1",
+            "deutschland-in-den-schatten",
+            "Deutschland in den Schatten (Ausgabe 1992)",
+            "Berlin-Kapitel, S. 48–62",
+            "Berlin ist eine anarchistische Freistadt, deren Kieze, Konzerne und Schattenmärkte eigene Regeln entwickeln.",
+            "Der frühe Quellenstand beschreibt Berlin als anarchistische Freistadt mit schwacher Zentralgewalt. Kieze, Gangs, Konzerne und Schattenmärkte kontrollieren jeweils eigene Räume; politische Freiheit und alltägliche Gewalt liegen eng beieinander.",
+        ),
+        "SR2": city_profile_edition(
+            "SR2",
+            "deutschland-in-den-schatten-1993",
+            "Deutschland in den Schatten (Ausgabe 1993)",
+            "Berlin-Kapitel, S. 48–62",
+            "Berlin bleibt eine anarchistische Freistadt aus autonomen Kiezen, Konzerninseln und Schattenmärkten.",
+            "Die SR2-Ausgabe übernimmt den frühen Berliner Quellenstand: eine anarchistische Freistadt aus autonomen Kiezen, Konzerninseln, Gangs und Schattenmärkten, in der lokale Macht wichtiger ist als eine einheitliche Verwaltung.",
+        ),
+        "SR3": city_profile_edition(
+            "SR3",
+            "deutschland-in-den-schatten-ii",
+            "Deutschland in den Schatten II",
+            "Berlin-Kapitel, S. 69–83",
+            "Berlin ist ein offener, gefährlicher und politisch umkämpfter Sprawl zwischen Anarchie und wachsendem Konzerninteresse.",
+            "Der SR3-Quellenstand zeigt Berlin als offenen und gefährlichen Sprawl. Autonome Strukturen bestehen fort, während Konzerne, neue Sicherheitsinteressen und organisierte Kriminalität ihren Einfluss ausbauen.",
+        ),
+        "SR4": city_profile_edition(
+            "SR4",
+            "berlin-4d",
+            "Berlin 4D",
+            "Stadt- und Bezirksprofil",
+            "Berlin ist zwischen alternativer Osthälfte und konzernbeherrschtem Westen politisch und räumlich geteilt.",
+            "Berlin 4D beschreibt eine geteilte Metropole: alternative und anarchistische Gebiete stehen Konzernbezirken und stärker regulierten Räumen gegenüber. Bezirke, Kieze und Machtgruppen besitzen jeweils eigene Sicherheits- und Rechtsordnungen.",
+        ),
+        "SR5": city_profile_edition(
+            "SR5",
+            "datapuls-berlin",
+            "Datapuls: Berlin",
+            "Stadtprofil und Berliner Einheit",
+            "Berlin wächst nach der Einigung zu einer gemeinsamen Freistadt mit stark autonomen Bezirken zusammen.",
+            "Der SR5-Quellenstand schildert die Berliner Einheit und den Aufbau gemeinsamer Institutionen. Die Bezirke behalten weitreichende Autonomie; BERVAG, Bezirksvertreter, Konzerne und alternative Netzwerke müssen ihre Interessen fortwährend neu aushandeln.",
+        ),
+        "SR6": city_profile_edition(
+            "SR6",
+            "berlin-2080",
+            "Berlin 2080",
+            "Stadtprofil und Bezirke, S. 10–77",
+            "Berlin ist 2080 eine geeinte Freistadt aus autonomen, normalen und exterritorialen Bezirken.",
+            "Berlin 2080 beschreibt eine formal geeinte Freistadt mit stark unterschiedlichen Bezirken. Alternative Selbstorganisation, BERVAG-Verwaltung, Konzernrecht, Syndikate und lokale Kiezmacht bilden ein bewusst widersprüchliches politisches und gesellschaftliches Gefüge.",
+        ),
+    },
+}
 CATALOG = ROOT / "output/data/berlin-2080-katalog.json"
 DESCRIPTIONS = ROOT / "output/data/berlin-2080-beschreibungen.json"
 SOURCE_SVG = ROOT / "tmp/pdfs/berlin-uebersicht.svg"
@@ -449,6 +560,190 @@ DESCRIPTION_OVERRIDES = {
         "source": "Berlin 2080, S. 76 und 113",
     },
 }
+
+
+DESCRIPTION_REPAIRS = {
+    13: {
+        "kind": "Kartennachweis",
+        "source": "Berlin 2080 Karte v06 – Übersicht; Berlin 2080, S. 54–55",
+        "full": (
+            "Feuertaufe ist auf der offiziellen Berlin-2080-Karte als Ort des Nachtlebens "
+            "markiert. Der gleichnamige Treffer im Fließtext bezeichnet dagegen eine Person "
+            "aus den Pankower Machtkämpfen und ist keine Ortsbeschreibung; deshalb wird er "
+            "diesem Kartenmarker nicht länger zugeordnet."
+        ),
+    },
+    68: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Schattenleben: Berlin, S. 7–8; Berlin 2080, S. 44 und 154",
+        "full": (
+            "Das Hashisha-Café Cezve liegt im Kreuzbasar am Moritzplatz. Kazimira "
+            "„Kaschmir“ Burakgazi betreibt es als Schieberadresse des Burakgazi-Clans; "
+            "im Umfeld unterhält der Clan Verstecke und Lager. Der Straßendoc Dr. Xabier "
+            "Ezkibel und die Cezve-Kids gehören zum eng verbundenen lokalen Netzwerk."
+        ),
+    },
+    87: {
+        "kind": "Kartennachweis",
+        "source": "Berlin 2080 Karte v06 – Übersicht",
+        "full": (
+            "Oni ist auf der offiziellen Berlin-2080-Karte als Bar oder Kneipe verzeichnet. "
+            "Der bislang zugeordnete Text behandelte eine andere Örtlichkeit und wurde "
+            "entfernt; eine eindeutige eigenständige Fließtextbeschreibung ist im "
+            "ausgewerteten Datenmaterial nicht belegt."
+        ),
+    },
+    107: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 85–86",
+        "full": (
+            "Ie ist eine asiatische Mikromall in der Renraku-eigenen Shinjuku-Pagode auf "
+            "der Luiseninsel. Sie gehört zu den japanisch geprägten Freizeit- und "
+            "Gastronomieangeboten des umgestalteten Tiergartens."
+        ),
+    },
+    214: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 84–85",
+        "full": (
+            "Das fünfeckige TransHumana-Hochhaus gehört zu den großen Neubauten der City "
+            "West im Umfeld von Zoo und Urania-Kreisel. Die Quelle nennt es als markanten "
+            "Hochhausstandort, liefert aber keine weitergehende eigenständige Innenbeschreibung."
+        ),
+    },
+    242: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 62–64",
+        "full": (
+            "Yutani ist ein als Alien-Restaurant inszeniertes Themenlokal. Es gehört zu "
+            "den bewusst überdrehten Erlebnisangeboten des japanisch geprägten "
+            "Konzernumfelds und wird zusammen mit Koinu-Kori, Vampir Kafe und Hadesu genannt."
+        ),
+    },
+    244: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 78–79",
+        "full": (
+            "Zum wilden Eber ist ein großes Landhaus-Restaurant in Oberkrämer. Vor allem "
+            "BGS-Angehörige außer Dienst schätzen das rustikale Menü und nutzen die ruhigen "
+            "Ecken für informelle Besprechungen; aufmerksame Gäste können dabei interessante "
+            "Gespräche aufschnappen."
+        ),
+    },
+    333: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 70–71",
+        "full": (
+            "Die Gartenstadt Gatow besteht aus einfachen Wohnblöcken auf Teilen der alten "
+            "Rieselfelder. Die Quelle beschreibt die Siedlung als heruntergekommenes Umfeld "
+            "des weiterhin auf Landidylle setzenden Hexenhofs Bathe."
+        ),
+    },
+    338: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 70–71",
+        "full": (
+            "Die Heilandskirche in Sacrow dient der kleinen, von der erwachten Mila "
+            "geleiteten Eremitage Sacrow als Treffpunkt. Der Quellenstand ordnet die Kirche "
+            "damit dem magischen und gesellschaftlichen Umfeld des nahen Gutshofs zu."
+        ),
+    },
+    342: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 98–99",
+        "full": (
+            "Der Hochbunker Heckeshorn wurde als sogenannter Anarchieschutzbunker für "
+            "Superreiche eingerichtet. Er gehört zu den zahlreichen umgenutzten Berliner "
+            "Bunkeranlagen des Untergrunds."
+        ),
+    },
+    392: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 44 und 154; Schattenleben: Berlin, S. 7–8",
+        "full": (
+            "Die Triage Privatklinik liegt am Moritzplatz und wird von dem elfischen "
+            "Ripperdoc Dr. Xabier Ezkibel betrieben. Ezkibel ist ein langjähriger Fixpunkt "
+            "des Kreuzbasars und eng mit Kaschmir, dem Cezve-Clan und dessen Straßenkindern "
+            "verbunden."
+        ),
+    },
+    406: {
+        "kind": "Quellenzusammenfassung",
+        "source": "Berlin 2080, S. 80–81",
+        "full": (
+            "Der M-Bahnhof Alexanderplatz ist der wichtigste Verkehrsknotenpunkt des "
+            "Berliner öffentlichen Nahverkehrs. Er erschließt den Alex und die dicht "
+            "besuchten Geschäfts-, Verwaltungs- und Tourismusbereiche der City Ost."
+        ),
+    },
+}
+
+
+def repair_description_quality(entity: dict, description: dict) -> dict:
+    """Prevent broken PDF windows from masquerading as complete lore text."""
+
+    if entity["id"] in DESCRIPTION_REPAIRS:
+        repair = DESCRIPTION_REPAIRS[entity["id"]]
+        full = repair["full"]
+        return {
+            **description,
+            "preview": district_preview(full),
+            "full": full,
+            "source": repair["source"],
+            "kind": repair["kind"],
+            "has_more": len(full) > 165,
+        }
+    if description.get("kind") != "Quellenauszug":
+        return description
+
+    full = " ".join(description.get("full", "").split())
+    name_match = re.match(re.escape(entity["name"]), full, re.IGNORECASE)
+    name_tail = full[name_match.end():] if name_match else ""
+    trimmed_tail = name_tail.lstrip(" :–—-")
+    fragment_start = bool(
+        (
+            name_match
+            and name_tail[:1]
+            and not name_tail[:1].isspace()
+            and name_tail[:1] not in ":–—-"
+        )
+        or re.match(re.escape(entity["name"]) + r"\s*:\s*[a-zäöüß]", full, re.IGNORECASE)
+        or re.match(r"(?:mit|und|oder|ebenso|zählt)\b", trimmed_tail, re.IGNORECASE)
+    )
+    layout_artifact = "INHALT" in full or "// ﻿" in full
+    complete_end = full[-1:] in '.!?…”"'
+    if complete_end and not fragment_start and not layout_artifact:
+        return description
+
+    if not fragment_start and not layout_artifact:
+        last_stop = max(full.rfind("."), full.rfind("!"), full.rfind("?"), full.rfind("…"))
+        if last_stop >= 120:
+            cleaned = full[: last_stop + 1].strip()
+            return {
+                **description,
+                "preview": district_preview(cleaned),
+                "full": cleaned,
+                "kind": "Bereinigter Quellenauszug",
+                "has_more": len(cleaned) > 165,
+            }
+
+    scope = entity.get("detail_map") or entity.get("source_panel") or "Berlin"
+    preview = (
+        f"{entity['name']} ist in {description.get('source', 'den ausgewerteten Quellen')} "
+        f"als „{entity['category']}“ im Bereich {scope} belegt."
+    )
+    full = (
+        f"{preview} Der automatisch zugeordnete Rohtext wurde nicht als eigenständige "
+        "Beschreibung übernommen, weil er mitten im Satz beginnt oder endet beziehungsweise "
+        "mehrere Einträge vermischt. Die strukturierte Quellenangabe bleibt erhalten."
+    )
+    return {
+        **description,
+        "preview": preview,
+        "full": full,
+        "kind": "Quellennachweis",
+        "has_more": True,
+    }
 
 
 PERSONS = [
@@ -1256,7 +1551,9 @@ PERSONS = [
     {
         "id": "ahmad-khalil",
         "name": "„Prinz“ Ahmad Khalil",
-        "aliases": ["Saif ad-Din Abu Tariq Ahmad Khalil"],
+        "aliases": [
+            "Saif ad-Din Abu Tariq Ahmad ibn Hadschi Umar ibn Karim al-Baghdadi ibn Mohammad al-Khalili"
+        ],
         "category": "Unterwelt",
         "role": "Emir von Kreuzberg und Patriarch der Familie Khalil",
         "affiliation": "Emirat Kreuzberg, Familie Khalil",
@@ -1682,6 +1979,54 @@ DISTRICTS = [
 ]
 
 
+CORPORATE_DISTRICTS = [
+    {
+        "id": 502,
+        "name": "Z-IC Tegel",
+        "lat": 52.5770,
+        "lon": 13.3040,
+        "pages": "74–77",
+        "description": (
+            "Z-IC Tegel ist ein wachsendes, vollständig exterritoriales Konzerngebiet "
+            "rund um den früheren Flughafen Tegel und den Tegeler See. Zeta-ImpChem, "
+            "Schering und weitere Töchter verbinden Hochsicherheitsforschung, Produktion, "
+            "Logistik, Kliniken und neue Wohnprojekte. Der Konzern kontrolliert den See, "
+            "baut Reiherwerder und Lindwerder aus und gliedert frühere Reinickendorfer "
+            "Flächen schrittweise in seine Sicherheitsordnung ein."
+        ),
+    },
+    {
+        "id": 503,
+        "name": "AGC Siemensstadt",
+        "lat": 52.5480,
+        "lon": 13.2760,
+        "pages": "27–31",
+        "description": (
+            "AGC Siemensstadt, das sogenannte Jewühl, ist ein vollständig exterritorialer "
+            "Industriebezirk der AG Chemie. Schwerindustrie, Förderanlagen, Rohre, "
+            "Transportdrohnen und eng stehende Fabriken prägen das Gebiet. Tagelöhner und "
+            "untere Beschäftigte leben unter schlechten Arbeits- und Umweltbedingungen; "
+            "Versorgung und Sicherheit dienen vor allem der ununterbrochenen Produktion."
+        ),
+    },
+    {
+        "id": 504,
+        "name": "S-K Tempelhof",
+        "lat": 52.4540,
+        "lon": 13.4050,
+        "pages": "64–67",
+        "description": (
+            "S-K Tempelhof ist ein vollständig exterritorialer Konzernbezirk unter "
+            "Saeder-Krupps Kontrolle. Der Geschäfts- und Frachtflughafen SKT, die "
+            "Arkologie, das Fliegerviertel sowie Alt-Tempelhof und angrenzende Wohnräume "
+            "bilden einen weitgehend autarken Standort. Schulen, Versorgung, Wohnen und "
+            "Freizeit sind eng an den Konzern gebunden; auch Nicht-Konzernbürger "
+            "unterliegen innerhalb des Bezirks der S-K-Sicherheitsordnung."
+        ),
+    },
+]
+
+
 UMLAND_AREAS = [
     {
         "id": 452,
@@ -2093,6 +2438,7 @@ def build_district_features(districts: list[dict]) -> list[dict]:
                     "description_kind": "Bezirksprofil",
                     "description_has_more": len(description) > 165,
                     "detail_plans": ["renrakusan"] if district["id"] == 451 else [],
+                    "map_marker": False,
                 },
             }
         )
@@ -2798,12 +3144,18 @@ def build_edition_descriptions(
     for edition in editions:
         edition_sources = [reference for reference in references if reference["edition"] == edition]
         if edition in description_editions:
+            has_excerpt = description_kind not in {
+                "Kartenangabe",
+                "Karteneintrag",
+                "Kartennachweis",
+                "Quellennachweis",
+            }
             descriptions[edition] = {
                 "kind": description_kind,
                 "preview": preview,
                 "full": full,
                 "hasMore": has_more,
-                "hasExcerpt": True,
+                "hasExcerpt": has_excerpt,
                 "sources": edition_sources,
             }
         else:
@@ -2890,7 +3242,21 @@ def update_city_registry() -> dict:
         berlin["default"] = False
     cities.append(berlin)
     registry = {"schemaVersion": 1, "cities": sorted(cities, key=lambda city: city["name"])}
-    write_json(registry_path, registry, readable=True)
+    existing_registry = (
+        json.loads(registry_path.read_text(encoding="utf-8"))
+        if registry_path.exists()
+        else None
+    )
+    comparable_existing = (
+        {
+            "schemaVersion": existing_registry.get("schemaVersion"),
+            "cities": sorted(existing_registry.get("cities", []), key=lambda city: city["name"]),
+        }
+        if existing_registry
+        else None
+    )
+    if comparable_existing != registry:
+        write_json(registry_path, registry, readable=True)
     return registry
 
 
@@ -3011,8 +3377,17 @@ def write_city_package(payload: dict, registry: dict) -> dict:
         properties["legacy_id"] = legacy_id
         properties["global_id"] = global_id
         global_ids[legacy_id] = global_id
+    place_by_name = {
+        feature["properties"]["name"]: feature["properties"]
+        for feature in places["features"]
+    }
 
     people = json.loads(json.dumps(payload["persons"], ensure_ascii=False))
+    existing_people_path = CITY_DATA_DIR / "people.json"
+    if existing_people_path.exists():
+        existing_people = json.loads(existing_people_path.read_text(encoding="utf-8"))
+        if len(existing_people) > len(people):
+            people = existing_people
     for person in people:
         person["global_id"] = f"{CITY_ID}:person:{stable_slug(person['id'])}"
         for link in person.get("locations", []):
@@ -3027,8 +3402,38 @@ def write_city_package(payload: dict, registry: dict) -> dict:
                 "image": f"../../assets/cities/{CITY_ID}/detail-maps/{plan['key']}.webp",
             }
         )
+    existing_atlas_path = CITY_DATA_DIR / "atlas.json"
+    if existing_atlas_path.exists():
+        existing_atlas = json.loads(existing_atlas_path.read_text(encoding="utf-8"))
+        if len(existing_atlas) > len(atlas):
+            atlas = existing_atlas
 
     zones = json.loads(json.dumps(payload["areaStatus"], ensure_ascii=False))
+    corporate_dossiers = {
+        "AZT Schönwalde": "Aztech-Schönwalde",
+        "Z-IC Tegel": "Z-IC Tegel",
+        "AGC Siemensstadt": "AGC Siemensstadt",
+        "Renrakusan": "Renrakusan",
+        "S-K Tempelhof": "S-K Tempelhof",
+    }
+    for feature in zones["features"]:
+        properties = feature.get("properties", {})
+        label = properties.get("label", "")
+        dossier_name = next(
+            (name for token, name in corporate_dossiers.items() if token in label),
+            None,
+        )
+        dossier = place_by_name.get(dossier_name) if dossier_name else None
+        if dossier:
+            properties.update(
+                {
+                    "entity_id": dossier["id"],
+                    "description_preview": dossier["description_preview"],
+                    "description_full": dossier["description_full"],
+                    "editions": dossier["editions"],
+                    "sources": dossier["sources"],
+                }
+            )
     exterritorial = {
         "type": "FeatureCollection",
         "name": "Shadowrun Berlin 2080 - EXTER",
@@ -3046,6 +3451,37 @@ def write_city_package(payload: dict, registry: dict) -> dict:
             if feature.get("properties", {}).get("status") == "corporate"
         ],
     }
+    districts = json.loads(json.dumps(payload["districtBoundaries"], ensure_ascii=False))
+    for feature in districts["features"]:
+        dossier = place_by_name.get(feature.get("properties", {}).get("name"))
+        if dossier:
+            feature["properties"].update(
+                {
+                    "entity_id": dossier["id"],
+                    "description_preview": dossier["description_preview"],
+                    "description_full": dossier["description_full"],
+                    "editions": dossier["editions"],
+                    "sources": dossier["sources"],
+                }
+            )
+    outskirts = json.loads(json.dumps(payload["umlandBoundaries"], ensure_ascii=False))
+    for feature in outskirts["features"]:
+        dossier = place_by_name.get(feature.get("properties", {}).get("name"))
+        if dossier:
+            feature["properties"].update(
+                {
+                    "entity_id": dossier["id"],
+                    "description_preview": dossier["description_preview"],
+                    "description_full": dossier["description_full"],
+                    "editions": dossier["editions"],
+                    "sources": dossier["sources"],
+                }
+            )
+    labels = json.loads(json.dumps(payload["loreLabels"], ensure_ascii=False))
+    for label in labels:
+        dossier = place_by_name.get(label.get("name"))
+        if dossier:
+            label["entity_id"] = dossier["id"]
     files = {
         "places": "places.geojson",
         "virtualPlaces": "virtual-places.geojson",
@@ -3078,32 +3514,71 @@ def write_city_package(payload: dict, registry: dict) -> dict:
         | {person["source"] for person in people if person.get("source")}
         | {"Netzgewitter, S. 18-19"}
     )
+    existing_sources_path = CITY_DATA_DIR / "sources.json"
+    if existing_sources_path.exists():
+        existing_sources = json.loads(existing_sources_path.read_text(encoding="utf-8"))
+        sources = sorted({*sources, *existing_sources.get("citations", [])})
+    historical_place_count = 0
+    historical_place_path = CITY_DATA_DIR / files["historicalPlaces"]
+    if historical_place_path.exists():
+        historical_place_count = len(
+            json.loads(historical_place_path.read_text(encoding="utf-8")).get("features", [])
+        )
+    virtual_place_count = 0
+    virtual_place_path = CITY_DATA_DIR / files["virtualPlaces"]
+    if virtual_place_path.exists():
+        virtual_place_count = len(
+            json.loads(virtual_place_path.read_text(encoding="utf-8")).get("features", [])
+        )
+    historical_people_count = 0
+    historical_people_path = CITY_DATA_DIR / files["historicalPeople"]
+    if historical_people_path.exists():
+        historical_people_count = len(
+            json.loads(historical_people_path.read_text(encoding="utf-8"))
+        )
+    summary = {
+        **payload["summary"],
+        "gangs": sum(person.get("category") == "Gangs" for person in people),
+        "entities": (
+            len(places["features"])
+            + virtual_place_count
+            + historical_place_count
+            + len(people)
+            + historical_people_count
+        ),
+    }
     manifest = {
         "schemaVersion": 1,
         "id": CITY_ID,
         "name": "Berlin",
         "year": 2080,
-        "dataVersion": 14,
-        "availableEditions": payload["availableEditions"],
+        "dataVersion": 15,
+        "availableEditions": BERLIN_CITY_PROFILE["editions"],
         "center": [52.5200066, 13.404954],
         "zoom": 10,
         "overlayBounds": payload["overlayBounds"],
         "cityBounds": payload["cityBounds"],
         "regionBounds": payload["regionBounds"],
-        "summary": payload["summary"],
+        "scopeLabel": "Berlin und Lore-Umland",
+        "atlasIntro": (
+            "Offizielle Berlin-2080-Übersichten, Detailkarten und Ortspläne mit "
+            "editionsübergreifenden Quellenprofilen für Stadt, Bezirke, Orte und Personen."
+        ),
+        "cityProfile": BERLIN_CITY_PROFILE,
+        "summary": summary,
         "files": files,
         "assets": {"offlineBase": f"../../assets/cities/{CITY_ID}/offline-base.webp"},
     }
     write_json(CITY_DATA_DIR / files["places"], places)
     write_json(CITY_DATA_DIR / files["people"], people, readable=True)
     write_json(CITY_DATA_DIR / files["atlas"], atlas, readable=True)
-    write_json(CITY_DATA_DIR / files["zones"], zones)
-    write_json(CITY_DATA_DIR / files["exterritorial"], exterritorial)
-    write_json(CITY_DATA_DIR / files["districts"], payload["districtBoundaries"])
+    write_json(CITY_DATA_DIR / files["zones"], zones, readable=True)
+    write_json(CITY_DATA_DIR / files["exterritorial"], exterritorial, readable=True)
+    write_json(CITY_DATA_DIR / files["districts"], districts)
     write_json(CITY_DATA_DIR / files["neighborhoods"], payload["neighborhoodBoundaries"])
-    write_json(CITY_DATA_DIR / files["outskirts"], payload["umlandBoundaries"])
+    write_json(CITY_DATA_DIR / files["outskirts"], outskirts)
     write_json(CITY_DATA_DIR / files["boundary"], payload["boundary"])
-    write_json(CITY_DATA_DIR / files["labels"], payload["loreLabels"], readable=True)
+    write_json(CITY_DATA_DIR / files["labels"], labels, readable=True)
     write_json(
         CITY_DATA_DIR / files["sources"],
         {
@@ -3290,6 +3765,11 @@ def main() -> None:
             "kind": "Quellenzusammenfassung",
             "has_more": len(full) > 165,
         }
+    entities_by_id = {entity["id"]: entity for entity in catalog["entities"]}
+    descriptions = {
+        entity_id: repair_description_quality(entities_by_id[entity_id], description)
+        for entity_id, description in descriptions.items()
+    }
     official_districts = json.loads(OFFICIAL_DISTRICTS.read_text(encoding="utf-8"))
     official_neighborhoods = json.loads(OFFICIAL_NEIGHBORHOODS.read_text(encoding="utf-8"))
     official_municipalities = json.loads(OFFICIAL_BRANDENBURG_MUNICIPALITIES.read_text(encoding="utf-8"))
@@ -3345,6 +3825,7 @@ def main() -> None:
     region_bounds = [[52.2608, 12.8583], [52.8103, 13.9786]]
     geojson = build_geojson(catalog, allowed_geometries, descriptions)
     geojson["features"].extend(build_district_features(centered_districts))
+    geojson["features"].extend(build_district_features(CORPORATE_DISTRICTS))
     geojson["features"].extend(build_umland_features(centered_umland))
     geojson["features"].extend(build_corpus_features(CORPUS_SPOTS))
     GEOJSON.write_text(json.dumps(geojson, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -3406,9 +3887,9 @@ def main() -> None:
                 {"name": area["name"], "lat": area["lat"], "lon": area["lon"], "type": "outskirts"}
                 for area in centered_umland
             ],
-            {"name": "Z-IC Tegel", "lat": 52.5770, "lon": 13.3040, "type": "corporate"},
-            {"name": "AGC Siemensstadt", "lat": 52.5480, "lon": 13.2760, "type": "corporate"},
-            {"name": "S-K Tempelhof", "lat": 52.4540, "lon": 13.4050, "type": "corporate"},
+            {"name": "Z-IC Tegel", "lat": 52.5770, "lon": 13.3040, "type": "corporate", "entity_id": 502},
+            {"name": "AGC Siemensstadt", "lat": 52.5480, "lon": 13.2760, "type": "corporate", "entity_id": 503},
+            {"name": "S-K Tempelhof", "lat": 52.4540, "lon": 13.4050, "type": "corporate", "entity_id": 504},
             {"name": "Dreamland", "lat": 52.5570, "lon": 13.4480, "type": "special"},
             {"name": "Jevuhl", "lat": 52.5390, "lon": 13.2920, "type": "special"},
             {"name": "Westhafen", "lat": 52.5390, "lon": 13.3370, "type": "special"}
@@ -3416,6 +3897,7 @@ def main() -> None:
         "entities": (
             catalog["entities"]
             + district_entities(centered_districts)
+            + district_entities(CORPORATE_DISTRICTS)
             + umland_entities(centered_umland)
             + corpus_entities(CORPUS_SPOTS)
         ),
@@ -3427,15 +3909,10 @@ def main() -> None:
     enrich_payload_with_editions(payload)
     registry = update_city_registry()
     write_city_package(payload, registry)
-    template = TEMPLATE.read_text(encoding="utf-8")
-    hybrid_html = (
-        template.replace("__MAP_DATA__", "null")
-        .replace("__CITY_REGISTRY__", "null")
-        .replace("__OFFLINE_BASE_URL__", json.dumps(""))
-        .replace("__HYBRID_APP__", "true")
-    )
-    PWA_HTML.write_text(hybrid_html, encoding="utf-8")
-    print(f"PWA HTML: {PWA_HTML} ({PWA_HTML.stat().st_size:,} bytes)")
+    # The multi-city app shell is maintained independently from the original
+    # Berlin-only visualization template. Rebuilding Berlin data must not
+    # overwrite newer navigation, mobile or city-profile functionality.
+    print(f"PWA HTML unverändert: {PWA_HTML} ({PWA_HTML.stat().st_size:,} bytes)")
     print(f"GeoJSON: {GEOJSON} ({len(geojson['features'])} placed locations)")
     print(f"Vector zones: {ZONES_GEOJSON} ({len(zones['features'])} polygons)")
     print(f"District boundaries: {DISTRICT_BOUNDARIES_GEOJSON} ({len(district_boundaries['features'])} features)")

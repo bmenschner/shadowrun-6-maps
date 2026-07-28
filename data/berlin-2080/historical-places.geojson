@@ -413,63 +413,6 @@
       "type": "Feature",
       "geometry": null,
       "properties": {
-        "id": 494,
-        "name": "Pipeline",
-        "aliases": [],
-        "category": "Bars und Kneipen",
-        "accuracy": "Historisch; nicht georeferenziert",
-        "placement_note": "Die SR3-Quelle nennt Gatow, aber keine belastbare Adresse.",
-        "related_place_ids": [
-          333,
-          445
-        ],
-        "source_pages": "Deutschland in den Schatten II, S. 80",
-        "map_source": "Gatow",
-        "description_kind": "Historischer Ort",
-        "description_preview": "Das Pipeline war eine Gatower Kneipe mit Verbindungen in die tschechische Unterwelt.",
-        "description_full": "Der von Pavel Hrdlicka geführte Treffpunkt galt als Kontaktstelle für Geschäfte und Gerüchte. In der Szene wurden Verbindungen des Besitzers zur tschechischen Mafia vermutet.",
-        "description_source": "Deutschland in den Schatten II, S. 80",
-        "description_has_more": true,
-        "detail_plans": [],
-        "alternate_locations": [],
-        "sources": [
-          {
-            "bookId": "deutschland-in-den-schatten-ii",
-            "title": "Deutschland in den Schatten II",
-            "edition": "SR3",
-            "citation": "Deutschland in den Schatten II, S. 80",
-            "purpose": "description"
-          }
-        ],
-        "map_sources": [],
-        "editions": [
-          "SR3"
-        ],
-        "edition_descriptions": {
-          "SR3": {
-            "kind": "Historischer Ort",
-            "preview": "Das Pipeline war eine Gatower Kneipe mit Verbindungen in die tschechische Unterwelt.",
-            "full": "Der von Pavel Hrdlicka geführte Treffpunkt galt als Kontaktstelle für Geschäfte und Gerüchte. In der Szene wurden Verbindungen des Besitzers zur tschechischen Mafia vermutet.",
-            "hasMore": true,
-            "hasExcerpt": true,
-            "sources": [
-              {
-                "bookId": "deutschland-in-den-schatten-ii",
-                "title": "Deutschland in den Schatten II",
-                "edition": "SR3",
-                "citation": "Deutschland in den Schatten II, S. 80",
-                "purpose": "description"
-              }
-            ]
-          }
-        },
-        "global_id": "berlin-2080:place:494-pipeline"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
         "id": 495,
         "name": "Bruchstein",
         "aliases": [],

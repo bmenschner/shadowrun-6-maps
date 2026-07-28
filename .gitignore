@@ -28,6 +28,8 @@ tools/*
 !tools/build_boundary_packages.py
 !tools/build_us_city_content.py
 !tools/build_toronto_content.py
+!tools/build_hamburg_content.py
+!tools/build_rhein_ruhr_content.py
 !tools/rebuild_search_index.py
 !tmp/
 tmp/*
