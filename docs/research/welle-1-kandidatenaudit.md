@@ -56,4 +56,3 @@ Wahrzeichen und eindeutige Lore-Teilräume gesetzt.
   Quellen-/Editionsbelege für die bestätigten Dossiers.
 - `tools/rebuild_search_index.py` erzeugt den globalen Suchindex.
 - `tools/validate_city_data.py` prüft alle Stadtpakete.
-

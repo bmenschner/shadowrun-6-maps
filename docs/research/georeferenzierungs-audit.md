@@ -38,4 +38,3 @@ die Lore-Distrikte über beschriftete, anklickbare Bezugspunkte erschlossen.
 Es werden keine modernen Verwaltungsgrenzen oder rechteckigen
 Übersichtsflächen als vermeintliche Shadowrun-Grenzen veröffentlicht.
 Zusätzliche Polygone folgen später nur bei belastbarer Quellenkartografie.
-

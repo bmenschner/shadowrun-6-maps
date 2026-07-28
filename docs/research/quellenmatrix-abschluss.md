@@ -42,4 +42,3 @@ geografische Leitlinie gemeinsam eine belastbare Abgrenzung ermöglichen.
   in den Stadtmanifesten vermerkt.
 - Nichtoffizielle Quellen bleiben getrennt und werden nicht in die offizielle
   Lore übernommen.
-

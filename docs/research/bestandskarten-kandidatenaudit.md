@@ -51,4 +51,3 @@ und allgemeine Regelbegriffe erzeugen keine zusätzlichen Dossiers.
 - `tools/import_archive_references.py`
 - `tools/rebuild_search_index.py`
 - `tools/validate_city_data.py`
-

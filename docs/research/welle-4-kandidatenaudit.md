@@ -112,4 +112,3 @@ Die vierte Welle lässt sich mit folgenden Projektwerkzeugen nachvollziehen:
 - `tools/import_archive_references.py`
 - `tools/rebuild_search_index.py`
 - `tools/validate_city_data.py`
-
