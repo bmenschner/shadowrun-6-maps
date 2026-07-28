@@ -46,38 +46,32 @@ bestehenden Dossier.
 
 ## Neuentitätsprüfung
 
-Der erste Extraktionslauf für die damals vorhandenen acht Pakete ergab nach
-mehreren Qualitätsfiltern 660 Kandidaten:
+Die fünf abgeschlossenen Prüfläufe umfassen sämtliche 75 Kartenpakete:
 
-| Stadtpaket | Kandidaten |
-| --- | ---: |
-| ADL | 438 |
-| Berlin | 45 |
-| Denver | 34 |
-| Hamburg | 19 |
-| Manhattan | 53 |
-| Rhein-Ruhr-Megaplex | 15 |
-| Seattle | 49 |
-| Toronto | 7 |
+| Prüflauf | Rohkandidaten | Zusammengeführt | Verworfen | Offen |
+|---|---:|---:|---:|---:|
+| ursprüngliche acht Bestandskarten | 3.235 | 376 | 2.859 | 0 |
+| Städtewelle 1 | 1.652 | 265 | 1.387 | 0 |
+| Städtewelle 2 | 1.181 | 184 | 997 | 0 |
+| Städtewelle 3 | 619 | 134 | 485 | 0 |
+| Städtewelle 4 | 684 | 55 | 629 | 0 |
+| **Gesamt** | **7.371** | **1.014** | **6.357** | **0** |
 
-Die lokale Arbeitsdatei wird je Importwelle neu erzeugt. Der Lauf für Chicago,
-Boston, Hongkong, London, München und Groß-Frankfurt enthielt 1.652
-Rohkandidaten. Die Prüfung ist abgeschlossen: 265 Treffer wurden mit
-kanonischen Dossiers zusammengeführt und 1.387 begründet verworfen. Es bleibt
-kein offener Kandidat dieser Welle. Der vollständige Bericht steht in
-`docs/research/welle-1-kandidatenaudit.md`.
+Die lokale Arbeitsdatei wird je Importwelle neu erzeugt. Die
+Abschlussentscheidungen sind in den fünf Kandidatenaudits dokumentiert.
 
 ## Status der Werk-/Stadt-Matrix
 
-- 143 bereits kuratierte Quellenblöcke sind zusammengeführt.
+- 1.924 Werk-/Stadt-Bezüge sind mit Stadtquellen oder exakten
+  Entitätsnachweisen zusammengeführt.
+- 8.237 Volltextnennungen wurden ohne zusätzliches eigenständiges lokales
+  Dossier abgeschlossen.
 - 47 nichtoffizielle Werk-/Stadt-Bezüge sind sichtbar ausgeschlossen.
-- 6.818 Bezüge besitzen belastbare Volltexttreffer und bleiben offen.
-- 3.200 Einzelbezüge benötigen eine redaktionelle Gegenprüfung.
-- 1.397 Werk-/Stadt-Bezüge besitzen bereits einen dokumentierten Teilimport.
+- 0 Werk-/Stadt-Bezüge sind offen.
 
-Keines der vierzehn Stadtpakete ist derzeit mit
-`sourceCoverageComplete: true` markiert. Der Validator würde diese Markierung
-ablehnen, solange offene Werk-/Stadt-Prüfungen bestehen.
+Alle 75 Stadtpakete sind mit `sourceCoverageComplete: true` markiert. Der
+Validator prüft, dass diese Markierung nur bei vollständig geschlossener
+Werk-/Stadt-Matrix zulässig ist.
 
 ## Neu aufgebaute Kartenpakete
 
@@ -153,11 +147,9 @@ stadtübergreifende Suchtreffer. Details enthält
 
 ## Nächste verbindliche Importreihenfolge
 
-1. Abschlussberichte und offene Werk-/Stadt-Prüfungen der Quellenmatrix
-   vollständig entscheiden
-2. katalogisierte Orte mit belastbaren Kartenpositionen ergänzen
-3. Lore-Grenzflächen anhand der Karten und Beschreibungstexte georeferenzieren
-4. Quellen-, Editions-, Such- und Offline-Funktionen abschließend validieren
+1. katalogisierte Orte mit belastbaren Kartenpositionen ergänzen
+2. Lore-Grenzflächen anhand der Karten und Beschreibungstexte georeferenzieren
+3. Quellen-, Editions-, Such- und Offline-Funktionen abschließend validieren
 
 Ein Stadtpaket gilt erst dann als vollständig, wenn keine offene
 Werk-/Stadt-Prüfung und kein unbearbeiteter Kandidat mehr vorhanden ist.

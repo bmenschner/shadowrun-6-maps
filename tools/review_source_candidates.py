@@ -63,6 +63,47 @@ BROKEN_OCR = re.compile(
     re.I,
 )
 FOCUSED_WORKS = {
+    "berlin-2080": {
+        "sr4-berlin", "sr5-datapuls", "sr5-datapuls-berlin",
+        "sr5-schattenhandbuch-3-datapuls-berlin", "sr6-berlin-2080",
+        "sr6-kaleidoskop-schattenleben-berlin",
+    },
+    "hamburg-2080": {
+        "sr4-schattenstadte", "sr5-datapuls", "sr5-datapuls-hamburg",
+        "sr5-hamburgpaket-hamburg", "sr5-ebbe-und-flut",
+    },
+    "seattle": {
+        "sr1-seattle-sourcebook", "sr2-seattle-quellenbuch",
+        "sr3-new-seattle", "sr4-seattle-2072", "sr4-runner-havens",
+        "sr5-seattle-machte-in-seattle", "sr5-seattle-smaragd-im-schatten",
+        "sr6-emerald-city-seattle",
+    },
+    "rhein-ruhr-2082": {
+        "sr4-rhein-ruhr-megaplex", "sr5-datapuls", "sr6-revierbericht-2082",
+    },
+    "toronto-2080": {
+        "sr3-shadows-of-north-america", "sr3-nordamerika-in-den-schatten",
+        "sr6-30-nachte-und-3-tage",
+    },
+    "denver": {
+        "sr2-denver-the-city-of-shadows", "sr4-spy-games",
+        "sr4-machtspiele-handbuch-fur-spione",
+        "sr6-the-third-parallel-denver-campaign",
+    },
+    "manhattan": {
+        "sr4-the-rotten-apple-manhattan", "sr4-konzernenklaven",
+        "sr5-gestohlene-seelen", "sr5-stolen-souls",
+        "sr5-abenteuerband-krieg-um-manhattan",
+        "sr6-flusternetze", "sr6-flusternetze-46144p",
+    },
+    "adl-2082": {
+        "sr1-deutschland-in-den-schatten", "sr2-deutschland-in-den-schatten",
+        "sr3-deutschland-in-den-schatten-ii",
+        "sr4-reisefuhrer-in-die-deutschen-schatten",
+        "sr5-datapuls", "sr5-datapuls-adl",
+        "sr5-datapuls-adl-allianz-deutscher-lander",
+        "sr5-state-of-the-art-adl",
+    },
     "boston": {
         "sr5-gefahr-in-boston", "sr5-lockdown",
         "sr5-shadowrun-chronicles-boston-adventures", "sr5-sperrzone-boston",
@@ -362,6 +403,8 @@ CURATED_TARGETS = {
 # the remaining candidates are headings, rules, OCR fragments, generic
 # categories or entities outside the map scope.
 FINAL_REVIEW_CITIES = {
+    "adl-2082", "berlin-2080", "denver", "hamburg-2080", "manhattan",
+    "rhein-ruhr-2082", "seattle", "toronto-2080",
     "boston", "chicago", "frankfurt", "hong-kong", "london", "muenchen",
     "atlanta", "bogota", "cheyenne", "detroit", "karlsruhe", "lagos",
     "los-angeles", "montreal", "neo-tokio", "new-orleans", "paris",
