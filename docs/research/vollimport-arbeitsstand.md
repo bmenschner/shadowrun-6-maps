@@ -102,13 +102,39 @@ erhaltene Wahrzeichen und Lore-Distrikte besitzen Kartenanker; nur auf
 Stadtebene belegte Orte bleiben ohne erfundene Koordinate im Katalog. Die
 Rohkandidaten dieser sechs Städte sind vollständig entschieden.
 
+## Zweite Städtewelle
+
+Die zweite Städtewelle wurde als fünfzehn getrennte Stadtpakete angelegt:
+
+- San Francisco Metroplex
+- Cheyenne
+- Karlsruhe
+- New Orleans
+- Paris
+- Montréal
+- Neo-Tokio
+- Washington FDC
+- Los Angeles
+- Bogotá
+- Lagos
+- Detroit
+- Atlanta
+- Portland
+- Wien
+
+Für diese Welle wurden 1.181 Rohkandidaten vollständig entschieden. 184
+Kandidaten wurden mit kanonischen Datensätzen zusammengeführt, 997 verworfen
+und keiner blieb offen. Die Stadtpakete enthalten zusammen 134 Orte sowie 59
+Personen oder Gruppen. Details enthält
+`docs/research/welle-2-kandidatenaudit.md`.
+
 ## Nächste verbindliche Importreihenfolge
 
-1. übrige Rohkandidaten der vorhandenen und neuen Karten entscheiden
-2. Abschlussberichte für alle vierzehn vorhandenen Karten erzeugen
-3. die erste Städtewelle um weitere sichere Entitäten und Grenzflächen
-   vervollständigen
-4. weitere Städte wellenweise nach Quellenstärke importieren
+1. die Städtewellen 3 und 4 aus den verbleibenden Quellenbeständen importieren
+2. Abschlussberichte für alle vorhandenen Karten erzeugen
+3. katalogisierte Orte mit belastbaren Kartenpositionen ergänzen
+4. Lore-Grenzflächen anhand der Karten und Beschreibungstexte georeferenzieren
+5. Quellen-, Editions-, Such- und Offline-Funktionen abschließend validieren
 
 Ein Stadtpaket gilt erst dann als vollständig, wenn keine offene
 Werk-/Stadt-Prüfung und kein unbearbeiteter Kandidat mehr vorhanden ist.

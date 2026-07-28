@@ -76,6 +76,34 @@ FOCUSED_WORKS = {
     "hong-kong": {"sr4-runner-havens", "sr5-hong-kong-neon-contrails-2050"},
     "london": {"sr1-london-sourcebook", "sr5-mission-london", "sr5-srmc-london-falling"},
     "muenchen": {"sr4-munchen-noir", "sr6-datapuls-munchen"},
+    "san-francisco": {
+        "sr2-california-free-state",
+        "sr5-shadows-in-focus-city-by-shadow-san-francisco-metroplex",
+    },
+    "cheyenne": {
+        "sr5-shadows-in-focus-city-by-shadow-cheyenne",
+        "sr5-mission-sioux-nation",
+        "sr5-shadows-in-focus-sioux-nation",
+    },
+    "karlsruhe": {"sr5-datapuls-karlsruhe"},
+    "new-orleans": {
+        "sr2-target-smuggler-havens",
+        "sr6-shadows-in-focus-easy-come-easy-go-new-orleans",
+    },
+    "paris": {"sr3-shadows-of-europe", "sr6-final-bets-paris-grand-tour"},
+    "montreal": {"sr3-shadows-of-north-america"},
+    "neo-tokio": {"sr3-shadows-of-asia", "sr4-corporate-enclaves"},
+    "washington-fdc": {"sr6-cutting-black"},
+    "los-angeles": {"sr2-california-free-state", "sr4-corporate-enclaves"},
+    "bogota": {"sr4-war", "sr4-fronteinsatz"},
+    "lagos": {"sr4-feral-cities", "sr4-krisenzonen"},
+    "detroit": {"sr2-target-ucas", "sr6-cutting-black"},
+    "atlanta": {
+        "sr1-the-neo-anarchist-s-guide-to-north-america",
+        "sr6-cutting-black",
+    },
+    "portland": {"sr2-tir-tairngire", "sr2-die-lander-der-verheiung"},
+    "wien": {"sr2-walzer-punks-schwarzes-ice", "sr5-datapuls-osterreich"},
 }
 
 # Explicit editorial resolutions for OCR aliases, mistranslations and
@@ -163,13 +191,66 @@ CURATED_TARGETS = {
     "muenchen:renrakueuropa:place": ["Renraku Arkologie Europa"],
     "muenchen:theatinerstraeschrannenhalle:place": ["Theatinerstraße", "Schrannenhalle"],
     "muenchen:thun:group": ["The Grimms"],
+    "atlanta:blackmarket:place": ["Atlanta Black Market"],
+    "atlanta:linkclub:place": ["Link Club Atlanta"],
+    "bogota:deraztechnologybusinesscomplex:place": ["Aztechnology Business Complex"],
+    "bogota:derflughafeneldorado:place": ["El Dorado Airport"],
+    "bogota:diepemexarkologie:place": ["Pemex Arcology"],
+    "bogota:flughafenguaymaral:place": ["Guaymaral Airport"],
+    "bogota:heiligeslebenheiligertod:group": ["Sacred Life, Sacred Death"],
+    "bogota:pontificalxavierianuniversity:place": ["Pontificia Universidad Javeriana"],
+    "cheyenne:airport:place": ["Cheyenne Regional Airport"],
+    "cheyenne:andbrassclub:place": ["Copper and Brass Club"],
+    "cheyenne:ares:place": ["Ares District HQ Cheyenne"],
+    "cheyenne:cheyennecityhall:person": ["Cheyenne City Hall"],
+    "cheyenne:cheyenneregional:place": ["Cheyenne Regional Airport"],
+    "cheyenne:mct:place": ["MCT Cheyenne / Elk-Sedge Systems"],
+    "cheyenne:saederkrupp:place": ["Saeder-Krupp Cheyenne"],
+    "cheyenne:shiawase:place": ["Shiawase Cheyenne Headquarters"],
+    "lagos:apapamedicalcenterapapa:person": ["Apapa Medical Center"],
+    "lagos:theportonovoluxuryhotelapapa:place": ["Porto Novo Luxury Hotel"],
+    "lagos:thethreefriendslagosmainland:place": ["The Three Friends"],
+    "los-angeles:amalgamatedstudios:person": ["Amalgamated Studios"],
+    "los-angeles:angelicentertainment:person": ["Angelic Entertainment"],
+    "los-angeles:downtown:place": ["Downtown Los Angeles"],
+    "los-angeles:horizongroup:group": ["Horizon Group Los Angeles"],
+    "los-angeles:linkclub:place": ["Link Club Los Angeles"],
+    "los-angeles:losangelesstrahlungszonesanonofre:group": ["San Onofre Radiation Zone"],
+    "los-angeles:universityofcalifornialosangeles:place": ["UCLA"],
+    "neo-tokio:bunkyo:group": ["Bunkyō"],
+    "neo-tokio:chosunalleysubtokyo:group": ["Chosun Alley"],
+    "neo-tokio:kanda:group": ["Kanda"],
+    "paris:anisesolange:place": ["Anise Solange"],
+    "paris:creteilbtland:place": ["Créteil"],
+    "paris:lequartierlatin:place": ["Quartier Latin"],
+    "paris:linkclub:place": ["Link Club Paris"],
+    "paris:mcthtrteam:group": ["MCT HTR Team Paris"],
+    "paris:thefrenchnationallibrary:place": ["Bibliothèque François Mitterrand"],
+    "paris:thejoygirl:place": ["Au Trésor des Belles"],
+    "paris:thevory:group": ["Paris Vory"],
+    "portland:aresmacrotechnologiestirtairngire:person": ["Ares Macrotechnologies Tír Tairngire"],
+    "portland:knighterranttirtairngire:person": ["Knight Errant Tír Tairngire"],
+    "portland:patogradys:person": ["Pat O’Grady’s"],
+    "portland:portlandexecutel:person": ["Portland Executel"],
+    "portland:westslopeinn:person": ["West Slope Inn"],
+    "san-francisco:ancients:group": ["Ancients San Francisco"],
+    "san-francisco:mafia:group": ["San Francisco Mafia"],
+    "san-francisco:neonet:place": ["NeoNET San Francisco"],
+    "san-francisco:wuxing:place": ["Wuxing San Francisco"],
+    "san-francisco:yakuza:group": ["San Francisco Yakuza"],
+    "wien:brimstone:place": ["Brimstone Memorial Battery"],
 }
 
 # These six city queues were read against their local source contexts.  Once
 # the explicit targets above and normalised existing dossiers are resolved,
 # the remaining candidates are headings, rules, OCR fragments, generic
 # categories or entities outside the map scope.
-FINAL_REVIEW_CITIES = set(FOCUSED_WORKS)
+FINAL_REVIEW_CITIES = {
+    "boston", "chicago", "frankfurt", "hong-kong", "london", "muenchen",
+    "atlanta", "bogota", "cheyenne", "detroit", "karlsruhe", "lagos",
+    "los-angeles", "montreal", "neo-tokio", "new-orleans", "paris",
+    "portland", "san-francisco", "washington-fdc", "wien",
+}
 PLACE_SIGNAL = re.compile(
     r"\b(?:academy|airport|arcology|arkologie|arena|bar|bazaar|bezirk|"
     r"cafe|café|casino|city|clinic|club|complex|district|dock|factory|"
