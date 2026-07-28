@@ -139,13 +139,25 @@ kanonischen Datensätzen zusammengeführt, 485 begründet verworfen und keiner
 blieb offen. Die Pakete enthalten zusammen 137 Orte und 58 Personen oder
 Gruppen. Details enthält `docs/research/welle-3-kandidatenaudit.md`.
 
+## Vierte Städtewelle
+
+Die vierte Städtewelle ergänzt die 33 verbleibenden Städte der
+Werk-/Stadt-Matrix. Alle 684 Rohkandidaten wurden entschieden: 55 wurden mit
+kanonischen Datensätzen zusammengeführt, 629 begründet verworfen und keiner
+blieb offen.
+
+Damit besitzen alle 75 erfassten Städte ein eigenständig ladbares Kartenpaket.
+Der Gesamtstand umfasst 3.010 Orte, 1.753 Personen oder Gruppen und 4.763
+stadtübergreifende Suchtreffer. Details enthält
+`docs/research/welle-4-kandidatenaudit.md`.
+
 ## Nächste verbindliche Importreihenfolge
 
-1. die Städtewelle 4 aus den verbleibenden Quellenbeständen importieren
-2. Abschlussberichte für alle vorhandenen Karten erzeugen
-3. katalogisierte Orte mit belastbaren Kartenpositionen ergänzen
-4. Lore-Grenzflächen anhand der Karten und Beschreibungstexte georeferenzieren
-5. Quellen-, Editions-, Such- und Offline-Funktionen abschließend validieren
+1. Abschlussberichte und offene Werk-/Stadt-Prüfungen der Quellenmatrix
+   vollständig entscheiden
+2. katalogisierte Orte mit belastbaren Kartenpositionen ergänzen
+3. Lore-Grenzflächen anhand der Karten und Beschreibungstexte georeferenzieren
+4. Quellen-, Editions-, Such- und Offline-Funktionen abschließend validieren
 
 Ein Stadtpaket gilt erst dann als vollständig, wenn keine offene
 Werk-/Stadt-Prüfung und kein unbearbeiteter Kandidat mehr vorhanden ist.
