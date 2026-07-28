@@ -21,8 +21,13 @@ def read_json(path: Path):
 
 
 def write_json(path: Path, payload) -> None:
+    pretty = path.exists() and path.read_text(encoding="utf-8").startswith("{\n")
     path.write_text(
-        json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
+        (
+            json.dumps(payload, ensure_ascii=False, indent=2)
+            if pretty
+            else json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        ) + "\n",
         encoding="utf-8",
     )
 
