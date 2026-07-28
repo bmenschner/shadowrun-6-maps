@@ -44,7 +44,7 @@ TXT-Dateien ohne Seitenmarker wird ein begrenzter Textblock verwendet. Die
 Verknüpfungen erscheinen als zusätzliche Editions- und Quellenangaben im
 bestehenden Dossier.
 
-## Offene Neuentitätsprüfung
+## Neuentitätsprüfung
 
 Der erste Extraktionslauf für die damals vorhandenen acht Pakete ergab nach
 mehreren Qualitätsfiltern 660 Kandidaten:
@@ -60,12 +60,12 @@ mehreren Qualitätsfiltern 660 Kandidaten:
 | Seattle | 49 |
 | Toronto | 7 |
 
-Die lokale Arbeitsdatei wird je Importwelle neu erzeugt; der aktuelle Lauf für
-Chicago, Boston, Hongkong, London, München und Groß-Frankfurt enthält 1.652
-weitere Rohkandidaten. Kandidaten sind noch keine Karteninhalte. Jeder Eintrag muss als neuer
-Ort, neue Person oder Gruppe bestätigt, mit einem bestehenden Dossier
-zusammengeführt oder begründet verworfen werden. OCR-Fehler und
-fremdstädtische Nennungen dürfen nicht automatisch importiert werden.
+Die lokale Arbeitsdatei wird je Importwelle neu erzeugt. Der Lauf für Chicago,
+Boston, Hongkong, London, München und Groß-Frankfurt enthielt 1.652
+Rohkandidaten. Die Prüfung ist abgeschlossen: 265 Treffer wurden mit
+kanonischen Dossiers zusammengeführt und 1.387 begründet verworfen. Es bleibt
+kein offener Kandidat dieser Welle. Der vollständige Bericht steht in
+`docs/research/welle-1-kandidatenaudit.md`.
 
 ## Status der Werk-/Stadt-Matrix
 
@@ -90,22 +90,17 @@ Die erste neue Städtewelle ist als sechs getrennt ladbare Pakete umgesetzt:
 
 | Stadt | Orte und Bezirke | Personen und Gruppen |
 | --- | ---: | ---: |
-| Chicago | 20 | 14 |
-| Boston | 17 | 10 |
-| Hongkong | 17 | 5 |
-| London | 18 | 12 |
-| München | 24 | 6 |
-| Groß-Frankfurt | 21 | 3 |
+| Chicago | 30 | 28 |
+| Boston | 29 | 24 |
+| Hongkong | 29 | 17 |
+| London | 21 | 21 |
+| München | 32 | 10 |
+| Groß-Frankfurt | 28 | 4 |
 
 Die Einträge stammen aus den jeweils stadtbezogenen Primärquellen. Eindeutig
 erhaltene Wahrzeichen und Lore-Distrikte besitzen Kartenanker; nur auf
-Stadtebene belegte Orte bleiben ohne erfundene Koordinate im Katalog.
-
-Der aktuelle Extraktionslauf für diese sechs Städte enthält 1.652
-Rohkandidaten. Die obigen Entitäten sind der erste geprüfte Bestand. Die
-übrigen Treffer bleiben offen, weil darunter Kapitelüberschriften,
-Regelbegriffe, generische Gegnerprofile und beschädigte OCR-Zeilen vorkommen.
-Sie werden nicht als scheinbar vollständige Lore-Objekte veröffentlicht.
+Stadtebene belegte Orte bleiben ohne erfundene Koordinate im Katalog. Die
+Rohkandidaten dieser sechs Städte sind vollständig entschieden.
 
 ## Nächste verbindliche Importreihenfolge
 

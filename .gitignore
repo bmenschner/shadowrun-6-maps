@@ -36,6 +36,7 @@ tools/*
 !tools/import_archive_references.py
 !tools/build_adl_content.py
 !tools/build_wave1_city_packages.py
+!tools/review_source_candidates.py
 !tmp/
 tmp/*
 !tmp/build-visual/
