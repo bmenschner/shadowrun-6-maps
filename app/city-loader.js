@@ -75,11 +75,23 @@
     ];
     const places = featureCollection(
       packages.places.name || `${manifest.name} Orte`,
-      applyAugmentations(rawPlaces, packages.placeAugmentations, feature => feature.properties.id),
+      applyAugmentations(
+        applyAugmentations(
+          rawPlaces,
+          packages.placeAugmentations,
+          feature => feature.properties.id,
+        ),
+        packages.archivePlaceAugmentations,
+        feature => feature.properties.id,
+      ),
     );
     const people = applyAugmentations(
-      [...asArray(packages.people), ...asArray(packages.historicalPeople)],
-      packages.personAugmentations,
+      applyAugmentations(
+        [...asArray(packages.people), ...asArray(packages.historicalPeople)],
+        packages.personAugmentations,
+        person => person.id,
+      ),
+      packages.archivePersonAugmentations,
       person => person.id,
     );
     const zones = packages.zones;
@@ -138,6 +150,7 @@
     for (const key of [
       'virtualPlaces', 'historicalPlaces', 'historicalPeople',
       'placeAugmentations', 'personAugmentations', 'security', 'special',
+      'archivePlaceAugmentations', 'archivePersonAugmentations',
     ]) {
       if (!manifest.files || !manifest.files[key]) continue;
       packages[key] = await fetchJson(new URL(manifest.files[key], manifestUrl).href);

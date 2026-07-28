@@ -31,6 +31,11 @@ tools/*
 !tools/build_hamburg_content.py
 !tools/build_rhein_ruhr_content.py
 !tools/rebuild_search_index.py
+!tools/build_source_registry.py
+!tools/extract_source_candidates.py
+!tools/import_archive_references.py
+!tools/build_adl_content.py
+!tools/build_wave1_city_packages.py
 !tmp/
 tmp/*
 !tmp/build-visual/

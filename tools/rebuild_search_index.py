@@ -54,11 +54,17 @@ def main() -> int:
         path = manifest.get("files", {}).get("placeAugmentations")
         if path:
             apply_augmentations(places["features"], read(city_dir / path), properties=True)
+        path = manifest.get("files", {}).get("archivePlaceAugmentations")
+        if path:
+            apply_augmentations(places["features"], read(city_dir / path), properties=True)
         people = read(city_dir / manifest["files"]["people"])
         path = manifest.get("files", {}).get("historicalPeople")
         if path:
             people.extend(read(city_dir / path))
         path = manifest.get("files", {}).get("personAugmentations")
+        if path:
+            apply_augmentations(people, read(city_dir / path))
+        path = manifest.get("files", {}).get("archivePersonAugmentations")
         if path:
             apply_augmentations(people, read(city_dir / path))
 
