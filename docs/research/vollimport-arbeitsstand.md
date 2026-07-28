@@ -147,9 +147,14 @@ stadtübergreifende Suchtreffer. Details enthält
 
 ## Nächste verbindliche Importreihenfolge
 
-1. katalogisierte Orte mit belastbaren Kartenpositionen ergänzen
-2. Lore-Grenzflächen anhand der Karten und Beschreibungstexte georeferenzieren
-3. Quellen-, Editions-, Such- und Offline-Funktionen abschließend validieren
+1. weitere Lore-Grenzflächen nur bei belastbarer Quellenkartografie ergänzen
+2. neue Karten- und Quellenbestände nach demselben Auditverfahren importieren
+
+Der Georeferenzierungs-Audit dokumentiert 2.702 sichtbare Punktgeometrien und
+285 bewusst katalogisierte Einträge ohne erfundene Einzelposition. 68 Pakete
+verwenden derzeit anklickbare Lore-Bezugspunkte statt nicht belegbarer
+Grenzpolygone. Suche, Stadtpakete, Quellenmatrix, JavaScript und Offline-Cache
+bestehen die Abschlussprüfung dieses Importstands.
 
 Ein Stadtpaket gilt erst dann als vollständig, wenn keine offene
 Werk-/Stadt-Prüfung und kein unbearbeiteter Kandidat mehr vorhanden ist.
