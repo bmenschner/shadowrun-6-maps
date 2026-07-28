@@ -2,9 +2,27 @@
   "schemaVersion": 1,
   "books": [
     {
+      "id": "sr1-deutschland-in-den-schatten",
+      "title": "Deutschland in den Schatten",
+      "edition": "SR1",
+      "registryWorkId": "sr1-deutschland-in-den-schatten"
+    },
+    {
       "id": "deutschland-in-den-schatten",
       "title": "Deutschland in den Schatten (Ausgabe 1992)",
       "edition": "SR1"
+    },
+    {
+      "id": "sr2-chrom-dioxin",
+      "title": "Chrom & Dioxin",
+      "edition": "SR2",
+      "registryWorkId": "sr2-chrom-dioxin"
+    },
+    {
+      "id": "sr2-deutschland-in-den-schatten",
+      "title": "Deutschland in den Schatten",
+      "edition": "SR2",
+      "registryWorkId": "sr2-deutschland-in-den-schatten"
     },
     {
       "id": "deutschland-in-den-schatten-1993",
@@ -12,9 +30,39 @@
       "edition": "SR2"
     },
     {
+      "id": "sr2-germany-sourcebook",
+      "title": "Germany Sourcebook",
+      "edition": "SR2",
+      "registryWorkId": "sr2-germany-sourcebook"
+    },
+    {
+      "id": "sr2-harlekin",
+      "title": "Harlekin",
+      "edition": "SR2",
+      "registryWorkId": "sr2-harlekin"
+    },
+    {
+      "id": "sr2-target-smuggler-havens",
+      "title": "Target Smuggler Havens",
+      "edition": "SR2",
+      "registryWorkId": "sr2-target-smuggler-havens"
+    },
+    {
+      "id": "sr2-walzer-punks-schwarzes-ice",
+      "title": "Walzer, Punks & Schwarzes Ice",
+      "edition": "SR2",
+      "registryWorkId": "sr2-walzer-punks-schwarzes-ice"
+    },
+    {
       "id": "brennpunkt-adl",
       "title": "Brennpunkt ADL",
       "edition": "SR3"
+    },
+    {
+      "id": "sr3-brennpunkt-matrix",
+      "title": "Brennpunkt Matrix",
+      "edition": "SR3",
+      "registryWorkId": "sr3-brennpunkt-matrix"
     },
     {
       "id": "deutschland-in-den-schatten-ii",
@@ -22,9 +70,314 @@
       "edition": "SR3"
     },
     {
+      "id": "sr3-europa-in-den-schatten",
+      "title": "Europa in den Schatten",
+      "edition": "SR3",
+      "registryWorkId": "sr3-europa-in-den-schatten"
+    },
+    {
+      "id": "sr3-feind-meines-feindes",
+      "title": "Feind meines Feindes",
+      "edition": "SR3",
+      "registryWorkId": "sr3-feind-meines-feindes"
+    },
+    {
+      "id": "sr3-loose-alliances",
+      "title": "Loose Alliances",
+      "edition": "SR3",
+      "registryWorkId": "sr3-loose-alliances"
+    },
+    {
+      "id": "sr3-schockwellen",
+      "title": "Schockwellen",
+      "edition": "SR3",
+      "registryWorkId": "sr3-schockwellen"
+    },
+    {
+      "id": "sr3-shadows-of-europe",
+      "title": "Shadows of Europe",
+      "edition": "SR3",
+      "registryWorkId": "sr3-shadows-of-europe"
+    },
+    {
+      "id": "sr3-shockwaves",
+      "title": "Shockwaves",
+      "edition": "SR3",
+      "registryWorkId": "sr3-shockwaves"
+    },
+    {
+      "id": "sr3-wunderwelten-49-wem-der-sandmann-einen-alptraum-bringt",
+      "title": "WunderWelten 49 - Wem der Sandmann einen Alptraum bringt",
+      "edition": "SR3",
+      "registryWorkId": "sr3-wunderwelten-49-wem-der-sandmann-einen-alptraum-bringt"
+    },
+    {
+      "id": "sr4-almanach-der-sechsten-welt",
+      "title": "Almanach der Sechsten Welt",
+      "edition": "SR4",
+      "registryWorkId": "sr4-almanach-der-sechsten-welt"
+    },
+    {
+      "id": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "registryWorkId": "sr4-berlin"
+    },
+    {
       "id": "berlin-4d",
       "title": "Berlin 4D",
       "edition": "SR4"
+    },
+    {
+      "id": "sr4-blut-spiele",
+      "title": "Blut & Spiele",
+      "edition": "SR4",
+      "registryWorkId": "sr4-blut-spiele"
+    },
+    {
+      "id": "sr4-corporate-guide",
+      "title": "Corporate Guide",
+      "edition": "SR4",
+      "registryWorkId": "sr4-corporate-guide"
+    },
+    {
+      "id": "sr4-drachenbrut",
+      "title": "Drachenbrut",
+      "edition": "SR4",
+      "registryWorkId": "sr4-drachenbrut"
+    },
+    {
+      "id": "sr4-emergenz-digitales-erwachen",
+      "title": "Emergenz - Digitales Erwachen",
+      "edition": "SR4",
+      "registryWorkId": "sr4-emergenz-digitales-erwachen"
+    },
+    {
+      "id": "sr4-euro-war-antiques",
+      "title": "Euro War Antiques",
+      "edition": "SR4",
+      "registryWorkId": "sr4-euro-war-antiques"
+    },
+    {
+      "id": "sr4-konzernenklaven",
+      "title": "Konzernenklaven",
+      "edition": "SR4",
+      "registryWorkId": "sr4-konzernenklaven"
+    },
+    {
+      "id": "sr4-machtspiele-handbuch-fur-spione",
+      "title": "Machtspiele - Handbuch für Spione",
+      "edition": "SR4",
+      "registryWorkId": "sr4-machtspiele-handbuch-fur-spione"
+    },
+    {
+      "id": "sr4-machtspiele-netzstucke",
+      "title": "Machtspiele - Netzstücke",
+      "edition": "SR4",
+      "registryWorkId": "sr4-machtspiele-netzstucke"
+    },
+    {
+      "id": "sr4-munchen-noir",
+      "title": "München Noir",
+      "edition": "SR4",
+      "registryWorkId": "sr4-munchen-noir"
+    },
+    {
+      "id": "sr4-novapuls-74-07-10-003-extrapuls",
+      "title": "Novapuls 74-07-10 - 003 Extrapuls",
+      "edition": "SR4",
+      "registryWorkId": "sr4-novapuls-74-07-10-003-extrapuls"
+    },
+    {
+      "id": "sr4-novapuls-74-09-29-006-extrapuls",
+      "title": "Novapuls 74-09-29 - 006 Extrapuls",
+      "edition": "SR4",
+      "registryWorkId": "sr4-novapuls-74-09-29-006-extrapuls"
+    },
+    {
+      "id": "sr4-novapuls-74-10-08-007",
+      "title": "Novapuls 74-10-08 - 007",
+      "edition": "SR4",
+      "registryWorkId": "sr4-novapuls-74-10-08-007"
+    },
+    {
+      "id": "sr4-novapuls-75-01-01-009-extrapuls",
+      "title": "Novapuls 75-01-01 - 009 Extrapuls",
+      "edition": "SR4",
+      "registryWorkId": "sr4-novapuls-75-01-01-009-extrapuls"
+    },
+    {
+      "id": "sr4-reisefuhrer-in-die-deutschen-schatten",
+      "title": "Reiseführer in die deutschen Schatten",
+      "edition": "SR4",
+      "registryWorkId": "sr4-reisefuhrer-in-die-deutschen-schatten"
+    },
+    {
+      "id": "sr4-rhein-ruhr-megaplex",
+      "title": "Rhein-Ruhr-Megaplex",
+      "edition": "SR4",
+      "registryWorkId": "sr4-rhein-ruhr-megaplex"
+    },
+    {
+      "id": "sr4-schattenstadte",
+      "title": "Schattenstädte",
+      "edition": "SR4",
+      "registryWorkId": "sr4-schattenstadte"
+    },
+    {
+      "id": "sr4-shadowrun-4d-konzerndossier",
+      "title": "Shadowrun 4D Konzerndossier",
+      "edition": "SR4",
+      "registryWorkId": "sr4-shadowrun-4d-konzerndossier"
+    },
+    {
+      "id": "sr4-sixth-world-almanac",
+      "title": "Sixth World Almanac",
+      "edition": "SR4",
+      "registryWorkId": "sr4-sixth-world-almanac"
+    },
+    {
+      "id": "sr4-strassenlegenden",
+      "title": "Strassenlegenden",
+      "edition": "SR4",
+      "registryWorkId": "sr4-strassenlegenden"
+    },
+    {
+      "id": "sr4-systemausfall",
+      "title": "Systemausfall",
+      "edition": "SR4",
+      "registryWorkId": "sr4-systemausfall"
+    },
+    {
+      "id": "sr4-unterwelten",
+      "title": "Unterwelten",
+      "edition": "SR4",
+      "registryWorkId": "sr4-unterwelten"
+    },
+    {
+      "id": "sr4-verschworungstheorien",
+      "title": "Verschwörungstheorien",
+      "edition": "SR4",
+      "registryWorkId": "sr4-verschworungstheorien"
+    },
+    {
+      "id": "sr5-2080-11-06-megapuls-08",
+      "title": "2080-11-06 megapuls-08",
+      "edition": "SR5",
+      "registryWorkId": "sr5-2080-11-06-megapuls-08"
+    },
+    {
+      "id": "sr5-2081-01-15-megapuls-09",
+      "title": "2081-01-15 megapuls-09",
+      "edition": "SR5",
+      "registryWorkId": "sr5-2081-01-15-megapuls-09"
+    },
+    {
+      "id": "sr5-2081-06-06-megapuls-10",
+      "title": "2081-06-06 megapuls-10",
+      "edition": "SR5",
+      "registryWorkId": "sr5-2081-06-06-megapuls-10"
+    },
+    {
+      "id": "sr5-2081-10-05-novapuls",
+      "title": "2081-10-05 novapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-2081-10-05-novapuls"
+    },
+    {
+      "id": "sr5-2081-11-25-novapuls",
+      "title": "2081-11-25 novapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-2081-11-25-novapuls"
+    },
+    {
+      "id": "sr5-2082-01-04-novapuls",
+      "title": "2082-01-04 novapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-2082-01-04-novapuls"
+    },
+    {
+      "id": "sr5-2082-06-16-megapuls-zoom",
+      "title": "2082-06-16 megapuls zoom",
+      "edition": "SR5",
+      "registryWorkId": "sr5-2082-06-16-megapuls-zoom"
+    },
+    {
+      "id": "sr5-2082-12-09-megapuls",
+      "title": "2082-12-09 megapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-2082-12-09-megapuls"
+    },
+    {
+      "id": "sr5-anarchy",
+      "title": "Anarchy",
+      "edition": "SR5",
+      "registryWorkId": "sr5-anarchy"
+    },
+    {
+      "id": "sr5-bodyshop",
+      "title": "Bodyshop",
+      "edition": "SR5",
+      "registryWorkId": "sr5-bodyshop"
+    },
+    {
+      "id": "sr5-bodyshop-korper-medizin",
+      "title": "Bodyshop [Körper, Medizin]",
+      "edition": "SR5",
+      "registryWorkId": "sr5-bodyshop-korper-medizin"
+    },
+    {
+      "id": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls"
+    },
+    {
+      "id": "sr5-datapuls-adl",
+      "title": "Datapuls ADL",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls-adl"
+    },
+    {
+      "id": "sr5-datapuls-adl-allianz-deutscher-lander",
+      "title": "Datapuls ADL (Allianz deutscher Länder)",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls-adl-allianz-deutscher-lander"
+    },
+    {
+      "id": "sr5-datapuls-frankfurt",
+      "title": "Datapuls Frankfurt",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls-frankfurt"
+    },
+    {
+      "id": "sr5-datapuls-hamburg",
+      "title": "Datapuls Hamburg",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls-hamburg"
+    },
+    {
+      "id": "sr5-datapuls-proteus",
+      "title": "Datapuls Proteus",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls-proteus"
+    },
+    {
+      "id": "sr5-datapuls-verschlusssache",
+      "title": "Datapuls Verschlusssache",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls-verschlusssache"
+    },
+    {
+      "id": "sr5-datapuls-osterreich",
+      "title": "Datapuls Österreich",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls-osterreich"
+    },
+    {
+      "id": "datapuls-10-konzerne",
+      "title": "Datapuls: 10 Konzerne",
+      "edition": "SR5"
     },
     {
       "id": "datapuls-berlin",
@@ -37,9 +390,369 @@
       "edition": "SR5"
     },
     {
-      "id": "datapuls-10-konzerne",
-      "title": "Datapuls: 10 Konzerne",
-      "edition": "SR5"
+      "id": "sr5-datenpfade",
+      "title": "Datenpfade",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datenpfade"
+    },
+    {
+      "id": "sr5-gestohlene-seelen",
+      "title": "Gestohlene Seelen",
+      "edition": "SR5",
+      "registryWorkId": "sr5-gestohlene-seelen"
+    },
+    {
+      "id": "sr5-grundregelwerk-auflage-2",
+      "title": "Grundregelwerk (Auflage 2)",
+      "edition": "SR5",
+      "registryWorkId": "sr5-grundregelwerk-auflage-2"
+    },
+    {
+      "id": "sr5-grundregelwerk-auflage-4",
+      "title": "Grundregelwerk (Auflage 4)",
+      "edition": "SR5",
+      "registryWorkId": "sr5-grundregelwerk-auflage-4"
+    },
+    {
+      "id": "sr5-grundregelwerk-auflage-6",
+      "title": "Grundregelwerk (Auflage 6)",
+      "edition": "SR5",
+      "registryWorkId": "sr5-grundregelwerk-auflage-6"
+    },
+    {
+      "id": "sr5-hamburgpaket-hamburg",
+      "title": "Hamburgpaket - Hamburg",
+      "edition": "SR5",
+      "registryWorkId": "sr5-hamburgpaket-hamburg"
+    },
+    {
+      "id": "sr5-im-herz-der-dunkelheit",
+      "title": "Im Herz der Dunkelheit",
+      "edition": "SR5",
+      "registryWorkId": "sr5-im-herz-der-dunkelheit"
+    },
+    {
+      "id": "sr5-lifestyle-2080",
+      "title": "Lifestyle 2080",
+      "edition": "SR5",
+      "registryWorkId": "sr5-lifestyle-2080"
+    },
+    {
+      "id": "sr5-lifestyle-2080-kultur",
+      "title": "Lifestyle 2080 [Kultur]",
+      "edition": "SR5",
+      "registryWorkId": "sr5-lifestyle-2080-kultur"
+    },
+    {
+      "id": "sr5-megakons-2078",
+      "title": "Megakons 2078",
+      "edition": "SR5",
+      "registryWorkId": "sr5-megakons-2078"
+    },
+    {
+      "id": "sr5-mit-hauern-und-hornern",
+      "title": "Mit Hauern und Hörnern",
+      "edition": "SR5",
+      "registryWorkId": "sr5-mit-hauern-und-hornern"
+    },
+    {
+      "id": "sr5-neo-anarchistische-enzyklopadie",
+      "title": "Neo-Anarchistische Enzyklopädie",
+      "edition": "SR5",
+      "registryWorkId": "sr5-neo-anarchistische-enzyklopadie"
+    },
+    {
+      "id": "sr5-novapuls-75-10-24-010",
+      "title": "Novapuls 75-10-24 - 010",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-75-10-24-010"
+    },
+    {
+      "id": "sr5-novapuls-75-12-25-012-extrapuls",
+      "title": "Novapuls 75-12-25 - 012 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-75-12-25-012-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-76-04-19-016",
+      "title": "Novapuls 76-04-19 - 016",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-76-04-19-016"
+    },
+    {
+      "id": "sr5-novapuls-76-06-21-018-extrapuls",
+      "title": "Novapuls 76-06-21 - 018 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-76-06-21-018-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-76-07-23-019",
+      "title": "Novapuls 76-07-23 - 019",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-76-07-23-019"
+    },
+    {
+      "id": "sr5-novapuls-76-09-23-021-extrapuls",
+      "title": "Novapuls 76-09-23 - 021 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-76-09-23-021-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-76-12-25-024-extrapuls",
+      "title": "Novapuls 76-12-25 - 024 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-76-12-25-024-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-77-01-19-025",
+      "title": "Novapuls 77-01-19 - 025",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-77-01-19-025"
+    },
+    {
+      "id": "sr5-novapuls-77-06-29-030-extrapuls",
+      "title": "Novapuls 77-06-29 - 030 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-77-06-29-030-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-77-07-28-031",
+      "title": "Novapuls 77-07-28 - 031",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-77-07-28-031"
+    },
+    {
+      "id": "sr5-novapuls-77-09-30-033-extrapuls",
+      "title": "Novapuls 77-09-30 - 033 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-77-09-30-033-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-77-10-20-034",
+      "title": "Novapuls 77-10-20 - 034",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-77-10-20-034"
+    },
+    {
+      "id": "sr5-novapuls-77-11-07-035",
+      "title": "Novapuls 77-11-07 - 035",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-77-11-07-035"
+    },
+    {
+      "id": "sr5-novapuls-77-12-27-036-extrapuls",
+      "title": "Novapuls 77-12-27 - 036 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-77-12-27-036-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-78-01-19-037",
+      "title": "Novapuls 78-01-19 - 037",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-78-01-19-037"
+    },
+    {
+      "id": "sr5-novapuls-78-07-09-043",
+      "title": "Novapuls 78-07-09 - 043",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-78-07-09-043"
+    },
+    {
+      "id": "sr5-novapuls-78-08-30-044",
+      "title": "Novapuls 78-08-30 - 044",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-78-08-30-044"
+    },
+    {
+      "id": "sr5-novapuls-78-09-25-045-megapuls",
+      "title": "Novapuls 78-09-25 - 045 Megapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-78-09-25-045-megapuls"
+    },
+    {
+      "id": "sr5-novapuls-79-03-08-051-megapuls",
+      "title": "Novapuls 79-03-08 - 051 Megapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-03-08-051-megapuls"
+    },
+    {
+      "id": "sr5-novapuls-79-04-28-052",
+      "title": "Novapuls 79-04-28 - 052",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-04-28-052"
+    },
+    {
+      "id": "sr5-novapuls-79-05-23-053",
+      "title": "Novapuls 79-05-23 - 053",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-05-23-053"
+    },
+    {
+      "id": "sr5-novapuls-79-06-25-054-extrapuls",
+      "title": "Novapuls 79-06-25 - 054 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-06-25-054-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-79-07-08-055",
+      "title": "Novapuls 79-07-08 - 055",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-07-08-055"
+    },
+    {
+      "id": "sr5-novapuls-79-08-31-056",
+      "title": "Novapuls 79-08-31 - 056",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-08-31-056"
+    },
+    {
+      "id": "sr5-novapuls-79-09-21-057-schattenpuls",
+      "title": "Novapuls 79-09-21 - 057 Schattenpuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-09-21-057-schattenpuls"
+    },
+    {
+      "id": "sr5-novapuls-79-10-20-058",
+      "title": "Novapuls 79-10-20 - 058",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-10-20-058"
+    },
+    {
+      "id": "sr5-novapuls-79-12-22-060-extrapuls",
+      "title": "Novapuls 79-12-22 - 060 Extrapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-79-12-22-060-extrapuls"
+    },
+    {
+      "id": "sr5-novapuls-80-03-01-063-megapuls",
+      "title": "Novapuls 80-03-01 - 063 Megapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-80-03-01-063-megapuls"
+    },
+    {
+      "id": "sr5-novapuls-80-05-02-065-sch4tt3npuls",
+      "title": "Novapuls 80-05-02 - 065 Sch4tt3npuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-80-05-02-065-sch4tt3npuls"
+    },
+    {
+      "id": "sr5-novapuls-80-06-29-066-megapuls",
+      "title": "Novapuls 80-06-29 - 066 Megapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-80-06-29-066-megapuls"
+    },
+    {
+      "id": "sr5-novapuls-80-07-30-067",
+      "title": "Novapuls 80-07-30 - 067",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-80-07-30-067"
+    },
+    {
+      "id": "sr5-novapuls-80-09-21-069-megapuls",
+      "title": "Novapuls 80-09-21 - 069 Megapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-80-09-21-069-megapuls"
+    },
+    {
+      "id": "sr5-novapuls-80-10-19-070",
+      "title": "Novapuls 80-10-19 - 070",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-80-10-19-070"
+    },
+    {
+      "id": "sr5-novapuls-80-11-23-071",
+      "title": "Novapuls 80-11-23 - 071",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-80-11-23-071"
+    },
+    {
+      "id": "sr5-novapuls-80-12-31-072-megapuls",
+      "title": "Novapuls 80-12-31 - 072 Megapuls",
+      "edition": "SR5",
+      "registryWorkId": "sr5-novapuls-80-12-31-072-megapuls"
+    },
+    {
+      "id": "sr5-parazoologie-2075",
+      "title": "Parazoologie 2075",
+      "edition": "SR5",
+      "registryWorkId": "sr5-parazoologie-2075"
+    },
+    {
+      "id": "sr5-schattenhandbuch-1-zusatzinhalte",
+      "title": "Schattenhandbuch 1 - Zusatzinhalte",
+      "edition": "SR5",
+      "registryWorkId": "sr5-schattenhandbuch-1-zusatzinhalte"
+    },
+    {
+      "id": "sr5-schattenhandbuch-3-datapuls-berlin",
+      "title": "Schattenhandbuch 3 - Datapuls Berlin",
+      "edition": "SR5",
+      "registryWorkId": "sr5-schattenhandbuch-3-datapuls-berlin"
+    },
+    {
+      "id": "sr5-schattenhandbuch-3-datapuls-osterreich",
+      "title": "Schattenhandbuch 3 - Datapuls Österreich",
+      "edition": "SR5",
+      "registryWorkId": "sr5-schattenhandbuch-3-datapuls-osterreich"
+    },
+    {
+      "id": "sr5-schattenhelden",
+      "title": "Schattenhelden",
+      "edition": "SR5",
+      "registryWorkId": "sr5-schattenhelden"
+    },
+    {
+      "id": "sr5-schattenlaufer-auflage-1",
+      "title": "Schattenläufer (Auflage 1)",
+      "edition": "SR5",
+      "registryWorkId": "sr5-schattenlaufer-auflage-1"
+    },
+    {
+      "id": "sr5-schattenlaufer-auflage-2",
+      "title": "Schattenläufer (Auflage 2)",
+      "edition": "SR5",
+      "registryWorkId": "sr5-schattenlaufer-auflage-2"
+    },
+    {
+      "id": "sr5-schnell-und-dreckig-2-gatow",
+      "title": "Schnell und Dreckig 2 - Gatow",
+      "edition": "SR5",
+      "registryWorkId": "sr5-schnell-und-dreckig-2-gatow"
+    },
+    {
+      "id": "sr5-shadowrun-2050",
+      "title": "Shadowrun 2050",
+      "edition": "SR5",
+      "registryWorkId": "sr5-shadowrun-2050"
+    },
+    {
+      "id": "sr5-sperrzone-boston",
+      "title": "Sperrzone Boston",
+      "edition": "SR5",
+      "registryWorkId": "sr5-sperrzone-boston"
+    },
+    {
+      "id": "sr5-state-of-the-art-adl",
+      "title": "State of the Art ADL",
+      "edition": "SR5",
+      "registryWorkId": "sr5-state-of-the-art-adl"
+    },
+    {
+      "id": "sr5-strassengrimoire-auflage-1",
+      "title": "Strassengrimoire (Auflage 1)",
+      "edition": "SR5",
+      "registryWorkId": "sr5-strassengrimoire-auflage-1"
+    },
+    {
+      "id": "sr6-1-schattentricks",
+      "title": "1. Schattentricks",
+      "edition": "SR6",
+      "registryWorkId": "sr6-1-schattentricks"
+    },
+    {
+      "id": "auswurfschock",
+      "title": "Auswurfschock",
+      "edition": "SR6"
     },
     {
       "id": "berlin-2080",
@@ -47,14 +760,122 @@
       "edition": "SR6"
     },
     {
+      "id": "sr6-blackout-dis",
+      "title": "Blackout (DIS)",
+      "edition": "SR6",
+      "registryWorkId": "sr6-blackout-dis"
+    },
+    {
+      "id": "sr6-datapuls-demeko-und-medien",
+      "title": "Datapuls - Demeko und Medien]",
+      "edition": "SR6",
+      "registryWorkId": "sr6-datapuls-demeko-und-medien"
+    },
+    {
+      "id": "sr6-datapuls-fbv",
+      "title": "Datapuls - FBV",
+      "edition": "SR6",
+      "registryWorkId": "sr6-datapuls-fbv"
+    },
+    {
+      "id": "sr6-datapuls-pomorya",
+      "title": "Datapuls - Pomorya",
+      "edition": "SR6",
+      "registryWorkId": "sr6-datapuls-pomorya"
+    },
+    {
+      "id": "sr6-datapuls-sota-2081",
+      "title": "Datapuls - SOTA 2081",
+      "edition": "SR6",
+      "registryWorkId": "sr6-datapuls-sota-2081"
+    },
+    {
+      "id": "sr6-demeko-und-medien",
+      "title": "Demeko und Medien",
+      "edition": "SR6",
+      "registryWorkId": "sr6-demeko-und-medien"
+    },
+    {
+      "id": "sr6-domino-effekt-download",
+      "title": "Domino-Effekt-Download",
+      "edition": "SR6",
+      "registryWorkId": "sr6-domino-effekt-download"
+    },
+    {
+      "id": "sr6-furchte-das-dunkel",
+      "title": "Fürchte das Dunkel",
+      "edition": "SR6",
+      "registryWorkId": "sr6-furchte-das-dunkel"
+    },
+    {
+      "id": "sr6-geschmeidige-geschafte",
+      "title": "Geschmeidige Geschäfte",
+      "edition": "SR6",
+      "registryWorkId": "sr6-geschmeidige-geschafte"
+    },
+    {
+      "id": "hinter-dem-vorhang",
+      "title": "Hinter dem Vorhang",
+      "edition": "SR6"
+    },
+    {
+      "id": "sr6-kaleidoskop-armes-deutschland",
+      "title": "Kaleidoskop - Armes Deutschland",
+      "edition": "SR6",
+      "registryWorkId": "sr6-kaleidoskop-armes-deutschland"
+    },
+    {
+      "id": "sr6-kaleidoskop-der-block",
+      "title": "Kaleidoskop - Der Block",
+      "edition": "SR6",
+      "registryWorkId": "sr6-kaleidoskop-der-block"
+    },
+    {
+      "id": "sr6-kaleidoskop-schattenleben-berlin",
+      "title": "Kaleidoskop - Schattenleben Berlin",
+      "edition": "SR6",
+      "registryWorkId": "sr6-kaleidoskop-schattenleben-berlin"
+    },
+    {
+      "id": "sr6-konzerngewalten",
+      "title": "Konzerngewalten",
+      "edition": "SR6",
+      "registryWorkId": "sr6-konzerngewalten"
+    },
+    {
+      "id": "sr6-lethal-harvest-dis-4",
+      "title": "Lethal Harvest (DIS 4)",
+      "edition": "SR6",
+      "registryWorkId": "sr6-lethal-harvest-dis-4"
+    },
+    {
+      "id": "sr6-neo-anarchistische-enzyklopdie",
+      "title": "Neo Anarchistische Enzyklopdie",
+      "edition": "SR6",
+      "registryWorkId": "sr6-neo-anarchistische-enzyklopdie"
+    },
+    {
+      "id": "sr6-neo-asphalt-dschungel",
+      "title": "Neo Asphalt Dschungel",
+      "edition": "SR6",
+      "registryWorkId": "sr6-neo-asphalt-dschungel"
+    },
+    {
       "id": "netzgewitter",
       "title": "Netzgewitter",
       "edition": "SR6"
     },
     {
-      "id": "schattenleben-berlin",
-      "title": "Schattenleben: Berlin",
-      "edition": "SR6"
+      "id": "sr6-phantome",
+      "title": "Phantome",
+      "edition": "SR6",
+      "registryWorkId": "sr6-phantome"
+    },
+    {
+      "id": "sr6-power-plays",
+      "title": "Power Plays",
+      "edition": "SR6",
+      "registryWorkId": "sr6-power-plays"
     },
     {
       "id": "renrakusan",
@@ -62,8 +883,14 @@
       "edition": "SR6"
     },
     {
-      "id": "sr6-quellenkorpus",
-      "title": "Shadowrun-6D-Quellenkorpus",
+      "id": "sr6-revierbericht-2082",
+      "title": "Revierbericht 2082",
+      "edition": "SR6",
+      "registryWorkId": "sr6-revierbericht-2082"
+    },
+    {
+      "id": "schattenleben-berlin",
+      "title": "Schattenleben: Berlin",
       "edition": "SR6"
     },
     {
@@ -77,19 +904,68 @@
       "edition": "SR6"
     },
     {
-      "id": "auswurfschock",
-      "title": "Auswurfschock",
-      "edition": "SR6"
+      "id": "sr6-schattenload-2019-12",
+      "title": "schattenload_2019-12",
+      "edition": "SR6",
+      "registryWorkId": "sr6-schattenload-2019-12"
     },
     {
-      "id": "hinter-dem-vorhang",
-      "title": "Hinter dem Vorhang",
-      "edition": "SR6"
+      "id": "sr6-schattenload-2024-09",
+      "title": "schattenload_2024-09",
+      "edition": "SR6",
+      "registryWorkId": "sr6-schattenload-2024-09"
+    },
+    {
+      "id": "sr6-schattenload-extra-2020-12",
+      "title": "schattenload_extra_2020-12",
+      "edition": "SR6",
+      "registryWorkId": "sr6-schattenload-extra-2020-12"
+    },
+    {
+      "id": "sr6-schattenload-extra-2022-08",
+      "title": "schattenload_extra_2022-08",
+      "edition": "SR6",
+      "registryWorkId": "sr6-schattenload-extra-2022-08"
     },
     {
       "id": "schlagschatten",
       "title": "Schlagschatten",
       "edition": "SR6"
+    },
+    {
+      "id": "sr6-quellenkorpus",
+      "title": "Shadowrun-6D-Quellenkorpus",
+      "edition": "SR6"
+    },
+    {
+      "id": "sr6-sr6-46121p-netzgewitter",
+      "title": "SR6 [46121P] Netzgewitter",
+      "edition": "SR6",
+      "registryWorkId": "sr6-sr6-46121p-netzgewitter"
+    },
+    {
+      "id": "sr6-tarnished-star-law-enforcment",
+      "title": "Tarnished Star (Law Enforcment)",
+      "edition": "SR6",
+      "registryWorkId": "sr6-tarnished-star-law-enforcment"
+    },
+    {
+      "id": "sr6-todliche-ernte",
+      "title": "Tödliche Ernte",
+      "edition": "SR6",
+      "registryWorkId": "sr6-todliche-ernte"
+    },
+    {
+      "id": "sr6-vendetta",
+      "title": "Vendetta",
+      "edition": "SR6",
+      "registryWorkId": "sr6-vendetta"
+    },
+    {
+      "id": "sr6-weise-worte",
+      "title": "Weise Worte",
+      "edition": "SR6",
+      "registryWorkId": "sr6-weise-worte"
     }
   ],
   "citations": [

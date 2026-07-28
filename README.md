@@ -1,6 +1,6 @@
 # Shadowrun-Stadtkarten – interaktive PWA
 
-Die veröffentlichte Hybrid-PWA ist unter **[bmenschner.github.io/sr6-berlin-map](https://bmenschner.github.io/sr6-berlin-map/)** erreichbar. Neben Berlin und Seattle enthalten inzwischen auch Hamburg, der Rhein-Ruhr-Megaplex, Toronto, Denver/Front Range und Manhattan eigenständige, editionsübergreifende Inhaltsbestände.
+Die veröffentlichte Hybrid-PWA ist unter **[bmenschner.github.io/sr6-berlin-map](https://bmenschner.github.io/sr6-berlin-map/)** erreichbar. Eigenständige Kartenpakete bestehen für Berlin, Hamburg, Seattle, den Rhein-Ruhr-Megaplex, Toronto, Denver/Front Range, Manhattan, die ADL-Übersicht sowie die erste Importwelle Chicago, Boston, Hongkong, London, München und Groß-Frankfurt.
 
 `index.html` ist die einzige reguläre Anwendung für GitHub Pages und die installierbare Hybrid-PWA. Sie lädt nur das gewählte Stadtpaket und speichert es anschließend für den Offlinebetrieb.
 
@@ -25,6 +25,23 @@ In den Detailkarten stehen bei mehreren vorhandenen Editionen direkt über dem Q
 ## Quellenbasis
 
 Für die Recherche stehen offizielle PDFs und durchsuchbare TXT-Exporte der Editionen SR1 bis SR6 zur Verfügung. Ergänzende Informationen aus Shadowhelix werden immer als externe Quelle gekennzeichnet. Die vollständige Quellenrangfolge und die verbindlichen Kennzeichnungsregeln stehen in [SOURCES.md](SOURCES.md).
+
+Das zentrale Quellenregister `data/source-registry.json` wird mit
+`tools/build_source_registry.py` direkt aus dem lokalen TXT-Archiv erzeugt.
+Es ordnet derzeit 1.338 Dateien 1.060 logischen Werken zu und weist 247 exakte
+Dateidubletten aus. `data/source-coverage.json` führt für 75 Städte und
+Regionen jeden erkannten Werk-/Stadt-Bezug mit einem eindeutigen Prüfstatus.
+Ein bloßer Volltexttreffer gilt dabei ausdrücklich nicht als abgeschlossene
+Auswertung.
+
+`tools/import_archive_references.py` ergänzt ausschließlich exakte,
+seitenlokalisierte Quellenbelege an bereits geprüften Orten und Personen.
+Neue Entitäten werden nicht aus einer isolierten Erwähnung erzeugt. Die
+lokale Kandidatenliste entsteht mit `tools/extract_source_candidates.py`
+unter `source-data/`; sie enthält kurze Arbeitskontexte, wird durch
+`.gitignore` vom Repository ausgeschlossen und darf nicht veröffentlicht
+werden. Der aktuelle Arbeits- und Abdeckungsstand ist unter
+`docs/research/vollimport-arbeitsstand.md` dokumentiert.
 
 ## Einheitliche Begriffe
 
@@ -52,6 +69,14 @@ Alle Orts- und Personenobjekte besitzen zusätzlich zu ihren bisherigen IDs eine
 Der Berlin-Generator erzeugt aus einer Datenbasis das modulare Stadtpaket und die PWA-Einstiegsseite. Quellen werden dabei einem Editionskatalog zugeordnet; Orte und Personen erhalten strukturierte Quellen, Spielversionen und editionsweise Beschreibungen. Neue Städte benötigen keine Änderungen am Kartenlader oder an der Stadtwahl.
 
 Weitere Kartenpakete werden mit `tools/build_map_packages.py` aus dem lokalen Ordner `maps/` erzeugt. Die ADL liegt zunächst als eigenständiges, über die Kartenauswahl erreichbares Grundpaket vor. Hamburg wird mit `tools/build_hamburg_content.py`, Rhein-Ruhr mit `tools/build_rhein_ruhr_content.py`, Denver und Manhattan mit `tools/build_us_city_content.py` sowie Toronto mit `tools/build_toronto_content.py` aus ihren offiziellen Stadt-, Karten- und Abenteuerquellen aufgebaut. Seattle enthält die dreizehn aktuellen SR6-Gebietseinheiten, das vollständige Register der 359 nummerierten SR5-Metroplexkartenorte, zusätzliche historische Quellenbuch- und Abenteuerschauplätze sowie 468 Personen beziehungsweise Gruppen. Mehrseitige Karten werden seitenweise eingebunden. Die erzeugten WebP-Dateien sind für das zoombare Kartenarchiv optimiert und werden von der PWA zusammen mit dem jeweils gewählten Stadtpaket offline gespeichert.
+
+`tools/build_adl_content.py` erzeugt den regionalen ADL-Einstieg mit
+Allianzländern, Metropolregionen, Sondergebieten und Verweisen auf vorhandene
+Detailkarten. `tools/build_wave1_city_packages.py` baut Chicago, Boston,
+Hongkong, London, München und Groß-Frankfurt reproduzierbar aus ihren
+stadtbezogenen Primärquellen. Einträge ohne belastbare Einzelposition bleiben
+als vollständig durchsuchbare Katalogeinträge ohne künstlichen Kartenmarker
+erhalten.
 
 Die geografischen Grundgrenzen der zusätzlichen Kartenpakete werden mit `tools/build_boundary_packages.py` erzeugt. Hamburg folgt den Shadowrun-Bezirken Altona, Eimsbüttel, Nord, Neue Mitte, Big Willi, Wandsbek, Bergedorf, Harburg, Pinneberg, Kaltenkirchen, Stade, Stormarn und Lauenburg; die 2045 eingemeindeten Umlandgebiete sind Teil der Stadtgrenze. Der Rhein-Ruhr-Megaplex folgt 82 auf der offiziellen Revierübersicht benannten oder innerhalb ihres Umrisses liegenden Kommunen statt nur der heutigen Kernstädte. Dadurch bilden auch die Korridore nach Soest sowie zwischen Düsseldorf, Köln und Bonn eine zusammenhängende Fläche.
 

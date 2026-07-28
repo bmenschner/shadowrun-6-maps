@@ -20,6 +20,20 @@ Die durchsuchbaren Textextrakte der verfügbaren Publikationen liegen unter:
 
 Die TXT-Dateien dienen zum Auffinden und Abgleichen von Informationen. Zitiert wird die zugrunde liegende Publikation, nicht der Dateiname des Textextrakts. Zweifelhafte OCR-Stellen, Seitenangaben und inhaltliche Widersprüche werden anhand des offiziellen PDFs geprüft.
 
+### Zentrales Quellenregister
+
+- `data/source-registry.json` enthält stabile Werk-IDs, Edition, Sprache,
+  Quellentyp, offiziellen Status, logische Dateivarianten und Inhalts-Hashes.
+- `data/source-coverage.json` führt den Prüfstatus pro Werk und Stadt.
+- `source-data/` enthält lokale Extraktions- und Prüfkontexte und wird niemals
+  veröffentlicht.
+- Ein exakter Orts- oder Personenfund in einer Quelle ist ein Teilimport. Das
+  Werk gilt erst als vollständig importiert, wenn auch alle neuen Kandidaten,
+  Dubletten und Ausschlüsse redaktionell entschieden wurden.
+- Nichtoffizielle Dateien werden im Register mit
+  `nichtoffiziell-ausgeschlossen` dokumentiert und nicht mit offizieller Lore
+  vermischt.
+
 ## 3. Shadowhelix
 
 [Shadowhelix](https://shadowhelix.de/) darf ergänzend als externe Communityquelle verwendet werden. Jeder daraus übernommene oder abgeleitete Inhalt wird eindeutig mit **„Shadowhelix (extern)“**, dem direkten Artikellink und dem Abrufdatum gekennzeichnet.
@@ -48,6 +62,23 @@ Bei einem Widerspruch hat die offizielle Publikation Vorrang. Ein ausschließlic
 - Die Hamburger Umlandkreise stammen ergänzend aus [deutschlandGeoJSON](https://github.com/isellsoap/deutschlandGeoJSON). Auch diese Geometrien sind nur die Linienbasis für die im offiziellen Hamburg-Kartenpaket und in `Datapuls Hamburg` belegten Shadowrun-Bezirke.
 - Nicht durch eine offizielle Karte oder einen Quellentext belegte heutige Unterteilungen werden ausschließlich als **geografische Referenzgrenzen** angeboten. Sie dürfen weder in Beschriftung noch Tooltip als Shadowrun-Bezirk erscheinen.
 - Die ADL-Ansicht zeigt keine heutigen Bundesländer als Allianzländer. Die interne Ebene bleibt leer, bis Norddeutscher Bund, Westphalen, Nordrhein-Ruhr, Hessen-Nassau, Groß-Frankfurt, Westrhein-Luxemburg, Badisch-Pfalz, Franken, Württemberg, Bayern, Trollrepublik Schwarzwald und die weiteren Lore-Gebiete flächengenau georeferenziert sind.
+- Die ADL-Übersicht verwendet regionale Bezugspunkte für Allianzländer,
+  Metropolregionen und Sondergebiete. Diese Punkte sind keine behaupteten
+  Grenzmittelpunkte und ersetzen keine später georeferenzierten Lore-Flächen.
+  Berlin, Hamburg und Rhein-Ruhr verweisen auf ihre eigenständigen
+  Detailpakete, ohne deren Einzel-POIs in der ADL-Karte zu verdoppeln.
+- Chicago wird aus `Bug City` (SR2), `Feral Cities` (SR4), `Mission Chicago`,
+  `Schatten über Chicago` und `Chicago Chaos` (SR5) aufgebaut. Boston folgt
+  `Lockdown` beziehungsweise `Sperrzone Boston` und den zugehörigen
+  Abenteuern. Hongkong verwendet `Runner Havens` und `Hong Kong Neon
+  Contrails (2050)`, London das `London Sourcebook` und `London Falling`,
+  München `München Noir` und `Datapuls: München`, Groß-Frankfurt `Chrom &
+  Dioxin` und `Datapuls Frankfurt`.
+- Bei diesen neuen Karten besitzen Lore-Distrikte einen dokumentierten
+  geografischen Bezugspunkt. Ein Einzelort ohne Adresse, erhaltenes
+  Wahrzeichen oder eindeutige Quellenkartenposition bleibt mit
+  `geometry: null` im Katalog. Er wird gesucht und angezeigt, erzeugt aber
+  keinen irreführenden Marker.
 - Bezeichnet die Lore ein vollständiges früheres Stadt- oder Ortsteilgebiet, wird dessen amtliche Geometrie als exakte Außengrenze verwendet; dies gilt derzeit für Renrakusan sowie AGC Siemensstadt einschließlich Siemensstätten.
 - Für die Nordgrenze Renrakusans gilt `Netzgewitter`, S. 18-19, als zusätzlicher Detailbeleg: Pankow/Dreamland beginnt nördlich der Wisbyer Straße und wird dem Anarchogebiet zugeordnet. Die offizielle Berlin-2080-Übersicht weist auch Lichtenberg und Kreuzhain östlich beziehungsweise südöstlich von Renrakusan als anarchistisch aus.
 - Gegensätzliche Gebietsstatus werden als exklusive Flächen modelliert; Normal-, Anarcho- und Konzerngebiete dürfen sich nicht flächig überlagern.

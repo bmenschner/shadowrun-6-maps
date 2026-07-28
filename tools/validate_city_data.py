@@ -4,13 +4,28 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "data/cities.json"
 VALID_EDITIONS = {f"SR{number}" for number in range(1, 7)}
+VALID_COVERAGE_STATUSES = {
+    "importiert",
+    "zusammengeführt",
+    "geprüft-ohne-relevanten-inhalt",
+    "dublette",
+    "übersetzung-eines-geprüften-werks",
+    "nichtoffiziell-ausgeschlossen",
+    "unlesbar-pdf-gegenprüfung-erforderlich",
+    "offen",
+    "nur-volltexttreffer",
+    "noch-zu-prüfen",
+}
+OPEN_COVERAGE_STATUSES = {"offen", "nur-volltexttreffer", "noch-zu-prüfen"}
 
 
 def merge_unique(first, second, key=lambda value: json.dumps(value, sort_keys=True, ensure_ascii=False)):
@@ -142,7 +157,12 @@ def validate_edition_data(entry: dict, label: str) -> set[str]:
     return edition_set
 
 
-def validate_city(city: dict, global_ids: set[str]) -> tuple[int, int]:
+def validate_city(
+    city: dict,
+    global_ids: set[str],
+    registry_works: dict[str, dict],
+    coverage_by_work: dict[str, dict],
+) -> tuple[int, int]:
     manifest_path = ROOT / city["manifest"]
     manifest = read_json(manifest_path)
     if manifest.get("id") != city.get("id"):
@@ -171,8 +191,18 @@ def validate_city(city: dict, global_ids: set[str]) -> tuple[int, int]:
             read_json(city_dir / place_augmentations_path),
             properties=True,
         )
+    archive_place_augmentations_path = manifest.get("files", {}).get(
+        "archivePlaceAugmentations"
+    )
+    if archive_place_augmentations_path:
+        apply_augmentations(
+            places["features"],
+            read_json(city_dir / archive_place_augmentations_path),
+            properties=True,
+        )
     place_ids: set[object] = set()
     city_editions: set[str] = set()
+    referenced_book_ids: set[str] = set()
     for feature in places["features"]:
         properties = feature.get("properties") or {}
         place_id = properties.get("id")
@@ -186,6 +216,7 @@ def validate_city(city: dict, global_ids: set[str]) -> tuple[int, int]:
         if not properties.get("name") or not properties.get("category"):
             raise ValueError(f"{city['id']}: Ort {place_id} ohne Name oder Kategorie")
         city_editions.update(validate_edition_data(properties, f"{city['id']}: Ort {place_id}"))
+        referenced_book_ids.update(source["bookId"] for source in properties["sources"])
 
     people = read_json(city_dir / manifest["files"]["people"])
     historical_people_path = manifest.get("files", {}).get("historicalPeople")
@@ -194,6 +225,14 @@ def validate_city(city: dict, global_ids: set[str]) -> tuple[int, int]:
     person_augmentations_path = manifest.get("files", {}).get("personAugmentations")
     if person_augmentations_path:
         apply_augmentations(people, read_json(city_dir / person_augmentations_path))
+    archive_person_augmentations_path = manifest.get("files", {}).get(
+        "archivePersonAugmentations"
+    )
+    if archive_person_augmentations_path:
+        apply_augmentations(
+            people,
+            read_json(city_dir / archive_person_augmentations_path),
+        )
     person_ids: set[object] = set()
     for person in people:
         person_id = person.get("id")
@@ -205,6 +244,7 @@ def validate_city(city: dict, global_ids: set[str]) -> tuple[int, int]:
             raise ValueError(f"{city['id']}: fehlende oder doppelte globale Personen-ID {global_id}")
         global_ids.add(global_id)
         city_editions.update(validate_edition_data(person, f"{city['id']}: Person {person_id}"))
+        referenced_book_ids.update(source["bookId"] for source in person["sources"])
         for link in person.get("locations", []):
             if link.get("id") not in place_ids:
                 raise ValueError(f"{city['id']}: {person.get('name')} verweist auf unbekannten Ort {link.get('id')}")
@@ -290,10 +330,94 @@ def validate_city(city: dict, global_ids: set[str]) -> tuple[int, int]:
     book_ids = [book.get("id") for book in books]
     if len(book_ids) != len(set(book_ids)) or any(book.get("edition") not in VALID_EDITIONS for book in books):
         raise ValueError(f"{city['id']}: Quellenkatalog enthält doppelte Bücher oder ungültige Editionen")
+    missing_books = sorted(referenced_book_ids - set(book_ids))
+    if missing_books:
+        raise ValueError(
+            f"{city['id']}: Entitäten verweisen auf unbekannte Quellen-IDs: "
+            + ", ".join(missing_books[:12])
+        )
+    for book in books:
+        registry_work_id = book.get("registryWorkId")
+        if not registry_work_id:
+            continue
+        work = registry_works.get(registry_work_id)
+        if not work:
+            raise ValueError(
+                f"{city['id']}: Quellenkatalog verweist auf unbekanntes Registerwerk "
+                f"{registry_work_id}"
+            )
+        if work["edition"] != book["edition"]:
+            raise ValueError(
+                f"{city['id']}: Edition des Registerwerks {registry_work_id} stimmt nicht"
+            )
+    if manifest.get("sourceCoverageComplete"):
+        open_work_ids = [
+            work_id
+            for work_id, row in coverage_by_work.items()
+            if row.get("cities", {}).get(city["id"], {}).get("status")
+            in OPEN_COVERAGE_STATUSES
+        ]
+        if open_work_ids:
+            raise ValueError(
+                f"{city['id']}: als vollständig markiert, aber "
+                f"{len(open_work_ids)} Werk-/Stadt-Prüfungen sind offen"
+            )
     return len(place_ids), len(person_ids)
 
 
+def validate_source_registry() -> tuple[dict[str, dict], dict[str, dict]]:
+    registry = read_json(ROOT / "data/source-registry.json")
+    coverage = read_json(ROOT / "data/source-coverage.json")
+    works = registry.get("works")
+    if not isinstance(works, list) or not works:
+        raise ValueError("data/source-registry.json enthält keine Werke")
+    work_ids = [work.get("id") for work in works]
+    if len(work_ids) != len(set(work_ids)) or any(not work_id for work_id in work_ids):
+        raise ValueError("data/source-registry.json enthält fehlende oder doppelte Werk-IDs")
+    files = []
+    for work in works:
+        if work.get("edition") not in VALID_EDITIONS:
+            raise ValueError(f"Registerwerk {work.get('id')} hat keine gültige Edition")
+        if not work.get("title") or not isinstance(work.get("files"), list) or not work["files"]:
+            raise ValueError(f"Registerwerk {work.get('id')} ist unvollständig")
+        for file in work["files"]:
+            if not file.get("path") or not re.fullmatch(r"[0-9a-f]{64}", file.get("sha256", "")):
+                raise ValueError(f"Registerwerk {work.get('id')} enthält eine ungültige Datei")
+            files.append(file["path"])
+    if len(files) != len(set(files)):
+        raise ValueError("data/source-registry.json ordnet eine Datei mehreren Werken zu")
+    summary = registry.get("summary", {})
+    if summary.get("files") != len(files) or summary.get("works") != len(works):
+        raise ValueError("Zusammenfassung des Quellenregisters stimmt nicht")
+
+    matrix = coverage.get("matrix")
+    if not isinstance(matrix, list) or len(matrix) != len(works):
+        raise ValueError("data/source-coverage.json deckt nicht jedes Registerwerk ab")
+    coverage_by_work = {row.get("workId"): row for row in matrix}
+    if set(coverage_by_work) != set(work_ids):
+        raise ValueError("Abdeckungsmatrix und Quellenregister besitzen verschiedene Werk-IDs")
+    city_ids = [city.get("id") for city in coverage.get("cities", [])]
+    if len(city_ids) != len(set(city_ids)) or not city_ids:
+        raise ValueError("Abdeckungsmatrix enthält fehlende oder doppelte Stadt-IDs")
+    counted_statuses = Counter()
+    for row in matrix:
+        unknown_cities = set(row.get("cities", {})) - set(city_ids)
+        if unknown_cities:
+            raise ValueError(
+                f"Abdeckungsmatrix enthält unbekannte Städte: {', '.join(sorted(unknown_cities))}"
+            )
+        for item in row.get("cities", {}).values():
+            status = item.get("status")
+            if status not in VALID_COVERAGE_STATUSES:
+                raise ValueError(f"Abdeckungsmatrix enthält ungültigen Status {status}")
+            counted_statuses[status] += 1
+    if dict(sorted(counted_statuses.items())) != coverage.get("statusCounts"):
+        raise ValueError("Statuszusammenfassung der Abdeckungsmatrix stimmt nicht")
+    return {work["id"]: work for work in works}, coverage_by_work
+
+
 def main() -> int:
+    registry_works, coverage_by_work = validate_source_registry()
     registry = read_json(REGISTRY_PATH)
     cities = registry.get("cities", [])
     if not cities:
@@ -308,7 +432,12 @@ def main() -> int:
     total_places = 0
     total_people = 0
     for city in cities:
-        places, people = validate_city(city, global_ids)
+        places, people = validate_city(
+            city,
+            global_ids,
+            registry_works,
+            coverage_by_work,
+        )
         total_places += places
         total_people += people
         print(f"OK {city['name']} {city.get('year', '')}: {places} Orte, {people} Personen")

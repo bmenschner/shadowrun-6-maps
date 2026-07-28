@@ -3,7 +3,7 @@
   "id": "berlin-2080",
   "name": "Berlin",
   "year": 2080,
-  "dataVersion": 15,
+  "dataVersion": 16,
   "availableEditions": [
     "SR1",
     "SR2",
@@ -201,7 +201,9 @@
     "outskirts": "outskirts.geojson",
     "boundary": "city-boundary.geojson",
     "labels": "labels.json",
-    "sources": "sources.json"
+    "sources": "sources.json",
+    "archivePlaceAugmentations": "archive-place-augmentations.json",
+    "archivePersonAugmentations": "archive-person-augmentations.json"
   },
   "assets": {
     "offlineBase": "../../assets/cities/berlin-2080/offline-base.webp"
