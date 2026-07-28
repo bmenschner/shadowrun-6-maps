@@ -104,6 +104,38 @@ FOCUSED_WORKS = {
     },
     "portland": {"sr2-tir-tairngire", "sr2-die-lander-der-verheiung"},
     "wien": {"sr2-walzer-punks-schwarzes-ice", "sr5-datapuls-osterreich"},
+    "kairo": {"sr6-risk-rewards-cairo-campaign"},
+    "metropole": {"sr5-shadows-in-focus-city-by-shadow-metropole"},
+    "butte": {"sr5-shadows-in-focus-city-by-shadow-butte"},
+    "casablanca-rabat": {
+        "sr5-shadows-in-focus-casablanca-rabat",
+        "sr5-shadows-in-focus-morocco",
+    },
+    "vladivostok": {
+        "sr2-target-smuggler-havens",
+        "sr5-enhanced-fiction-the-vladivostok-gauntlet",
+    },
+    "zuerich": {
+        "sr2-chrom-dioxin", "sr2-schattenlichter", "sr5-datapuls-schweiz",
+    },
+    "leipzig-halle": {
+        "sr3-deutschland-in-den-schatten-ii",
+        "sr4-reisefuhrer-in-die-deutschen-schatten",
+        "sr5-auf-dunklen-pfaden",
+    },
+    "quebec": {"sr3-shadows-of-north-america", "sr3-nordamerika-in-den-schatten"},
+    "bremen": {"sr1-deutschland-in-den-schatten", "sr3-deutschland-in-den-schatten-ii"},
+    "hannover": {"sr4-machtspiele-handbuch-fur-spione", "sr5-datapuls"},
+    "istanbul": {"sr4-runner-havens", "sr5-cutting-aces", "sr5-mit-tricks-und-finesse"},
+    "tenochtitlan": {
+        "sr2-aztlan", "sr3-lateinamerika-in-den-schatten-v1-0",
+        "sr3-shadows-of-latin-america-v1-2",
+    },
+    "stuttgart": {
+        "sr3-deutschland-in-den-schatten-ii",
+        "sr4-reisefuhrer-in-die-deutschen-schatten",
+        "sr5-datapuls",
+    },
 }
 
 # Explicit editorial resolutions for OCR aliases, mistranslations and
@@ -239,9 +271,28 @@ CURATED_TARGETS = {
     "san-francisco:wuxing:place": ["Wuxing San Francisco"],
     "san-francisco:yakuza:group": ["San Francisco Yakuza"],
     "wien:brimstone:place": ["Brimstone Memorial Battery"],
+    "kairo:althaaniamarket:place": ["Al-Hayat Althaania Market"],
+    "kairo:ramsesstationtrainstation:place": ["Ramses Station"],
+    "butte:vory:group": ["Butte Vory"],
+    "casablanca-rabat:royalfamily:group": ["Royal Family of Morocco"],
+    "vladivostok:thevoryvzakone:group": ["Vladivostok Vory v Zakone"],
+    "vladivostok:voryvzakone:group": ["Vladivostok Vory v Zakone"],
+    "vladivostok:theyakuza:group": ["Vladivostok Yakuza"],
+    "zuerich:imswissmetrobahnhofkonnen:place": ["SwissMetro-Bahnhof Zürich-West"],
+    "leipzig-halle:gargariorganizatsiwestlichevory:group": ["Gargari-Organizatsi Leipzig-Halle"],
+    "quebec:democratesmondains:person": ["Démocrates Mondains"],
+    "quebec:democratesmondains:place": ["Démocrates Mondains"],
+    "quebec:derquebeccitymetroplex:place": ["Québec City Metroplex"],
+    "hannover:drehkreuzderpolitik:place": ["Flughafen Hannover-Langenhagen"],
+    "hannover:enricozorn:place": ["Enrico Zorn"],
+    "hannover:staatlichepolizei:group": ["Staatliche Polizei Hannover"],
+    "hannover:voryvzakone:group": ["Hannover Vory v Zakone"],
+    "hannover:ethnischeminderheitenundgangs:group": ["Graue Wölfe Hannover"],
+    "tenochtitlan:nationalpalace:person": ["National Palace"],
+    "tenochtitlan:cerocero:person": ["Cero Cero"],
 }
 
-# These six city queues were read against their local source contexts.  Once
+# These city queues were read against their local source contexts. Once
 # the explicit targets above and normalised existing dossiers are resolved,
 # the remaining candidates are headings, rules, OCR fragments, generic
 # categories or entities outside the map scope.
@@ -250,6 +301,9 @@ FINAL_REVIEW_CITIES = {
     "atlanta", "bogota", "cheyenne", "detroit", "karlsruhe", "lagos",
     "los-angeles", "montreal", "neo-tokio", "new-orleans", "paris",
     "portland", "san-francisco", "washington-fdc", "wien",
+    "bremen", "butte", "casablanca-rabat", "hannover", "istanbul", "kairo",
+    "leipzig-halle", "metropole", "quebec", "stuttgart", "tenochtitlan",
+    "vladivostok", "zuerich",
 }
 PLACE_SIGNAL = re.compile(
     r"\b(?:academy|airport|arcology|arkologie|arena|bar|bazaar|bezirk|"

@@ -128,9 +128,20 @@ und keiner blieb offen. Die Stadtpakete enthalten zusammen 134 Orte sowie 59
 Personen oder Gruppen. Details enthält
 `docs/research/welle-2-kandidatenaudit.md`.
 
+## Dritte Städtewelle
+
+Die dritte Städtewelle ergänzt dreizehn weitere Kartenpakete: Kairo,
+Metrópole, Butte, Casablanca-Rabat, Vladivostok, Zürich, Leipzig-Halle,
+Québec, Bremen, Hannover, Istanbul, Tenochtitlán und Stuttgart.
+
+Alle 619 Rohkandidaten dieser Welle sind entschieden. 134 wurden mit
+kanonischen Datensätzen zusammengeführt, 485 begründet verworfen und keiner
+blieb offen. Die Pakete enthalten zusammen 137 Orte und 58 Personen oder
+Gruppen. Details enthält `docs/research/welle-3-kandidatenaudit.md`.
+
 ## Nächste verbindliche Importreihenfolge
 
-1. die Städtewellen 3 und 4 aus den verbleibenden Quellenbeständen importieren
+1. die Städtewelle 4 aus den verbleibenden Quellenbeständen importieren
 2. Abschlussberichte für alle vorhandenen Karten erzeugen
 3. katalogisierte Orte mit belastbaren Kartenpositionen ergänzen
 4. Lore-Grenzflächen anhand der Karten und Beschreibungstexte georeferenzieren
