@@ -2,6 +2,32 @@
 
 Die veröffentlichte Hybrid-PWA ist unter **[bmenschner.github.io/sr6-berlin-map](https://bmenschner.github.io/sr6-berlin-map/)** erreichbar. Sie enthält 75 eigenständig ladbare Stadt- und Regionspakete mit insgesamt 3.399 Orten sowie 1.944 Personen oder Gruppen.
 
+## Lizenzen und Fanprojekt
+
+Der selbst entwickelte HTML-, CSS-, JavaScript- und Werkzeugcode steht unter
+der [GNU General Public License Version 3 oder später](LICENSE)
+(`GPL-3.0-or-later`). Eigene redaktionelle Beschreibungen, geografische
+Rekonstruktionen, Koordinaten und Datenbankbestandteile stehen, soweit nicht
+anders gekennzeichnet, unter
+[CC BY-NC-SA 4.0](LICENSE-CONTENT.md).
+
+Diese Lizenzen gelten nicht für Shadowrun, dessen Marken, Figuren, Orte,
+Settingelemente oder Inhalte offizieller Publikationen. Ebenfalls ausgenommen
+sind offizielle Logos, Grafiken, Illustrationen, Karten, Fankit-Inhalte,
+Textauszüge und sonstige Inhalte Dritter. OpenStreetMap-Daten bleiben unter
+der ODbL. Die Anwendung ist ein inoffizielles, unentgeltliches Fanprojekt und
+wird von The Topps Company, Inc., Catalyst Game Labs oder Pegasus Spiele weder
+herausgegeben noch unterstützt oder geprüft.
+
+Die Anwendung dient als Karten- und Orientierungshilfe sowie als Quellen- und
+Spielleitungsindex. Teile des umfangreichen Datenbestands wurden unter
+menschlicher Anleitung mithilfe KI-basierter Werkzeuge recherchiert,
+extrahiert, strukturiert, zusammengefasst, zugeordnet und georeferenziert.
+Eine redaktionelle Prüfung hat nur stichprobenartig stattgefunden. Angaben
+können deshalb unvollständig, veraltet, uneindeutig oder fehlerhaft sein und
+sollten anhand der jeweils ausgewiesenen offiziellen Originalpublikationen
+überprüft werden.
+
 `index.html` ist die einzige reguläre Anwendung für GitHub Pages und die installierbare Hybrid-PWA. Sie lädt nur das gewählte Stadtpaket und speichert es anschließend für den Offlinebetrieb.
 
 Die modulare PWA wird über die HTTPS-Adresse oder einen lokalen Webserver geöffnet, weil Browser externe JSON-Stadtpakete unter `file://` blockieren können. PWA-Installation, Service Worker und automatische Updates funktionieren nur über HTTPS oder einen lokalen Webserver. Für die Offline-Nutzung muss die Webapp mindestens einmal vollständig online geladen worden sein.

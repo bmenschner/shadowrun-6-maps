@@ -1,5 +1,5 @@
-const APP_CACHE = 'sr6-app-v50';
-const RUNTIME_CACHE = 'sr6-runtime-v45';
+const APP_CACHE = 'sr6-app-v54';
+const RUNTIME_CACHE = 'sr6-runtime-v46';
 const APP_ENTRY = new URL('./index.html', self.registration.scope).href;
 const APP_SHELL = [
   './index.html',
@@ -7,6 +7,8 @@ const APP_SHELL = [
   './data/cities.json',
   './data/search-index.json',
   './manifest.webmanifest',
+  './LICENSE',
+  './LICENSE-CONTENT.md',
   './output/map/vendor/leaflet.css',
   './output/map/vendor/leaflet.js',
   './output/map/vendor/images/layers.png',
@@ -14,7 +16,9 @@ const APP_SHELL = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
-  './icons/apple-touch-icon.png'
+  './icons/apple-touch-icon.png',
+  './icons/support-coffee-dark.png',
+  './icons/support-coffee-light.png'
 ];
 
 async function cacheCityPackage(manifestUrl) {
