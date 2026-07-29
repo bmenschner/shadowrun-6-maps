@@ -233,6 +233,7 @@
     .leaflet-control-layers, .leaflet-bar a { color: var(--text); background: rgba(8,12,18,.94); border-color: var(--line) !important; }
     .leaflet-bar a:hover { color: var(--cyan); background: #111a22; }
     .leaflet-control-layers-expanded { padding: 10px 12px; }
+    .zoom-level-control { box-sizing: border-box; width: 34px; height: 34px; display: grid; place-items: center; color: var(--text); background: rgba(8,12,18,.94); border: 2px solid var(--line); border-radius: 4px; box-shadow: 0 1px 5px rgba(0,0,0,.65); font: 700 11px/1 ui-monospace, monospace; letter-spacing: .02em; pointer-events: none; user-select: none; }
     .leaflet-control-attribution { color: #879c99; background: rgba(5,8,12,.82) !important; }
     .leaflet-control-attribution a { color: var(--cyan); }
     .leaflet-tooltip.sr-label { color: var(--text); background: rgba(5,8,12,.93); border: 1px solid var(--pink); border-radius: 3px; box-shadow: none; font-size: 11px; }
@@ -328,6 +329,7 @@
     :root[data-theme="light"] .lore-label.special span { color: #087987; }
     :root[data-theme="light"] .leaflet-control-layers,
     :root[data-theme="light"] .leaflet-bar a { color: var(--text); background: rgba(249,249,246,.96); }
+    :root[data-theme="light"] .zoom-level-control { color: var(--text); background: rgba(249,249,246,.96); box-shadow: 0 1px 5px rgba(41,48,52,.24); }
     :root[data-theme="light"] .leaflet-bar a:hover { background: #eceeeb; }
     :root[data-theme="light"] .leaflet-control-attribution { color: #5d696f; background: rgba(247,247,244,.86) !important; }
     :root[data-theme="light"] .leaflet-tooltip.sr-label { background: rgba(250,250,247,.96); }
@@ -1173,6 +1175,21 @@
         overlays,
         { position: 'topright', collapsed: true }
       ).addTo(map);
+      let zoomLevelDisplay;
+      const zoomLevelControl = L.control({ position: 'topright' });
+      zoomLevelControl.onAdd = () => {
+        zoomLevelDisplay = L.DomUtil.create('div', 'zoom-level-control');
+        zoomLevelDisplay.setAttribute('role', 'status');
+        zoomLevelDisplay.setAttribute('aria-label', 'Aktuelle Zoomstufe');
+        zoomLevelDisplay.textContent = `x${DATA.zoom}`;
+        return zoomLevelDisplay;
+      };
+      zoomLevelControl.addTo(map);
+      const updateZoomLevelDisplay = () => {
+        if (zoomLevelDisplay && Number.isFinite(map.getZoom())) {
+          zoomLevelDisplay.textContent = `x${map.getZoom()}`;
+        }
+      };
       let activeOnlineBase = street;
       let labelsWanted = true;
       let switchingMapMode = false;
@@ -1266,6 +1283,7 @@
       document.getElementById('map-mode-offline').disabled = !HAS_OFFLINE_BASE;
       setMapMode(requestedMapMode, { persist: false, automatic: true });
       map.fitBounds(DATA.regionBounds, { padding: [18, 18] });
+      updateZoomLevelDisplay();
 
       const entities = new Map(DATA.entities.map(item => [item.id, item]));
       const featureById = new Map(DATA.geojson.features.map(feature => [feature.properties.id, feature]));
@@ -1810,6 +1828,7 @@
       });
       map.on('zoomend', () => {
         document.getElementById('zoom-state').textContent = `Zoom ${map.getZoom()}`;
+        updateZoomLevelDisplay();
         mapEl.classList.toggle('zoom-detail', map.getZoom() >= 12);
         markerById.forEach((markers, id) => markers.forEach(marker => marker.setStyle(markerStyle(featureById.get(id), markerIsActive(id)))));
       });

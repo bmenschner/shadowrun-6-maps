@@ -1,4 +1,4 @@
-const APP_CACHE = 'sr6-app-v48';
+const APP_CACHE = 'sr6-app-v49';
 const RUNTIME_CACHE = 'sr6-runtime-v45';
 const APP_ENTRY = new URL('./index.html', self.registration.scope).href;
 const APP_SHELL = [
