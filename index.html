@@ -857,7 +857,13 @@
         pane: 'offlineBasePane', opacity: .9, interactive: false, className: 'offline-overview'
       }) : null;
       const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxNativeZoom: 19, maxZoom: 20, detectRetina: true, className: 'cyber-tiles',
+        // Leaflet shifts Retina tile requests up by one zoom level and lowers
+        // maxZoom by one. These paired limits keep map zoom 20 reachable while
+        // ensuring that OSM is never queried above its native zoom 19.
+        maxNativeZoom: L.Browser.retina ? 18 : 19,
+        maxZoom: L.Browser.retina ? 21 : 20,
+        detectRetina: true,
+        className: 'cyber-tiles',
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende'
       });
       const official = L.tileLayer.wms('https://gdi.berlin.de/services/wms/uek50', {
