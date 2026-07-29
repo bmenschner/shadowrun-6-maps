@@ -11,6 +11,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from shapely.geometry import Polygon, mapping
+from shapely.ops import unary_union
+
 from build_us_city_content import CityCatalogue, city_edition, name_key, write_json
 
 
@@ -921,6 +924,9 @@ def build_district_boundaries() -> None:
         if not parts:
             raise ValueError(f"Toronto-Distrikt ohne Geometrie: {name}")
         anchor = ANCHORS[name]
+        district_geometry = unary_union(
+            [Polygon(part[0], holes=part[1:]) for part in parts]
+        ).buffer(0)
         features.append(
             {
                 "type": "Feature",
@@ -934,8 +940,13 @@ def build_district_boundaries() -> None:
                     "description": summaries[name],
                     "source": "30 Nächte und 3 Tage",
                     "edition": "SR6",
+                    "boundary_review_status": "source-aligned",
+                    "boundary_review_label": (
+                        "Mit den acht Lore-Distrikten aus 30 Nächte und 3 Tage, "
+                        "S. 11–17, und heutigen Stadtteilkanten abgeglichen"
+                    ),
                 },
-                "geometry": {"type": "MultiPolygon", "coordinates": parts},
+                "geometry": mapping(district_geometry),
             }
         )
         labels.append({"name": name, "lat": anchor[0], "lon": anchor[1], "type": "district"})

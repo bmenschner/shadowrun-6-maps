@@ -15,7 +15,7 @@ import urllib.request
 from collections import defaultdict
 from pathlib import Path
 
-from shapely.geometry import MultiPoint, Point, box, mapping, shape
+from shapely.geometry import MultiPoint, Point, Polygon, box, mapping, shape
 from shapely.ops import unary_union, voronoi_diagram
 
 
@@ -39,6 +39,7 @@ SOURCE_ENDPOINTS = {
     "hamburg": "repos/codeforgermany/click_that_hood/contents/public/data/hamburg.geojson",
     "seattle": "repos/codeforgermany/click_that_hood/contents/public/data/seattle.geojson",
     "toronto": "repos/codeforgermany/click_that_hood/contents/public/data/toronto.geojson",
+    "chicago": "repos/codeforgermany/click_that_hood/contents/public/data/chicago.geojson",
     "denver": "repos/codeforgermany/click_that_hood/contents/public/data/denver.geojson",
     "manhattan": "repos/codeforgermany/click_that_hood/contents/public/data/manhattan.geojson",
     "germany": "repos/codeforgermany/click_that_hood/contents/public/data/germany.geojson",
@@ -113,20 +114,31 @@ def read_payload(name: str) -> dict:
     path = CACHE / f"{name}.geojson"
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
-        try:
-            response = subprocess.run(
-                [
-                    "gh", "api", "-H", "Accept: application/vnd.github.raw+json",
-                    SOURCE_ENDPOINTS[name],
-                ],
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-        except (FileNotFoundError, subprocess.CalledProcessError) as error:
+        response = None
+        last_error = None
+        commands = [
+            ["gh"],
+            ["wsl.exe", "gh"],
+        ]
+        for prefix in commands:
+            try:
+                response = subprocess.run(
+                    [
+                        *prefix, "api", "-H",
+                        "Accept: application/vnd.github.raw+json",
+                        SOURCE_ENDPOINTS[name],
+                    ],
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                )
+                break
+            except (FileNotFoundError, subprocess.CalledProcessError) as error:
+                last_error = error
+        if response is None:
             raise SystemExit(
                 f"Quelldatei fehlt: {path.relative_to(ROOT)} und konnte nicht über gh abgerufen werden."
-            ) from error
+            ) from last_error
         path.write_text(response.stdout, encoding="utf-8")
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -338,6 +350,131 @@ def named_partition(boundary, anchors: dict[str, tuple[float, float]]) -> dict[s
     return result
 
 
+def build_chicago() -> None:
+    reference = named_geometries(read_source("chicago"))
+    chicago_city = clean_geometry(unary_union(list(reference.values())))
+
+    # Mission Chicago gives four unambiguous hard limits for the former
+    # Containment Zone: Belmont Avenue, 115th Street, Harlem Avenue and Lake
+    # Michigan. Intersecting that street rectangle with the current municipal
+    # shoreline preserves the lake edge instead of drawing a synthetic line.
+    containment_clip = box(-87.8065, 41.6844, -87.50, 41.9401)
+    containment_zone = clean_geometry(chicago_city.intersection(containment_clip))
+    outside_zone = clean_geometry(chicago_city.difference(containment_zone))
+
+    district = source_feature(
+        "The Zone",
+        containment_zone,
+        basis=(
+            "Ehemalige Containment Zone zwischen Harlem Avenue, Belmont "
+            "Avenue, 115th Street und dem Ufer des Lake Michigan"
+        ),
+        role="lore-district",
+        lore_source=(
+            "Mission Chicago, Chicago-Kapitel (SR5); "
+            "Bug City, The Wall (SR2)"
+        ),
+        source=SOURCE_NAME,
+        source_url=SOURCE_URL,
+        review_status="source-aligned",
+        review_label="Vier publizierte Straßen- und Ufergrenzen vollständig umgesetzt",
+    )
+    references = [
+        geo_feature(
+            name,
+            geometry,
+            basis="Heutiges Chicago Community Area als geografische Referenz",
+            role="reference-neighborhood",
+        )
+        for name, geometry in sorted(reference.items())
+    ]
+    boundary = source_feature(
+        "Chicago · heutiger Stadtumriss",
+        chicago_city,
+        basis=(
+            "Heutiger kommunaler Stadtumriss als harte geografische Referenz; "
+            "der größere Chicagoland-Sprawl ist textlich belegt, aber nicht "
+            "als exakte äußere Linie publiziert"
+        ),
+        role="reference-city",
+        lore_source="Feral Cities, Kapitel Chicago (SR4)",
+        source=SOURCE_NAME,
+        source_url=SOURCE_URL,
+        review_status="contextual",
+        review_label=(
+            "Containment Zone quellenabgeglichen; äußerer Chicagoland-Rand "
+            "mangels publizierter Grenzlinie nicht erfunden"
+        ),
+    )
+    zone_features = [
+        {
+            "type": "Feature",
+            "geometry": mapping(containment_zone),
+            "properties": source_properties(
+                status="barrens",
+                zone_type="barrens",
+                label="Containment Zone · Chicago",
+                basis=(
+                    "Ehemalige Sperrzone innerhalb der publizierten "
+                    "Belmont–Harlem–115th–Lake-Michigan-Grenzen"
+                ),
+                topology="disjoint",
+                source="Mission Chicago (SR5) und Bug City (SR2)",
+                boundary_review_status="source-aligned",
+            ),
+        },
+        {
+            "type": "Feature",
+            "geometry": mapping(outside_zone),
+            "properties": source_properties(
+                status="normal",
+                zone_type="magenta",
+                label="Normal / Stadt · Chicago außerhalb der Zone",
+                basis=(
+                    "Heutiger Stadtumriss abzüglich der quellenabgeglichenen "
+                    "Containment Zone; keine Behauptung über den gesamten Chicagoland-Sprawl"
+                ),
+                topology="disjoint",
+                boundary_review_status="contextual",
+            ),
+        },
+    ]
+    write_geojson(
+        "chicago",
+        "districts.geojson",
+        collection("Chicago Lore-Distrikte", [district]),
+    )
+    write_geojson(
+        "chicago",
+        "neighborhoods.geojson",
+        collection("Chicago Community Areas", references),
+    )
+    write_geojson(
+        "chicago",
+        "city-boundary.geojson",
+        collection("Chicago geografischer Stadtbezug", [boundary]),
+    )
+    write_geojson(
+        "chicago",
+        "zones.geojson",
+        collection(
+            "Chicago Gebietsstatus",
+            zone_features,
+            topology={
+                "model": "exclusive-partition",
+                "priority": ["barrens", "normal"],
+                "unresolved_overlap_area_degrees_squared": 0,
+                "basis": "Mission Chicago, Bug City und heutige Community-Area-Uferkante",
+            },
+        ),
+    )
+    write_geojson("chicago", "exterritorial.geojson", empty_exterritorial("Chicago"))
+    write_json(
+        DATA / "chicago" / "labels.json",
+        label_payload("chicago", {"The Zone": containment_zone}),
+    )
+
+
 def build_denver() -> None:
     reference = named_geometries(read_source("denver"))
     colorado_payload = read_colorado_places()
@@ -368,7 +505,8 @@ def build_denver() -> None:
     }
     # The Third Parallel defines the FRFZ as a 12,754 km² corridor from Boulder
     # to Colorado Springs. No surveyed line coordinates are supplied, so the
-    # outer DMZ follows a deliberately conservative Front Range envelope.
+    # zone follows a conservative Front Range envelope while the published
+    # roughly one-kilometre DMZ is represented as its own ring.
     frfz = clean_geometry(
         shape(
             {
@@ -389,6 +527,8 @@ def build_denver() -> None:
             }
         )
     )
+    dmz_outer = clean_geometry(frfz.buffer(0.0105, join_style=2))
+    dmz_ring = clean_geometry(dmz_outer.difference(frfz))
     districts = named_partition(frfz, district_anchors)
 
     modern_names = {
@@ -490,22 +630,52 @@ def build_denver() -> None:
         for name, geometry in sorted(reference.items())
     ]
     boundary = source_feature(
-        "Front Range Free Zone",
-        frfz,
+        "Front Range Free Zone · äußere DMZ-Kante",
+        dmz_outer,
         basis=(
-            "SR6-Ausdehnung von Boulder bis Colorado Springs; äußerer "
-            "DMZ-Arbeitsumriss nach geografischem Front-Range-Korridor"
+            "SR6-Ausdehnung von Boulder bis Colorado Springs; äußere Kante "
+            "aus dem Front-Range-Korridor und der beschriebenen etwa einen "
+            "Kilometer breiten umlaufenden DMZ"
         ),
         role="lore-city",
         lore_source="The Third Parallel, S. 12-13 (SR6)",
         source=TIGERWEB_SOURCE_NAME,
         source_url=TIGERWEB_SOURCE_URL,
-        review_status="provisional",
-        review_label="Lore-Ausdehnung bestätigt; DMZ-Feinlinie vorläufig",
+        review_status="source-aligned",
+        review_label=(
+            "Mit Boulder–Colorado-Springs-Korridor, publizierter Flächengröße "
+            "und ungefähr ein Kilometer breiter äußerer DMZ abgeglichen"
+        ),
     )
     write_geojson("denver", "districts.geojson", collection("Denver FRFZ-Distrikte", district_features))
     write_geojson("denver", "neighborhoods.geojson", collection("Denver heutige Stadtteile", reference_features))
     write_geojson("denver", "city-boundary.geojson", collection("Front Range Free Zone", [boundary]))
+    write_geojson(
+        "denver",
+        "outskirts.geojson",
+        collection(
+            "Denver äußere DMZ",
+            [
+                source_feature(
+                    "Äußere DMZ der Front Range Free Zone",
+                    dmz_ring,
+                    basis=(
+                        "Etwa ein Kilometer breiter, vollständig umlaufender "
+                        "Grenzstreifen außerhalb der FRFZ"
+                    ),
+                    role="lore-dmz",
+                    lore_source="The Third Parallel, S. 12–13 (SR6)",
+                    source=TIGERWEB_SOURCE_NAME,
+                    source_url=TIGERWEB_SOURCE_URL,
+                    review_status="source-aligned",
+                    review_label=(
+                        "Quellenabgeglichene Breite; mangels publizierter "
+                        "Vermessung bleibt der exakte Verlauf modelliert"
+                    ),
+                )
+            ],
+        ),
+    )
     write_geojson(
         "denver",
         "zones.geojson",
@@ -685,12 +855,57 @@ def build_rrm_status(region_geometry) -> tuple[dict, dict]:
     missing = sorted(corporate_names - set(essen))
     if missing:
         raise SystemExit(f"Essener Stadtteile für S-K-Enklave fehlen: {missing}")
-    corporate_geometry = clean_geometry(unary_union([essen[name] for name in corporate_names]))
+    # RRM (SR4) names the portions of Holsterhausen and Bergerhausen south of
+    # the A40 explicitly. The gently eastward-rising line below follows the
+    # motorway centreline through Essen; clipping the municipal polygons keeps
+    # their remaining street-level outer edges intact.
+    south_of_a40 = Polygon([
+        (6.88, 51.20),
+        (7.12, 51.20),
+        (7.12, 51.462),
+        (7.04, 51.458),
+        (6.96, 51.454),
+        (6.88, 51.450),
+    ])
+    a40_additions = [
+        essen[name].intersection(south_of_a40)
+        for name in ("Holsterhausen", "Bergerhausen")
+        if name in essen
+    ]
+    if len(a40_additions) != 2:
+        raise SystemExit("Holsterhausen oder Bergerhausen fehlen für den A40-Abgleich")
+
+    # The current airfield footprint is the only surviving hard geographic
+    # edge for the fully extraterritorial Essen-Mülheim airport. The source
+    # describes later expansion, so the polygon includes its immediately
+    # adjoining security verge without extending into surrounding settlements.
+    essen_muelheim_airport = Polygon([
+        (6.9135, 51.4105),
+        (6.9250, 51.4170),
+        (6.9575, 51.4138),
+        (6.9680, 51.4040),
+        (6.9580, 51.3940),
+        (6.9255, 51.3930),
+        (6.9135, 51.4015),
+        (6.9135, 51.4105),
+    ])
+    corporate_geometry = clean_geometry(
+        unary_union(
+            [
+                *[essen[name] for name in corporate_names],
+                *a40_additions,
+                essen_muelheim_airport,
+            ]
+        )
+    )
     corporate_geometry = corporate_geometry.intersection(region_geometry)
     normal_geometry = region_geometry.difference(corporate_geometry)
     if not normal_geometry.is_valid:
         normal_geometry = normal_geometry.buffer(0)
-    review_label = "Teilabdeckung: A40-Teilstücke und Flughafen Essen-Mülheim folgen im Detailabgleich"
+    review_label = (
+        "Mit benannten Stadtteilen, den südlich der A40 liegenden Teilflächen "
+        "und dem vollständig exterritorialen Flughafen Essen-Mülheim abgeglichen"
+    )
     corporate = {
         "type": "Feature",
         "geometry": mapping(corporate_geometry),
@@ -698,11 +913,17 @@ def build_rrm_status(region_geometry) -> tuple[dict, dict]:
             "status": "corporate",
             "zone_type": "orange",
             "label": "Exterritoriales Konzerngebiet · S-K Essen",
-            "basis": "Vollständig benannte Essener Stadtteile der Enklave",
+            "basis": (
+                "Benannte Essener Stadtteile, Teilflächen südlich der A40 und "
+                "Flughafen Essen-Mülheim"
+            ),
             "topology": "disjoint",
-            "source": "Rhein-Ruhr-Megaplex, S. 10–11 und 76–84 (SR4)",
+            "source": (
+                "Rhein-Ruhr-Megaplex, S. 10–11 und 76–84 (SR4); "
+                "Revierbericht 2082, S. 67–71 (SR6)"
+            ),
             "geometry_source": "OpenStreetMap-Stadtteilgeometrien über gitter-badger/plasmap",
-            "boundary_review_status": "partial",
+            "boundary_review_status": "source-aligned",
             "boundary_review_label": review_label,
         },
     }
@@ -840,7 +1061,13 @@ def build_hamburg() -> None:
                     ),
                     lore_source="Datapuls Hamburg und Hamburg-Kartenpaket (SR5)",
                     boundary_review_status=(
-                        "provisional" if district_name == "Kaltenkirchen" else "confirmed"
+                        "source-aligned" if district_name == "Kaltenkirchen" else "confirmed"
+                    ),
+                    boundary_review_label=(
+                        "Mit der offiziellen Hamburg-2080-Übersicht auf den "
+                        "südwestlichen Kreis-Segeberg-Ausschnitt abgeglichen"
+                        if district_name == "Kaltenkirchen"
+                        else "Mit der offiziellen Hamburg-2080-Karte abgeglichen"
                     ),
                 ),
             }
@@ -962,9 +1189,13 @@ def main() -> None:
     build_rrm()
     build_city_from_neighborhoods("toronto-2080", "Toronto", "toronto")
     build_denver()
+    build_chicago()
     build_manhattan()
     build_adl()
-    print("Boundary packages generated for Hamburg, Seattle, RRM, Toronto, Denver, Manhattan, and ADL.")
+    print(
+        "Boundary packages generated for Chicago, Hamburg, Seattle, RRM, "
+        "Toronto, Denver, Manhattan, and ADL."
+    )
 
 
 if __name__ == "__main__":
