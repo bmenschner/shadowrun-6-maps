@@ -44,40 +44,34 @@ TXT-Dateien ohne Seitenmarker wird ein begrenzter Textblock verwendet. Die
 Verknüpfungen erscheinen als zusätzliche Editions- und Quellenangaben im
 bestehenden Dossier.
 
-## Offene Neuentitätsprüfung
+## Neuentitätsprüfung
 
-Der erste Extraktionslauf für die damals vorhandenen acht Pakete ergab nach
-mehreren Qualitätsfiltern 660 Kandidaten:
+Die fünf abgeschlossenen Prüfläufe umfassen sämtliche 75 Kartenpakete:
 
-| Stadtpaket | Kandidaten |
-| --- | ---: |
-| ADL | 438 |
-| Berlin | 45 |
-| Denver | 34 |
-| Hamburg | 19 |
-| Manhattan | 53 |
-| Rhein-Ruhr-Megaplex | 15 |
-| Seattle | 49 |
-| Toronto | 7 |
+| Prüflauf | Rohkandidaten | Zusammengeführt | Verworfen | Offen |
+|---|---:|---:|---:|---:|
+| ursprüngliche acht Bestandskarten | 3.235 | 376 | 2.859 | 0 |
+| Städtewelle 1 | 1.652 | 265 | 1.387 | 0 |
+| Städtewelle 2 | 1.181 | 184 | 997 | 0 |
+| Städtewelle 3 | 619 | 134 | 485 | 0 |
+| Städtewelle 4 | 684 | 55 | 629 | 0 |
+| **Gesamt** | **7.371** | **1.014** | **6.357** | **0** |
 
-Die lokale Arbeitsdatei wird je Importwelle neu erzeugt; der aktuelle Lauf für
-Chicago, Boston, Hongkong, London, München und Groß-Frankfurt enthält 1.652
-weitere Rohkandidaten. Kandidaten sind noch keine Karteninhalte. Jeder Eintrag muss als neuer
-Ort, neue Person oder Gruppe bestätigt, mit einem bestehenden Dossier
-zusammengeführt oder begründet verworfen werden. OCR-Fehler und
-fremdstädtische Nennungen dürfen nicht automatisch importiert werden.
+Die lokale Arbeitsdatei wird je Importwelle neu erzeugt. Die
+Abschlussentscheidungen sind in den fünf Kandidatenaudits dokumentiert.
 
 ## Status der Werk-/Stadt-Matrix
 
-- 143 bereits kuratierte Quellenblöcke sind zusammengeführt.
+- 1.924 Werk-/Stadt-Bezüge sind mit Stadtquellen oder exakten
+  Entitätsnachweisen zusammengeführt.
+- 8.237 Volltextnennungen wurden ohne zusätzliches eigenständiges lokales
+  Dossier abgeschlossen.
 - 47 nichtoffizielle Werk-/Stadt-Bezüge sind sichtbar ausgeschlossen.
-- 6.818 Bezüge besitzen belastbare Volltexttreffer und bleiben offen.
-- 3.200 Einzelbezüge benötigen eine redaktionelle Gegenprüfung.
-- 1.397 Werk-/Stadt-Bezüge besitzen bereits einen dokumentierten Teilimport.
+- 0 Werk-/Stadt-Bezüge sind offen.
 
-Keines der vierzehn Stadtpakete ist derzeit mit
-`sourceCoverageComplete: true` markiert. Der Validator würde diese Markierung
-ablehnen, solange offene Werk-/Stadt-Prüfungen bestehen.
+Alle 75 Stadtpakete sind mit `sourceCoverageComplete: true` markiert. Der
+Validator prüft, dass diese Markierung nur bei vollständig geschlossener
+Werk-/Stadt-Matrix zulässig ist.
 
 ## Neu aufgebaute Kartenpakete
 
@@ -90,30 +84,77 @@ Die erste neue Städtewelle ist als sechs getrennt ladbare Pakete umgesetzt:
 
 | Stadt | Orte und Bezirke | Personen und Gruppen |
 | --- | ---: | ---: |
-| Chicago | 20 | 14 |
-| Boston | 17 | 10 |
-| Hongkong | 17 | 5 |
-| London | 18 | 12 |
-| München | 24 | 6 |
-| Groß-Frankfurt | 21 | 3 |
+| Chicago | 30 | 28 |
+| Boston | 29 | 24 |
+| Hongkong | 29 | 17 |
+| London | 21 | 21 |
+| München | 32 | 10 |
+| Groß-Frankfurt | 28 | 4 |
 
 Die Einträge stammen aus den jeweils stadtbezogenen Primärquellen. Eindeutig
 erhaltene Wahrzeichen und Lore-Distrikte besitzen Kartenanker; nur auf
-Stadtebene belegte Orte bleiben ohne erfundene Koordinate im Katalog.
+Stadtebene belegte Orte bleiben ohne erfundene Koordinate im Katalog. Die
+Rohkandidaten dieser sechs Städte sind vollständig entschieden.
 
-Der aktuelle Extraktionslauf für diese sechs Städte enthält 1.652
-Rohkandidaten. Die obigen Entitäten sind der erste geprüfte Bestand. Die
-übrigen Treffer bleiben offen, weil darunter Kapitelüberschriften,
-Regelbegriffe, generische Gegnerprofile und beschädigte OCR-Zeilen vorkommen.
-Sie werden nicht als scheinbar vollständige Lore-Objekte veröffentlicht.
+## Zweite Städtewelle
+
+Die zweite Städtewelle wurde als fünfzehn getrennte Stadtpakete angelegt:
+
+- San Francisco Metroplex
+- Cheyenne
+- Karlsruhe
+- New Orleans
+- Paris
+- Montréal
+- Neo-Tokio
+- Washington FDC
+- Los Angeles
+- Bogotá
+- Lagos
+- Detroit
+- Atlanta
+- Portland
+- Wien
+
+Für diese Welle wurden 1.181 Rohkandidaten vollständig entschieden. 184
+Kandidaten wurden mit kanonischen Datensätzen zusammengeführt, 997 verworfen
+und keiner blieb offen. Die Stadtpakete enthalten zusammen 134 Orte sowie 59
+Personen oder Gruppen. Details enthält
+`docs/research/welle-2-kandidatenaudit.md`.
+
+## Dritte Städtewelle
+
+Die dritte Städtewelle ergänzt dreizehn weitere Kartenpakete: Kairo,
+Metrópole, Butte, Casablanca-Rabat, Vladivostok, Zürich, Leipzig-Halle,
+Québec, Bremen, Hannover, Istanbul, Tenochtitlán und Stuttgart.
+
+Alle 619 Rohkandidaten dieser Welle sind entschieden. 134 wurden mit
+kanonischen Datensätzen zusammengeführt, 485 begründet verworfen und keiner
+blieb offen. Die Pakete enthalten zusammen 137 Orte und 58 Personen oder
+Gruppen. Details enthält `docs/research/welle-3-kandidatenaudit.md`.
+
+## Vierte Städtewelle
+
+Die vierte Städtewelle ergänzt die 33 verbleibenden Städte der
+Werk-/Stadt-Matrix. Alle 684 Rohkandidaten wurden entschieden: 55 wurden mit
+kanonischen Datensätzen zusammengeführt, 629 begründet verworfen und keiner
+blieb offen.
+
+Damit besitzen alle 75 erfassten Städte ein eigenständig ladbares Kartenpaket.
+Der Gesamtstand umfasst 3.010 Orte, 1.753 Personen oder Gruppen und 4.763
+stadtübergreifende Suchtreffer. Details enthält
+`docs/research/welle-4-kandidatenaudit.md`.
 
 ## Nächste verbindliche Importreihenfolge
 
-1. übrige Rohkandidaten der vorhandenen und neuen Karten entscheiden
-2. Abschlussberichte für alle vierzehn vorhandenen Karten erzeugen
-3. die erste Städtewelle um weitere sichere Entitäten und Grenzflächen
-   vervollständigen
-4. weitere Städte wellenweise nach Quellenstärke importieren
+1. weitere Lore-Grenzflächen nur bei belastbarer Quellenkartografie ergänzen
+2. neue Karten- und Quellenbestände nach demselben Auditverfahren importieren
+
+Der Georeferenzierungs-Audit dokumentiert 2.702 sichtbare Punktgeometrien und
+285 bewusst katalogisierte Einträge ohne erfundene Einzelposition. 68 Pakete
+verwenden derzeit anklickbare Lore-Bezugspunkte statt nicht belegbarer
+Grenzpolygone. Suche, Stadtpakete, Quellenmatrix, JavaScript und Offline-Cache
+bestehen die Abschlussprüfung dieses Importstands.
 
 Ein Stadtpaket gilt erst dann als vollständig, wenn keine offene
 Werk-/Stadt-Prüfung und kein unbearbeiteter Kandidat mehr vorhanden ist.

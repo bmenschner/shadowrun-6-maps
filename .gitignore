@@ -36,6 +36,11 @@ tools/*
 !tools/import_archive_references.py
 !tools/build_adl_content.py
 !tools/build_wave1_city_packages.py
+!tools/build_wave2_city_packages.py
+!tools/build_wave3_city_packages.py
+!tools/build_wave4_city_packages.py
+!tools/finalize_source_coverage.py
+!tools/review_source_candidates.py
 !tmp/
 tmp/*
 !tmp/build-visual/

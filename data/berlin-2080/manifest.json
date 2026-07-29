@@ -207,5 +207,7 @@
   },
   "assets": {
     "offlineBase": "../../assets/cities/berlin-2080/offline-base.webp"
-  }
+  },
+  "sourceCoverageComplete": true,
+  "sourceCoverageRun": "full-source-import-2026-07-28"
 }
