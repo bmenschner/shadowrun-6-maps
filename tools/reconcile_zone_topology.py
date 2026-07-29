@@ -66,8 +66,10 @@ COMMON_SOURCES = [
 
 CORPORATE_NOTES = {
     1: [
-        "AZT Schönwalde ist auf den offiziellen Berlin-2080-Übersichten als orange Exterritorialfläche im Lore-Umland markiert.",
-        "Der Straßen-, Gewässer- und Siedlungsabgleich dieser Fläche steht noch aus.",
+        "Die offizielle Berlin-2080-Übersicht liefert die verbindliche Außenkontur von AZT Schönwalde im Lore-Umland.",
+        "Berlin 2080 bestätigt die Osthälfte als früheren Spandauer Forst; der Wald bildet natürlichen Sicht- und Sicherheitsschutz für die Konzernanlagen.",
+        "Berlin 4D beschreibt den Übergangsraum nach Spandau als aufgegebene Wohn- und Industriezone unter Aztechnology-Kontrolle.",
+        "Der Vergleich mit A10, Havelkanal, amtlicher Gemeindegeometrie und Berliner Ortsteilgrenzen bestätigt die Kartenkontur; heutige Verwaltungsgrenzen ersetzen die Lore-Kontur nicht.",
     ],
     2: [
         "Die Grenze des Flughafengeländes folgt im Westen und Südwesten der Bernauer Straße; der Straßenkörper bleibt außerhalb des Z-IC.",
@@ -79,9 +81,9 @@ CORPORATE_NOTES = {
         "Die Grenze zur AGC-Siemensstadt wird beim Standort Gotcha ausdrücklich erwähnt.",
     ],
     5: [
-        "AGC Siemensstadt umfasst das frühere Siemensstadt und den früher Charlottenburg-Nord genannten Bereich Siemensstätten.",
-        "Berlin 2080 bezeichnet den gesamten Konzernbezirk ausdrücklich als exterritorial.",
-        "Die Außengrenze folgt deshalb den amtlichen Ortsteilgrenzen von Siemensstadt und Charlottenburg-Nord.",
+        "Berlin 4D definiert Groß-Siemensstadt ausdrücklich als Siemensstadt, Jungfernheide und Charlottenburg-Nord.",
+        "Berlin 2080 bezeichnet den gesamten Konzernbezirk einschließlich des Siemensstätten genannten früheren Charlottenburg-Nord ausdrücklich als exterritorial.",
+        "Jungfernheide liegt innerhalb des heutigen Ortsteils Charlottenburg-Nord; die Außengrenze folgt deshalb vollständig den amtlichen Ortsteilgrenzen von Siemensstadt und Charlottenburg-Nord.",
     ],
     3: [
         "Renrakusan entspricht dem vollständig neu aufgebauten Konzernbezirk auf Basis des früheren Prenzlauer Bergs.",
@@ -90,18 +92,38 @@ CORPORATE_NOTES = {
         "Die Grenze wurde defensiv nach außen erweitert, damit Straßen- und Bahnkorridore vollständig zum Konzerngebiet gehören.",
     ],
     4: [
-        "S-K Tempelhof wird durch Flughafen Tempelhof und die angrenzenden Konzernquartiere bestimmt.",
-        "Berlin 4D beschreibt die bewachte Flughafenmauer an der Schillerpromenade als Grenze zu Kreuzberg.",
-        "Berlin 2080 nennt Alt-Tempelhof südlich und Neukölln beziehungsweise Rixdorf östlich des Flughafens.",
+        "Die offizielle Berlin-2080-Übersicht liefert die verbindliche Außenkontur von S-K Tempelhof.",
+        "Der sechs Meter hohe innere Verteidigungsring umschließt den Flughafen und die Arkologie im früheren Volkspark Hasenheide.",
+        "Berlin 2080 belegt das 1,5 km² große Fliegerviertel westlich, Alt-Tempelhof südlich sowie die S-K-kontrollierten Teile Neuköllns und Rixdorfs östlich des Flughafens.",
+        "Checkpoint Delta an Karl-Marx-Straße und Flughafenstraße bestätigt dort einen harten, kontrollierten Grenzübergang.",
+        "Kleine Abweichungen von heutigen Ortsteilgrenzen bleiben erhalten, weil die Lore-Kontur ausdrücklich Wohnquartiere beiderseits moderner Verwaltungszuschnitte verbindet.",
     ],
 }
 
 CORPORATE_REVIEW = {
-    1: ("pending", "Vorläufig - geografischer Detailabgleich ausstehend"),
+    1: ("reviewed", "Geprüft - AZT Schönwalde, EXTER-Neuzeichnung Phase 4"),
     2: ("reviewed", "Geprüft - Z-IC Tegel, EXTER-Neuzeichnung Phase 3"),
     3: ("reviewed", "Geprüft - Renrakusan, EXTER-Neuzeichnung Phase 1"),
-    4: ("pending", "Vorläufig - geografischer Detailabgleich ausstehend"),
-    5: ("pending", "Vorläufig - geografischer Detailabgleich ausstehend"),
+    4: ("reviewed", "Geprüft - S-K Tempelhof, EXTER-Neuzeichnung Phase 6"),
+    5: ("reviewed", "Geprüft - AGC Siemensstadt, EXTER-Neuzeichnung Phase 5"),
+}
+
+CORPORATE_SOURCES = {
+    1: [
+        "Berlin 2080 Karte v06 - Übersicht",
+        "Berlin 2080, S. 30-32",
+        "Berlin 4D, S. 54-55",
+    ],
+    4: [
+        "Berlin 2080 Karte v06 - Übersicht",
+        "Berlin 2080, S. 64-67",
+        "1. Schattentricks, Checkpoint Delta",
+    ],
+    5: [
+        "Berlin 2080 Karte v06 - Übersicht",
+        "Berlin 2080, S. 27-31",
+        "Berlin 4D, S. 56-57",
+    ],
 }
 
 
@@ -338,7 +360,7 @@ def corporate_feature(feature: dict, geometry, component: int, label: str, basis
         "basis": basis,
         "boundary_review_status": review_status,
         "boundary_review_label": review_label,
-        "lore_boundary_sources": COMMON_SOURCES,
+        "lore_boundary_sources": CORPORATE_SOURCES.get(component, COMMON_SOURCES),
         "lore_boundary_notes": CORPORATE_NOTES.get(
             component,
             ["Die Grenze folgt der farblich markierten Exterritorialfläche der offiziellen Übersichtskarte."],
@@ -381,7 +403,11 @@ def corporate_features(features: list[dict], districts: dict, neighborhoods: dic
             raw_aztech,
             1,
             "AZT Schönwalde",
-            "Berlin 2080 Karten v04/v06; vorläufige Farbfläche im Lore-Umland",
+            (
+                "Berlin 2080, S. 30-32; Berlin 4D, S. 54-55; "
+                "Berlin 2080 Karte v06; Abgleich mit A10, Havelkanal, "
+                "amtlicher Gemeindegeometrie und Berliner Ortsteilgrenzen"
+            ),
         ),
         corporate_feature(
             by_component[2],
@@ -400,7 +426,11 @@ def corporate_features(features: list[dict], districts: dict, neighborhoods: dic
             agc,
             5,
             "AGC Siemensstadt",
-            "Berlin 2080, S. 28-31; ALKIS-Ortsteile Siemensstadt und Charlottenburg-Nord",
+            (
+                "Berlin 2080, S. 27-31; Berlin 4D, S. 56-57; "
+                "ALKIS-Ortsteile Siemensstadt und Charlottenburg-Nord "
+                "einschließlich Jungfernheide"
+            ),
         ),
         corporate_feature(
             by_component[3],
@@ -418,7 +448,11 @@ def corporate_features(features: list[dict], districts: dict, neighborhoods: dic
             raw_tempelhof,
             4,
             "S-K Tempelhof",
-            "Berlin 2080 Karte v06; Flughafenmauer, Fliegerviertel, Alt-Tempelhof und Karl-Marx-Straße",
+            (
+                "Berlin 2080, S. 64-67; Berlin 2080 Karte v06; "
+                "1. Schattentricks, Checkpoint Delta; Verteidigungsring, "
+                "Fliegerviertel, Alt-Tempelhof und Karl-Marx-Straße"
+            ),
         ),
     ]
 

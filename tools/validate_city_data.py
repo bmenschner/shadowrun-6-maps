@@ -301,8 +301,18 @@ def validate_city(
                 for feature in payload["features"]
                 if feature.get("properties", {}).get("boundary_review_status") == "reviewed"
             }
-            if "Exterritoriales Konzerngebiet · Renrakusan" not in reviewed:
-                raise ValueError(f"{city['id']}: Renrakusan ist nicht als geprüfte EXTER-Fläche markiert")
+            required_reviewed = {
+                "Exterritoriales Konzerngebiet · AZT Schönwalde",
+                "Exterritoriales Konzerngebiet · Z-IC Tegel",
+                "Exterritoriales Konzerngebiet · AGC Siemensstadt",
+                "Exterritoriales Konzerngebiet · Renrakusan",
+                "Exterritoriales Konzerngebiet · S-K Tempelhof",
+            }
+            if missing := required_reviewed - reviewed:
+                raise ValueError(
+                    f"{city['id']}: ungeprüfte EXTER-Flächen: "
+                    f"{', '.join(sorted(missing))}"
+                )
     for key in ("security", "special"):
         supplemental_path = manifest.get("files", {}).get(key)
         if supplemental_path:

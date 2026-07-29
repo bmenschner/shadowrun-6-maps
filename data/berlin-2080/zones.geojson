@@ -109830,18 +109830,19 @@
         "component": 1,
         "status": "corporate",
         "topology": "disjoint",
-        "basis": "Berlin 2080 Karten v04/v06; vorläufige Farbfläche im Lore-Umland",
-        "boundary_review_status": "pending",
-        "boundary_review_label": "Vorläufig - geografischer Detailabgleich ausstehend",
+        "basis": "Berlin 2080, S. 30-32; Berlin 4D, S. 54-55; Berlin 2080 Karte v06; Abgleich mit A10, Havelkanal, amtlicher Gemeindegeometrie und Berliner Ortsteilgrenzen",
+        "boundary_review_status": "reviewed",
+        "boundary_review_label": "Geprüft - AZT Schönwalde, EXTER-Neuzeichnung Phase 4",
         "lore_boundary_sources": [
           "Berlin 2080 Karte v06 - Übersicht",
-          "Berlin 2080, S. 27-77",
-          "Netzgewitter, S. 18-19",
-          "Berlin 4D, S. 84"
+          "Berlin 2080, S. 30-32",
+          "Berlin 4D, S. 54-55"
         ],
         "lore_boundary_notes": [
-          "AZT Schönwalde ist auf den offiziellen Berlin-2080-Übersichten als orange Exterritorialfläche im Lore-Umland markiert.",
-          "Der Straßen-, Gewässer- und Siedlungsabgleich dieser Fläche steht noch aus."
+          "Die offizielle Berlin-2080-Übersicht liefert die verbindliche Außenkontur von AZT Schönwalde im Lore-Umland.",
+          "Berlin 2080 bestätigt die Osthälfte als früheren Spandauer Forst; der Wald bildet natürlichen Sicht- und Sicherheitsschutz für die Konzernanlagen.",
+          "Berlin 4D beschreibt den Übergangsraum nach Spandau als aufgegebene Wohn- und Industriezone unter Aztechnology-Kontrolle.",
+          "Der Vergleich mit A10, Havelkanal, amtlicher Gemeindegeometrie und Berliner Ortsteilgrenzen bestätigt die Kartenkontur; heutige Verwaltungsgrenzen ersetzen die Lore-Kontur nicht."
         ],
         "entity_id": 452,
         "description_preview": "Aztech-Schönwalde ist eine von Aztechnology geformte Konzernlandschaft im Nordwesten Berlins. Zwischen Wald, Feuchtwiesen und Mooren liegen Forschungsstationen,…",
@@ -117515,19 +117516,18 @@
         "component": 5,
         "status": "corporate",
         "topology": "disjoint",
-        "basis": "Berlin 2080, S. 28-31; ALKIS-Ortsteile Siemensstadt und Charlottenburg-Nord",
-        "boundary_review_status": "pending",
-        "boundary_review_label": "Vorläufig - geografischer Detailabgleich ausstehend",
+        "basis": "Berlin 2080, S. 27-31; Berlin 4D, S. 56-57; ALKIS-Ortsteile Siemensstadt und Charlottenburg-Nord einschließlich Jungfernheide",
+        "boundary_review_status": "reviewed",
+        "boundary_review_label": "Geprüft - AGC Siemensstadt, EXTER-Neuzeichnung Phase 5",
         "lore_boundary_sources": [
           "Berlin 2080 Karte v06 - Übersicht",
-          "Berlin 2080, S. 27-77",
-          "Netzgewitter, S. 18-19",
-          "Berlin 4D, S. 84"
+          "Berlin 2080, S. 27-31",
+          "Berlin 4D, S. 56-57"
         ],
         "lore_boundary_notes": [
-          "AGC Siemensstadt umfasst das frühere Siemensstadt und den früher Charlottenburg-Nord genannten Bereich Siemensstätten.",
-          "Berlin 2080 bezeichnet den gesamten Konzernbezirk ausdrücklich als exterritorial.",
-          "Die Außengrenze folgt deshalb den amtlichen Ortsteilgrenzen von Siemensstadt und Charlottenburg-Nord."
+          "Berlin 4D definiert Groß-Siemensstadt ausdrücklich als Siemensstadt, Jungfernheide und Charlottenburg-Nord.",
+          "Berlin 2080 bezeichnet den gesamten Konzernbezirk einschließlich des Siemensstätten genannten früheren Charlottenburg-Nord ausdrücklich als exterritorial.",
+          "Jungfernheide liegt innerhalb des heutigen Ortsteils Charlottenburg-Nord; die Außengrenze folgt deshalb vollständig den amtlichen Ortsteilgrenzen von Siemensstadt und Charlottenburg-Nord."
         ],
         "entity_id": 503,
         "description_preview": "AGC Siemensstadt, das sogenannte Jewühl, ist ein vollständig exterritorialer Industriebezirk der AG Chemie. Schwerindustrie, Förderanlagen, Rohre, Transportdrohnen…",
@@ -121398,19 +121398,20 @@
         "component": 4,
         "status": "corporate",
         "topology": "disjoint",
-        "basis": "Berlin 2080 Karte v06; Flughafenmauer, Fliegerviertel, Alt-Tempelhof und Karl-Marx-Straße",
-        "boundary_review_status": "pending",
-        "boundary_review_label": "Vorläufig - geografischer Detailabgleich ausstehend",
+        "basis": "Berlin 2080, S. 64-67; Berlin 2080 Karte v06; 1. Schattentricks, Checkpoint Delta; Verteidigungsring, Fliegerviertel, Alt-Tempelhof und Karl-Marx-Straße",
+        "boundary_review_status": "reviewed",
+        "boundary_review_label": "Geprüft - S-K Tempelhof, EXTER-Neuzeichnung Phase 6",
         "lore_boundary_sources": [
           "Berlin 2080 Karte v06 - Übersicht",
-          "Berlin 2080, S. 27-77",
-          "Netzgewitter, S. 18-19",
-          "Berlin 4D, S. 84"
+          "Berlin 2080, S. 64-67",
+          "1. Schattentricks, Checkpoint Delta"
         ],
         "lore_boundary_notes": [
-          "S-K Tempelhof wird durch Flughafen Tempelhof und die angrenzenden Konzernquartiere bestimmt.",
-          "Berlin 4D beschreibt die bewachte Flughafenmauer an der Schillerpromenade als Grenze zu Kreuzberg.",
-          "Berlin 2080 nennt Alt-Tempelhof südlich und Neukölln beziehungsweise Rixdorf östlich des Flughafens."
+          "Die offizielle Berlin-2080-Übersicht liefert die verbindliche Außenkontur von S-K Tempelhof.",
+          "Der sechs Meter hohe innere Verteidigungsring umschließt den Flughafen und die Arkologie im früheren Volkspark Hasenheide.",
+          "Berlin 2080 belegt das 1,5 km² große Fliegerviertel westlich, Alt-Tempelhof südlich sowie die S-K-kontrollierten Teile Neuköllns und Rixdorfs östlich des Flughafens.",
+          "Checkpoint Delta an Karl-Marx-Straße und Flughafenstraße bestätigt dort einen harten, kontrollierten Grenzübergang.",
+          "Kleine Abweichungen von heutigen Ortsteilgrenzen bleiben erhalten, weil die Lore-Kontur ausdrücklich Wohnquartiere beiderseits moderner Verwaltungszuschnitte verbindet."
         ],
         "entity_id": 504,
         "description_preview": "S-K Tempelhof ist ein vollständig exterritorialer Konzernbezirk unter Saeder-Krupps Kontrolle. Der Geschäfts- und Frachtflughafen SKT, die Arkologie, das…",
