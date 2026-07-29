@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Dock Layout",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 4633",
+          "summary": "Dock Layout ist in Risk & Rewards Cairo Campaign) als benannter Schauplatz mit Bezug zu Kairo belegt."
+        }
+      ]
+    },
+    {
+      "name": "Garden City",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 1305",
+          "summary": "Garden City ist in Risk & Rewards Cairo Campaign) als benannter Schauplatz mit Bezug zu Kairo belegt."
+        }
+      ]
+    },
+    {
+      "name": "Lone Star Vault",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 4128",
+          "summary": "Lone Star Vault ist in Risk & Rewards Cairo Campaign) als benannter Schauplatz mit Bezug zu Kairo belegt."
+        }
+      ]
+    },
+    {
+      "name": "The Coptic Church",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 2458",
+          "summary": "The Coptic Church ist in Risk & Rewards Cairo Campaign) als benannter Schauplatz mit Bezug zu Kairo belegt."
+        }
+      ]
+    },
+    {
+      "name": "To The Tower",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 10389",
+          "summary": "To The Tower ist in Risk & Rewards Cairo Campaign) als benannter Schauplatz mit Bezug zu Kairo belegt."
+        }
+      ]
+    },
+    {
+      "name": "Vault Relics",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 6777",
+          "summary": "Vault Relics ist in Risk & Rewards Cairo Campaign) als benannter Schauplatz mit Bezug zu Kairo belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Al Masri Takula",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Kairo",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 14973",
+          "summary": "Al Masri Takula ist in Risk & Rewards Cairo Campaign) als Person von Interesse mit Bezug zu Kairo belegt."
+        }
+      ]
+    },
+    {
+      "name": "Dr. Kinsey Trujillo",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Kairo",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 16025",
+          "summary": "Dr. Kinsey Trujillo ist in Risk & Rewards Cairo Campaign) als Person von Interesse mit Bezug zu Kairo belegt."
+        }
+      ]
+    },
+    {
+      "name": "Part Two",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Kairo",
+      "scope": "Kairo",
+      "appearances": [
+        {
+          "bookId": "sr6-risk-rewards-cairo-campaign",
+          "citation": "Textzeile 3308",
+          "summary": "Part Two ist in Risk & Rewards Cairo Campaign) als benannte Gruppe oder Organisation mit Bezug zu Kairo belegt."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 10,
+  "places": [],
+  "people": [
+    {
+      "name": "Arthur Curtis",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Brisbane",
+      "scope": "Brisbane",
+      "appearances": [
+        {
+          "bookId": "sr6-margin-calls-corporate-world-post-dis-plot",
+          "citation": "Textzeile 7998",
+          "summary": "Arthur Curtis ist in Margin Calls (Corporate World Post DIS Plot) als Person von Interesse mit Bezug zu Brisbane belegt."
+        }
+      ]
+    }
+  ]
+}

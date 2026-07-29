@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [],
+  "people": [
+    {
+      "name": "Miami, Carib League",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Miami",
+      "scope": "Miami",
+      "appearances": [
+        {
+          "bookId": "sr4-vice",
+          "citation": "Textzeile 11966",
+          "summary": "Miami, Carib League ist in Vice als benannte Gruppe oder Organisation mit Bezug zu Miami belegt."
+        }
+      ]
+    },
+    {
+      "name": "The Gambione Family (Miami)",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Miami",
+      "scope": "Miami",
+      "appearances": [
+        {
+          "bookId": "sr2-underworld-sourcebook",
+          "citation": "PDF-Seite 114",
+          "summary": "The Gambione Family (Miami) ist in Underworld Sourcebook als benannte Gruppe oder Organisation mit Bezug zu Miami belegt."
+        },
+        {
+          "bookId": "sr2-underworld-sourcebook",
+          "citation": "Textzeile 11490",
+          "summary": "The Gambione Family (Miami) ist in Underworld Sourcebook als benannte Gruppe oder Organisation mit Bezug zu Miami belegt."
+        }
+      ]
+    }
+  ]
+}

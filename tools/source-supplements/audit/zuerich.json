@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Escher-Bürkli Island",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Zürich",
+      "appearances": [
+        {
+          "bookId": "sr3-shadows-of-europe",
+          "citation": "PDF-Seite 172",
+          "summary": "Escher-Bürkli Island ist in Shadows of Europe als benannter Schauplatz mit Bezug zu Zürich belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Zürich-Orbital Gemeinschaftsbank (Konzern-Gerichtshof)",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Zürich",
+      "scope": "Zürich",
+      "appearances": [
+        {
+          "bookId": "sr3-europa-in-den-schatten",
+          "citation": "Textzeile 14571",
+          "summary": "Zürich-Orbital Gemeinschaftsbank (Konzern-Gerichtshof) ist in Europa in den Schatten als benannte Gruppe oder Organisation mit Bezug zu Zürich belegt."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [],
+  "people": [
+    {
+      "name": "Der Familie",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Tenochtitlán",
+      "scope": "Tenochtitlán",
+      "appearances": [
+        {
+          "bookId": "sr5-verbotene-kunste",
+          "citation": "Textzeile 1526",
+          "summary": "Der Familie ist in Verbotene Künste als benannte Gruppe oder Organisation mit Bezug zu Tenochtitlán belegt."
+        }
+      ]
+    },
+    {
+      "name": "Horizon Group",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Tenochtitlán",
+      "scope": "Tenochtitlán",
+      "appearances": [
+        {
+          "bookId": "sr4-20th-anniversary-core-rulebook",
+          "citation": "Textzeile 5355",
+          "summary": "Horizon Group ist in 20th Anniversary Core Rulebook als benannte Gruppe oder Organisation mit Bezug zu Tenochtitlán belegt."
+        }
+      ]
+    }
+  ]
+}

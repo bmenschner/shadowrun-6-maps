@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 10,
+  "places": [
+    {
+      "name": "Baltimore-Washington International Airport",
+      "aliases": [],
+      "category": "Verkehr und Infrastruktur",
+      "scope": "Baltimore",
+      "appearances": [
+        {
+          "bookId": "sr1-the-neo-anarchist-s-guide-to-north-america",
+          "citation": "Textzeile 8639",
+          "summary": "Baltimore-Washington International Airport ist in The Neo-Anarchist's Guide to North America als benannter Schauplatz mit Bezug zu Baltimore belegt."
+        }
+      ]
+    }
+  ],
+  "people": []
+}

@@ -357,6 +357,12 @@
       "registryWorkId": "sr5-datapuls-hamburg"
     },
     {
+      "id": "sr5-datapuls-osterreich",
+      "title": "Datapuls Österreich",
+      "edition": "SR5",
+      "registryWorkId": "sr5-datapuls-osterreich"
+    },
+    {
       "id": "sr5-datapuls-proteus",
       "title": "Datapuls Proteus",
       "edition": "SR5",
@@ -367,12 +373,6 @@
       "title": "Datapuls Verschlusssache",
       "edition": "SR5",
       "registryWorkId": "sr5-datapuls-verschlusssache"
-    },
-    {
-      "id": "sr5-datapuls-osterreich",
-      "title": "Datapuls Österreich",
-      "edition": "SR5",
-      "registryWorkId": "sr5-datapuls-osterreich"
     },
     {
       "id": "datapuls-10-konzerne",
@@ -760,6 +760,12 @@
       "edition": "SR6"
     },
     {
+      "id": "sr6-berlin-2080",
+      "title": "Berlin 2080",
+      "edition": "SR6",
+      "registryWorkId": "sr6-berlin-2080"
+    },
+    {
       "id": "sr6-blackout-dis",
       "title": "Blackout (DIS)",
       "edition": "SR6",
@@ -864,6 +870,12 @@
       "id": "netzgewitter",
       "title": "Netzgewitter",
       "edition": "SR6"
+    },
+    {
+      "id": "sr6-netzgewitter",
+      "title": "Netzgewitter",
+      "edition": "SR6",
+      "registryWorkId": "sr6-netzgewitter"
     },
     {
       "id": "sr6-phantome",
@@ -1479,6 +1491,195 @@
     "Schattenload Dezember 2019, S. 4",
     "Schlagschatten, S. 145",
     "Shadowrun-6D-Quellenkorpus",
-    "ÜK50 Berlin; Straßen- und Gewässerabgleich"
+    "ÜK50 Berlin; Straßen- und Gewässerabgleich",
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 5463",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr6-netzgewitter",
+      "title": "Netzgewitter",
+      "edition": "SR6",
+      "citation": "Textzeile 5846",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr6-sr6-46121p-netzgewitter",
+      "title": "SR6 [46121P] Netzgewitter",
+      "edition": "SR6",
+      "citation": "Textzeile 5846",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr6-berlin-2080",
+      "title": "Berlin 2080",
+      "edition": "SR6",
+      "citation": "Textzeile 8345",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr2-germany-sourcebook",
+      "title": "Germany Sourcebook",
+      "edition": "SR2",
+      "citation": "PDF-Seite 139",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 7191",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 15535",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr2-germany-sourcebook",
+      "title": "Germany Sourcebook",
+      "edition": "SR2",
+      "citation": "PDF-Seite 133",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr6-berlin-2080",
+      "title": "Berlin 2080",
+      "edition": "SR6",
+      "citation": "Textzeile 5076",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 2710",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 49480",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 5312",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 48940",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 21037",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 5449",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 5456",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 3100",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 5733",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 49194",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 2894",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-novapuls-78-01-19-037",
+      "title": "Novapuls 78-01-19 - 037",
+      "edition": "SR5",
+      "citation": "Textzeile 14",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 58665",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-novapuls-79-03-08-051-megapuls",
+      "title": "Novapuls 79-03-08 - 051 Megapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 344",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr4-berlin",
+      "title": "Berlin",
+      "edition": "SR4",
+      "citation": "Textzeile 2586",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 54468",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 21006",
+      "purpose": "description"
+    },
+    {
+      "bookId": "sr5-datapuls",
+      "title": "Datapuls",
+      "edition": "SR5",
+      "citation": "Textzeile 21379",
+      "purpose": "description"
+    }
   ]
 }

@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Club-Aktiv Köln-Süd",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-rhein-ruhr-megaplex",
+          "citation": "Textzeile 4620",
+          "summary": "Club-Aktiv Köln-Süd ist in Rhein-Ruhr-Megaplex als benannter Schauplatz mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Das Wellness-Hotel",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-rhein-ruhr-megaplex",
+          "citation": "Textzeile 17754",
+          "summary": "Das Wellness-Hotel ist in Rhein-Ruhr-Megaplex als benannter Schauplatz mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Der Industrial Every-R Club",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-rhein-ruhr-megaplex",
+          "citation": "Textzeile 16621",
+          "summary": "Der Industrial Every-R Club ist in Rhein-Ruhr-Megaplex als benannter Schauplatz mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Folkwang-Museum (Essen)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-rhein-ruhr-megaplex",
+          "citation": "Textzeile 13471",
+          "summary": "Folkwang-Museum (Essen) ist in Rhein-Ruhr-Megaplex als benannter Schauplatz mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Ruhr-Universität Bochum",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-rhein-ruhr-megaplex",
+          "citation": "Textzeile 13311",
+          "summary": "Ruhr-Universität Bochum ist in Rhein-Ruhr-Megaplex als benannter Schauplatz mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Saeder-Krupp Essen, Arkologie Zentralbau Außensektion",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-rhein-ruhr-megaplex",
+          "citation": "Textzeile 15830",
+          "summary": "Saeder-Krupp Essen, Arkologie Zentralbau Außensektion ist in Rhein-Ruhr-Megaplex als benannter Schauplatz mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Der Makahashi-Gumi",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Rhein-Ruhr-Megaplex",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-unterwelten",
+          "citation": "Textzeile 24845",
+          "summary": "Der Makahashi-Gumi ist in Unterwelten als benannte Gruppe oder Organisation mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Ford Motor Company",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Rhein-Ruhr-Megaplex",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-rhein-ruhr-megaplex",
+          "citation": "Textzeile 8883",
+          "summary": "Ford Motor Company ist in Rhein-Ruhr-Megaplex als benannte Gruppe oder Organisation mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Regulus Joint Industries",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Rhein-Ruhr-Megaplex",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr4-rhein-ruhr-megaplex",
+          "citation": "Textzeile 8939",
+          "summary": "Regulus Joint Industries ist in Rhein-Ruhr-Megaplex als benannte Gruppe oder Organisation mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Rhein-Ruhr-Plexes in Mafia-Hand",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Rhein-Ruhr-Megaplex",
+      "scope": "Rhein-Ruhr-Megaplex",
+      "appearances": [
+        {
+          "bookId": "sr5-anarchy",
+          "citation": "Textzeile 2181",
+          "summary": "Rhein-Ruhr-Plexes in Mafia-Hand ist in Anarchy als benannte Gruppe oder Organisation mit Bezug zu Rhein-Ruhr-Megaplex belegt."
+        }
+      ]
+    }
+  ]
+}

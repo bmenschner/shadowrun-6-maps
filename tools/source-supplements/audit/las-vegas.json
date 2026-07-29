@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [],
+  "people": [
+    {
+      "name": "Caollaidhe Montauk",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Las Vegas",
+      "scope": "Las Vegas",
+      "appearances": [
+        {
+          "bookId": "sr4-the-twilight-horizon",
+          "citation": "Textzeile 3246",
+          "summary": "Caollaidhe Montauk ist in The Twilight Horizon als Person von Interesse mit Bezug zu Las Vegas belegt."
+        }
+      ]
+    },
+    {
+      "name": "Marcelino Merlot",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Las Vegas",
+      "scope": "Las Vegas",
+      "appearances": [
+        {
+          "bookId": "sr4-the-twilight-horizon",
+          "citation": "Textzeile 3190",
+          "summary": "Marcelino Merlot ist in The Twilight Horizon als Person von Interesse mit Bezug zu Las Vegas belegt."
+        }
+      ]
+    }
+  ]
+}

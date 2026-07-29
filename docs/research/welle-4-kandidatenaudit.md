@@ -94,13 +94,14 @@ quellenbezogenes Stadtprofil und mindestens einen anklickbaren Lore-Bezugspunkt.
 Stärkere Stadtquellen lieferten zusätzliche Orte, Personen und Gruppen. Bei
 schwacher Quellenlage wurde der Datensatz nicht durch Vermutungen aufgefüllt.
 
-Die vierte Welle ergänzt 69 Orte und 23 Personen oder Gruppen. Der gesamte
-Arbeitsstand umfasst damit:
+Die vierte Welle ergänzte im historischen Vorlauf 69 Orte und 23 Personen
+oder Gruppen. Nach dem anschließenden werkweisen Vollaudit umfasst der
+Gesamtstand:
 
 - 75 Stadtpakete
-- 3.010 Orte
-- 1.753 Personen oder Gruppen
-- 4.763 stadtübergreifende Suchtreffer
+- 3.399 Orte
+- 1.944 Personen oder Gruppen
+- 5.343 stadtübergreifende Suchtreffer
 
 ## Reproduzierbarkeit
 

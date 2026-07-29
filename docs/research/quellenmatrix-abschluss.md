@@ -1,44 +1,60 @@
-# Abschluss der Werk-/Stadt-Matrix
+# Werk-/Stadt-Matrix – abgeschlossener Entitätsaudit
 
-Stand: 28. Juli 2026
+Stand: 29. Juli 2026
 
-## Ergebnis
+Der Lauf `exhaustive-entity-audit-v2` hat sämtliche im Quellenregister
+erkannten Werk-/Stadt-Beziehungen erneut geprüft. Anders als der
+zurückgezogene Vorlauf unterscheidet er zwischen vorhandenen Dossiers,
+veröffentlichbaren neuen Dossiers und begründet abgelehnten Struktur-,
+Regel-, OCR-, Index- oder nichtlokalen Treffern.
 
-Die vollständigen Textquellen enthalten 1.338 Dateien. Nach Titel-, Varianten-
-und Hashabgleich bilden sie 1.060 logische Werke. Diese Werke erzeugen 10.208
-relevante Beziehungen zu den 75 Kartenpaketen.
-
-Nach Abschluss aller Kandidatenläufe besitzt jeder Werk-/Stadt-Bezug einen
-abschließenden Status:
+## Abschlussstand
 
 | Status | Anzahl |
 |---|---:|
-| zusammengeführt | 1.924 |
-| geprüft ohne zusätzliches lokales Dossier | 8.237 |
-| nichtoffiziell ausgeschlossen | 47 |
-| offen | 0 |
+| offizielle Werk-/Stadt-Beziehungen | 10.161 |
+| vollständig extrahiert oder mit Dossiers verknüpft | 875 |
+| geprüft ohne eigenes lokales Dossier | 9.286 |
+| offene offizielle Beziehungen | 0 |
+| nichtoffizielle Beziehungen getrennt ausgeschlossen | 47 |
 
-`zusammengeführt` umfasst sowohl ausdrücklich in einem Stadtpaket geführte
-Quellen als auch Werke mit mindestens einer exakten Verknüpfung zu einem
-bereits geprüften Ort, einer Person oder einer Gruppe.
+Alle 75 Stadtmanifeste tragen
+`sourceCoverageComplete: true` und
+`sourceEntityExtractionComplete: true`.
 
-`geprüft-ohne-relevanten-inhalt` bedeutet nicht, dass das Werk die Stadt
-überhaupt nicht erwähnt. Der Stadtbezug wurde im vollständigen Kandidatenlauf
-geprüft, ergab aber kein zusätzliches eigenständiges lokales Dossier.
+## Redaktionelle Dossierentscheidungen
 
-## Qualitätsgrenze
+Aus 3.977 positiven Neuentitätsvorschlägen wurden:
 
-Der Abschluss der Quellenmatrix ist ein inhaltlicher Quellenabschluss, keine
-Behauptung flächengenauer Kartografie. Einträge ohne belastbare Adresse oder
-Kartenposition bleiben im Katalog. Bezirks- und Sondergebietsgrenzen werden
-erst als Polygon veröffentlicht, wenn Quellenkarte, Beschreibung und
-geografische Leitlinie gemeinsam eine belastbare Abgrenzung ermöglichen.
+| Entscheidung | Orte | Personen | Gruppen | Gesamt |
+|---|---:|---:|---:|---:|
+| als neues Dossier bestätigt | 389 | 70 | 95 | 554 |
+| mit vorhandenem Dossier zusammengeführt | 15 | 6 | 0 | 21 |
+| begründet verworfen | 843 | 1.756 | 803 | 3.402 |
 
-## Technische Absicherung
+Der Veröffentlichungsbuilder führt anschließend Schreibvarianten und bereits
+vorhandene Dossiers nochmals zusammen. Das vollständige Quellen-Supplement
+enthält einschließlich der zuvor redaktionell geprüften Chicago-Ergänzung
+389 Orte und 191 Personen oder Gruppen. Nicht belastbar positionierbare Orte
+bleiben mit `geometry: null` im Katalog.
 
-- Alle 75 Stadtpakete tragen `sourceCoverageComplete: true`.
-- Der Validator weist eine Karte mit offenen Werk-/Stadt-Bezügen zurück.
-- Der Abschlusslauf ist als `full-source-import-2026-07-28` in der Matrix und
-  in den Stadtmanifesten vermerkt.
-- Nichtoffizielle Quellen bleiben getrennt und werden nicht in die offizielle
-  Lore übernommen.
+## Verbindliche Regeln
+
+Eine Beziehung gilt nur als geschlossen, wenn:
+
+1. jeder Kandidat als neues Dossier, vorhandenes Dossier oder begründete
+   Nicht-Entität entschieden ist;
+2. Edition, Werk und Fundstelle am übernommenen Dossier stehen;
+3. gleiche Namen nicht automatisch Entscheidungen anderer Werke oder Städte
+   erben;
+4. Übersetzungen, OCR-Varianten und Klammerzusätze vor der Veröffentlichung
+   nochmals dedupliziert werden;
+5. aus einem Stadt- oder Teilraumbeleg keine Adresse oder Koordinate erfunden
+   wird;
+6. nichtoffizielle Quellen nicht mit dem offiziellen Bestand vermischt
+   werden.
+
+Die lokalen Quellenkontexte und Einzelentscheidungen liegen unter
+`source-data/` und bleiben durch `.gitignore` vom veröffentlichten Repository
+ausgeschlossen. Veröffentlicht werden nur redaktionelle Zusammenfassungen,
+strukturierte Quellenangaben und die reproduzierbaren Prüfwerkzeuge.

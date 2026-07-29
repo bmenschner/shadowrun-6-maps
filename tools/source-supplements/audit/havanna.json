@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Bahnhof La Coubre",
+      "aliases": [],
+      "category": "Verkehr und Infrastruktur",
+      "scope": "Havanna",
+      "appearances": [
+        {
+          "bookId": "sr5-harte-ziele",
+          "citation": "Textzeile 9341",
+          "summary": "Bahnhof La Coubre ist in Harte Ziele als benannter Schauplatz mit Bezug zu Havanna belegt."
+        }
+      ]
+    },
+    {
+      "name": "Knight Errant Castle",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Havanna",
+      "appearances": [
+        {
+          "bookId": "sr5-hard-targets",
+          "citation": "Textzeile 10022",
+          "summary": "Knight Errant Castle ist in Hard Targets als benannter Schauplatz mit Bezug zu Havanna belegt."
+        }
+      ]
+    },
+    {
+      "name": "Oberschicht / Im Krankenhaus",
+      "aliases": [],
+      "category": "Medizin und Versorgung",
+      "scope": "Havanna",
+      "appearances": [
+        {
+          "bookId": "sr5-harte-ziele",
+          "citation": "Textzeile 13525",
+          "summary": "Oberschicht / Im Krankenhaus ist in Harte Ziele als benannter Schauplatz mit Bezug zu Havanna belegt."
+        }
+      ]
+    },
+    {
+      "name": "Plaza Vieja",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Havanna",
+      "appearances": [
+        {
+          "bookId": "sr5-harte-ziele",
+          "citation": "Textzeile 9484",
+          "summary": "Plaza Vieja ist in Harte Ziele als benannter Schauplatz mit Bezug zu Havanna belegt."
+        }
+      ]
+    },
+    {
+      "name": "Raue Wohngegend",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Havanna",
+      "appearances": [
+        {
+          "bookId": "sr5-harte-ziele",
+          "citation": "Textzeile 13795",
+          "summary": "Raue Wohngegend ist in Harte Ziele als benannter Schauplatz mit Bezug zu Havanna belegt."
+        }
+      ]
+    },
+    {
+      "name": "Revolution Plaza",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Havanna",
+      "appearances": [
+        {
+          "bookId": "sr5-hard-targets",
+          "citation": "Textzeile 10577",
+          "summary": "Revolution Plaza ist in Hard Targets als benannter Schauplatz mit Bezug zu Havanna belegt."
+        }
+      ]
+    },
+    {
+      "name": "Revolution Square",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Havanna",
+      "appearances": [
+        {
+          "bookId": "sr5-hard-targets",
+          "citation": "Textzeile 10763",
+          "summary": "Revolution Square ist in Hard Targets als benannter Schauplatz mit Bezug zu Havanna belegt."
+        }
+      ]
+    },
+    {
+      "name": "Tabakplantage",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Havanna",
+      "appearances": [
+        {
+          "bookId": "sr5-harte-ziele",
+          "citation": "Textzeile 13985",
+          "summary": "Tabakplantage ist in Harte Ziele als benannter Schauplatz mit Bezug zu Havanna belegt."
+        }
+      ]
+    }
+  ],
+  "people": []
+}

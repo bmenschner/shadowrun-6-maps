@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Clty Center (AAA)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "München",
+      "appearances": [
+        {
+          "bookId": "sr2-germany-sourcebook",
+          "citation": "PDF-Seite 87",
+          "summary": "Clty Center (AAA) ist in Germany Sourcebook als benannter Schauplatz mit Bezug zu München belegt."
+        }
+      ]
+    },
+    {
+      "name": "Süden Schwabings die Ludwig-Maximilians-Universität",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "München",
+      "appearances": [
+        {
+          "bookId": "sr4-munchen-noir",
+          "citation": "PDF-Seite 12",
+          "summary": "Süden Schwabings die Ludwig-Maximilians-Universität ist in München Noir als benannter Schauplatz mit Bezug zu München belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Blohm & Voss GmbH",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "München",
+      "scope": "München",
+      "appearances": [
+        {
+          "bookId": "sr3-deutschland-in-den-schatten-ii",
+          "citation": "Textzeile 29458",
+          "summary": "Blohm & Voss GmbH ist in Deutschland in den Schatten II als benannte Gruppe oder Organisation mit Bezug zu München belegt."
+        }
+      ]
+    },
+    {
+      "name": "Daniel Kastner",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "München",
+      "scope": "München",
+      "appearances": [
+        {
+          "bookId": "sr4-munchen-noir",
+          "citation": "PDF-Seite 82",
+          "summary": "Daniel Kastner ist in München Noir als Person von Interesse mit Bezug zu München belegt."
+        }
+      ]
+    },
+    {
+      "name": "Spinrad Industries",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "München",
+      "scope": "München",
+      "appearances": [
+        {
+          "bookId": "sr4-shadowrun-4d-konzerndossier",
+          "citation": "Textzeile 22961",
+          "summary": "Spinrad Industries ist in Shadowrun 4D Konzerndossier als benannte Gruppe oder Organisation mit Bezug zu München belegt."
+        }
+      ]
+    },
+    {
+      "name": "Und Maschinen-Union Ag",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "München",
+      "scope": "München",
+      "appearances": [
+        {
+          "bookId": "sr1-deutschland-in-den-schatten",
+          "citation": "PDF-Seite 158",
+          "summary": "Und Maschinen-Union Ag ist in Deutschland in den Schatten als benannte Gruppe oder Organisation mit Bezug zu München belegt."
+        }
+      ]
+    }
+  ]
+}

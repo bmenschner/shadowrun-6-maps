@@ -47,7 +47,7 @@ def main() -> int:
         manifest = read(manifest_path)
         city_dir = manifest_path.parent
         places = read(city_dir / manifest["files"]["places"])
-        for key in ("virtualPlaces", "historicalPlaces"):
+        for key in ("virtualPlaces", "historicalPlaces", "sourcePlaces"):
             path = manifest.get("files", {}).get(key)
             if path:
                 places["features"].extend(read(city_dir / path).get("features", []))
@@ -59,6 +59,9 @@ def main() -> int:
             apply_augmentations(places["features"], read(city_dir / path), properties=True)
         people = read(city_dir / manifest["files"]["people"])
         path = manifest.get("files", {}).get("historicalPeople")
+        if path:
+            people.extend(read(city_dir / path))
+        path = manifest.get("files", {}).get("sourcePeople")
         if path:
             people.extend(read(city_dir / path))
         path = manifest.get("files", {}).get("personAugmentations")

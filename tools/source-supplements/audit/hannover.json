@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [],
+  "people": [
+    {
+      "name": "Hannover-Linden, Norddeutscher Bund",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Hannover",
+      "scope": "Hannover",
+      "appearances": [
+        {
+          "bookId": "sr4-reisefuhrer-in-die-deutschen-schatten",
+          "citation": "Textzeile 7378",
+          "summary": "Hannover-Linden, Norddeutscher Bund ist in Reiseführer in die deutschen Schatten als benannte Gruppe oder Organisation mit Bezug zu Hannover belegt."
+        }
+      ]
+    }
+  ]
+}

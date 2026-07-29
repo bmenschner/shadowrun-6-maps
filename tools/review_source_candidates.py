@@ -113,7 +113,10 @@ FOCUSED_WORKS = {
         "sr5-abenteuerband-schatten-uber-chicago",
         "sr5-anarchy-chicago-chaos",
     },
-    "frankfurt": {"sr2-chrom-dioxin", "sr5-datapuls-frankfurt"},
+    "frankfurt": {
+        "sr2-chrom-dioxin", "sr4-konzernenklaven",
+        "sr5-datapuls-frankfurt",
+    },
     "hong-kong": {"sr4-runner-havens", "sr5-hong-kong-neon-contrails-2050"},
     "london": {"sr1-london-sourcebook", "sr5-mission-london", "sr5-srmc-london-falling"},
     "muenchen": {"sr4-munchen-noir", "sr6-datapuls-munchen"},
@@ -133,9 +136,15 @@ FOCUSED_WORKS = {
     },
     "paris": {"sr3-shadows-of-europe", "sr6-final-bets-paris-grand-tour"},
     "montreal": {"sr3-shadows-of-north-america"},
-    "neo-tokio": {"sr3-shadows-of-asia", "sr4-corporate-enclaves"},
+    "neo-tokio": {
+        "sr3-shadows-of-asia", "sr4-corporate-enclaves",
+        "sr4-konzernenklaven",
+    },
     "washington-fdc": {"sr6-cutting-black"},
-    "los-angeles": {"sr2-california-free-state", "sr4-corporate-enclaves"},
+    "los-angeles": {
+        "sr2-california-free-state", "sr4-corporate-enclaves",
+        "sr4-konzernenklaven",
+    },
     "bogota": {"sr4-war", "sr4-fronteinsatz"},
     "lagos": {"sr4-feral-cities", "sr4-krisenzonen"},
     "detroit": {"sr2-target-ucas", "sr6-cutting-black"},
@@ -217,6 +226,56 @@ FOCUSED_WORKS = {
     "brisbane": {"sr3-target-awakened-lands"},
     "bangkok": {"sr4-state-of-the-art-2073", "sr4-99-bottles"},
 }
+
+# Complete Shadowrun Missions seasons are city campaigns even when the
+# individual module title does not repeat the city name.  Treating those
+# modules as incidental sources would discard their location and contact
+# dossiers merely because "Chicago", "Seattle", "Manhattan" or "Denver" is
+# omitted from a profile paragraph.
+MISSION_SERIES = {
+    "chicago": (
+        "sr5-srm05-",
+        "sr5-srm06-",
+        "sr5-srm07-",
+        "sr5-srm08-",
+        "sr5-e-cat27m08",
+    ),
+    "seattle": ("sr4-srm04-",),
+    "manhattan": ("sr4-srm03-",),
+    "denver": ("sr4-srm02-",),
+}
+
+# Only these works are known to stay inside one city even though their title
+# does not necessarily name it.  FOCUSED_WORKS is deliberately broader: it
+# also contains anthologies, travelling campaigns and regional books whose
+# city chapter must be detected from the text instead of assigning the whole
+# work to that city.
+FULL_WORK_CITY_IDS = {
+    "toronto-2080": {"sr6-30-nachte-und-3-tage"},
+    "denver": {"sr6-the-third-parallel-denver-campaign"},
+    "manhattan": {"sr6-flusternetze", "sr6-flusternetze-46144p"},
+    "boston": {"sr5-lockdown"},
+}
+_registry_path = ROOT / "data/source-registry.json"
+if _registry_path.exists():
+    _registered_work_ids = {
+        work["id"]
+        for work in json.loads(_registry_path.read_text(encoding="utf-8"))["works"]
+    }
+    for _city_id, _prefixes in MISSION_SERIES.items():
+        _mission_works = {
+            work_id
+            for work_id in _registered_work_ids
+            if work_id.startswith(_prefixes)
+            and (
+                re.match(r"^sr[45]-srm\d{2}-\d{2}-", work_id)
+                or work_id.endswith("-contacts")
+                or "welcome-to-denver" in work_id
+                or work_id.startswith("sr5-e-cat27m08")
+            )
+        }
+        FOCUSED_WORKS[_city_id].update(_mission_works)
+        FULL_WORK_CITY_IDS.setdefault(_city_id, set()).update(_mission_works)
 
 # Explicit editorial resolutions for OCR aliases, mistranslations and
 # candidates whose extractor assigned the wrong entity type.  Target names
@@ -398,27 +457,6 @@ CURATED_TARGETS = {
     "nairobi:nairobikenya:place": ["Nairobi Lore-Raum"],
 }
 
-# These city queues were read against their local source contexts. Once
-# the explicit targets above and normalised existing dossiers are resolved,
-# the remaining candidates are headings, rules, OCR fragments, generic
-# categories or entities outside the map scope.
-FINAL_REVIEW_CITIES = {
-    "adl-2082", "berlin-2080", "denver", "hamburg-2080", "manhattan",
-    "rhein-ruhr-2082", "seattle", "toronto-2080",
-    "boston", "chicago", "frankfurt", "hong-kong", "london", "muenchen",
-    "atlanta", "bogota", "cheyenne", "detroit", "karlsruhe", "lagos",
-    "los-angeles", "montreal", "neo-tokio", "new-orleans", "paris",
-    "portland", "san-francisco", "washington-fdc", "wien",
-    "bremen", "butte", "casablanca-rabat", "hannover", "istanbul", "kairo",
-    "leipzig-halle", "metropole", "quebec", "stuttgart", "tenochtitlan",
-    "vladivostok", "zuerich",
-    "austin", "baltimore", "bangkok", "brisbane", "bruessel",
-    "buenos-aires", "caracas", "dallas-fort-worth", "dubai", "dublin",
-    "havanna", "johannesburg", "kapstadt", "las-vegas", "lima", "manaus",
-    "manila", "melbourne", "miami", "nairobi", "nuernberg", "perth",
-    "phoenix", "prag", "salt-lake-city", "san-diego", "santiago", "sarajevo",
-    "singapur", "st-louis", "sydney", "teheran", "vancouver",
-}
 PLACE_SIGNAL = re.compile(
     r"\b(?:academy|airport|arcology|arkologie|arena|bar|bazaar|bezirk|"
     r"cafe|café|casino|city|clinic|club|complex|district|dock|factory|"
@@ -441,6 +479,34 @@ def fold(value: str) -> str:
     return value.encode("ascii", "ignore").decode("ascii").casefold()
 
 
+def normalize_search(value: str) -> str:
+    """Fold accents while preserving punctuation as word boundaries."""
+    value = unicodedata.normalize("NFKD", value)
+    value = "".join(char for char in value if not unicodedata.combining(char))
+    return re.sub(r"[^a-z0-9]+", " ", value.casefold()).strip()
+
+
+_coverage_payload = json.loads(
+    (ROOT / "data/source-coverage.json").read_text(encoding="utf-8")
+)
+CITY_ALIASES = {
+    city["id"]: [
+        normalize_search(alias)
+        for alias in city["aliases"]
+    ]
+    for city in _coverage_payload["cities"]
+}
+if _registry_path.exists():
+    _registered_works = json.loads(
+        _registry_path.read_text(encoding="utf-8")
+    )["works"]
+    for _city_id, _aliases in CITY_ALIASES.items():
+        for _work in _registered_works:
+            _title = " " + normalize_search(_work["title"]) + " "
+            if any(f" {alias} " in _title for alias in _aliases):
+                FOCUSED_WORKS[_city_id].add(_work["id"])
+
+
 def key(value: str) -> str:
     value = re.sub(r"\([^)]*\)", " ", value)
     value = re.sub(r"^(?:the|das|der|die)\s+", "", fold(value))
@@ -450,8 +516,20 @@ def key(value: str) -> str:
 def load_entities(city_id: str) -> dict[str, list[dict]]:
     manifest = json.loads((ROOT / f"data/{city_id}/manifest.json").read_text(encoding="utf-8"))
     city_dir = ROOT / "data" / city_id
-    places = json.loads((city_dir / manifest["files"]["places"]).read_text(encoding="utf-8"))["features"]
-    people = json.loads((city_dir / manifest["files"]["people"]).read_text(encoding="utf-8"))
+    places = []
+    for field in ("places", "virtualPlaces", "historicalPlaces", "sourcePlaces"):
+        filename = manifest.get("files", {}).get(field)
+        if filename:
+            places.extend(
+                json.loads((city_dir / filename).read_text(encoding="utf-8"))["features"]
+            )
+    people = []
+    for field in ("people", "historicalPeople", "sourcePeople"):
+        filename = manifest.get("files", {}).get(field)
+        if filename:
+            people.extend(
+                json.loads((city_dir / filename).read_text(encoding="utf-8"))
+            )
     result: dict[str, list[dict]] = {}
     for feature in places:
         props = feature["properties"]
@@ -497,15 +575,33 @@ def noise_reason(candidate: dict) -> str | None:
         return "Konzern- oder Organisationsname als Person fehlklassifiziert"
     if re.search(r"\b(?:dice|display|karma|modifier|options?|threshold)\b", name, re.I):
         return "Regel-, Tabellen- oder Ausrüstungsbegriff"
-    occurrence_work_ids = {
-        occurrence["workId"] for occurrence in candidate["occurrences"]
-    }
-    focused = bool(occurrence_work_ids & FOCUSED_WORKS[candidate["cityId"]])
-    if not focused and len(candidate["occurrences"]) == 1:
-        return (
-            "Isolierte Erwähnung außerhalb einer Stadtquelle; kein "
-            "eindeutiges lokales Dossier ableitbar"
+    focused = any(
+        occurrence.get("scope") in {"work", "chapter"}
+        for occurrence in candidate["occurrences"]
+    )
+    if not focused:
+        aliases = CITY_ALIASES[candidate["cityId"]]
+        has_direct_city_context = any(
+            any(
+                f" {alias} " in (
+                    " "
+                    + normalize_search(
+                        occurrence.get(
+                            "descriptionContext",
+                            occurrence.get("context", ""),
+                        )
+                    )
+                    + " "
+                )
+                for alias in aliases
+            )
+            for occurrence in candidate["occurrences"]
         )
+        if not has_direct_city_context:
+            return (
+                "Nur über denselben Seiten- oder Näheblock zugeordnet; "
+                "im Dossierkontext selbst fehlt jeder direkte Stadtbezug"
+            )
     if focused:
         if candidate["entityType"] == "person":
             if not 2 <= len(words) <= 5 or SENTENCE_FRAGMENT.search(name):
@@ -580,7 +676,8 @@ def main() -> None:
         matches = entity_indexes[city_id].get(key(candidate["rawName"]), [])
         compatible = [
             match for match in matches
-            if match["kind"] == candidate["entityType"]
+            if candidate["entityType"] == "unknown"
+            or match["kind"] == candidate["entityType"]
             or {match["kind"], candidate["entityType"]} <= {"person", "group"}
         ]
         if len(compatible) == 1:
@@ -605,21 +702,6 @@ def main() -> None:
                     "entityType": candidate["entityType"],
                     "decision": "verworfen",
                     "reason": reason,
-                    "occurrences": candidate["occurrences"],
-                }
-            elif city_id in FINAL_REVIEW_CITIES:
-                decision = {
-                    "candidateId": candidate["candidateId"],
-                    "cityId": city_id,
-                    "rawName": candidate["rawName"],
-                    "entityType": candidate["entityType"],
-                    "decision": "verworfen",
-                    "reason": (
-                        "Redaktionelle Kontextprüfung abgeschlossen: kein "
-                        "eigenständiges lokales Dossier; Überschrift, Regel- "
-                        "oder OCR-Fragment, generische Kategorie oder Entität "
-                        "außerhalb des Kartenumfangs"
-                    ),
                     "occurrences": candidate["occurrences"],
                 }
             else:

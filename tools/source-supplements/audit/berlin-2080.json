@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 19,
+  "places": [
+    {
+      "name": "Am Tegeler Hafen (Reinickendorf)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr4-berlin",
+          "citation": "Textzeile 5463",
+          "summary": "Am Tegeler Hafen (Reinickendorf) ist in Berlin als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Bar Ahegao (J)",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr6-netzgewitter",
+          "citation": "Textzeile 5846",
+          "summary": "Bar Ahegao (J) ist in Netzgewitter als benannter Schauplatz mit Bezug zu Berlin belegt."
+        },
+        {
+          "bookId": "sr6-sr6-46121p-netzgewitter",
+          "citation": "Textzeile 5846",
+          "summary": "Bar Ahegao (J) ist in SR6 [46121P] Netzgewitter als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Batus Taverne Restaurant/Bar in Mitte",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr6-berlin-2080",
+          "citation": "Textzeile 8345",
+          "summary": "Batus Taverne Restaurant/Bar in Mitte ist in Berlin 2080 als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Der Arlebnis Club",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr4-berlin",
+          "citation": "Textzeile 7191",
+          "summary": "Der Arlebnis Club ist in Berlin als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Die Anarcho-Bar",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr4-berlin",
+          "citation": "Textzeile 15535",
+          "summary": "Die Anarcho-Bar ist in Berlin als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Domhotel (Cathedral Hotel)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr2-germany-sourcebook",
+          "citation": "PDF-Seite 133",
+          "summary": "Domhotel (Cathedral Hotel) ist in Germany Sourcebook als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Fort Gorgast",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr6-berlin-2080",
+          "citation": "Textzeile 5076",
+          "summary": "Fort Gorgast ist in Berlin 2080 als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Groß-Siemensstadt (AG Chemie Bezirk)",
+      "aliases": [],
+      "category": "Bezirke und Lore-Gebiete",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr4-berlin",
+          "citation": "Textzeile 2710",
+          "summary": "Groß-Siemensstadt (AG Chemie Bezirk) ist in Berlin als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Pariser Platz",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr4-berlin",
+          "citation": "Textzeile 5449",
+          "summary": "Pariser Platz ist in Berlin als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Reinickendorf (Schering-Zentrale), Tegel (Z-IC Bezirk)",
+      "aliases": [],
+      "category": "Bezirke und Lore-Gebiete",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr4-berlin",
+          "citation": "Textzeile 3100",
+          "summary": "Reinickendorf (Schering-Zentrale), Tegel (Z-IC Bezirk) ist in Berlin als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "Residenz & Spa Hotel Potsdam",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr4-berlin",
+          "citation": "Textzeile 5733",
+          "summary": "Residenz & Spa Hotel Potsdam ist in Berlin als benannter Schauplatz mit Bezug zu Berlin belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Dr. Paul Zöller",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Berlin",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr5-novapuls-79-03-08-051-megapuls",
+          "citation": "Textzeile 344",
+          "summary": "Dr. Paul Zöller ist in Novapuls 79-03-08 - 051 Megapuls als Person von Interesse mit Bezug zu Berlin belegt."
+        }
+      ]
+    },
+    {
+      "name": "European Motor Company (Ford Motors)",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Berlin",
+      "scope": "Berlin",
+      "appearances": [
+        {
+          "bookId": "sr4-berlin",
+          "citation": "Textzeile 2586",
+          "summary": "European Motor Company (Ford Motors) ist in Berlin als benannte Gruppe oder Organisation mit Bezug zu Berlin belegt."
+        }
+      ]
+    }
+  ]
+}

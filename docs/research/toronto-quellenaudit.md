@@ -55,6 +55,6 @@ Thornhill wird entsprechend der Quelle North York zugerechnet, Markham Scarborou
 
 ## Technische Prüfung
 
-Beide Detailkarten enthalten exakt ihre jeweiligen Marker-IDs. Der globale Suchindex wurde neu erzeugt und enthält 2.833 stadtübergreifende Einträge. Die Suche enthält unabhängig vom aktiven Edition-Layer Namen, Aliasse, Beschreibungen, Rollen, Gruppen, Quellen und alle Editionsbeschreibungen. `tools/validate_city_data.py` bestätigt alle acht Stadtpakete und den vollständigen Suchindex.
+Beide Detailkarten enthalten exakt ihre jeweiligen Marker-IDs. Der globale Suchindex wurde neu erzeugt und enthält nach dem werkweisen Vollaudit 5.343 stadtübergreifende Einträge. Die Suche enthält unabhängig vom aktiven Edition-Layer Namen, Aliasse, Beschreibungen, Rollen, Gruppen, Quellen und alle Editionsbeschreibungen. `tools/validate_city_data.py` bestätigt alle 75 Stadtpakete und den vollständigen Suchindex.
 
 „Vollständig“ bezeichnet den aktuell verfügbaren offiziellen Quellenbestand nach den oben genannten Aufnahmeregeln. Künftige Kartenabgleiche können angenäherte Positionen präzisieren, ohne neue Dubletten zu erzeugen.

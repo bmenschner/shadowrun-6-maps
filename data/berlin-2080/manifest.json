@@ -3,7 +3,7 @@
   "id": "berlin-2080",
   "name": "Berlin",
   "year": 2080,
-  "dataVersion": 16,
+  "dataVersion": 19,
   "availableEditions": [
     "SR1",
     "SR2",
@@ -178,12 +178,13 @@
     }
   },
   "summary": {
-    "entities": 656,
+    "entities": 511,
     "marker_instances": 457,
     "overview_marker_instances": 292,
     "detail_marker_instances": 133,
-    "gangs": 72,
-    "corporations": 20
+    "gangs": 73,
+    "corporations": 20,
+    "people": 158
   },
   "files": {
     "places": "places.geojson",
@@ -203,11 +204,14 @@
     "labels": "labels.json",
     "sources": "sources.json",
     "archivePlaceAugmentations": "archive-place-augmentations.json",
-    "archivePersonAugmentations": "archive-person-augmentations.json"
+    "archivePersonAugmentations": "archive-person-augmentations.json",
+    "sourcePlaces": "source-places.geojson",
+    "sourcePeople": "source-people.json"
   },
   "assets": {
     "offlineBase": "../../assets/cities/berlin-2080/offline-base.webp"
   },
   "sourceCoverageComplete": true,
-  "sourceCoverageRun": "full-source-import-2026-07-28"
+  "sourceCoverageRun": "exhaustive-entity-audit-v2",
+  "sourceEntityExtractionComplete": true
 }

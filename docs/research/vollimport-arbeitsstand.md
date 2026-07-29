@@ -1,160 +1,85 @@
-# Vollimport – Arbeitsstand
+# Vollimport – Abschlussstand
 
-Stand: 28. Juli 2026
+Stand: 29. Juli 2026
 
-## Abgeschlossene technische Grundlagen
+## Ergebnis
 
-- 1.338 TXT-Dateien vollständig inventarisiert
-- 1.060 logische Werke nach Titel- und Hashabgleich
-- 247 exakte Dateidubletten
-- 1.057 offizielle und 3 nichtoffizielle Werke
-- 75 Städte und Regionen in der Abdeckungsmatrix
-- 10.208 relevante Werk-/Stadt-Bezüge
-- lokale, nicht veröffentlichte Kandidatenwarteschlange
-- Prüfung des Quellenregisters und der Abdeckungsmatrix im Stadtvalidator
+Der vollständige TXT-Bestand wurde als 1.338 Dateien inventarisiert und zu
+1.060 logischen Werken zusammengeführt. Das Register weist 247 exakte
+Dateidubletten, 1.057 offizielle und 3 nichtoffizielle Werke aus. Alle 75
+Städte und Regionen besitzen ein eigenständig ladbares Datenpaket.
 
-Das Quellenregister enthält keine Volltexte. Die lokalen Kandidatenkontexte
-liegen unter `source-data/` und werden von Git ignoriert.
+Der relationenbasierte Lauf `exhaustive-entity-audit-v2` ist abgeschlossen:
 
-## Importierte Teilbelege vorhandener Karten
+- 10.161 offizielle Werk-/Stadt-Beziehungen geprüft;
+- 875 Beziehungen mit vollständig extrahierten oder verknüpften Dossiers;
+- 9.286 Beziehungen ohne eigenständiges lokales Dossier;
+- 0 offene offizielle Beziehungen;
+- 47 nichtoffizielle Beziehungen getrennt ausgeschlossen.
 
-Der erste Importlauf verknüpft ausschließlich bereits geprüfte Entitäten mit
-exakten Fundstellen aus weiteren offiziellen Quellen. Neue Marker wurden
-dabei nicht automatisch erzeugt.
+Der veröffentlichte Gesamtbestand umfasst:
 
-| Stadtpaket | verknüpfte Werke | Ortsbelege | Personen-/Gruppenbelege |
-| --- | ---: | ---: | ---: |
-| Berlin | 146 | 584 | 627 |
-| Hamburg | 112 | 1.166 | 316 |
-| Seattle | 398 | 1.656 | 2.753 |
-| Rhein-Ruhr-Megaplex | 8 | 34 | 17 |
-| Toronto | 12 | 5 | 24 |
-| Denver | 227 | 416 | 1.018 |
-| Manhattan | 74 | 238 | 397 |
-| ADL | 228 | 1.104 | 49 |
-| Chicago | 68 | 56 | 109 |
-| Boston | 21 | 22 | 31 |
-| Hongkong | 20 | 38 | 8 |
-| London | 11 | 11 | 29 |
-| München | 5 | 18 | 5 |
-| Groß-Frankfurt | 67 | 24 | 95 |
-
-Die Belege liegen jeweils im selben PDF-Seitenblock wie der Stadtbezug. Bei
-TXT-Dateien ohne Seitenmarker wird ein begrenzter Textblock verwendet. Die
-Verknüpfungen erscheinen als zusätzliche Editions- und Quellenangaben im
-bestehenden Dossier.
+- 3.399 Orte;
+- 1.944 Personen oder Gruppen;
+- 5.343 stadtübergreifende Suchtreffer;
+- 2.702 Ortsgeometrien;
+- 697 bewusst nur im Katalog geführte Orte ohne erfundene Position.
 
 ## Neuentitätsprüfung
 
-Die fünf abgeschlossenen Prüfläufe umfassen sämtliche 75 Kartenpakete:
+Der breite Extraktionslauf bewahrt unterschiedliche Textfassungen und mehrere
+Fundstellen desselben Namens. Die Abschlussprüfung arbeitet pro Kandidat,
+Werk und Stadt. Sie verlangt einen direkten Stadtbezug, einen stabilen
+Eigennamen sowie echte Orts-, Personen- oder Gruppenmerkmale.
 
-| Prüflauf | Rohkandidaten | Zusammengeführt | Verworfen | Offen |
+| Entscheidung | Orte | Personen | Gruppen | Gesamt |
 |---|---:|---:|---:|---:|
-| ursprüngliche acht Bestandskarten | 3.235 | 376 | 2.859 | 0 |
-| Städtewelle 1 | 1.652 | 265 | 1.387 | 0 |
-| Städtewelle 2 | 1.181 | 184 | 997 | 0 |
-| Städtewelle 3 | 619 | 134 | 485 | 0 |
-| Städtewelle 4 | 684 | 55 | 629 | 0 |
-| **Gesamt** | **7.371** | **1.014** | **6.357** | **0** |
+| neues Dossier | 389 | 70 | 95 | 554 |
+| vorhandenes Dossier | 15 | 6 | 0 | 21 |
+| keine veröffentlichbare Entität | 843 | 1.756 | 803 | 3.402 |
 
-Die lokale Arbeitsdatei wird je Importwelle neu erzeugt. Die
-Abschlussentscheidungen sind in den fünf Kandidatenaudits dokumentiert.
+Tabellenüberschriften, Regelbegriffe, Ausrüstungsprofile, Nachrichtenzeilen,
+Indexfragmente, reine Vergleichsnennungen und mehrdeutige stadtübergreifende
+Ortskandidaten werden nicht als Dossiers veröffentlicht. Varianten mit
+Klammerzusätzen, abweichender Zeichensetzung oder übersetzten Amts- und
+Straßenbezeichnungen werden vor dem Paketbau erneut zusammengeführt.
 
-## Status der Werk-/Stadt-Matrix
+## Veröffentlichung
 
-- 1.924 Werk-/Stadt-Bezüge sind mit Stadtquellen oder exakten
-  Entitätsnachweisen zusammengeführt.
-- 8.237 Volltextnennungen wurden ohne zusätzliches eigenständiges lokales
-  Dossier abgeschlossen.
-- 47 nichtoffizielle Werk-/Stadt-Bezüge sind sichtbar ausgeschlossen.
-- 0 Werk-/Stadt-Bezüge sind offen.
+`tools/build_audit_supplement_inputs.py` erzeugt aus bestätigten
+Entscheidungen ausschließlich paraphrasierte, veröffentlichbare
+Supplement-Eingaben. `tools/build_source_supplements.py` verbindet diese mit
+den vorhandenen Stadtpaketen. Das vollständige Supplement enthält
+einschließlich der früheren Chicago-Ergänzung 389 Orte sowie 191 Personen
+oder Gruppen.
 
-Alle 75 Stadtpakete sind mit `sourceCoverageComplete: true` markiert. Der
-Validator prüft, dass diese Markierung nur bei vollständig geschlossener
-Werk-/Stadt-Matrix zulässig ist.
+Die lokalen Fundstellenkontexte unter `source-data/` werden nicht
+veröffentlicht. Jede publizierte Entität enthält strukturierte Werk-, Editions-
+und Fundstellenangaben. Fehlende Einzelpositionen bleiben ausdrücklich
+ungeoreferenziert.
 
-## Neu aufgebaute Kartenpakete
+## Technische Abschlussprüfung
 
-Die ADL-Übersicht enthält 23 Städte, Allianzländer und Sonderregionen sowie
-drei zentrale Mitglieder der Bundesregierung. Editionsbeschreibungen reichen
-von SR1 bis SR6. Die Marker sind regionale Bezugspunkte und behaupten keine
-flächengenauen Lore-Grenzen.
+Der Validator bestätigt:
 
-Die erste neue Städtewelle ist als sechs getrennt ladbare Pakete umgesetzt:
+- alle 75 Stadtpakete und ihre referenzierten Dateien;
+- eindeutige lokale und globale IDs;
+- vollständige Editionsbeschreibungen und Quellenbelege;
+- gültige Personen-/Ortsverknüpfungen;
+- überschneidungsfreie Gebietsstatusflächen;
+- vollständige Suchindexabdeckung;
+- geschlossene Quellen- und Entitätsmatrix.
 
-| Stadt | Orte und Bezirke | Personen und Gruppen |
-| --- | ---: | ---: |
-| Chicago | 30 | 28 |
-| Boston | 29 | 24 |
-| Hongkong | 29 | 17 |
-| London | 21 | 21 |
-| München | 32 | 10 |
-| Groß-Frankfurt | 28 | 4 |
+Der Abschluss ist reproduzierbar über:
 
-Die Einträge stammen aus den jeweils stadtbezogenen Primärquellen. Eindeutig
-erhaltene Wahrzeichen und Lore-Distrikte besitzen Kartenanker; nur auf
-Stadtebene belegte Orte bleiben ohne erfundene Koordinate im Katalog. Die
-Rohkandidaten dieser sechs Städte sind vollständig entschieden.
+1. `tools/finalize_proposed_dossiers.py`
+2. `tools/complete_entity_audit.py`
+3. `tools/build_audit_supplement_inputs.py`
+4. `tools/build_source_supplements.py`
+5. `tools/finalize_source_coverage.py`
+6. `tools/rebuild_search_index.py`
+7. `tools/validate_city_data.py`
 
-## Zweite Städtewelle
-
-Die zweite Städtewelle wurde als fünfzehn getrennte Stadtpakete angelegt:
-
-- San Francisco Metroplex
-- Cheyenne
-- Karlsruhe
-- New Orleans
-- Paris
-- Montréal
-- Neo-Tokio
-- Washington FDC
-- Los Angeles
-- Bogotá
-- Lagos
-- Detroit
-- Atlanta
-- Portland
-- Wien
-
-Für diese Welle wurden 1.181 Rohkandidaten vollständig entschieden. 184
-Kandidaten wurden mit kanonischen Datensätzen zusammengeführt, 997 verworfen
-und keiner blieb offen. Die Stadtpakete enthalten zusammen 134 Orte sowie 59
-Personen oder Gruppen. Details enthält
-`docs/research/welle-2-kandidatenaudit.md`.
-
-## Dritte Städtewelle
-
-Die dritte Städtewelle ergänzt dreizehn weitere Kartenpakete: Kairo,
-Metrópole, Butte, Casablanca-Rabat, Vladivostok, Zürich, Leipzig-Halle,
-Québec, Bremen, Hannover, Istanbul, Tenochtitlán und Stuttgart.
-
-Alle 619 Rohkandidaten dieser Welle sind entschieden. 134 wurden mit
-kanonischen Datensätzen zusammengeführt, 485 begründet verworfen und keiner
-blieb offen. Die Pakete enthalten zusammen 137 Orte und 58 Personen oder
-Gruppen. Details enthält `docs/research/welle-3-kandidatenaudit.md`.
-
-## Vierte Städtewelle
-
-Die vierte Städtewelle ergänzt die 33 verbleibenden Städte der
-Werk-/Stadt-Matrix. Alle 684 Rohkandidaten wurden entschieden: 55 wurden mit
-kanonischen Datensätzen zusammengeführt, 629 begründet verworfen und keiner
-blieb offen.
-
-Damit besitzen alle 75 erfassten Städte ein eigenständig ladbares Kartenpaket.
-Der Gesamtstand umfasst 3.010 Orte, 1.753 Personen oder Gruppen und 4.763
-stadtübergreifende Suchtreffer. Details enthält
-`docs/research/welle-4-kandidatenaudit.md`.
-
-## Nächste verbindliche Importreihenfolge
-
-1. weitere Lore-Grenzflächen nur bei belastbarer Quellenkartografie ergänzen
-2. neue Karten- und Quellenbestände nach demselben Auditverfahren importieren
-
-Der Georeferenzierungs-Audit dokumentiert 2.702 sichtbare Punktgeometrien und
-285 bewusst katalogisierte Einträge ohne erfundene Einzelposition. 68 Pakete
-verwenden derzeit anklickbare Lore-Bezugspunkte statt nicht belegbarer
-Grenzpolygone. Suche, Stadtpakete, Quellenmatrix, JavaScript und Offline-Cache
-bestehen die Abschlussprüfung dieses Importstands.
-
-Ein Stadtpaket gilt erst dann als vollständig, wenn keine offene
-Werk-/Stadt-Prüfung und kein unbearbeiteter Kandidat mehr vorhanden ist.
+Spätere Quellenfunde oder bessere Kartenpositionen werden als neue,
+nachvollziehbare Ergänzung verarbeitet; sie ändern nicht rückwirkend die
+Entscheidungsregeln dieses Audits.

@@ -60,6 +60,9 @@
     .city-picker span { color: var(--muted); font: 700 8px/1 ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; }
     .city-picker select { width: 100%; border: 0; padding: 0; outline: 0; background: transparent; color: var(--text); font: 700 10px/1.25 ui-monospace, monospace; cursor: pointer; }
     .city-picker select:disabled { cursor: default; opacity: .75; }
+    .city-list-preference { min-width: max-content; display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; background: rgba(0,0,0,.18); color: var(--muted); cursor: pointer; font: 700 10px/1.2 ui-monospace, monospace; letter-spacing: .04em; }
+    .city-list-preference:hover { border-color: var(--cyan); color: var(--text); }
+    .city-list-preference input { width: 14px; height: 14px; margin: 0; accent-color: var(--pink); cursor: pointer; }
     .map-mode-toggle { min-width: max-content; display: inline-flex; align-items: stretch; overflow: hidden; border: 1px solid var(--line); border-radius: 4px; background: rgba(0,0,0,.18); }
     .map-mode-button { display: inline-flex; align-items: center; gap: 5px; padding: 8px 9px; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; font: 700 10px/1.2 ui-monospace, monospace; letter-spacing: .04em; }
     .map-mode-button:last-child { border-right: 0; }
@@ -258,7 +261,8 @@
     :root[data-theme="light"] h1 { color: #25292b; text-shadow: -1px 0 rgba(177,18,103,.68), 1px 0 rgba(11,143,155,.45); }
     :root[data-theme="light"] .stat,
     :root[data-theme="light"] .theme-toggle,
-    :root[data-theme="light"] .map-mode-toggle { background: rgba(255,255,255,.54); }
+    :root[data-theme="light"] .map-mode-toggle,
+    :root[data-theme="light"] .city-list-preference { background: rgba(255,255,255,.54); }
     :root[data-theme="light"] .install-button { background: rgba(255,255,255,.48); color: #287448; }
     :root[data-theme="light"] .pwa-panel,
     :root[data-theme="light"] .update-banner { background: #f7f7f3; color: var(--text); box-shadow: 0 18px 55px rgba(41,48,52,.22); }
@@ -362,6 +366,7 @@
       .map-mode-button { justify-content: center; min-height: 40px; padding: 8px 10px; }
       .atlas-open,
       .theme-toggle,
+      .city-list-preference,
       .install-button { min-height: 40px; justify-content: center; padding: 9px 11px; font-size: 11px; }
       .atlas-open::after,
       .install-button::after { content: none; }
@@ -411,6 +416,10 @@
           <button class="map-mode-button" id="map-mode-online" type="button" data-map-mode="online" aria-pressed="true"><span class="mode-dot" aria-hidden="true"></span>Online</button>
           <button class="map-mode-button" id="map-mode-offline" type="button" data-map-mode="offline" aria-pressed="false"><span class="mode-dot" aria-hidden="true"></span>Offline</button>
         </div>
+        <label class="city-list-preference" title="Blendet alle verfügbaren Städte dauerhaft in der Kartenauswahl ein">
+          <input id="show-all-cities" type="checkbox">
+          Weitere Städte dauerhaft
+        </label>
         <button class="atlas-open" id="city-info-open" type="button" hidden>ⓘ Stadt</button>
         <button class="atlas-open" id="atlas-open" type="button">▦ Karten</button>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Farbschema wechseln" aria-pressed="false"><span data-theme-choice="light">Light</span><span aria-hidden="true">/</span><span data-theme-choice="dark">Dark</span></button>
@@ -546,6 +555,7 @@
       const mobileToggle = document.getElementById('mobile-toggle');
       const mobileActionsToggle = document.getElementById('mobile-actions-toggle');
       const topActions = document.getElementById('top-actions');
+      const showAllCitiesToggle = document.getElementById('show-all-cities');
       const mobileNavigationActive = () => window.matchMedia('(max-width: 800px)').matches;
       const setSidebarOpen = open => {
         const shouldOpen = Boolean(open && mobileNavigationActive());
@@ -569,15 +579,77 @@
           mobileToggle.setAttribute('aria-label', 'Orte und Personen öffnen');
         }
       };
-      (cityContext.registry.cities || []).forEach(city => {
+      const primaryCityIds = [
+        'seattle', 'berlin-2080', 'rhein-ruhr-2082', 'denver',
+        'hamburg-2080', 'manhattan', 'toronto-2080', 'chicago',
+      ];
+      const cityMenuStorageKey = 'sr6-show-all-cities';
+      const cityMenuShowValue = '__show_more_cities__';
+      const cityMenuHideValue = '__hide_more_cities__';
+      const availableCities = cityContext.registry.cities || [];
+      const citiesById = new Map(availableCities.map(city => [city.id, city]));
+      const primaryCities = primaryCityIds.map(cityId => citiesById.get(cityId)).filter(Boolean);
+      const additionalCities = availableCities
+        .filter(city => !primaryCityIds.includes(city.id))
+        .sort((first, second) => first.name.localeCompare(second.name, 'de', { sensitivity: 'base' }));
+      let persistentlyShowAllCities = false;
+      try { persistentlyShowAllCities = window.localStorage.getItem(cityMenuStorageKey) === 'true'; } catch (error) {}
+      let showAllCities = persistentlyShowAllCities;
+
+      const appendCityOption = (parent, city) => {
         const option = document.createElement('option');
         option.value = city.id;
         option.textContent = `${city.name}${city.year ? ` ${city.year}` : ''}`;
-        option.selected = city.id === cityContext.city.id;
-        citySelect.appendChild(option);
-      });
+        parent.appendChild(option);
+      };
+
+      const renderCityOptions = () => {
+        citySelect.replaceChildren();
+        const currentIsPrimary = primaryCityIds.includes(cityContext.city.id);
+        if (!showAllCities && !currentIsPrimary) {
+          const currentGroup = document.createElement('optgroup');
+          currentGroup.label = 'Aktuelle Karte';
+          appendCityOption(currentGroup, cityContext.city);
+          citySelect.appendChild(currentGroup);
+        }
+
+        const primaryGroup = document.createElement('optgroup');
+        primaryGroup.label = 'Hauptkarten';
+        primaryCities.forEach(city => appendCityOption(primaryGroup, city));
+        citySelect.appendChild(primaryGroup);
+
+        if (showAllCities) {
+          const additionalGroup = document.createElement('optgroup');
+          additionalGroup.label = `Weitere Städte (${additionalCities.length})`;
+          additionalCities.forEach(city => appendCityOption(additionalGroup, city));
+          citySelect.appendChild(additionalGroup);
+          const hideOption = document.createElement('option');
+          hideOption.value = cityMenuHideValue;
+          hideOption.textContent = '− Weitere Städte ausblenden';
+          citySelect.appendChild(hideOption);
+        } else if (additionalCities.length) {
+          const showOption = document.createElement('option');
+          showOption.value = cityMenuShowValue;
+          showOption.textContent = `＋ Weitere Städte anzeigen (${additionalCities.length})`;
+          citySelect.appendChild(showOption);
+        }
+        citySelect.value = cityContext.city.id;
+        showAllCitiesToggle.checked = persistentlyShowAllCities;
+      };
+
+      renderCityOptions();
       citySelect.disabled = citySelect.options.length < 2 || Boolean(EMBEDDED_DATA);
       citySelect.addEventListener('change', () => {
+        if (citySelect.value === cityMenuShowValue || citySelect.value === cityMenuHideValue) {
+          showAllCities = citySelect.value === cityMenuShowValue;
+          if (!showAllCities && persistentlyShowAllCities) {
+            persistentlyShowAllCities = false;
+            try { window.localStorage.setItem(cityMenuStorageKey, 'false'); } catch (error) {}
+          }
+          renderCityOptions();
+          citySelect.focus();
+          return;
+        }
         try { window.localStorage.setItem(cityStorageKey, citySelect.value); } catch (error) {}
         const target = new URL(window.location.href);
         target.searchParams.set('city', citySelect.value);
@@ -585,6 +657,12 @@
         target.searchParams.delete('person');
         target.searchParams.delete('atlas');
         window.location.assign(target.href);
+      });
+      showAllCitiesToggle.addEventListener('change', () => {
+        persistentlyShowAllCities = showAllCitiesToggle.checked;
+        showAllCities = persistentlyShowAllCities;
+        try { window.localStorage.setItem(cityMenuStorageKey, persistentlyShowAllCities ? 'true' : 'false'); } catch (error) {}
+        renderCityOptions();
       });
       try { window.localStorage.setItem(cityStorageKey, cityContext.city.id); } catch (error) {}
       document.getElementById('city-title').textContent = cityLabel;
@@ -1658,9 +1736,9 @@
         list.replaceChildren();
         const globalSearch = Boolean(document.getElementById('search').value.trim());
         if (globalSearch) {
-          if (placeResults.length) { appendGroup(list, `Orte · ${placeResults.length}`); appendPlaceResults(list, placeResults); }
-          if (personResults.length) { appendGroup(list, `Personen & Gruppen · ${personResults.length}`); appendPersonResults(list, personResults); }
-          if (crossCityResults.length) { appendGroup(list, `Weitere Städte · ${crossCityResults.length}`); appendCrossCityResults(list, crossCityResults); }
+          if (placeResults.length) { appendGroup(list, `${cityContext.city.name} · Orte · ${placeResults.length}`); appendPlaceResults(list, placeResults); }
+          if (personResults.length) { appendGroup(list, `${cityContext.city.name} · Personen & Gruppen · ${personResults.length}`); appendPersonResults(list, personResults); }
+          if (crossCityResults.length) { appendGroup(list, `Andere Städte · ${crossCityResults.length}`); appendCrossCityResults(list, crossCityResults); }
           if (!placeResults.length && !personResults.length && !crossCityResults.length) appendGroup(list, 'Keine Treffer');
         } else if (browseMode === 'persons') {
           appendPersonResults(list, personResults);
