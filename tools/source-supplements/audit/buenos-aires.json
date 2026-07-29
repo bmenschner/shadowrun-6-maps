@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 10,
+  "places": [],
+  "people": [
+    {
+      "name": "Spinrad Industries Lateinamerika (Buenos Aires, Argentinien)",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Buenos Aires",
+      "scope": "Buenos Aires",
+      "appearances": [
+        {
+          "bookId": "sr5-mit-tricks-und-finesse",
+          "citation": "Textzeile 3573",
+          "summary": "Spinrad Industries Lateinamerika (Buenos Aires, Argentinien) ist in Mit Tricks und Finesse als benannte Gruppe oder Organisation mit Bezug zu Buenos Aires belegt."
+        }
+      ]
+    }
+  ]
+}

@@ -37,8 +37,8 @@ Geprüfter Quellenbestand:
 
 Ergebnis:
 
-- 219 Orte;
-- 289 Personen beziehungsweise Gruppen;
+- 232 Orte;
+- 299 Personen beziehungsweise Gruppen;
 - 19 Lore-Distrikte;
 - alle 27 nummerierten Einträge der SR6-Karte;
 - keine doppelten Orts-, Personen- oder Gruppen-IDs;
@@ -67,8 +67,8 @@ Geprüfter Quellenbestand:
 
 Ergebnis:
 
-- 171 Orte;
-- 165 Personen beziehungsweise Gruppen;
+- 185 Orte;
+- 172 Personen beziehungsweise Gruppen;
 - 22 überschneidungsfreie Lore-Distrikte;
 - alle 29 nummerierten Einträge der SR6-Karte;
 - die benannten Schauplätze der vollständigen dritten Missionsstaffel;
@@ -88,7 +88,8 @@ Die Ergänzung erschließt besonders das Manhattan-Kapitel aus SR1, die Konzerne
 
 Der globale Suchindex wird nach dem Stadtaufbau neu erzeugt und durchsucht unabhängig von Stadt-, Kategorien- und Editions-Layern weiterhin sämtliche Orte und Personen. `tools/validate_city_data.py` prüft Stadtmanifest, Quellenkatalog, Koordinaten, Referenzen, IDs, Editionswerte, Dateien und die Vollständigkeit des Suchindex.
 
-Die Prüfung dieses Stands ergibt insgesamt 2.498 Suchobjekte aus acht Stadtpaketen. Denver und Manhattan besitzen keine ID- oder normalisierten Namensdubletten.
+Die Abschlussprüfung des werkweisen Vollaudits ergibt 5.343 Suchobjekte aus
+75 Stadtpaketen. Denver und Manhattan besitzen keine doppelten globalen IDs.
 
 ## Verbleibende redaktionelle Unsicherheit
 

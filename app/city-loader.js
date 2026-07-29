@@ -72,6 +72,7 @@
       ...asArray(packages.places.features),
       ...asArray(packages.virtualPlaces && packages.virtualPlaces.features),
       ...asArray(packages.historicalPlaces && packages.historicalPlaces.features),
+      ...asArray(packages.sourcePlaces && packages.sourcePlaces.features),
     ];
     const places = featureCollection(
       packages.places.name || `${manifest.name} Orte`,
@@ -87,7 +88,11 @@
     );
     const people = applyAugmentations(
       applyAugmentations(
-        [...asArray(packages.people), ...asArray(packages.historicalPeople)],
+        [
+          ...asArray(packages.people),
+          ...asArray(packages.historicalPeople),
+          ...asArray(packages.sourcePeople),
+        ],
         packages.personAugmentations,
         person => person.id,
       ),
@@ -149,6 +154,7 @@
     const packages = Object.fromEntries(entries);
     for (const key of [
       'virtualPlaces', 'historicalPlaces', 'historicalPeople',
+      'sourcePlaces', 'sourcePeople',
       'placeAugmentations', 'personAugmentations', 'security', 'special',
       'archivePlaceAugmentations', 'archivePersonAugmentations',
     ]) {

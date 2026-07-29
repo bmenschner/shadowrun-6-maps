@@ -15,6 +15,8 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
+from review_source_candidates import FOCUSED_WORKS, FULL_WORK_CITY_IDS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CORPUS = Path("/mnt/c/Users/Privat/Documents/Shadowrun/txtexports")
@@ -81,6 +83,13 @@ def fold(value: str) -> str:
     return value.encode("ascii", "ignore").decode("ascii").casefold()
 
 
+def normalize_search(value: str) -> str:
+    """Fold accents while keeping punctuation available as word boundaries."""
+    value = unicodedata.normalize("NFKD", value)
+    value = "".join(char for char in value if not unicodedata.combining(char))
+    return re.sub(r"[^a-z0-9]+", " ", value.casefold()).strip()
+
+
 def normalize_name(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", fold(value))
 
@@ -89,7 +98,7 @@ def normalized_city_aliases(coverage: dict) -> dict[str, list[str]]:
     result = {}
     for city in coverage["cities"]:
         result[city["id"]] = [
-            re.sub(r"[^a-z0-9]+", " ", fold(alias)).strip()
+            normalize_search(alias)
             for alias in city["aliases"]
         ]
     return result
@@ -119,7 +128,13 @@ def is_heading(line: str) -> bool:
         return False
     if not line[0].isalpha() or any(character.isdigit() for character in line):
         return False
-    if ":" in line or re.search(r"\.\s+[A-ZÄÖÜ]", line):
+    sentence_check = re.sub(
+        r"^(?:Dr|Prof|Mr|Mrs|Ms)\.\s+",
+        "",
+        line,
+        flags=re.I,
+    )
+    if ":" in line or re.search(r"\.\s+[A-ZÄÖÜ]", sentence_check):
         return False
     if fold(line.split()[-1].strip(".,()")) in {"der", "die", "das", "the", "a", "an"}:
         return False
@@ -187,19 +202,33 @@ def classify(name: str, context: str) -> tuple[str, float]:
 def extract_for_work(
     work: dict,
     text: str,
+    source_file: str,
     relevant_cities: set[str],
     city_aliases: dict[str, list[str]],
+    full_work_cities: set[str],
 ) -> list[dict]:
-    candidates: dict[tuple[str, str, str], dict] = {}
-    folded_title = " " + re.sub(r"[^a-z0-9]+", " ", fold(work["title"])) + " "
-    focused_cities = {
+    # Keep repeated headings from the same work.  The first occurrence is
+    # frequently only a table-of-contents entry, while a later occurrence
+    # contains the actual dossier text.  The outer aggregation limits the
+    # retained occurrences per entity.
+    candidates: dict[tuple[str, str, str, int | None, int], dict] = {}
+    folded_title = " " + normalize_search(work["title"]) + " "
+    title_focused_cities = {
         city_id
         for city_id in relevant_cities
         if any(f" {alias} " in folded_title for alias in city_aliases[city_id])
     }
+    focused_cities = title_focused_cities | full_work_cities
+    work_focus_owners = {
+        city_id
+        for city_id in city_aliases
+        if city_id in FOCUSED_WORKS
+        and work["id"] in FOCUSED_WORKS[city_id]
+    }
+    active_chapter_cities: set[str] = set()
     for page_number, page_lines in pages(text):
         folded_lines = [
-            " " + re.sub(r"[^a-z0-9]+", " ", fold(line)) + " "
+            " " + normalize_search(line) + " "
             for line in page_lines
         ]
         mention_lines = {
@@ -217,51 +246,88 @@ def extract_for_work(
             continue
         for index, raw in enumerate(page_lines):
             name = re.sub(r"\s+", " ", raw).strip(" •·\t")
+            normalized_line = normalize_search(name)
+            letters = [character for character in name if character.isalpha()]
+            upper_ratio = (
+                sum(character.isupper() for character in letters) / len(letters)
+                if letters
+                else 0
+            )
+            chapter_matches = {
+                city_id
+                for city_id in work_focus_owners
+                if any(
+                    normalized_line == alias
+                    or (
+                        normalized_line.startswith(alias + " ")
+                        and len(normalized_line.split()) <= len(alias.split()) + 3
+                        and upper_ratio >= 0.55
+                    )
+                    for alias in city_aliases[city_id]
+                )
+            }
+            if chapter_matches:
+                active_chapter_cities = chapter_matches
             if not is_heading(name):
                 continue
-            previous_blank = index == 0 or not page_lines[index - 1].strip()
-            letters = [character for character in name if character.isalpha()]
-            mostly_upper = bool(letters) and (
-                sum(character.isupper() for character in letters) / len(letters) >= 0.72
-            )
-            if not previous_blank and not mostly_upper:
-                continue
-            candidate_cities = {
-                city_id
-                for city_id in page_cities
-                if city_id in focused_cities
-                or any(abs(index - mention_index) <= 10 for mention_index in mention_lines[city_id])
-            }
-            if not candidate_cities:
+            candidate_scopes = {}
+            for city_id in page_cities:
+                if city_id in title_focused_cities or city_id in full_work_cities:
+                    candidate_scopes[city_id] = "work"
+                elif (
+                    city_id in work_focus_owners
+                    and city_id in active_chapter_cities
+                ):
+                    candidate_scopes[city_id] = "chapter"
+                elif any(
+                    abs(index - mention_index) <= 20
+                    for mention_index in mention_lines[city_id]
+                ):
+                    candidate_scopes[city_id] = "proximity"
+            if not candidate_scopes:
                 continue
             context_lines = [
                 re.sub(r"\s+", " ", line).strip()
-                for line in page_lines[index: min(len(page_lines), index + 6)]
+                for line in page_lines[
+                    max(0, index - 3): min(len(page_lines), index + 6)
+                ]
                 if line.strip()
             ]
             context = " ".join(context_lines)
             if len(context) > 700:
                 context = context[:697].rstrip() + "…"
-            entity_type, confidence = classify(name, context)
-            if entity_type == "unknown" or confidence < 0.78:
-                continue
+            description_context = " ".join(
+                re.sub(r"\s+", " ", line).strip()
+                for line in page_lines[index: min(len(page_lines), index + 8)]
+                if line.strip()
+            )
+            if len(description_context) > 900:
+                description_context = (
+                    description_context[:897].rstrip() + "…"
+                )
+            entity_type, confidence = classify(name, description_context)
             normalized = normalize_name(name)
             if not normalized:
                 continue
-            for city_id in candidate_cities:
-                key = (city_id, normalized, entity_type)
-                if key in candidates:
-                    continue
+            for city_id, scope in candidate_scopes.items():
+                key = (city_id, normalized, entity_type, page_number, index)
                 candidates[key] = {
                     "candidateId": f"{work['id']}:{city_id}:{normalized}:{entity_type}",
                     "workId": work["id"],
                     "edition": work["edition"],
+                    "sourceFile": source_file,
+                    "scope": scope,
                     "cityId": city_id,
                     "rawName": name,
                     "entityType": entity_type,
                     "confidence": confidence,
-                    "locator": f"PDF-Seite {page_number}" if page_number else "Seitenstruktur fehlt",
+                    "locator": (
+                        f"PDF-Seite {page_number}"
+                        if page_number
+                        else f"Textzeile {index + 1}"
+                    ),
                     "context": context,
+                    "descriptionContext": description_context,
                     "status": "offen",
                 }
     return list(candidates.values())
@@ -289,19 +355,42 @@ def main() -> int:
         relevant = {
             city_id
             for city_id, item in rows[work_id]["cities"].items()
-            if item["status"] in {"nur-volltexttreffer", "noch-zu-prüfen"}
+            if (
+                item.get("entityExtraction", {}).get("status") == "offen"
+                or item["status"] in {"nur-volltexttreffer", "noch-zu-prüfen"}
+            )
             and (not selected_cities or city_id in selected_cities)
         }
         if not relevant:
             continue
-        path = arguments.corpus / work["primaryFile"]
-        text = path.read_text(encoding="utf-8", errors="ignore")
-        candidates = extract_for_work(
-            work,
-            text,
-            relevant,
-            city_aliases,
-        )
+        unique_files = []
+        seen_hashes = set()
+        for source_file in work.get("files", []):
+            content_hash = source_file.get("sha256")
+            if content_hash and content_hash in seen_hashes:
+                continue
+            if content_hash:
+                seen_hashes.add(content_hash)
+            unique_files.append(source_file["path"])
+        if not unique_files:
+            unique_files = [work["primaryFile"]]
+
+        candidates = []
+        for source_file in unique_files:
+            path = arguments.corpus / source_file
+            text = path.read_text(encoding="utf-8", errors="ignore")
+            candidates.extend(extract_for_work(
+                work,
+                text,
+                source_file,
+                relevant,
+                city_aliases,
+                {
+                    city_id
+                    for city_id in relevant
+                    if work_id in FULL_WORK_CITY_IDS.get(city_id, set())
+                },
+            ))
         for candidate in candidates:
             key = (
                 candidate["cityId"],
@@ -311,8 +400,11 @@ def main() -> int:
             occurrence = {
                 "workId": candidate.pop("workId"),
                 "edition": candidate.pop("edition"),
+                "sourceFile": candidate.pop("sourceFile"),
+                "scope": candidate.pop("scope"),
                 "locator": candidate.pop("locator"),
                 "context": candidate.pop("context"),
+                "descriptionContext": candidate.pop("descriptionContext"),
                 "confidence": candidate["confidence"],
             }
             current = output_by_entity.get(key)
@@ -324,6 +416,7 @@ def main() -> int:
                 output_by_entity[key] = candidate
             elif len(current["occurrences"]) < 25 and not any(
                 item["workId"] == occurrence["workId"]
+                and item.get("sourceFile") == occurrence.get("sourceFile")
                 and item["locator"] == occurrence["locator"]
                 for item in current["occurrences"]
             ):

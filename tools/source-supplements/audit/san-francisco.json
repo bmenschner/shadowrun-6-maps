@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "The Sandwich Shop",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "San Francisco Metroplex",
+      "appearances": [
+        {
+          "bookId": "sr5-srpm005-jumping-ship",
+          "citation": "Textzeile 8286",
+          "summary": "The Sandwich Shop ist in SRPM005 - Jumping Ship als benannter Schauplatz mit Bezug zu San Francisco Metroplex belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Axis Mundi",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "San Francisco Metroplex",
+      "scope": "San Francisco Metroplex",
+      "appearances": [
+        {
+          "bookId": "sr5-shadows-in-focus-city-by-shadow-san-francisco-metroplex",
+          "citation": "Textzeile 1066",
+          "summary": "Axis Mundi ist in Shadows in Focus - City by Shadow - San Francisco Metroplex als Person von Interesse mit Bezug zu San Francisco Metroplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Dr. Newpen",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "San Francisco Metroplex",
+      "scope": "San Francisco Metroplex",
+      "appearances": [
+        {
+          "bookId": "sr2-wunderwelten-9-10-chiphead",
+          "citation": "Textzeile 2914",
+          "summary": "Dr. Newpen ist in WunderWelten 9-10 - Chiphead als Person von Interesse mit Bezug zu San Francisco Metroplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "Karatsa-gumi (San Francisco)",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "San Francisco Metroplex",
+      "scope": "San Francisco Metroplex",
+      "appearances": [
+        {
+          "bookId": "sr4-unterwelten",
+          "citation": "Textzeile 5838",
+          "summary": "Karatsa-gumi (San Francisco) ist in Unterwelten als benannte Gruppe oder Organisation mit Bezug zu San Francisco Metroplex belegt."
+        },
+        {
+          "bookId": "sr4-vice",
+          "citation": "Textzeile 5594",
+          "summary": "Karatsa-gumi (San Francisco) ist in Vice als benannte Gruppe oder Organisation mit Bezug zu San Francisco Metroplex belegt."
+        }
+      ]
+    },
+    {
+      "name": "The Janitor",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "San Francisco Metroplex",
+      "scope": "San Francisco Metroplex",
+      "appearances": [
+        {
+          "bookId": "sr5-the-complete-trog",
+          "citation": "Textzeile 15779",
+          "summary": "The Janitor ist in The Complete Trog als Person von Interesse mit Bezug zu San Francisco Metroplex belegt."
+        }
+      ]
+    }
+  ]
+}

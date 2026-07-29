@@ -77,7 +77,7 @@ konkreten Quellenfund angezeigt.
 ## Technische Prüfung
 
 - Datenvalidator: 8 Stadtpakete, 2.476 Orte, 1.506 Personen und Gruppen.
-- Globaler Suchindex: 3.982 Einträge.
+- Globaler Suchindex nach dem werkweisen Vollaudit: 5.343 Einträge.
 - Browserprüfung aller sechs Karten: Stadtprofil sichtbar, Bezirkslayer
   geladen, keine JavaScript-Fehler.
 - Stichprobe Rhein-Ruhr: Klick auf die Stadtfläche Bergisch Gladbach öffnet

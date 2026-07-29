@@ -48,19 +48,32 @@
     .top-stats { display: flex; gap: 8px; flex-wrap: wrap; }
     .stat { border: 1px solid var(--line); background: rgba(0,0,0,.22); padding: 7px 10px; border-radius: 4px; color: var(--muted); font-size: 12px; }
     .stat b { color: var(--cyan); font-family: ui-monospace, monospace; }
-    .atlas-open { min-width: max-content; border: 1px solid rgba(255,46,166,.54); border-radius: 4px; padding: 8px 11px; background: linear-gradient(90deg, rgba(255,46,166,.13), rgba(64,248,221,.07)); color: var(--text); cursor: pointer; font: 700 11px/1.2 ui-monospace, monospace; letter-spacing: .05em; }
+    .atlas-open { min-width: max-content; min-height: 38px; border: 1px solid rgba(255,46,166,.54); border-radius: 4px; padding: 8px 11px; background: linear-gradient(90deg, rgba(255,46,166,.13), rgba(64,248,221,.07)); color: var(--text); cursor: pointer; font: 700 11px/1.2 ui-monospace, monospace; letter-spacing: .05em; }
     .atlas-open:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 18px rgba(64,248,221,.1); }
-    .theme-toggle { min-width: max-content; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; background: rgba(0,0,0,.18); color: var(--muted); cursor: pointer; font: 700 10px/1.2 ui-monospace, monospace; letter-spacing: .05em; }
+    .theme-toggle { min-width: max-content; min-height: 38px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; background: rgba(0,0,0,.18); color: var(--muted); cursor: pointer; font: 700 10px/1.2 ui-monospace, monospace; letter-spacing: .05em; }
     .theme-toggle:hover { border-color: var(--pink); }
     .theme-toggle [data-theme-choice] { opacity: .48; transition: opacity .15s, color .15s; }
     :root:not([data-theme="light"]) .theme-toggle [data-theme-choice="dark"],
     :root[data-theme="light"] .theme-toggle [data-theme-choice="light"] { color: var(--pink); opacity: 1; }
-    .top-actions { display: flex; align-items: center; gap: 8px; }
-    .city-picker { min-width: 132px; display: grid; gap: 2px; margin-left: auto; padding: 4px 7px; border: 1px solid var(--line); border-radius: 4px; background: rgba(0,0,0,.18); }
+    .top-actions { align-self: flex-start; display: flex; align-items: flex-start; gap: 8px; }
+    .support-open {
+      width: 38px; height: 38px; flex: 0 0 38px; display: inline-grid; place-items: center;
+      align-self: flex-start; margin-left: auto; padding: 0; border: 1px solid rgba(255,173,49,.58); border-radius: 4px;
+      background: linear-gradient(135deg, rgba(255,173,49,.15), rgba(255,46,166,.08));
+      color: var(--amber); cursor: pointer; font-size: 19px; line-height: 1;
+    }
+    .support-open:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 18px rgba(255,173,49,.14); }
+    .support-open img { width: 32px; height: 32px; display: block; object-fit: contain; }
+    .support-open span { display: none; }
+    .city-picker-group { min-width: 150px; align-self: flex-start; display: grid; gap: 3px; }
+    .city-picker { min-width: 0; min-height: 38px; display: grid; align-content: center; gap: 2px; margin-left: 0; padding: 4px 7px; border: 1px solid var(--line); border-radius: 4px; background: rgba(0,0,0,.18); }
     .city-picker span { color: var(--muted); font: 700 8px/1 ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; }
     .city-picker select { width: 100%; border: 0; padding: 0; outline: 0; background: transparent; color: var(--text); font: 700 10px/1.25 ui-monospace, monospace; cursor: pointer; }
     .city-picker select:disabled { cursor: default; opacity: .75; }
-    .map-mode-toggle { min-width: max-content; display: inline-flex; align-items: stretch; overflow: hidden; border: 1px solid var(--line); border-radius: 4px; background: rgba(0,0,0,.18); }
+    .city-list-preference { min-width: max-content; display: inline-flex; align-items: center; gap: 5px; padding: 0 2px; color: var(--muted); cursor: pointer; font: 700 8px/1.2 ui-monospace, monospace; letter-spacing: .02em; }
+    .city-list-preference:hover { color: var(--cyan); }
+    .city-list-preference input { width: 12px; height: 12px; margin: 0; accent-color: var(--pink); cursor: pointer; }
+    .map-mode-toggle { min-width: max-content; min-height: 38px; display: inline-flex; align-items: stretch; overflow: hidden; border: 1px solid var(--line); border-radius: 4px; background: rgba(0,0,0,.18); }
     .map-mode-button { display: inline-flex; align-items: center; gap: 5px; padding: 8px 9px; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; font: 700 10px/1.2 ui-monospace, monospace; letter-spacing: .04em; }
     .map-mode-button:last-child { border-right: 0; }
     .map-mode-button:hover { color: var(--cyan); }
@@ -69,7 +82,7 @@
     .map-mode-button[data-map-mode="offline"][aria-pressed="true"] .mode-dot { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
     .map-mode-button:disabled { opacity: .38; cursor: not-allowed; }
     .mode-dot { width: 6px; height: 6px; border: 1px solid currentColor; border-radius: 50%; }
-    .install-button { min-width: max-content; border: 1px solid rgba(98,239,143,.46); border-radius: 4px; padding: 8px 10px; background: linear-gradient(90deg, rgba(98,239,143,.1), rgba(64,248,221,.05)); color: var(--green); cursor: pointer; font: 700 10px/1.2 ui-monospace, monospace; letter-spacing: .04em; }
+    .install-button { min-width: max-content; min-height: 38px; border: 1px solid rgba(98,239,143,.46); border-radius: 4px; padding: 8px 10px; background: linear-gradient(90deg, rgba(98,239,143,.1), rgba(64,248,221,.05)); color: var(--green); cursor: pointer; font: 700 10px/1.2 ui-monospace, monospace; letter-spacing: .04em; }
     .install-button:hover { border-color: var(--cyan); color: var(--cyan); }
     .install-button[data-installed="true"] { color: var(--muted); border-color: var(--line); background: rgba(0,0,0,.14); }
     .leaflet-control-layers label.network-layer-disabled { opacity: .42; cursor: not-allowed; }
@@ -80,7 +93,22 @@
     .pwa-head h2 { flex: 1; margin: 0; font-size: 18px; }
     .pwa-body { padding: 14px; color: var(--text); font-size: 13px; line-height: 1.55; }
     .pwa-body p { margin: 0; }
-    .pwa-dialog-action { width: 100%; margin-top: 13px; padding: 9px 11px; border: 1px solid var(--pink); border-radius: 4px; background: linear-gradient(90deg, rgba(255,46,166,.14), rgba(64,248,221,.06)); color: var(--text); cursor: pointer; font: 700 11px/1.2 ui-monospace, monospace; }
+    .pwa-body p + p { margin-top: 10px; }
+    .pwa-body h3 { margin: 15px 0 6px; color: var(--cyan); font: 800 11px/1.3 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .pwa-body h3:first-child { margin-top: 0; }
+    .pwa-body a { color: var(--cyan); }
+    .pwa-body a:hover { color: var(--pink); }
+    .legal-panel { width: min(720px, 100%); max-height: min(88dvh, 820px); display: grid; grid-template-rows: auto minmax(0,1fr); }
+    .legal-body { overflow: auto; scrollbar-color: #30514d #090c12; }
+    .legal-body ul { margin: 7px 0 0; padding-left: 20px; }
+    .legal-body li + li { margin-top: 4px; }
+    .support-note { color: var(--muted); font-size: 11px; }
+    .support-title {
+      margin: 0 0 13px !important; padding: 0 0 10px; border-bottom: 1px solid var(--line);
+      color: var(--amber); font-size: 17px; font-weight: 900; letter-spacing: .02em;
+    }
+    .support-status { margin-top: 12px !important; padding: 8px 10px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); font: 10px/1.45 ui-monospace, monospace; }
+    .pwa-dialog-action { width: 100%; display: block; margin-top: 13px; padding: 9px 11px; border: 1px solid var(--pink); border-radius: 4px; background: linear-gradient(90deg, rgba(255,46,166,.14), rgba(64,248,221,.06)); color: var(--text); cursor: pointer; text-align: center; text-decoration: none; font: 700 11px/1.2 ui-monospace, monospace; }
     .pwa-dialog-action:hover { border-color: var(--cyan); color: var(--cyan); }
     .update-banner { position: absolute; z-index: 1080; top: 12px; left: 50%; display: flex; align-items: center; gap: 10px; max-width: calc(100% - 160px); padding: 8px 10px; transform: translateX(-50%); border: 1px solid var(--cyan); border-radius: 4px; background: rgba(5,10,17,.96); box-shadow: var(--shadow); color: var(--text); font: 11px/1.3 ui-monospace, monospace; }
     .update-banner button { border: 1px solid var(--pink); border-radius: 3px; padding: 5px 8px; background: rgba(255,46,166,.1); color: var(--text); cursor: pointer; }
@@ -230,6 +258,7 @@
     .leaflet-control-layers, .leaflet-bar a { color: var(--text); background: rgba(8,12,18,.94); border-color: var(--line) !important; }
     .leaflet-bar a:hover { color: var(--cyan); background: #111a22; }
     .leaflet-control-layers-expanded { padding: 10px 12px; }
+    .zoom-level-control { box-sizing: border-box; width: 34px; height: 34px; display: grid; place-items: center; color: var(--text); background: rgba(8,12,18,.94); border: 2px solid var(--line); border-radius: 4px; box-shadow: 0 1px 5px rgba(0,0,0,.65); font: 700 11px/1 ui-monospace, monospace; letter-spacing: .02em; pointer-events: none; user-select: none; }
     .leaflet-control-attribution { color: #879c99; background: rgba(5,8,12,.82) !important; }
     .leaflet-control-attribution a { color: var(--cyan); }
     .leaflet-tooltip.sr-label { color: var(--text); background: rgba(5,8,12,.93); border: 1px solid var(--pink); border-radius: 3px; box-shadow: none; font-size: 11px; }
@@ -258,10 +287,12 @@
     :root[data-theme="light"] h1 { color: #25292b; text-shadow: -1px 0 rgba(177,18,103,.68), 1px 0 rgba(11,143,155,.45); }
     :root[data-theme="light"] .stat,
     :root[data-theme="light"] .theme-toggle,
-    :root[data-theme="light"] .map-mode-toggle { background: rgba(255,255,255,.54); }
+    :root[data-theme="light"] .map-mode-toggle,
     :root[data-theme="light"] .install-button { background: rgba(255,255,255,.48); color: #287448; }
     :root[data-theme="light"] .pwa-panel,
     :root[data-theme="light"] .update-banner { background: #f7f7f3; color: var(--text); box-shadow: 0 18px 55px rgba(41,48,52,.22); }
+    :root[data-theme="light"] .support-open { background: linear-gradient(135deg, rgba(206,110,22,.12), rgba(177,18,103,.06)); color: #9b5808; }
+    :root[data-theme="light"] .legal-body { scrollbar-color: #a9b1b1 #ececea; }
     :root[data-theme="light"] .atlas-open,
     :root[data-theme="light"] .detail-plan-btn { border-color: rgba(177,18,103,.48); background: linear-gradient(90deg, rgba(177,18,103,.09), rgba(11,143,155,.06)); }
     :root[data-theme="light"] .sidebar { border-right-color: rgba(177,18,103,.35); background: linear-gradient(180deg, rgba(248,248,245,.99), rgba(231,232,229,.98)); }
@@ -324,6 +355,7 @@
     :root[data-theme="light"] .lore-label.special span { color: #087987; }
     :root[data-theme="light"] .leaflet-control-layers,
     :root[data-theme="light"] .leaflet-bar a { color: var(--text); background: rgba(249,249,246,.96); }
+    :root[data-theme="light"] .zoom-level-control { color: var(--text); background: rgba(249,249,246,.96); box-shadow: 0 1px 5px rgba(41,48,52,.24); }
     :root[data-theme="light"] .leaflet-bar a:hover { background: #eceeeb; }
     :root[data-theme="light"] .leaflet-control-attribution { color: #5d696f; background: rgba(247,247,244,.86) !important; }
     :root[data-theme="light"] .leaflet-tooltip.sr-label { background: rgba(250,250,247,.96); }
@@ -332,7 +364,7 @@
     @media (max-width: 800px) {
       .topbar {
         position: relative; min-height: calc(56px + env(safe-area-inset-top)); display: grid;
-        grid-template-columns: 40px minmax(0, 1fr); gap: 8px;
+        grid-template-columns: 40px 40px minmax(0, 1fr); gap: 8px;
         padding: calc(8px + env(safe-area-inset-top)) max(56px, calc(48px + env(safe-area-inset-right))) 8px max(8px, env(safe-area-inset-left));
       }
       .brand { display: none; }
@@ -342,14 +374,17 @@
       .sidebar.open { transform: translateX(0); }
       .mobile-toggle,
       .mobile-actions-toggle { display: inline-flex !important; }
-      .mobile-toggle { grid-column: 1; }
+      .mobile-toggle { grid-column: 1; align-self: start; }
+      .support-open { grid-column: 2; grid-row: 1; width: 40px; height: 40px; margin-left: 0; }
       .mobile-actions-toggle {
         position: absolute; z-index: 3; top: calc(8px + env(safe-area-inset-top));
         right: max(8px, env(safe-area-inset-right));
       }
       .boundary-key { left: 54px; }
-      .city-picker { grid-column: 2; grid-row: 1; min-width: 0; width: 100%; margin-left: 0; padding: 5px 9px; overflow: hidden; }
+      .city-picker-group { grid-column: 3; grid-row: 1; min-width: 0; width: 100%; }
+      .city-picker { min-width: 0; width: 100%; margin-left: 0; padding: 5px 9px; overflow: hidden; }
       .city-picker select { min-width: 0; font-size: 16px; text-overflow: ellipsis; }
+      .city-list-preference { display: none; }
       .top-actions {
         position: absolute; z-index: 1250; top: calc(100% + 6px); right: max(8px, env(safe-area-inset-right));
         width: min(300px, calc(100vw - 16px)); display: none; grid-template-columns: 1fr;
@@ -378,8 +413,10 @@
     @media (max-width: 560px) {
       .topbar { gap: 6px; }
       .city-picker span { font-size: 8px; }
+      .city-list-preference { font-size: 7px; }
       .boundary-key { display: none; }
       .pwa-dialog { padding: 10px; }
+      .legal-panel { max-height: calc(100dvh - 20px); }
       .update-banner { left: 8px; right: 8px; max-width: none; transform: none; }
       .detail-card { right: 8px; bottom: max(8px, env(safe-area-inset-bottom)); width: calc(100% - 16px); }
       .detail-body { max-height: min(58dvh, 590px); }
@@ -401,20 +438,27 @@
       <div class="top-stats">
         <div class="stat"><b id="placed-count">0</b> Orte</div>
         <div class="stat"><b id="person-count">0</b> Personen &amp; Gruppen</div>
-        <div class="stat">Straßenzug-Zoom <b>bis 19</b></div>
         <div class="stat"><span id="city-scope-label">Berlin + Umland</span> <b>aktiv</b></div>
       </div>
-      <label class="city-picker" for="city-select"><span>Karte</span><select id="city-select" aria-label="Stadt oder Region auswählen"></select></label>
+      <button class="support-open" id="support-open" type="button" aria-label="Projekt freiwillig unterstützen" title="Projekt freiwillig unterstützen"><img id="support-coffee-image" src="icons/support-coffee-dark.png" data-dark-src="icons/support-coffee-dark.png" data-light-src="icons/support-coffee-light.png" alt=""></button>
+      <div class="city-picker-group">
+        <label class="city-picker" for="city-select"><span>Karte</span><select id="city-select" aria-label="Stadt oder Region auswählen"></select></label>
+        <label class="city-list-preference" title="Blendet alle verfügbaren Städte dauerhaft in der Kartenauswahl ein">
+          <input id="show-all-cities" type="checkbox">
+          Weitere Städte dauerhaft
+        </label>
+      </div>
       <button class="mobile-actions-toggle" id="mobile-actions-toggle" type="button" aria-label="Kartenfunktionen öffnen" aria-controls="top-actions" aria-expanded="false">⋮</button>
       <div class="top-actions" id="top-actions">
+        <button class="atlas-open" id="city-info-open" type="button" hidden>ⓘ Stadt</button>
+        <button class="atlas-open" id="atlas-open" type="button">▦ Karten</button>
         <div class="map-mode-toggle" id="map-mode-toggle" role="group" aria-label="Kartenmodus Online oder Offline">
           <button class="map-mode-button" id="map-mode-online" type="button" data-map-mode="online" aria-pressed="true"><span class="mode-dot" aria-hidden="true"></span>Online</button>
           <button class="map-mode-button" id="map-mode-offline" type="button" data-map-mode="offline" aria-pressed="false"><span class="mode-dot" aria-hidden="true"></span>Offline</button>
         </div>
-        <button class="atlas-open" id="city-info-open" type="button" hidden>ⓘ Stadt</button>
-        <button class="atlas-open" id="atlas-open" type="button">▦ Karten</button>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Farbschema wechseln" aria-pressed="false"><span data-theme-choice="light">Light</span><span aria-hidden="true">/</span><span data-theme-choice="dark">Dark</span></button>
         <button class="install-button" id="install-app" type="button" aria-label="Shadowrun Stadtkarten als App installieren">⇩ App installieren</button>
+        <button class="atlas-open" id="legal-open" type="button">§ Disclaimer</button>
       </div>
       <span class="visually-hidden" id="connection-status" role="status" aria-live="polite"></span>
     </header>
@@ -500,6 +544,53 @@
         <div class="pwa-body"><p id="pwa-dialog-message"></p><button class="pwa-dialog-action" id="pwa-dialog-action" type="button" hidden></button></div>
       </section>
     </div>
+    <div class="pwa-dialog" id="support-dialog" role="dialog" aria-modal="true" aria-labelledby="support-dialog-title" hidden>
+      <section class="pwa-panel">
+        <header class="pwa-head"><h2 id="support-dialog-title">Projekt unterstützen</h2><button class="close" id="support-dialog-close" type="button" aria-label="Unterstützungsdialog schließen">×</button></header>
+        <div class="pwa-body">
+          <p class="support-title"><strong>Kauf mir einen Kaffee! :)</strong></p>
+          <p>Diese Anwendung ist und bleibt vollständig kostenlos. Wenn dir das Projekt gefällt, kannst du seine laufende Entwicklung und die technischen Betriebskosten freiwillig unterstützen.</p>
+          <p>Die Unterstützung ist keine Voraussetzung für den Zugriff auf Inhalte oder Funktionen und begründet keinen Anspruch auf eine Gegenleistung.</p>
+          <p class="support-note">Es handelt sich nicht um eine steuerlich abzugsfähige Spende. Es werden keine Spendenbescheinigungen ausgestellt.</p>
+          <a class="pwa-dialog-action" id="support-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Freiwillig unterstützen</a>
+          <p class="support-status" id="support-status">Der Unterstützungsbutton ist vorbereitet. Eine Zahlungsadresse wurde noch nicht hinterlegt.</p>
+        </div>
+      </section>
+    </div>
+    <div class="pwa-dialog" id="legal-dialog" role="dialog" aria-modal="true" aria-labelledby="legal-dialog-title" hidden>
+      <section class="pwa-panel legal-panel">
+        <header class="pwa-head"><h2 id="legal-dialog-title">Disclaimer &amp; Lizenzen</h2><button class="close" id="legal-dialog-close" type="button" aria-label="Disclaimer schließen">×</button></header>
+        <div class="pwa-body legal-body">
+          <h3>Inoffizielles Fanprojekt</h3>
+          <p>Diese Anwendung ist ein privat betriebenes, unentgeltliches und inoffizielles Fanprojekt. Es besteht keine geschäftliche oder organisatorische Verbindung zu The Topps Company, Inc., Catalyst Game Labs, InMediaRes Productions, LLC oder Pegasus Spiele GmbH. Das Projekt wird von diesen Unternehmen weder herausgegeben noch unterstützt, geprüft oder empfohlen.</p>
+
+          <h3>Shadowrun-Rechte</h3>
+          <p>Shadowrun, Sixth World, Matrix sowie zugehörige Namen, Figuren, Orte, Begriffe, Grafiken und Logos sind Marken, eingetragene Marken oder geschützte Inhalte ihrer jeweiligen Rechteinhaber. Shadowrun ist eine eingetragene Marke von The Topps Company, Inc. Die deutsche Ausgabe erscheint bei Pegasus Spiele unter Lizenz von Catalyst Game Labs und The Topps Company, Inc. Sämtliche Rechte an den referenzierten Publikationen und deren Inhalten verbleiben bei den jeweiligen Rechteinhabern.</p>
+
+          <h3>Inhalte und Quellen</h3>
+          <p>Die Anwendung dient als nichtkommerzielle Karten- und Orientierungshilfe sowie als Quellen- und Spielleitungsindex. Redaktionelle Beschreibungen sind eigenständig formulierte Zusammenfassungen und ersetzen keine offiziellen Shadowrun-Publikationen. Quellen werden nach Möglichkeit mit Werk und Edition ausgewiesen. Die Anwendung ist kein offizielles Nachschlagewerk; eigene Ergänzungen, Koordinaten und Grenzverläufe sind redaktionelle Interpretationen.</p>
+
+          <h3>Datenqualität und KI-Unterstützung</h3>
+          <p>Die enthaltenen Informationen können unvollständig, veraltet, uneindeutig oder fehlerhaft sein. Eine redaktionelle Prüfung des umfangreichen Datenbestands hat nur stichprobenartig stattgefunden. Angaben sollten deshalb vor ihrer Verwendung anhand der jeweils ausgewiesenen offiziellen Originalquellen überprüft werden. Für Richtigkeit, Vollständigkeit, Aktualität, editionsgenaue Zuordnung oder geografische Genauigkeit wird keine Gewähr übernommen.</p>
+          <p>Teile des Datenbestands wurden unter menschlicher Anleitung mithilfe KI-basierter Werkzeuge aus den für das Projekt bereitgestellten Quellen recherchiert, extrahiert, strukturiert, zusammengefasst, zugeordnet und georeferenziert. KI-gestützte Verarbeitung kann trotz Prüfregeln, Quellenzuweisung und Plausibilitätskontrollen fehlerhafte oder unzutreffende Ergebnisse erzeugen. Maßgeblich sind stets die jeweils genannten offiziellen Publikationen.</p>
+
+          <h3>Software und eigene Daten</h3>
+          <p>Der selbst entwickelte Programmcode steht unter der <a href="LICENSE" target="_blank" rel="license">GNU General Public License Version 3 oder später</a> (GPL-3.0-or-later). Eigene redaktionelle Beschreibungen, geografische Rekonstruktionen, Koordinaten und Datenbankbestandteile stehen, soweit nicht anders gekennzeichnet, unter <a href="LICENSE-CONTENT.md" target="_blank" rel="license">CC BY-NC-SA 4.0</a>.</p>
+          <p>Diese Lizenzen gelten ausdrücklich nicht für Shadowrun-Inhalte, Marken, Logos, Illustrationen, Karten, Fankit-Inhalte, Textauszüge oder sonstige Inhalte Dritter. Die Aufnahme eines Inhalts stellt keine Vergabe von Nutzungsrechten daran dar.</p>
+
+          <h3>Kartendaten</h3>
+          <p>Kartendaten: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap-Mitwirkende</a>, veröffentlicht unter der Open Database License (ODbL).</p>
+          <p>Die Online-Basiskarten und Straßenbeschriftungen werden durch <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a> dargestellt. Die interaktive Kartendarstellung verwendet <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a>, veröffentlicht unter der BSD-2-Clause-Lizenz.</p>
+          <p id="boundary-source-legal">Die Quellen der verwendeten Grenzgrundlagen werden abhängig von der ausgewählten Stadt oder Region ausgewiesen.</p>
+
+          <h3>Freiwillige Unterstützung</h3>
+          <p>Freiwillige Unterstützungszahlungen dienen der Weiterentwicklung und dem technischen Betrieb des Fanprojekts. Sie stellen keinen Kaufpreis und keine Vergütung für Shadowrun-Inhalte dar. Alle Inhalte und Funktionen bleiben unabhängig von einer Unterstützung kostenlos zugänglich.</p>
+
+          <h3>Rechtehinweise</h3>
+          <p>Berechtigte Hinweise auf unzulässig verwendete oder unzureichend gekennzeichnete Inhalte können über die <a href="https://github.com/bmenschner/sr6-berlin-map/issues" target="_blank" rel="noopener noreferrer">Projektseite auf GitHub</a> gemeldet werden. Betroffene Inhalte werden geprüft und erforderlichenfalls angepasst oder entfernt.</p>
+        </div>
+      </section>
+    </div>
   </div>
   <script src="output/map/vendor/leaflet.js"></script>
   <script src="app/city-loader.js"></script>
@@ -509,6 +600,15 @@
       const EMBEDDED_CITY_REGISTRY = null;
       const EMBEDDED_OFFLINE_BASE = "";
       const HYBRID_APP = true;
+      const SUPPORT_URL = "https://ko-fi.com/sr6maps";
+      const PUBLISHED_APP_URL = "https://bmenschner.github.io/sr6-berlin-map/";
+      let deferredInstallPrompt = null;
+      window.addEventListener('beforeinstallprompt', event => {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        const button = document.getElementById('install-app');
+        if (button) button.dataset.ready = 'true';
+      });
       const urlParameters = new URLSearchParams(window.location.search);
       const LOCAL_DEVELOPMENT = urlParameters.get('dev') === '1'
         && ['127.0.0.1', 'localhost'].includes(window.location.hostname);
@@ -546,6 +646,7 @@
       const mobileToggle = document.getElementById('mobile-toggle');
       const mobileActionsToggle = document.getElementById('mobile-actions-toggle');
       const topActions = document.getElementById('top-actions');
+      const showAllCitiesToggle = document.getElementById('show-all-cities');
       const mobileNavigationActive = () => window.matchMedia('(max-width: 800px)').matches;
       const setSidebarOpen = open => {
         const shouldOpen = Boolean(open && mobileNavigationActive());
@@ -569,15 +670,77 @@
           mobileToggle.setAttribute('aria-label', 'Orte und Personen öffnen');
         }
       };
-      (cityContext.registry.cities || []).forEach(city => {
+      const primaryCityIds = [
+        'seattle', 'berlin-2080', 'rhein-ruhr-2082', 'denver',
+        'hamburg-2080', 'manhattan', 'toronto-2080', 'chicago',
+      ];
+      const cityMenuStorageKey = 'sr6-show-all-cities';
+      const cityMenuShowValue = '__show_more_cities__';
+      const cityMenuHideValue = '__hide_more_cities__';
+      const availableCities = cityContext.registry.cities || [];
+      const citiesById = new Map(availableCities.map(city => [city.id, city]));
+      const primaryCities = primaryCityIds.map(cityId => citiesById.get(cityId)).filter(Boolean);
+      const additionalCities = availableCities
+        .filter(city => !primaryCityIds.includes(city.id))
+        .sort((first, second) => first.name.localeCompare(second.name, 'de', { sensitivity: 'base' }));
+      let persistentlyShowAllCities = false;
+      try { persistentlyShowAllCities = window.localStorage.getItem(cityMenuStorageKey) === 'true'; } catch (error) {}
+      let showAllCities = persistentlyShowAllCities;
+
+      const appendCityOption = (parent, city) => {
         const option = document.createElement('option');
         option.value = city.id;
         option.textContent = `${city.name}${city.year ? ` ${city.year}` : ''}`;
-        option.selected = city.id === cityContext.city.id;
-        citySelect.appendChild(option);
-      });
+        parent.appendChild(option);
+      };
+
+      const renderCityOptions = () => {
+        citySelect.replaceChildren();
+        const currentIsPrimary = primaryCityIds.includes(cityContext.city.id);
+        if (!showAllCities && !currentIsPrimary) {
+          const currentGroup = document.createElement('optgroup');
+          currentGroup.label = 'Aktuelle Karte';
+          appendCityOption(currentGroup, cityContext.city);
+          citySelect.appendChild(currentGroup);
+        }
+
+        const primaryGroup = document.createElement('optgroup');
+        primaryGroup.label = 'Hauptkarten';
+        primaryCities.forEach(city => appendCityOption(primaryGroup, city));
+        citySelect.appendChild(primaryGroup);
+
+        if (showAllCities) {
+          const additionalGroup = document.createElement('optgroup');
+          additionalGroup.label = `Weitere Städte (${additionalCities.length})`;
+          additionalCities.forEach(city => appendCityOption(additionalGroup, city));
+          citySelect.appendChild(additionalGroup);
+          const hideOption = document.createElement('option');
+          hideOption.value = cityMenuHideValue;
+          hideOption.textContent = '− Weitere Städte ausblenden';
+          citySelect.appendChild(hideOption);
+        } else if (additionalCities.length) {
+          const showOption = document.createElement('option');
+          showOption.value = cityMenuShowValue;
+          showOption.textContent = `＋ Weitere Städte anzeigen (${additionalCities.length})`;
+          citySelect.appendChild(showOption);
+        }
+        citySelect.value = cityContext.city.id;
+        showAllCitiesToggle.checked = persistentlyShowAllCities;
+      };
+
+      renderCityOptions();
       citySelect.disabled = citySelect.options.length < 2 || Boolean(EMBEDDED_DATA);
       citySelect.addEventListener('change', () => {
+        if (citySelect.value === cityMenuShowValue || citySelect.value === cityMenuHideValue) {
+          showAllCities = citySelect.value === cityMenuShowValue;
+          if (!showAllCities && persistentlyShowAllCities) {
+            persistentlyShowAllCities = false;
+            try { window.localStorage.setItem(cityMenuStorageKey, 'false'); } catch (error) {}
+          }
+          renderCityOptions();
+          citySelect.focus();
+          return;
+        }
         try { window.localStorage.setItem(cityStorageKey, citySelect.value); } catch (error) {}
         const target = new URL(window.location.href);
         target.searchParams.set('city', citySelect.value);
@@ -585,6 +748,12 @@
         target.searchParams.delete('person');
         target.searchParams.delete('atlas');
         window.location.assign(target.href);
+      });
+      showAllCitiesToggle.addEventListener('change', () => {
+        persistentlyShowAllCities = showAllCitiesToggle.checked;
+        showAllCities = persistentlyShowAllCities;
+        try { window.localStorage.setItem(cityMenuStorageKey, persistentlyShowAllCities ? 'true' : 'false'); } catch (error) {}
+        renderCityOptions();
       });
       try { window.localStorage.setItem(cityStorageKey, cityContext.city.id); } catch (error) {}
       document.getElementById('city-title').textContent = cityLabel;
@@ -691,15 +860,29 @@
         button.setAttribute('aria-pressed', currentTheme === 'light' ? 'true' : 'false');
         button.setAttribute('aria-label', `Farbschema wechseln. Aktiv: ${currentTheme === 'light' ? 'Light' : 'Dark'}`);
       };
+      const syncSupportCoffeeImage = () => {
+        const image = document.getElementById('support-coffee-image');
+        const source = currentTheme === 'light' ? image.dataset.lightSrc : image.dataset.darkSrc;
+        if (image.getAttribute('src') !== source) image.src = source;
+      };
       syncThemeButton();
+      syncSupportCoffeeImage();
       const escapeHtml = value => String(value || '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
       const installButton = document.getElementById('install-app');
       const pwaDialog = document.getElementById('pwa-dialog');
       const pwaDialogTitle = document.getElementById('pwa-dialog-title');
       const pwaDialogMessage = document.getElementById('pwa-dialog-message');
       const pwaDialogAction = document.getElementById('pwa-dialog-action');
-      let deferredInstallPrompt = null;
+      const supportDialog = document.getElementById('support-dialog');
+      const supportLink = document.getElementById('support-link');
+      const supportStatus = document.getElementById('support-status');
+      const legalDialog = document.getElementById('legal-dialog');
       let dialogActionHandler = null;
+      if (SUPPORT_URL) {
+        supportLink.href = SUPPORT_URL;
+        supportLink.hidden = false;
+        supportStatus.hidden = true;
+      }
       const installedDisplayMode = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
       const syncInstallButton = () => {
         const installed = installedDisplayMode();
@@ -712,6 +895,8 @@
         dialogActionHandler = null;
         pwaDialogAction.hidden = true;
       };
+      const closeSupportDialog = () => { supportDialog.hidden = true; };
+      const closeLegalDialog = () => { legalDialog.hidden = true; };
       const showPwaDialog = (title, message, actionLabel = '', action = null) => {
         pwaDialogTitle.textContent = title;
         pwaDialogMessage.textContent = message;
@@ -725,6 +910,15 @@
           showPwaDialog(`${cityLabel} ist installiert`, 'Die Karte läuft bereits als installierte App. Updates werden automatisch beim nächsten Onlinebesuch bereitgestellt.');
           return;
         }
+        if (LOCAL_DEVELOPMENT || window.location.protocol === 'file:') {
+          showPwaDialog(
+            'Installierbare Web-App öffnen',
+            'Die lokale Entwicklungsvorschau verwendet bewusst keinen Service Worker und kann deshalb nicht direkt installiert werden. Öffne die veröffentlichte HTTPS-Web-App und wähle dort erneut „App installieren“.',
+            'Web-App öffnen',
+            () => window.open(PUBLISHED_APP_URL, '_blank', 'noopener,noreferrer'),
+          );
+          return;
+        }
         if (deferredInstallPrompt) {
           const promptEvent = deferredInstallPrompt;
           deferredInstallPrompt = null;
@@ -733,21 +927,21 @@
           if (choice.outcome !== 'accepted') showPwaDialog('Installation abgebrochen', 'Du kannst die Installation jederzeit erneut über diesen Button oder das Browsermenü starten.');
           return;
         }
-        if (window.location.protocol === 'file:') {
-          showPwaDialog('Installation über die Webadresse', `Die lokale HTML-Datei bleibt direkt nutzbar. Als installierbare App steht ${cityLabel} über die GitHub-Pages-Adresse mit HTTPS bereit.`);
-          return;
-        }
         if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
           showPwaDialog('Auf iPhone oder iPad installieren', `Öffne das Teilen-Menü in Safari und wähle „Zum Home-Bildschirm“. Danach startet ${cityLabel} wie eine App.`);
           return;
         }
+        try {
+          if (navigator.brave && await navigator.brave.isBrave()) {
+            showPwaDialog(
+              'In Brave installieren',
+              `Brave hat für ${cityLabel} keinen direkten Installationsdialog bereitgestellt. Öffne das Brave-Hauptmenü (≡) und wähle „${cityLabel} installieren“. In einem privaten Fenster ist die PWA-Installation nicht verfügbar.`,
+            );
+            return;
+          }
+        } catch (error) {}
         showPwaDialog('Über das Browsermenü installieren', 'Dieser Browser stellt keinen direkten Installationsdialog bereit. Nutze im Browsermenü „App installieren“ oder „Zum Startbildschirm hinzufügen“.');
       };
-      window.addEventListener('beforeinstallprompt', event => {
-        event.preventDefault();
-        deferredInstallPrompt = event;
-        installButton.dataset.ready = 'true';
-      });
       window.addEventListener('appinstalled', () => {
         deferredInstallPrompt = null;
         syncInstallButton();
@@ -766,10 +960,11 @@
         markerZoomAnimation: !PERFORMANCE_MODE,
         zoomControl: false,
         minZoom: 8,
-        maxZoom: 19,
+        maxZoom: 20,
         maxBounds: DATA.regionBounds,
         maxBoundsViscosity: 1
       });
+      map.attributionControl.setPrefix(false);
       L.control.zoom({ position: 'topright' }).addTo(map);
       map.createPane('offlineBasePane'); map.getPane('offlineBasePane').style.zIndex = 150;
       map.createPane('streetLabelPane'); map.getPane('streetLabelPane').style.zIndex = 397; map.getPane('streetLabelPane').style.pointerEvents = 'none';
@@ -777,8 +972,14 @@
         pane: 'offlineBasePane', opacity: .9, interactive: false, className: 'offline-overview'
       }) : null;
       const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19, detectRetina: true, className: 'cyber-tiles',
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende'
+        // Leaflet shifts Retina tile requests up by one zoom level and lowers
+        // maxZoom by one. These paired limits keep map zoom 20 reachable while
+        // ensuring that OSM is never queried above its native zoom 19.
+        maxNativeZoom: L.Browser.retina ? 18 : 19,
+        maxZoom: L.Browser.retina ? 21 : 20,
+        detectRetina: true,
+        className: 'cyber-tiles',
+        attribution: 'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>-Mitwirkende'
       });
       const official = L.tileLayer.wms('https://gdi.berlin.de/services/wms/uek50', {
         layers: 'a_uek50_10', format: 'image/png', transparent: false, version: '1.3.0',
@@ -786,7 +987,7 @@
       });
       const streetLabels = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${themePalette().labels}/{z}/{x}/{y}{r}.png`, {
         pane: 'streetLabelPane', subdomains: 'abcd', maxZoom: 20, className: 'street-label-tiles',
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        attribution: 'Darstellung &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
       });
       map.createPane('statusPane'); map.getPane('statusPane').style.zIndex = 370;
       map.createPane('securityPane'); map.getPane('securityPane').style.zIndex = 374;
@@ -891,24 +1092,6 @@
         pane: 'districtPane',
         style: districtStyle,
         onEachFeature: (feature, layer) => {
-          const boundaryLabels = {
-            municipality: 'Stadt / Bezirk',
-            'adl-region': 'ADL-Region',
-            'lore-municipality': 'Lore-Stadt / Kommune',
-            'lore-region': 'Lore-Region',
-            'lore-inner-district': 'Innerer Shadowrun-Bezirk',
-            'lore-outer-district': 'Äußerer Shadowrun-Bezirk',
-            'lore-district': 'Shadowrun-Bezirk',
-            'island-district': 'Shadowrun-Inselbezirk',
-            'military-district': 'Militärischer Shadowrun-Bezirk',
-            'foreign-enclave': 'Fremdes Staatsgebiet',
-          };
-          const boundaryLabel = boundaryLabels[feature.properties.boundary_role] || 'Bezirk';
-          const basis = feature.properties.basis || feature.properties.description_preview || 'Shadowrun-Grenzstand';
-          layer.bindTooltip(
-            `${boundaryLabel} · ${escapeHtml(feature.properties.name)}<br><span class="tooltip-basis">Basis: ${escapeHtml(basis)}</span>`,
-            { className: 'sr-label', sticky: true }
-          );
           const entityId = Number(feature.properties.entity_id);
           const dossier = Number.isInteger(entityId)
             ? DATA.geojson.features.find(item => item.properties.id === entityId)
@@ -1027,11 +1210,21 @@
       const boundarySource = DATA.boundary.features
         .map(feature => feature.properties || {})
         .find(properties => properties.source);
-      map.attributionControl.addAttribution(
-        boundarySource
-          ? `Grenzen: <a href="${escapeHtml(boundarySource.source_url)}">${escapeHtml(boundarySource.source)}</a>`
-          : 'Grenzen: Geoportal Berlin / ALKIS, dl-de-zero-2.0 · GeoBasis-DE/LGB, dl-de/by-2-0'
-      );
+      const boundarySourceLegal = document.getElementById('boundary-source-legal');
+      if (boundarySource) {
+        const sourceName = escapeHtml(boundarySource.source);
+        const sourceLink = boundarySource.source_url
+          ? `<a href="${escapeHtml(boundarySource.source_url)}" target="_blank" rel="noopener noreferrer">${sourceName}</a>`
+          : sourceName;
+        boundarySourceLegal.innerHTML = `Grenzgrundlage der ausgewählten Karte: ${sourceLink}.`;
+      }
+      map.attributionControl.addAttribution('<a href="#legal-dialog" class="attribution-legal-open">Disclaimer</a>');
+      document.addEventListener('click', event => {
+        const attributionLegalLink = event.target.closest && event.target.closest('.attribution-legal-open');
+        if (!attributionLegalLink) return;
+        event.preventDefault();
+        legalDialog.hidden = false;
+      }, true);
       const personRelationMarkers = [];
       const personRelationLayer = L.layerGroup();
       function rebuildPersonRelationMarkers() {
@@ -1113,6 +1306,21 @@
         overlays,
         { position: 'topright', collapsed: true }
       ).addTo(map);
+      let zoomLevelDisplay;
+      const zoomLevelControl = L.control({ position: 'topright' });
+      zoomLevelControl.onAdd = () => {
+        zoomLevelDisplay = L.DomUtil.create('div', 'zoom-level-control');
+        zoomLevelDisplay.setAttribute('role', 'status');
+        zoomLevelDisplay.setAttribute('aria-label', 'Aktuelle Zoomstufe');
+        zoomLevelDisplay.textContent = `x${DATA.zoom}`;
+        return zoomLevelDisplay;
+      };
+      zoomLevelControl.addTo(map);
+      const updateZoomLevelDisplay = () => {
+        if (zoomLevelDisplay && Number.isFinite(map.getZoom())) {
+          zoomLevelDisplay.textContent = `x${map.getZoom()}`;
+        }
+      };
       let activeOnlineBase = street;
       let labelsWanted = true;
       let switchingMapMode = false;
@@ -1206,6 +1414,7 @@
       document.getElementById('map-mode-offline').disabled = !HAS_OFFLINE_BASE;
       setMapMode(requestedMapMode, { persist: false, automatic: true });
       map.fitBounds(DATA.regionBounds, { padding: [18, 18] });
+      updateZoomLevelDisplay();
 
       const entities = new Map(DATA.entities.map(item => [item.id, item]));
       const featureById = new Map(DATA.geojson.features.map(feature => [feature.properties.id, feature]));
@@ -1231,6 +1440,7 @@
           try { window.localStorage.setItem(themeStorageKey, currentTheme); } catch (error) {}
         }
         syncThemeButton();
+        syncSupportCoffeeImage();
         streetLabels.setUrl(`https://{s}.basemaps.cartocdn.com/${themePalette().labels}/{z}/{x}/{y}{r}.png`);
         anarchoAreas.setStyle(areaStatusStyle);
         normalAreas.setStyle(areaStatusStyle);
@@ -1658,9 +1868,9 @@
         list.replaceChildren();
         const globalSearch = Boolean(document.getElementById('search').value.trim());
         if (globalSearch) {
-          if (placeResults.length) { appendGroup(list, `Orte · ${placeResults.length}`); appendPlaceResults(list, placeResults); }
-          if (personResults.length) { appendGroup(list, `Personen & Gruppen · ${personResults.length}`); appendPersonResults(list, personResults); }
-          if (crossCityResults.length) { appendGroup(list, `Weitere Städte · ${crossCityResults.length}`); appendCrossCityResults(list, crossCityResults); }
+          if (placeResults.length) { appendGroup(list, `${cityContext.city.name} · Orte · ${placeResults.length}`); appendPlaceResults(list, placeResults); }
+          if (personResults.length) { appendGroup(list, `${cityContext.city.name} · Personen & Gruppen · ${personResults.length}`); appendPersonResults(list, personResults); }
+          if (crossCityResults.length) { appendGroup(list, `Andere Städte · ${crossCityResults.length}`); appendCrossCityResults(list, crossCityResults); }
           if (!placeResults.length && !personResults.length && !crossCityResults.length) appendGroup(list, 'Keine Treffer');
         } else if (browseMode === 'persons') {
           appendPersonResults(list, personResults);
@@ -1713,6 +1923,8 @@
         if (event.key !== 'Escape') return;
         if (!document.getElementById('atlas-dialog').hidden) closeAtlas();
         if (!pwaDialog.hidden) closePwaDialog();
+        if (!supportDialog.hidden) closeSupportDialog();
+        if (!legalDialog.hidden) closeLegalDialog();
         setSidebarOpen(false);
         setMobileActionsOpen(false);
       });
@@ -1728,6 +1940,12 @@
       installButton.addEventListener('click', requestAppInstallation);
       document.getElementById('pwa-dialog-close').addEventListener('click', closePwaDialog);
       pwaDialog.addEventListener('click', event => { if (event.target === pwaDialog) closePwaDialog(); });
+      document.getElementById('support-open').addEventListener('click', () => { supportDialog.hidden = false; });
+      document.getElementById('support-dialog-close').addEventListener('click', closeSupportDialog);
+      supportDialog.addEventListener('click', event => { if (event.target === supportDialog) closeSupportDialog(); });
+      document.getElementById('legal-open').addEventListener('click', () => { legalDialog.hidden = false; });
+      document.getElementById('legal-dialog-close').addEventListener('click', closeLegalDialog);
+      legalDialog.addEventListener('click', event => { if (event.target === legalDialog) closeLegalDialog(); });
       pwaDialogAction.addEventListener('click', () => {
         const action = dialogActionHandler;
         closePwaDialog();
@@ -1750,6 +1968,7 @@
       });
       map.on('zoomend', () => {
         document.getElementById('zoom-state').textContent = `Zoom ${map.getZoom()}`;
+        updateZoomLevelDisplay();
         mapEl.classList.toggle('zoom-detail', map.getZoom() >= 12);
         markerById.forEach((markers, id) => markers.forEach(marker => marker.setStyle(markerStyle(featureById.get(id), markerIsActive(id)))));
       });

@@ -1,19 +1,16 @@
 # Georeferenzierungs-Audit des Vollimports
 
-Stand: 28. Juli 2026
+Stand: 29. Juli 2026
 
 ## Ergebnis
 
-Die 75 Stadtpakete enthalten in ihren primären Ortsdateien:
+Die 75 Stadtpakete enthalten insgesamt:
 
-- 2.987 Orts- und Bezirksdossiers
+- 3.399 Orts- und Bezirksdossiers
 - 2.702 sichtbare Punktgeometrien
-- 285 bewusst nicht gesetzte Punktgeometrien
+- 697 bewusst nicht gesetzte Punktgeometrien
 - 169 bereits vorhandene Bezirks- oder Lore-Grenzflächen
 - 8 vorhandene Stadt- oder Regionsgrenzen
-
-Der Validator zählt zusätzlich historische und virtuelle Ortsdateien und
-kommt deshalb auf insgesamt 3.010 Orte.
 
 ## Bedeutung der Punktgeometrien
 
@@ -23,7 +20,7 @@ Teilraumzuordnung wird nicht als exakte Adresse ausgegeben. Die
 `accuracy`- und `placement_note`-Felder bleiben für diese Unterscheidung
 verbindlich.
 
-Die 285 Einträge mit `geometry: null` sind kein technischer Fehler. Für diese
+Die 697 Einträge mit `geometry: null` sind kein technischer Fehler. Für diese
 Orte ist nur die Stadt oder ein Lore-Teilraum belastbar belegt. Sie bleiben
 über Katalog und globale Suche vollständig erreichbar, ohne eine erfundene
 Kartenposition vorzutäuschen.

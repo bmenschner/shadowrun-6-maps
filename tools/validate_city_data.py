@@ -178,7 +178,11 @@ def validate_city(
 
     places = read_json(city_dir / manifest["files"]["places"])
     validate_feature_collection(places, f"{city['id']} Orte", allow_null_geometry=True)
-    for key, label in (("virtualPlaces", "virtuelle Orte"), ("historicalPlaces", "historische Orte")):
+    for key, label in (
+        ("virtualPlaces", "virtuelle Orte"),
+        ("historicalPlaces", "historische Orte"),
+        ("sourcePlaces", "zusätzliche Quellenorte"),
+    ):
         supplemental_path = manifest.get("files", {}).get(key)
         if supplemental_path:
             supplemental = read_json(city_dir / supplemental_path)
@@ -222,6 +226,9 @@ def validate_city(
     historical_people_path = manifest.get("files", {}).get("historicalPeople")
     if historical_people_path:
         people.extend(read_json(city_dir / historical_people_path))
+    source_people_path = manifest.get("files", {}).get("sourcePeople")
+    if source_people_path:
+        people.extend(read_json(city_dir / source_people_path))
     person_augmentations_path = manifest.get("files", {}).get("personAugmentations")
     if person_augmentations_path:
         apply_augmentations(people, read_json(city_dir / person_augmentations_path))
@@ -294,8 +301,18 @@ def validate_city(
                 for feature in payload["features"]
                 if feature.get("properties", {}).get("boundary_review_status") == "reviewed"
             }
-            if "Exterritoriales Konzerngebiet · Renrakusan" not in reviewed:
-                raise ValueError(f"{city['id']}: Renrakusan ist nicht als geprüfte EXTER-Fläche markiert")
+            required_reviewed = {
+                "Exterritoriales Konzerngebiet · AZT Schönwalde",
+                "Exterritoriales Konzerngebiet · Z-IC Tegel",
+                "Exterritoriales Konzerngebiet · AGC Siemensstadt",
+                "Exterritoriales Konzerngebiet · Renrakusan",
+                "Exterritoriales Konzerngebiet · S-K Tempelhof",
+            }
+            if missing := required_reviewed - reviewed:
+                raise ValueError(
+                    f"{city['id']}: ungeprüfte EXTER-Flächen: "
+                    f"{', '.join(sorted(missing))}"
+                )
     for key in ("security", "special"):
         supplemental_path = manifest.get("files", {}).get(key)
         if supplemental_path:
@@ -362,6 +379,24 @@ def validate_city(
                 f"{city['id']}: als vollständig markiert, aber "
                 f"{len(open_work_ids)} Werk-/Stadt-Prüfungen sind offen"
             )
+        incomplete_entity_work_ids = [
+            work_id
+            for work_id, row in coverage_by_work.items()
+            if city["id"] in row.get("cities", {})
+            if row.get("cities", {}).get(city["id"], {}).get(
+                "entityExtraction", {}
+            ).get("status") not in {
+                "vollständig-extrahiert",
+                "keine-lokalen-dossiers",
+                "nichtoffiziell-ausgeschlossen",
+            }
+        ]
+        if incomplete_entity_work_ids:
+            raise ValueError(
+                f"{city['id']}: als vollständig markiert, aber "
+                f"{len(incomplete_entity_work_ids)} werkweise "
+                "Entitätsprüfungen sind offen"
+            )
     return len(place_ids), len(person_ids)
 
 
@@ -413,6 +448,17 @@ def validate_source_registry() -> tuple[dict[str, dict], dict[str, dict]]:
             counted_statuses[status] += 1
     if dict(sorted(counted_statuses.items())) != coverage.get("statusCounts"):
         raise ValueError("Statuszusammenfassung der Abdeckungsmatrix stimmt nicht")
+    counted_extraction_statuses = Counter(
+        item.get("entityExtraction", {}).get("status")
+        for row in matrix
+        for item in row.get("cities", {}).values()
+    )
+    if dict(sorted(counted_extraction_statuses.items())) != coverage.get(
+        "entityExtractionStatusCounts"
+    ):
+        raise ValueError(
+            "Statuszusammenfassung des Entitätsaudits stimmt nicht"
+        )
     return {work["id"]: work for work in works}, coverage_by_work
 
 

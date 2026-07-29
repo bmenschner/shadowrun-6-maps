@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Istanbul Grand Bazaar",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Istanbul",
+      "appearances": [
+        {
+          "bookId": "sr4-dawn-of-the-artifacts-5-artifacts-unbound",
+          "citation": "Textzeile 9305",
+          "summary": "Istanbul Grand Bazaar ist in Dawn of the Artifacts 5 - Artifacts Unbound als benannter Schauplatz mit Bezug zu Istanbul belegt."
+        }
+      ]
+    },
+    {
+      "name": "Yenikapi Square",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Istanbul",
+      "appearances": [
+        {
+          "bookId": "sr5-cutting-aces",
+          "citation": "Textzeile 8254",
+          "summary": "Yenikapi Square ist in Cutting Aces als benannter Schauplatz mit Bezug zu Istanbul belegt."
+        }
+      ]
+    }
+  ],
+  "people": []
+}

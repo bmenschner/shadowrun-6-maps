@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Air & Space Museum",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 3516",
+          "summary": "Air & Space Museum ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Brokerage Headquarters",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 4144",
+          "summary": "Brokerage Headquarters ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Club Charybdis",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 10458",
+          "summary": "Club Charybdis ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Data Haven",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-falling-point-state-of-the-world",
+          "citation": "Textzeile 5832",
+          "summary": "Data Haven ist in Falling Point (State of the World) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Der Meat Market",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 1486",
+          "summary": "Der Meat Market ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Free Zone Meats",
+      "aliases": [],
+      "category": "Bezirke und Lore-Gebiete",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 6429",
+          "summary": "Free Zone Meats ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Free Zone Voice ParaShield",
+      "aliases": [],
+      "category": "Bezirke und Lore-Gebiete",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 6002",
+          "summary": "Free Zone Voice ParaShield ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Hippocrates Clinic Host",
+      "aliases": [],
+      "category": "Medizin und Versorgung",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr5-denver-adventure-1-serrated-edge",
+          "citation": "Textzeile 2710",
+          "summary": "Hippocrates Clinic Host ist in Denver Adventure 1 - Serrated Edge als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Mitsuhama Tower",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 4331",
+          "summary": "Mitsuhama Tower ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Reborn Headquarters",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 3954",
+          "summary": "Reborn Headquarters ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Sports Medical Center",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr4-spy-games",
+          "citation": "Textzeile 1947",
+          "summary": "Sports Medical Center ist in Spy Games als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "The Sewage Processing Plant",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 16113",
+          "summary": "The Sewage Processing Plant ist in The Third Parallel (Denver Campaign) als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Tower of Silence",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr2-denver-the-city-of-shadows",
+          "citation": "PDF-Seite 94",
+          "summary": "Tower of Silence ist in Denver - The City of Shadows als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "ZDF Headquarters",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr4-spy-games",
+          "citation": "Textzeile 3176",
+          "summary": "ZDF Headquarters ist in Spy Games als benannter Schauplatz mit Bezug zu Denver belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Dr. Elaine Fierambras",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr5-denver-adventure-1-serrated-edge",
+          "citation": "Textzeile 1706",
+          "summary": "Dr. Elaine Fierambras ist in Denver Adventure 1 - Serrated Edge als Person von Interesse mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Dr. Elivetri Qicharette",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 6777",
+          "summary": "Dr. Elivetri Qicharette ist in The Third Parallel (Denver Campaign) als Person von Interesse mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Dr. Namo Bavar",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr5-denver-adventure-1-serrated-edge",
+          "citation": "Textzeile 1640",
+          "summary": "Dr. Namo Bavar ist in Denver Adventure 1 - Serrated Edge als Person von Interesse mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Dr. Roland Chanson",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr5-denver-adventure-1-serrated-edge",
+          "citation": "Textzeile 1524",
+          "summary": "Dr. Roland Chanson ist in Denver Adventure 1 - Serrated Edge als Person von Interesse mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Dr. Terrance Tersh",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-the-third-parallel-denver-campaign",
+          "citation": "Textzeile 6753",
+          "summary": "Dr. Terrance Tersh ist in The Third Parallel (Denver Campaign) als Person von Interesse mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Naito-gumi (Denver)",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr4-unterwelten",
+          "citation": "Textzeile 5841",
+          "summary": "Naito-gumi (Denver) ist in Unterwelten als benannte Gruppe oder Organisation mit Bezug zu Denver belegt."
+        },
+        {
+          "bookId": "sr4-vice",
+          "citation": "Textzeile 5597",
+          "summary": "Naito-gumi (Denver) ist in Vice als benannte Gruppe oder Organisation mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "On Denver’s Yamato Clan",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr4-storm-front",
+          "citation": "Textzeile 9708",
+          "summary": "On Denver’s Yamato Clan ist in Storm Front als benannte Gruppe oder Organisation mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "The Denver Collective",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr6-falling-point-state-of-the-world",
+          "citation": "Textzeile 6740",
+          "summary": "The Denver Collective ist in Falling Point (State of the World) als benannte Gruppe oder Organisation mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "The Draco Foundation",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr3-dragons-of-the-sixth-world",
+          "citation": "PDF-Seite 70",
+          "summary": "The Draco Foundation ist in Dragons of the Sixth World als benannte Gruppe oder Organisation mit Bezug zu Denver belegt."
+        }
+      ]
+    },
+    {
+      "name": "Yamato-gumi",
+      "aliases": [
+        "Yamato-gumi (Denver)"
+      ],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Denver",
+      "scope": "Denver",
+      "appearances": [
+        {
+          "bookId": "sr3-dragons-of-the-sixth-world",
+          "citation": "PDF-Seite 151",
+          "summary": "Yamato-gumi ist in Dragons of the Sixth World als benannte Gruppe oder Organisation mit Bezug zu Denver belegt."
+        },
+        {
+          "bookId": "sr4-unterwelten",
+          "citation": "Textzeile 5845",
+          "summary": "Yamato-gumi ist in Unterwelten als benannte Gruppe oder Organisation mit Bezug zu Denver belegt."
+        },
+        {
+          "bookId": "sr4-vice",
+          "citation": "Textzeile 5601",
+          "summary": "Yamato-gumi ist in Vice als benannte Gruppe oder Organisation mit Bezug zu Denver belegt."
+        }
+      ]
+    }
+  ]
+}

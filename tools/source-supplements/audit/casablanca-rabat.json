@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Souk Derb Ghallef Shop",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Casablanca-Rabat",
+      "appearances": [
+        {
+          "bookId": "sr5-shadows-in-focus-casablanca-rabat",
+          "citation": "Textzeile 2808",
+          "summary": "Souk Derb Ghallef Shop ist in Shadows in Focus - Casablanca-Rabat als benannter Schauplatz mit Bezug zu Casablanca-Rabat belegt."
+        }
+      ]
+    }
+  ],
+  "people": []
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Apapa District",
+      "aliases": [],
+      "category": "Bezirke und Lore-Gebiete",
+      "scope": "Lagos",
+      "appearances": [
+        {
+          "bookId": "sr4-dawn-of-the-artifacts-1-dusk",
+          "citation": "Textzeile 1690",
+          "summary": "Apapa District ist in Dawn of the Artifacts 1 - Dusk als benannter Schauplatz mit Bezug zu Lagos belegt."
+        }
+      ]
+    },
+    {
+      "name": "Das Porto Novo Luxushotel (Mittelklasse-Hotel, Apapa)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Lagos",
+      "appearances": [
+        {
+          "bookId": "sr4-artefaktjagd-1-dammerung",
+          "citation": "Textzeile 1730",
+          "summary": "Das Porto Novo Luxushotel (Mittelklasse-Hotel, Apapa) ist in Artefaktjagd 1 - Dämmerung als benannter Schauplatz mit Bezug zu Lagos belegt."
+        }
+      ]
+    },
+    {
+      "name": "Der Auktionsort (Global-Sandstorm-Gebäude, Lagos Island)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Lagos",
+      "appearances": [
+        {
+          "bookId": "sr4-artefaktjagd-1-dammerung",
+          "citation": "Textzeile 3584",
+          "summary": "Der Auktionsort (Global-Sandstorm-Gebäude, Lagos Island) ist in Artefaktjagd 1 - Dämmerung als benannter Schauplatz mit Bezug zu Lagos belegt."
+        }
+      ]
+    },
+    {
+      "name": "Die Nasty (Apapa District)",
+      "aliases": [],
+      "category": "Bezirke und Lore-Gebiete",
+      "scope": "Lagos",
+      "appearances": [
+        {
+          "bookId": "sr4-feral-cities",
+          "citation": "Textzeile 10750",
+          "summary": "Die Nasty (Apapa District) ist in Feral Cities als benannter Schauplatz mit Bezug zu Lagos belegt."
+        }
+      ]
+    },
+    {
+      "name": "Island (Lagos)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Lagos",
+      "appearances": [
+        {
+          "bookId": "sr4-runner-s-companion-1st-printing",
+          "citation": "Textzeile 15940",
+          "summary": "Island (Lagos) ist in Runner's Companion (1st Printing) als benannter Schauplatz mit Bezug zu Lagos belegt."
+        },
+        {
+          "bookId": "sr4-runner-s-companion-2nd-printing",
+          "citation": "Textzeile 15888",
+          "summary": "Island (Lagos) ist in Runner's Companion (2nd Printing) als benannter Schauplatz mit Bezug zu Lagos belegt."
+        }
+      ]
+    },
+    {
+      "name": "Lagos Football Stadium (Lagos Island)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Lagos",
+      "appearances": [
+        {
+          "bookId": "sr4-feral-cities",
+          "citation": "Textzeile 11092",
+          "summary": "Lagos Football Stadium (Lagos Island) ist in Feral Cities als benannter Schauplatz mit Bezug zu Lagos belegt."
+        }
+      ]
+    },
+    {
+      "name": "Victoria Island Tourist Guide (Cont.)",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Lagos",
+      "appearances": [
+        {
+          "bookId": "sr4-feral-cities",
+          "citation": "Textzeile 9953",
+          "summary": "Victoria Island Tourist Guide (Cont.) ist in Feral Cities als benannter Schauplatz mit Bezug zu Lagos belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Horizon Africa",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Lagos",
+      "scope": "Lagos",
+      "appearances": [
+        {
+          "bookId": "sr4-feral-cities",
+          "citation": "Textzeile 9107",
+          "summary": "Horizon Africa ist in Feral Cities als Person von Interesse mit Bezug zu Lagos belegt."
+        }
+      ]
+    }
+  ]
+}

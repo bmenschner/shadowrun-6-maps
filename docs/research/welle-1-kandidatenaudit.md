@@ -2,6 +2,11 @@
 
 Stand: 28. Juli 2026
 
+> **Historischer Vorlauf:** Die damalige Warteschlange war zu klein und wurde
+> zu pauschal geschlossen. Die Tabellen dieses Berichts dokumentieren diesen
+> Vorlauf. Der erneute Lauf `exhaustive-entity-audit-v2` hat inzwischen alle
+> sechs Städte und sämtliche übrigen Stadtpakete werkweise abgeschlossen.
+
 ## Umfang
 
 Geprüft wurden die 1.652 automatisch extrahierten Rohkandidaten für Chicago,
@@ -36,12 +41,12 @@ tatsächlich getrennten Dossiers aufgelöst.
 
 | Stadt | Orte und Bezirke | Personen und Gruppen |
 | --- | ---: | ---: |
-| Chicago | 30 | 28 |
-| Boston | 29 | 24 |
-| Hongkong | 29 | 17 |
-| London | 21 | 21 |
-| München | 32 | 10 |
-| Groß-Frankfurt | 28 | 4 |
+| Chicago | 82 | 73 |
+| Boston | 33 | 28 |
+| Hongkong | 39 | 23 |
+| London | 33 | 24 |
+| München | 34 | 14 |
+| Groß-Frankfurt | 31 | 8 |
 
 Nicht belastbar einzeln positionierbare Orte bleiben mit `geometry: null` im
 Katalog. Geografische Bezugspunkte wurden nur für Quellenadressen, erhaltene
@@ -49,7 +54,10 @@ Wahrzeichen und eindeutige Lore-Teilräume gesetzt.
 
 ## Reproduzierbarkeit
 
-- `tools/build_wave1_city_packages.py` erzeugt die kuratierten Stadtpakete.
+- `tools/build_wave1_city_packages.py` erzeugt die ursprünglichen
+  Stadtpakete.
+- `tools/build_source_supplements.py` ergänzt die werkweise geprüften
+  Quellenpakete, ohne den ursprünglichen Builder zu überschreiben.
 - `tools/review_source_candidates.py` dokumentiert Alias-, Typ- und
   Spaltentrennungen und schließt die lokale Warteschlange.
 - `tools/import_archive_references.py` ergänzt weitere exakte

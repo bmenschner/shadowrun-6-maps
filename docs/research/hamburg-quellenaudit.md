@@ -2,7 +2,7 @@
 
 ## Ergebnis
 
-Das Stadtpaket enthält 409 Orte sowie 87 Personen beziehungsweise Gruppen. Alle sechs Spielversionen sind belegt. Identische Einträge werden editionsübergreifend in einem Dossier zusammengeführt; die Suche bleibt unabhängig von den aktivierten Editionslayern vollständig.
+Das Stadtpaket enthält 413 Orte sowie 89 Personen beziehungsweise Gruppen. Alle sechs Spielversionen sind belegt. Identische Einträge werden editionsübergreifend in einem Dossier zusammengeführt; die Suche bleibt unabhängig von den aktivierten Editionslayern vollständig.
 
 ## Verbindliche Karteninventare
 
@@ -51,5 +51,5 @@ Unter Personen werden Einzelpersonen, Gangs, Matrixgangs, Syndikate, Sekten, Umw
 
 ## Prüfung
 
-- Datenvalidator: 409 Orte, 87 Personen beziehungsweise Gruppen, keine doppelten globalen IDs und keine ungelösten Ortsverknüpfungen.
-- Browserprüfung: Stadtwahl, 409 Listeneinträge, Personensuche, Editionsreiter SR1/SR2/SR4/SR5 bei Myriam Hergeim, anklickbare Bezirksnamen, Wildost-Dossier und Sardinenstadt-EXTER-Dossier.
+- Datenvalidator: 413 Orte, 89 Personen beziehungsweise Gruppen, keine doppelten globalen IDs und keine ungelösten Ortsverknüpfungen.
+- Browserprüfung: Stadtwahl, 413 Listeneinträge, Personensuche, Editionsreiter SR1/SR2/SR4/SR5 bei Myriam Hergeim, anklickbare Bezirksnamen, Wildost-Dossier und Sardinenstadt-EXTER-Dossier.

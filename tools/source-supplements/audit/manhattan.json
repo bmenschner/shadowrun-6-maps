@@ -1,0 +1,361 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [
+    {
+      "name": "Columbia University Cheli",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr6-flusternetze",
+          "citation": "Textzeile 5862",
+          "summary": "Columbia University Cheli ist in Flüsternetze als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr6-flusternetze-46144p",
+          "citation": "Textzeile 5862",
+          "summary": "Columbia University Cheli ist in Flüsternetze [46144P] als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Der Prometheus-Turm",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-gestohlene-seelen",
+          "citation": "Textzeile 13165",
+          "summary": "Der Prometheus-Turm ist in Gestohlene Seelen als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr5-abenteuerband-krieg-um-manhattan",
+          "citation": "Textzeile 4335",
+          "summary": "Der Prometheus-Turm ist in Abenteuerband - Krieg um Manhattan als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Grand Central Arcology",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr6-flusternetze",
+          "citation": "Textzeile 2489",
+          "summary": "Grand Central Arcology ist in Flüsternetze als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr6-flusternetze-46144p",
+          "citation": "Textzeile 2489",
+          "summary": "Grand Central Arcology ist in Flüsternetze [46144P] als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Louis Vuitton Store",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-data-trails",
+          "citation": "Textzeile 9462",
+          "summary": "Louis Vuitton Store ist in Data Trails als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr5-datenpfade",
+          "citation": "Textzeile 10129",
+          "summary": "Louis Vuitton Store ist in Datenpfade als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Manhattan Bridge",
+      "aliases": [],
+      "category": "Verkehr und Infrastruktur",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-abenteuerband-krieg-um-manhattan",
+          "citation": "Textzeile 5780",
+          "summary": "Manhattan Bridge ist in Abenteuerband - Krieg um Manhattan als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr5-gestohlene-seelen",
+          "citation": "Textzeile 11738",
+          "summary": "Manhattan Bridge ist in Gestohlene Seelen als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Mitsuhama Arcology",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-stolen-souls",
+          "citation": "Textzeile 14210",
+          "summary": "Mitsuhama Arcology ist in Stolen Souls als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Prometheus Tower",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-boardroom-backstabs-3-battle-of-manhattan",
+          "citation": "Textzeile 4930",
+          "summary": "Prometheus Tower ist in Boardroom Backstabs 3 - Battle of Manhattan als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Randall’s Island Facility",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr4-srm03-05-in-and-out",
+          "citation": "Textzeile 2315",
+          "summary": "Randall’s Island Facility ist in SRM03-05 - In and Out als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Shiawases Manhattan-Arkologie",
+      "aliases": [],
+      "category": "Konzerne und markante Bauwerke",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-gestohlene-seelen",
+          "citation": "Textzeile 13451",
+          "summary": "Shiawases Manhattan-Arkologie ist in Gestohlene Seelen als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "St Agatha’s School For Girls",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-boardroom-backstabs-3-battle-of-manhattan",
+          "citation": "Textzeile 1387",
+          "summary": "St Agatha’s School For Girls ist in Boardroom Backstabs 3 - Battle of Manhattan als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "The Gravity Bar",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr4-seattle-2072",
+          "citation": "Textzeile 5322",
+          "summary": "The Gravity Bar ist in Seattle 2072 als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr4-seattle-2072",
+          "citation": "Textzeile 20698",
+          "summary": "The Gravity Bar ist in Seattle 2072 als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr4-srm04-01-hiding-in-the-dark-buried-underground-1",
+          "citation": "Textzeile 1293",
+          "summary": "The Gravity Bar ist in SRM04-01 - Hiding in the Dark (Buried Underground 1) als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "The Modern (Restaurant)",
+      "aliases": [],
+      "category": "Bars, Clubs und Gastronomie",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr4-srm03-01-ready-set-gogh",
+          "citation": "Textzeile 1623",
+          "summary": "The Modern (Restaurant) ist in SRM03-01 - Ready, Set, Gogh! als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Transit-Host der Grand Central Station",
+      "aliases": [],
+      "category": "Verkehr und Infrastruktur",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr6-flusternetze",
+          "citation": "Textzeile 8194",
+          "summary": "Transit-Host der Grand Central Station ist in Flüsternetze als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr6-flusternetze-46144p",
+          "citation": "Textzeile 8194",
+          "summary": "Transit-Host der Grand Central Station ist in Flüsternetze [46144P] als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Wesley Street",
+      "aliases": [],
+      "category": "Sonstige Spots",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr4-srm03-07-knight-at-the-opera",
+          "citation": "Textzeile 23",
+          "summary": "Wesley Street ist in SRM03-07 - Knight at the Opera als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr4-srm03-09-something-completely-different",
+          "citation": "Textzeile 8",
+          "summary": "Wesley Street ist in SRM03-09 - Something Completely Different als benannter Schauplatz mit Bezug zu Manhattan belegt."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Dr. Hayden Cage",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Manhattan",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr4-srm03-12-elevator-ride-to-hell",
+          "citation": "Textzeile 1610",
+          "summary": "Dr. Hayden Cage ist in SRM03-12 - Elevator Ride to Hell als Person von Interesse mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Manhattan High Society, European Grand Tour",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Manhattan",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-cutting-aces",
+          "citation": "Textzeile 18280",
+          "summary": "Manhattan High Society, European Grand Tour ist in Cutting Aces als benannte Gruppe oder Organisation mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Meister Wu",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Manhattan",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-abenteuerband-krieg-um-manhattan",
+          "citation": "Textzeile 5285",
+          "summary": "Meister Wu ist in Abenteuerband - Krieg um Manhattan als Person von Interesse mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Peace Man",
+      "aliases": [],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Manhattan",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr4-srm03-03-burning-bridges",
+          "citation": "Textzeile 389",
+          "summary": "Peace Man ist in SRM03-03 - Burning Bridges als Person von Interesse mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Präsident Orito Sasaki",
+      "aliases": [
+        "President Orito Sasaki"
+      ],
+      "entity_type": "person",
+      "category": "Personen von Interesse",
+      "role": "Person von Interesse",
+      "affiliation": "Manhattan",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-megakons-2078",
+          "citation": "Textzeile 13869",
+          "summary": "Präsident Orito Sasaki ist in Megakons 2078 als Person von Interesse mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr5-market-panic",
+          "citation": "Textzeile 13142",
+          "summary": "Präsident Orito Sasaki ist in Market Panic als Person von Interesse mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Sony Corporation",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Manhattan",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr4-the-rotten-apple-manhattan",
+          "citation": "Textzeile 3106",
+          "summary": "Sony Corporation ist in The Rotten Apple - Manhattan als benannte Gruppe oder Organisation mit Bezug zu Manhattan belegt."
+        }
+      ]
+    },
+    {
+      "name": "Spinrad Industries America (Manhattan)",
+      "aliases": [
+        "Spinrad Industries Amerika (Manhattan)"
+      ],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Manhattan",
+      "scope": "Manhattan",
+      "appearances": [
+        {
+          "bookId": "sr5-cutting-aces",
+          "citation": "Textzeile 3526",
+          "summary": "Spinrad Industries America (Manhattan) ist in Cutting Aces als benannte Gruppe oder Organisation mit Bezug zu Manhattan belegt."
+        },
+        {
+          "bookId": "sr5-mit-tricks-und-finesse",
+          "citation": "Textzeile 3570",
+          "summary": "Spinrad Industries America (Manhattan) ist in Mit Tricks und Finesse als benannte Gruppe oder Organisation mit Bezug zu Manhattan belegt."
+        }
+      ]
+    }
+  ]
+}

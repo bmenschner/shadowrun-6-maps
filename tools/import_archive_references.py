@@ -114,7 +114,7 @@ def load_city_entities(city: dict):
     city_dir = manifest_path.parent
     places_payload = read_json(city_dir / manifest["files"]["places"])
     places = places_payload["features"]
-    for key in ("virtualPlaces", "historicalPlaces"):
+    for key in ("virtualPlaces", "historicalPlaces", "sourcePlaces"):
         path = manifest.get("files", {}).get(key)
         if path:
             places.extend(read_json(city_dir / path)["features"])
@@ -133,6 +133,9 @@ def load_city_entities(city: dict):
     historical_people_path = manifest.get("files", {}).get("historicalPeople")
     if historical_people_path:
         people.extend(read_json(city_dir / historical_people_path))
+    source_people_path = manifest.get("files", {}).get("sourcePeople")
+    if source_people_path:
+        people.extend(read_json(city_dir / source_people_path))
     person_aug_path = manifest.get("files", {}).get("personAugmentations")
     person_augmentations = read_json(city_dir / person_aug_path) if person_aug_path else []
     if person_augmentations:

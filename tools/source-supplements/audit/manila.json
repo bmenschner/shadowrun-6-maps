@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 11,
+  "places": [],
+  "people": [
+    {
+      "name": "The Philippine Nation Party",
+      "aliases": [],
+      "entity_type": "group",
+      "category": "Gruppen und Organisationen",
+      "role": "Lokale Gruppe oder Organisation",
+      "affiliation": "Manila",
+      "scope": "Manila",
+      "appearances": [
+        {
+          "bookId": "sr2-cyberpirates",
+          "citation": "PDF-Seite 80",
+          "summary": "The Philippine Nation Party ist in Cyberpirates als benannte Gruppe oder Organisation mit Bezug zu Manila belegt."
+        }
+      ]
+    }
+  ]
+}

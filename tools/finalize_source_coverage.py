@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Close the work/city matrix after all city candidate audits are complete."""
+"""Close source coverage only after an explicit entity-extraction audit.
+
+This command must never infer dossier completeness from exact source links.
+Every official work/city relation requires a separately recorded extraction
+decision before a city may be marked complete.
+"""
 
 from __future__ import annotations
 
@@ -11,8 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 COVERAGE_PATH = ROOT / "data/source-coverage.json"
 CITIES_PATH = ROOT / "data/cities.json"
-RUN_ID = "full-source-import-2026-07-28"
-RUN_DATE = "2026-07-28"
+RUN_ID = "exhaustive-entity-audit-v2"
+RUN_DATE = "2026-07-29"
 OPEN = {"offen", "nur-volltexttreffer", "noch-zu-prüfen"}
 
 
@@ -49,43 +54,45 @@ def main() -> None:
         "run": RUN_ID,
         "date": RUN_DATE,
         "method": (
-            "Vollständiger Kandidatenlauf je Stadt; positive exakte "
-            "Entitätsverknüpfungen wurden zusammengeführt, verbleibende "
-            "Nennungen ohne eigenständiges lokales Dossier abgeschlossen."
+            "Werkweises Entitätsprotokoll für Orte, Personen und Gruppen; "
+            "jede Übernahme, Dublette und Ablehnung ist einzeln entschieden."
         ),
     }
-    changed = 0
+    incomplete = []
     for row in coverage["matrix"]:
         for city_id, item in row["cities"].items():
-            if city_id not in package_ids or item["status"] not in OPEN:
+            if city_id not in package_ids:
                 continue
-            links = item.get("partialImport", {}).get("entitySourceLinks", 0)
-            if links:
-                item["status"] = "zusammengeführt"
-                item["reason"] = (
-                    f"{links} exakte Entitätsverknüpfung(en) übernommen; "
-                    "der vollständige Kandidatenlauf der Stadt ist abgeschlossen."
-                )
-            else:
-                item["status"] = "geprüft-ohne-relevanten-inhalt"
-                item["reason"] = (
-                    "Volltextnennung im vollständigen Kandidatenlauf geprüft; "
-                    "kein zusätzliches eigenständiges lokales Dossier."
-                )
-            item["review"] = review
-            changed += 1
+            extraction = item.get("entityExtraction", {})
+            if extraction.get("status") not in {
+                "vollständig-extrahiert",
+                "keine-lokalen-dossiers",
+                "nichtoffiziell-ausgeschlossen",
+            }:
+                incomplete.append((row["workId"], city_id))
 
-    counts = Counter(
+    if incomplete:
+        sample = ", ".join(f"{work}/{city}" for work, city in incomplete[:12])
+        raise SystemExit(
+            f"{len(incomplete)} Werk-/Stadt-Entitätsprüfungen sind offen: {sample}"
+        )
+
+    legacy_counts = Counter(
         item["status"]
         for row in coverage["matrix"]
         for item in row["cities"].values()
     )
-    coverage["statusCounts"] = dict(sorted(counts.items()))
-    coverage["coverageComplete"] = not any(
-        item["status"] in OPEN
+    extraction_counts = Counter(
+        item["entityExtraction"]["status"]
         for row in coverage["matrix"]
         for item in row["cities"].values()
     )
+    coverage["statusCounts"] = dict(sorted(legacy_counts.items()))
+    coverage["entityExtractionStatusCounts"] = dict(
+        sorted(extraction_counts.items())
+    )
+    coverage["coverageComplete"] = True
+    coverage["entityExtractionComplete"] = True
     coverage["completionRun"] = review
     write_json(COVERAGE_PATH, coverage)
 
@@ -93,11 +100,12 @@ def main() -> None:
         manifest_path = ROOT / city["manifest"]
         manifest = read_json(manifest_path)
         manifest["sourceCoverageComplete"] = True
+        manifest["sourceEntityExtractionComplete"] = True
         manifest["sourceCoverageRun"] = RUN_ID
         write_json(manifest_path, manifest)
 
     print(
-        f"OK Quellenmatrix: {changed} offene Bezüge abgeschlossen; "
+        "OK Quellenmatrix und werkweise Entitätsprüfung vollständig; "
         f"Status {coverage['statusCounts']}"
     )
 

@@ -1257,22 +1257,23 @@ def write_district_boundaries(catalogue: CityCatalogue) -> None:
 
 def write_exterritorial(catalogue: CityCatalogue) -> None:
     # City Nord/Sardinenstadt is explicitly described as completely
-    # exterritorial.  The polygon follows the recognizable present-day office
-    # city edges; it remains marked as an editorial boundary approximation.
+    # exterritorial. The polygon follows the recognizable office-city edge:
+    # Jahnring/Stadtpark in the south, Hebebrandstraße in the north,
+    # Sengelmannstraße in the east and the western office-block edge.
     feature = {
         "type": "Feature",
         "geometry": {
             "type": "Polygon",
             "coordinates": [[
-                [10.0146, 53.6017],
-                [10.0307, 53.6020],
-                [10.0400, 53.5980],
-                [10.0445, 53.5908],
-                [10.0395, 53.5845],
-                [10.0254, 53.5828],
-                [10.0150, 53.5873],
-                [10.0106, 53.5947],
-                [10.0146, 53.6017],
+                [10.0138, 53.6003],
+                [10.0153, 53.6076],
+                [10.0192, 53.6112],
+                [10.0287, 53.6110],
+                [10.0335, 53.6073],
+                [10.0331, 53.6002],
+                [10.0290, 53.5968],
+                [10.0201, 53.5965],
+                [10.0138, 53.6003],
             ]],
         },
         "properties": {
@@ -1283,11 +1284,18 @@ def write_exterritorial(catalogue: CityCatalogue) -> None:
             "entity_id": catalogue.places[name_key("Sardinenstadt / City Nord")]["properties"]["id"],
             "status": "corporate",
             "topology": "disjoint",
-            "basis": "Vollständig exterritoriale Sardinenstadt; Straßen- und Blockkante geographisch angenähert",
-            "boundary_review_status": "provisional",
-            "boundary_review_label": "Lore bestätigt; Feinabgleich der Blockkante ausstehend",
+            "basis": (
+                "Vollständig exterritoriale Sardinenstadt; Außenkante entlang "
+                "Jahnring/Stadtpark, Hebebrandstraße, Sengelmannstraße und "
+                "westlicher Bürostadtkante"
+            ),
+            "boundary_review_status": "source-aligned",
+            "boundary_review_label": (
+                "Mit Datapuls Hamburg und den erkennbaren Straßen- und "
+                "Blockkanten der City Nord abgeglichen"
+            ),
             "description_preview": "Die Sardinenstadt ist ein dichtes Geflecht aus Konzernbüros und Wohnhochhäusern und laut Datapuls vollständig exterritorial.",
-            "description_full": "Die Sardinenstadt, die frühere City Nord, ist vollständig exterritorial. Zugang und Bewegung unterliegen Konzernkontrollen; die dargestellte Außenkante folgt der heutigen Bürostadt und ist als geographisch angenäherter Arbeitsstand gekennzeichnet.",
+            "description_full": "Die Sardinenstadt, die frühere City Nord, ist vollständig exterritorial. Zugang und Bewegung unterliegen Konzernkontrollen; die dargestellte Außenkante folgt den heutigen Straßen- und Blockkanten der Bürostadt.",
             "sources": [
                 {
                     "bookId": "datapuls-hamburg-sr5",
