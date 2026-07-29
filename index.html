@@ -969,24 +969,6 @@
         pane: 'districtPane',
         style: districtStyle,
         onEachFeature: (feature, layer) => {
-          const boundaryLabels = {
-            municipality: 'Stadt / Bezirk',
-            'adl-region': 'ADL-Region',
-            'lore-municipality': 'Lore-Stadt / Kommune',
-            'lore-region': 'Lore-Region',
-            'lore-inner-district': 'Innerer Shadowrun-Bezirk',
-            'lore-outer-district': 'Äußerer Shadowrun-Bezirk',
-            'lore-district': 'Shadowrun-Bezirk',
-            'island-district': 'Shadowrun-Inselbezirk',
-            'military-district': 'Militärischer Shadowrun-Bezirk',
-            'foreign-enclave': 'Fremdes Staatsgebiet',
-          };
-          const boundaryLabel = boundaryLabels[feature.properties.boundary_role] || 'Bezirk';
-          const basis = feature.properties.basis || feature.properties.description_preview || 'Shadowrun-Grenzstand';
-          layer.bindTooltip(
-            `${boundaryLabel} · ${escapeHtml(feature.properties.name)}<br><span class="tooltip-basis">Basis: ${escapeHtml(basis)}</span>`,
-            { className: 'sr-label', sticky: true }
-          );
           const entityId = Number(feature.properties.entity_id);
           const dossier = Number.isInteger(entityId)
             ? DATA.geojson.features.find(item => item.properties.id === entityId)
