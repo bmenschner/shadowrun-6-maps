@@ -5,10 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#071018">
   <meta name="description" content="Interaktiver Shadowrun-Kartenatlas mit Städten, Regionen, Orten, Personen und Quellen.">
+  <meta name="application-name" content="Shadowrun 6 Maps">
+  <meta property="og:title" content="Shadowrun 6 Maps">
+  <meta property="og:description" content="Interaktiver Shadowrun-Kartenatlas mit Städten, Regionen, Orten, Personen und Quellen.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bmenschner.github.io/shadowrun-6-maps/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Shadowrun 6 Maps">
+  <meta name="twitter:description" content="Interaktiver Shadowrun-Kartenatlas mit Städten, Regionen, Orten, Personen und Quellen.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="SR Stadtkarten">
-  <title>Shadowrun Stadtkarten</title>
+  <meta name="apple-mobile-web-app-title" content="Shadowrun 6 Maps">
+  <title>Shadowrun 6 Maps</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -457,7 +465,7 @@
           <button class="map-mode-button" id="map-mode-offline" type="button" data-map-mode="offline" aria-pressed="false"><span class="mode-dot" aria-hidden="true"></span>Offline</button>
         </div>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Farbschema wechseln" aria-pressed="false"><span data-theme-choice="light">Light</span><span aria-hidden="true">/</span><span data-theme-choice="dark">Dark</span></button>
-        <button class="install-button" id="install-app" type="button" aria-label="Shadowrun Stadtkarten als App installieren">⇩ App installieren</button>
+        <button class="install-button" id="install-app" type="button" aria-label="Shadowrun 6 Maps als App installieren">⇩ App installieren</button>
         <button class="atlas-open" id="legal-open" type="button">§ Disclaimer</button>
       </div>
       <span class="visually-hidden" id="connection-status" role="status" aria-live="polite"></span>
@@ -587,7 +595,7 @@
           <p>Freiwillige Unterstützungszahlungen dienen der Weiterentwicklung und dem technischen Betrieb des Fanprojekts. Sie stellen keinen Kaufpreis und keine Vergütung für Shadowrun-Inhalte dar. Alle Inhalte und Funktionen bleiben unabhängig von einer Unterstützung kostenlos zugänglich.</p>
 
           <h3>Rechtehinweise</h3>
-          <p>Berechtigte Hinweise auf unzulässig verwendete oder unzureichend gekennzeichnete Inhalte können über die <a href="https://github.com/bmenschner/sr6-berlin-map/issues" target="_blank" rel="noopener noreferrer">Projektseite auf GitHub</a> gemeldet werden. Betroffene Inhalte werden geprüft und erforderlichenfalls angepasst oder entfernt.</p>
+          <p>Berechtigte Hinweise auf unzulässig verwendete oder unzureichend gekennzeichnete Inhalte können über die <a href="https://github.com/bmenschner/shadowrun-6-maps/issues" target="_blank" rel="noopener noreferrer">Projektseite auf GitHub</a> gemeldet werden. Betroffene Inhalte werden geprüft und erforderlichenfalls angepasst oder entfernt.</p>
         </div>
       </section>
     </div>
@@ -601,7 +609,7 @@
       const EMBEDDED_OFFLINE_BASE = "";
       const HYBRID_APP = true;
       const SUPPORT_URL = "https://ko-fi.com/sr6maps";
-      const PUBLISHED_APP_URL = "https://bmenschner.github.io/sr6-berlin-map/";
+      const PUBLISHED_APP_URL = "https://bmenschner.github.io/shadowrun-6-maps/";
       let deferredInstallPrompt = null;
       window.addEventListener('beforeinstallprompt', event => {
         event.preventDefault();

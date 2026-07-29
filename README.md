@@ -1,6 +1,6 @@
-# Shadowrun-Stadtkarten – interaktive PWA
+# Shadowrun 6 Maps – interaktive PWA
 
-Die veröffentlichte Hybrid-PWA ist unter **[bmenschner.github.io/sr6-berlin-map](https://bmenschner.github.io/sr6-berlin-map/)** erreichbar. Sie enthält 75 eigenständig ladbare Stadt- und Regionspakete mit insgesamt 3.399 Orten sowie 1.944 Personen oder Gruppen.
+Die veröffentlichte Hybrid-PWA ist unter **[bmenschner.github.io/shadowrun-6-maps](https://bmenschner.github.io/shadowrun-6-maps/)** erreichbar. Sie enthält 75 eigenständig ladbare Stadt- und Regionspakete mit insgesamt 3.399 Orten sowie 1.944 Personen oder Gruppen.
 
 ## Lizenzen und Fanprojekt
 
