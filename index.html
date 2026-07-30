@@ -855,6 +855,7 @@
       ).toLowerCase());
       let analyticsEnabled = true;
       let analyticsStarted = false;
+      let analyticsPageLoadSent = false;
       let cityAnalyticsTimer = null;
       let analyticsSessionState = { device: false, theme: false };
       try {
@@ -879,12 +880,13 @@
         && activeMapMode === 'online'
       );
 
-      const sendAnalytics = (path, title, event = true) => {
+      const sendAnalytics = (path, title, event = true, noSession = false) => {
         if (!analyticsCanSend()) return false;
         const target = new URL(analyticsEndpoint);
         target.searchParams.set('p', path);
         target.searchParams.set('t', title);
         if (event) target.searchParams.set('e', '1');
+        if (noSession) target.searchParams.set('ns', '1');
         window.fetch(target.href, {
           method: 'GET',
           mode: 'no-cors',
@@ -921,7 +923,11 @@
       const startAnalytics = () => {
         if (analyticsStarted || !analyticsCanSend()) return;
         analyticsStarted = true;
-        sendAnalytics('/shadowrun-6-maps/', 'Shadowrun 6 Maps', false);
+        if (!analyticsPageLoadSent) {
+          sendAnalytics('/shadowrun-6-maps/', 'App-Besuche (8 Stunden entdoppelt)', false);
+          sendAnalytics('pageview/load', 'Seitenaufrufe (inkl. Neuladen)', true, true);
+          analyticsPageLoadSent = true;
+        }
         queueActiveCityAnalytics();
         if (!analyticsSessionState.device) {
           const deviceClass = mobileNavigationActive() ? 'mobile' : 'desktop';

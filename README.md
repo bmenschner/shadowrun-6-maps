@@ -49,6 +49,10 @@ ausgewählte Stadt, die Geräteklasse Desktop oder Mobilgerät und das verwendet
 Light- oder Dark-Theme. Das grobe Herkunftsland und eine ungefähre Besucherzahl
 werden serverseitig durch GoatCounter bestimmt. Suchbegriffe, Koordinaten,
 Marker, Personen, Dossiers, URL-Parameter und Referrer werden nicht übertragen.
+Die Zeile `/shadowrun-6-maps/` zeigt durch die achtstündige Sitzung entdoppelte
+App-Besuche. Das Ereignis `pageview/load` zählt zusätzlich jeden vollständigen
+Online-App-Start einschließlich Neuladen. Die GoatCounter-Gesamtsumme addiert
+auch Stadt-, Geräte- und Theme-Ereignisse und ist deshalb kein Seitenaufrufwert.
 Stadtwechsel werden unmittelbar vor der Navigation übermittelt. Eine beim
 Einstieg automatisch geladene Karte wird erst nach drei Sekunden Verweildauer
 gezählt, damit die Berliner Standardkarte die tatsächliche Kartenauswahl nicht
