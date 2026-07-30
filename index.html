@@ -767,6 +767,12 @@
           citySelect.focus();
           return;
         }
+        const selectedCity = citiesById.get(citySelect.value);
+        if (cityAnalyticsTimer) window.clearTimeout(cityAnalyticsTimer);
+        trackAnalyticsEvent(
+          `city/${encodeURIComponent(citySelect.value)}`,
+          `Karte: ${selectedCity ? `${selectedCity.name}${selectedCity.year ? ` ${selectedCity.year}` : ''}` : citySelect.value}`
+        );
         try { window.localStorage.setItem(cityStorageKey, citySelect.value); } catch (error) {}
         const target = new URL(window.location.href);
         target.searchParams.set('city', citySelect.value);
@@ -826,6 +832,7 @@
       const legacyThemeStorageKey = 'sr6-berlin-theme';
       const legacyMapModeStorageKey = 'sr6-berlin-map-mode';
       const analyticsStorageKey = 'sr6-analytics-enabled';
+      const analyticsSessionStorageKey = 'sr6-analytics-session-state';
       const analyticsEndpoint = 'https://assyx.goatcounter.com/count';
       const analyticsProductionHost = 'bmenschner.github.io';
       let requestedMapMode = 'online';
@@ -848,9 +855,19 @@
       ).toLowerCase());
       let analyticsEnabled = true;
       let analyticsStarted = false;
-      const analyticsRequests = new Set();
+      let cityAnalyticsTimer = null;
+      let analyticsSessionState = { device: false, theme: false };
       try {
         analyticsEnabled = window.localStorage.getItem(analyticsStorageKey) !== 'false';
+      } catch (error) {}
+      try {
+        const storedAnalyticsSessionState = JSON.parse(window.sessionStorage.getItem(analyticsSessionStorageKey) || 'null');
+        if (storedAnalyticsSessionState && typeof storedAnalyticsSessionState === 'object') {
+          analyticsSessionState = {
+            device: storedAnalyticsSessionState.device === true,
+            theme: storedAnalyticsSessionState.theme === true,
+          };
+        }
       } catch (error) {}
 
       const analyticsCanSend = () => (
@@ -863,32 +880,60 @@
       );
 
       const sendAnalytics = (path, title, event = true) => {
-        if (!analyticsCanSend()) return;
+        if (!analyticsCanSend()) return false;
         const target = new URL(analyticsEndpoint);
         target.searchParams.set('p', path);
         target.searchParams.set('t', title);
         if (event) target.searchParams.set('e', '1');
-        const request = new Image();
-        analyticsRequests.add(request);
-        request.referrerPolicy = 'no-referrer';
-        const release = () => analyticsRequests.delete(request);
-        request.addEventListener('load', release, { once: true });
-        request.addEventListener('error', release, { once: true });
-        request.src = target.href;
+        window.fetch(target.href, {
+          method: 'GET',
+          mode: 'no-cors',
+          credentials: 'omit',
+          cache: 'no-store',
+          keepalive: true,
+          referrerPolicy: 'no-referrer',
+        }).catch(() => {});
+        return true;
       };
 
       const trackAnalyticsEvent = (path, title) => {
         if (analyticsStarted) sendAnalytics(path, title, true);
       };
 
+      const markAnalyticsSessionDimension = dimension => {
+        analyticsSessionState[dimension] = true;
+        try {
+          window.sessionStorage.setItem(analyticsSessionStorageKey, JSON.stringify(analyticsSessionState));
+        } catch (error) {}
+      };
+
+      const queueActiveCityAnalytics = () => {
+        if (cityAnalyticsTimer) window.clearTimeout(cityAnalyticsTimer);
+        cityAnalyticsTimer = window.setTimeout(() => {
+          cityAnalyticsTimer = null;
+          trackAnalyticsEvent(
+            `city/${encodeURIComponent(cityContext.city.id)}`,
+            `Karte: ${cityLabel}`
+          );
+        }, 3000);
+      };
+
       const startAnalytics = () => {
         if (analyticsStarted || !analyticsCanSend()) return;
         analyticsStarted = true;
         sendAnalytics('/shadowrun-6-maps/', 'Shadowrun 6 Maps', false);
-        sendAnalytics(`city/${encodeURIComponent(cityContext.city.id)}`, `Karte: ${cityLabel}`);
-        const deviceClass = mobileNavigationActive() ? 'mobile' : 'desktop';
-        sendAnalytics(`device/${deviceClass}`, `Gerät: ${deviceClass === 'mobile' ? 'Mobilgerät' : 'Desktop'}`);
-        sendAnalytics(`theme/${currentTheme}`, `Theme: ${currentTheme === 'light' ? 'Light' : 'Dark'}`);
+        queueActiveCityAnalytics();
+        if (!analyticsSessionState.device) {
+          const deviceClass = mobileNavigationActive() ? 'mobile' : 'desktop';
+          if (sendAnalytics(`device/${deviceClass}`, `Gerät: ${deviceClass === 'mobile' ? 'Mobilgerät' : 'Desktop'}`)) {
+            markAnalyticsSessionDimension('device');
+          }
+        }
+        if (!analyticsSessionState.theme) {
+          if (sendAnalytics(`theme/${currentTheme}`, `Theme: ${currentTheme === 'light' ? 'Light' : 'Dark'}`)) {
+            markAnalyticsSessionDimension('theme');
+          }
+        }
       };
 
       const syncAnalyticsPreference = () => {
@@ -909,7 +954,11 @@
 
       analyticsToggle.addEventListener('change', () => {
         analyticsEnabled = analyticsToggle.checked;
-        if (!analyticsEnabled) analyticsStarted = false;
+        if (!analyticsEnabled) {
+          analyticsStarted = false;
+          if (cityAnalyticsTimer) window.clearTimeout(cityAnalyticsTimer);
+          cityAnalyticsTimer = null;
+        }
         try {
           window.localStorage.setItem(analyticsStorageKey, analyticsEnabled ? 'true' : 'false');
         } catch (error) {}
@@ -1486,7 +1535,14 @@
         switchingMapMode = false;
         syncMapModeButtons(activeMapMode === 'offline' && requestedMapMode === 'online' ? 'Offline – Verbindung unterbrochen; Online wird automatisch wiederhergestellt.' : '');
         syncAnalyticsPreference();
-        if (activeMapMode === 'online') startAnalytics();
+        if (activeMapMode === 'online') {
+          const analyticsWasStarted = analyticsStarted;
+          startAnalytics();
+          if (analyticsWasStarted) queueActiveCityAnalytics();
+        } else if (cityAnalyticsTimer) {
+          window.clearTimeout(cityAnalyticsTimer);
+          cityAnalyticsTimer = null;
+        }
       }
 
       map.on('baselayerchange', event => {
@@ -1566,7 +1622,6 @@
         personRelationMarkers.forEach(marker => marker.setStyle({ color: themePalette().personAccent }));
         markerById.forEach((markers, id) => markers.forEach(marker => marker.setStyle(markerStyle(featureById.get(id), markerIsActive(id)))));
         renderList();
-        if (persist) trackAnalyticsEvent(`theme/${currentTheme}`, `Theme: ${currentTheme === 'light' ? 'Light' : 'Dark'}`);
       }
 
       const category = document.getElementById('category');
@@ -1966,6 +2021,11 @@
             target.search = '';
             target.searchParams.set('city', item.cityId);
             target.searchParams.set(item.type === 'person' ? 'person' : 'marker', item.id);
+            if (cityAnalyticsTimer) window.clearTimeout(cityAnalyticsTimer);
+            trackAnalyticsEvent(
+              `city/${encodeURIComponent(item.cityId)}`,
+              `Karte: ${item.cityLabel || item.cityName || item.cityId}`
+            );
             window.location.assign(target.href);
           });
           list.appendChild(button);

@@ -49,6 +49,12 @@ ausgewählte Stadt, die Geräteklasse Desktop oder Mobilgerät und das verwendet
 Light- oder Dark-Theme. Das grobe Herkunftsland und eine ungefähre Besucherzahl
 werden serverseitig durch GoatCounter bestimmt. Suchbegriffe, Koordinaten,
 Marker, Personen, Dossiers, URL-Parameter und Referrer werden nicht übertragen.
+Stadtwechsel werden unmittelbar vor der Navigation übermittelt. Eine beim
+Einstieg automatisch geladene Karte wird erst nach drei Sekunden Verweildauer
+gezählt, damit die Berliner Standardkarte die tatsächliche Kartenauswahl nicht
+verfälscht. Geräteklasse und Ausgangs-Theme werden nur einmal pro geöffneter
+App-Sitzung erfasst. Ein späterer Theme-Wechsel erzeugt kein zweites
+Theme-Ereignis.
 
 Die Erfassung ist in lokalen Vorschauen, auf fremden Hosts, im Offlinebetrieb
 und bei aktiviertem „Do Not Track“ abgeschaltet. Im Disclaimer kann sie
