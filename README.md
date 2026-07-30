@@ -40,6 +40,26 @@ Für die lokale Vorschau genügt unter Windows ein Doppelklick auf `Karte-lokal-
 
 Über **„Light / Dark“** in der oberen Menüleiste lässt sich die gesamte Oberfläche umschalten. Der Lightmode übernimmt die helle Papier-, Magenta-, Anthrazit-, Türkis- und Orange-Palette der Berlin-2080-Karten v06; der gewählte Modus bleibt beim nächsten Öffnen erhalten. Marker, Gebietsstatus, exterritoriale Flächen sowie die einzeln aktivierbaren Bezirks-, Stadtteil-, Umland- und Stadtgrenzen wechseln auf abgestimmte kontrastreiche Farben, ohne ihre Ebenenfunktion zu verlieren.
 
+## Anonyme Nutzungsstatistik
+
+Die veröffentlichte PWA verwendet GoatCounter unter
+`https://assyx.goatcounter.com/count`. Die Anwendung übermittelt ausschließlich
+einen einheitlichen Seitenaufruf sowie aggregierbare Ereignisse für die
+ausgewählte Stadt, die Geräteklasse Desktop oder Mobilgerät und das verwendete
+Light- oder Dark-Theme. Das grobe Herkunftsland und eine ungefähre Besucherzahl
+werden serverseitig durch GoatCounter bestimmt. Suchbegriffe, Koordinaten,
+Marker, Personen, Dossiers, URL-Parameter und Referrer werden nicht übertragen.
+
+Die Erfassung ist in lokalen Vorschauen, auf fremden Hosts, im Offlinebetrieb
+und bei aktiviertem „Do Not Track“ abgeschaltet. Im Disclaimer kann sie
+zusätzlich für das verwendete Gerät deaktiviert werden. Die Einstellung wird
+lokal unter `sr6-analytics-enabled` gespeichert.
+
+Damit der GoatCounter-Bestand dem dokumentierten Minimalumfang entspricht,
+bleiben Sitzungen und Herkunftsland in den GoatCounter-Einstellungen aktiviert.
+Browser, Betriebssystem, Sprache, Bildschirmgröße, Referrer, Kampagnen und
+individuelle Seitenaufrufe werden dort deaktiviert.
+
 Mit **„Orte / Personen“** wechselt die Seitenleiste zwischen dem Standortkatalog und den Personen, Gangs, Syndikaten und sonstigen Gruppen der gewählten Stadt. Die Kategorie **„Gangs“** führt Gruppen mit Typ, Editionsbeschreibung und Quelle. Historische Beschreibungen werden im selben Dossier über die Editionsschalter neben späteren Quellenständen angeboten. Personen und Gruppen werden – soweit eindeutig belegt – mit bestehenden physischen oder virtuellen Orten und Stadtgebieten verbunden. Die optionale Ebene **„Personenbezüge“** hebt diese verknüpften Marker hervor und erzeugt keine zusätzlichen Standortmarker.
 
 Die Suche arbeitet unabhängig vom gewählten Umschalter und durchsucht immer Orte und Personen gemeinsam. Der globale Suchindex ist stadtübergreifend: Ein Treffer aus einer anderen Stadt wechselt beim Öffnen automatisch in deren Stadtpaket. Direktlinks enthalten deshalb optional die Stadt, zum Beispiel `?city=berlin-2080&person=nakaira`.

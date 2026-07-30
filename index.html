@@ -110,6 +110,15 @@
     .legal-body { overflow: auto; scrollbar-color: #30514d #090c12; }
     .legal-body ul { margin: 7px 0 0; padding-left: 20px; }
     .legal-body li + li { margin-top: 4px; }
+    .analytics-preference {
+      display: flex; align-items: flex-start; gap: 10px; margin-top: 12px; padding: 10px 11px;
+      border: 1px solid var(--line); border-radius: 4px; background: rgba(64,248,221,.035); cursor: pointer;
+    }
+    .analytics-preference input { width: 16px; height: 16px; flex: 0 0 16px; margin: 2px 0 0; accent-color: var(--pink); cursor: pointer; }
+    .analytics-preference input:disabled { cursor: not-allowed; }
+    .analytics-preference span { min-width: 0; }
+    .analytics-preference strong { display: block; color: var(--text); }
+    .analytics-preference small { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.45 ui-monospace, monospace; }
     .support-note { color: var(--muted); font-size: 11px; }
     .support-title {
       margin: 0 0 13px !important; padding: 0 0 10px; border-bottom: 1px solid var(--line);
@@ -591,6 +600,15 @@
           <p>Die Online-Basiskarten und Straßenbeschriftungen werden durch <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a> dargestellt. Die interaktive Kartendarstellung verwendet <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a>, veröffentlicht unter der BSD-2-Clause-Lizenz.</p>
           <p id="boundary-source-legal">Die Quellen der verwendeten Grenzgrundlagen werden abhängig von der ausgewählten Stadt oder Region ausgewiesen.</p>
 
+          <h3>Datenschutz und anonyme Nutzungsstatistik</h3>
+          <p>Zur Reichweitenmessung und zur Verbesserung der Kartenauswahl verwendet die veröffentlichte Web-App den datensparsamen Analysedienst <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer">GoatCounter</a>. Erfasst werden ausschließlich Seitenaufrufe und eine ungefähre Besucherzahl, die ausgewählte Karte beziehungsweise Stadt, die grobe Geräteklasse Desktop oder Mobilgerät, das Herkunftsland sowie das verwendete Light- oder Dark-Theme.</p>
+          <p>Suchbegriffe, Kartenpositionen, Koordinaten, aufgerufene Orts- oder Personendossiers, vollständige Navigationspfade und URL-Parameter werden nicht übertragen. Die App setzt dafür keine Analyse-Cookies und erzeugt keine dauerhafte Nutzerkennung. Zur Bildung einer ungefähren Sitzung und zur Bestimmung des Herkunftslands verarbeitet GoatCounter IP-Adresse und Browserkennung vorübergehend, speichert diese Ausgangsdaten nach Angaben des Anbieters jedoch nicht. Die Statistik wird nur aggregiert ausgewertet.</p>
+          <p>Die Verarbeitung dient dem berechtigten Interesse, Reichweite, Geräteverteilung und Nutzung der verfügbaren Stadtkarten beurteilen und die Bedienbarkeit verbessern zu können. Lokale Vorschauen, der Offlinebetrieb und Browser mit aktiviertem „Do Not Track“ werden nicht erfasst. Die Einstellung unten wird ausschließlich lokal auf dem verwendeten Gerät gespeichert.</p>
+          <label class="analytics-preference" for="analytics-enabled">
+            <input id="analytics-enabled" type="checkbox">
+            <span><strong>Anonyme Nutzungsstatistik zulassen</strong><small id="analytics-status" role="status">Status wird ermittelt.</small></span>
+          </label>
+
           <h3>Freiwillige Unterstützung</h3>
           <p>Freiwillige Unterstützungszahlungen dienen der Weiterentwicklung und dem technischen Betrieb des Fanprojekts. Sie stellen keinen Kaufpreis und keine Vergütung für Shadowrun-Inhalte dar. Alle Inhalte und Funktionen bleiben unabhängig von einer Unterstützung kostenlos zugänglich.</p>
 
@@ -807,6 +825,9 @@
       const mapModeStorageKey = 'sr6-map-mode';
       const legacyThemeStorageKey = 'sr6-berlin-theme';
       const legacyMapModeStorageKey = 'sr6-berlin-map-mode';
+      const analyticsStorageKey = 'sr6-analytics-enabled';
+      const analyticsEndpoint = 'https://assyx.goatcounter.com/count';
+      const analyticsProductionHost = 'bmenschner.github.io';
       let requestedMapMode = 'online';
       let activeMapMode = 'online';
       try {
@@ -820,6 +841,82 @@
       } catch (error) {}
       document.documentElement.dataset.theme = currentTheme;
       document.querySelector('meta[name="theme-color"]').setAttribute('content', currentTheme === 'light' ? '#f7f7f3' : '#071018');
+      const analyticsToggle = document.getElementById('analytics-enabled');
+      const analyticsStatus = document.getElementById('analytics-status');
+      const doNotTrackEnabled = ['1', 'yes'].includes(String(
+        navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack || ''
+      ).toLowerCase());
+      let analyticsEnabled = true;
+      let analyticsStarted = false;
+      const analyticsRequests = new Set();
+      try {
+        analyticsEnabled = window.localStorage.getItem(analyticsStorageKey) !== 'false';
+      } catch (error) {}
+
+      const analyticsCanSend = () => (
+        analyticsEnabled
+        && !doNotTrackEnabled
+        && !LOCAL_DEVELOPMENT
+        && window.location.hostname === analyticsProductionHost
+        && navigator.onLine !== false
+        && activeMapMode === 'online'
+      );
+
+      const sendAnalytics = (path, title, event = true) => {
+        if (!analyticsCanSend()) return;
+        const target = new URL(analyticsEndpoint);
+        target.searchParams.set('p', path);
+        target.searchParams.set('t', title);
+        if (event) target.searchParams.set('e', '1');
+        const request = new Image();
+        analyticsRequests.add(request);
+        request.referrerPolicy = 'no-referrer';
+        const release = () => analyticsRequests.delete(request);
+        request.addEventListener('load', release, { once: true });
+        request.addEventListener('error', release, { once: true });
+        request.src = target.href;
+      };
+
+      const trackAnalyticsEvent = (path, title) => {
+        if (analyticsStarted) sendAnalytics(path, title, true);
+      };
+
+      const startAnalytics = () => {
+        if (analyticsStarted || !analyticsCanSend()) return;
+        analyticsStarted = true;
+        sendAnalytics('/shadowrun-6-maps/', 'Shadowrun 6 Maps', false);
+        sendAnalytics(`city/${encodeURIComponent(cityContext.city.id)}`, `Karte: ${cityLabel}`);
+        const deviceClass = mobileNavigationActive() ? 'mobile' : 'desktop';
+        sendAnalytics(`device/${deviceClass}`, `Gerät: ${deviceClass === 'mobile' ? 'Mobilgerät' : 'Desktop'}`);
+        sendAnalytics(`theme/${currentTheme}`, `Theme: ${currentTheme === 'light' ? 'Light' : 'Dark'}`);
+      };
+
+      const syncAnalyticsPreference = () => {
+        analyticsToggle.checked = analyticsEnabled && !doNotTrackEnabled;
+        analyticsToggle.disabled = doNotTrackEnabled;
+        if (doNotTrackEnabled) {
+          analyticsStatus.textContent = 'Deaktiviert, weil „Do Not Track“ im Browser aktiv ist.';
+        } else if (!analyticsEnabled) {
+          analyticsStatus.textContent = 'Auf diesem Gerät deaktiviert.';
+        } else if (LOCAL_DEVELOPMENT || window.location.hostname !== analyticsProductionHost) {
+          analyticsStatus.textContent = 'In lokalen Vorschauen und auf anderen Hosts automatisch deaktiviert.';
+        } else if (navigator.onLine === false || activeMapMode === 'offline') {
+          analyticsStatus.textContent = 'Im Offlinebetrieb pausiert.';
+        } else {
+          analyticsStatus.textContent = 'Aktiv – es werden nur die oben genannten aggregierten Werte übertragen.';
+        }
+      };
+
+      analyticsToggle.addEventListener('change', () => {
+        analyticsEnabled = analyticsToggle.checked;
+        if (!analyticsEnabled) analyticsStarted = false;
+        try {
+          window.localStorage.setItem(analyticsStorageKey, analyticsEnabled ? 'true' : 'false');
+        } catch (error) {}
+        syncAnalyticsPreference();
+        if (analyticsEnabled) startAnalytics();
+      });
+      syncAnalyticsPreference();
       const themePalettes = {
         dark: {
           categories: {
@@ -1388,6 +1485,8 @@
         }
         switchingMapMode = false;
         syncMapModeButtons(activeMapMode === 'offline' && requestedMapMode === 'online' ? 'Offline – Verbindung unterbrochen; Online wird automatisch wiederhergestellt.' : '');
+        syncAnalyticsPreference();
+        if (activeMapMode === 'online') startAnalytics();
       }
 
       map.on('baselayerchange', event => {
@@ -1421,6 +1520,7 @@
       });
       document.getElementById('map-mode-offline').disabled = !HAS_OFFLINE_BASE;
       setMapMode(requestedMapMode, { persist: false, automatic: true });
+      startAnalytics();
       map.fitBounds(DATA.regionBounds, { padding: [18, 18] });
       updateZoomLevelDisplay();
 
@@ -1466,6 +1566,7 @@
         personRelationMarkers.forEach(marker => marker.setStyle({ color: themePalette().personAccent }));
         markerById.forEach((markers, id) => markers.forEach(marker => marker.setStyle(markerStyle(featureById.get(id), markerIsActive(id)))));
         renderList();
+        if (persist) trackAnalyticsEvent(`theme/${currentTheme}`, `Theme: ${currentTheme === 'light' ? 'Light' : 'Dark'}`);
       }
 
       const category = document.getElementById('category');
