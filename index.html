@@ -128,7 +128,8 @@
     .pwa-dialog-action { width: 100%; display: block; margin-top: 13px; padding: 9px 11px; border: 1px solid var(--pink); border-radius: 4px; background: linear-gradient(90deg, rgba(255,46,166,.14), rgba(64,248,221,.06)); color: var(--text); cursor: pointer; text-align: center; text-decoration: none; font: 700 11px/1.2 ui-monospace, monospace; }
     .pwa-dialog-action:hover { border-color: var(--cyan); color: var(--cyan); }
     .update-banner { position: absolute; z-index: 1080; top: 12px; left: 50%; display: flex; align-items: center; gap: 10px; max-width: calc(100% - 160px); padding: 8px 10px; transform: translateX(-50%); border: 1px solid var(--cyan); border-radius: 4px; background: rgba(5,10,17,.96); box-shadow: var(--shadow); color: var(--text); font: 11px/1.3 ui-monospace, monospace; }
-    .update-banner button { border: 1px solid var(--pink); border-radius: 3px; padding: 5px 8px; background: rgba(255,46,166,.1); color: var(--text); cursor: pointer; }
+    .update-banner span { min-width: 0; overflow-wrap: anywhere; }
+    .update-banner button { flex: 0 0 auto; border: 1px solid var(--pink); border-radius: 3px; padding: 5px 8px; background: rgba(255,46,166,.1); color: var(--text); cursor: pointer; }
     .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
     .workspace { width: 100%; min-width: 0; min-height: 0; display: grid; grid-template-columns: 350px minmax(0, 1fr); }
     .sidebar { min-height: 0; display: flex; flex-direction: column; border-right: 1px solid rgba(255,46,166,.34); background: linear-gradient(180deg, rgba(5,12,19,.98), rgba(10,5,17,.97)); z-index: 1100; box-shadow: var(--shadow); }
@@ -497,7 +498,7 @@
       </aside>
       <section class="map-wrap" aria-label="Zoombare Karte von Berlin 2080 und seinem Lore-Umland">
         <div id="map"></div>
-        <div class="update-banner" id="update-banner" role="status" hidden><span>Eine neue Kartenversion ist verfügbar.</span><button id="update-app" type="button">Aktualisieren</button></div>
+        <div class="update-banner" id="update-banner" role="status" hidden><span id="update-message">Eine neue App-Version ist verfügbar.</span><button id="update-app" type="button">Aktualisieren</button></div>
         <div class="boundary-key" aria-label="Legende der Grenzarten">
           <span class="key-title" data-legend-title="status">Gebietsstatus</span>
           <span data-legend-layer="anarcho"><i class="key-anarcho"></i>Anarcho-Gebiet</span>
@@ -2160,9 +2161,61 @@
         let updateAccepted = false;
         let waitingWorker = null;
         const updateBanner = document.getElementById('update-banner');
-        const offerUpdate = worker => {
+        const updateMessage = document.getElementById('update-message');
+        const formatUpdateCities = cities => {
+          const uniqueCities = [...new Set((Array.isArray(cities) ? cities : [])
+            .filter(city => typeof city === 'string')
+            .map(city => city.trim())
+            .filter(Boolean))];
+          const labels = uniqueCities.length > 3
+            ? [uniqueCities[0], uniqueCities[1], `${uniqueCities.length - 2} weitere ${uniqueCities.length === 3 ? 'Stadt' : 'Städte'}`]
+            : uniqueCities;
+          if (!labels.length) return '';
+          if (typeof Intl.ListFormat === 'function') {
+            return new Intl.ListFormat('de', { style: 'long', type: 'conjunction' }).format(labels);
+          }
+          if (labels.length === 1) return labels[0];
+          return `${labels.slice(0, -1).join(', ')} und ${labels.at(-1)}`;
+        };
+        const buildUpdateMessage = release => {
+          if (!release || typeof release !== 'object') return 'Eine neue App-Version ist verfügbar.';
+          const cities = formatUpdateCities(release.cities);
+          if (release.type === 'map') {
+            return cities
+              ? `Neues Kartenmaterial für ${cities} verfügbar.`
+              : 'Neues Kartenmaterial verfügbar.';
+          }
+          if (release.type === 'mixed' && cities) {
+            return `App-Aktualisierung mit neuem Kartenmaterial für ${cities} verfügbar.`;
+          }
+          return 'App-Aktualisierung verfügbar.';
+        };
+        const requestReleaseInfo = worker => new Promise(resolve => {
+          const channel = new MessageChannel();
+          let settled = false;
+          let timer;
+          const finish = release => {
+            if (settled) return;
+            settled = true;
+            clearTimeout(timer);
+            channel.port1.close();
+            resolve(release);
+          };
+          channel.port1.onmessage = event => finish(event.data);
+          timer = window.setTimeout(() => finish(null), 1200);
+          try {
+            worker.postMessage({ type: 'GET_RELEASE_INFO' }, [channel.port2]);
+          } catch (error) {
+            console.warn('Release-Information konnte nicht gelesen werden.', error);
+            finish(null);
+          }
+        });
+        const offerUpdate = async worker => {
           waitingWorker = worker;
+          updateMessage.textContent = 'Eine neue App-Version ist verfügbar.';
           updateBanner.hidden = false;
+          const release = await requestReleaseInfo(worker);
+          if (waitingWorker === worker) updateMessage.textContent = buildUpdateMessage(release);
         };
         const registerServiceWorker = async () => {
           try {

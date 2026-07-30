@@ -1,4 +1,9 @@
-const APP_CACHE = 'sr6-app-v58';
+const RELEASE = Object.freeze({
+  version: '2026.07.30.1',
+  type: 'app',
+  cities: []
+});
+const APP_CACHE = `sr6-app-${RELEASE.version}`;
 const RUNTIME_CACHE = 'sr6-runtime-v46';
 const APP_ENTRY = new URL('./index.html', self.registration.scope).href;
 const APP_SHELL = [
@@ -68,9 +73,14 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
-  if (event.data && event.data.type === 'CACHE_CITY' && event.data.manifestUrl) {
-    event.waitUntil(cacheCityPackage(event.data.manifestUrl));
+  const message = event.data || {};
+  if (message.type === 'GET_RELEASE_INFO' && event.ports[0]) {
+    event.ports[0].postMessage(RELEASE);
+    return;
+  }
+  if (message.type === 'SKIP_WAITING') self.skipWaiting();
+  if (message.type === 'CACHE_CITY' && message.manifestUrl) {
+    event.waitUntil(cacheCityPackage(message.manifestUrl));
   }
 });
 
