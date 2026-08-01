@@ -1,5 +1,5 @@
 const RELEASE = Object.freeze({
-  version: '2026.07.30.1',
+  version: '2026.08.02.1',
   type: 'app',
   cities: []
 });
@@ -9,6 +9,7 @@ const APP_ENTRY = new URL('./index.html', self.registration.scope).href;
 const APP_SHELL = [
   './index.html',
   './app/city-loader.js',
+  './app/correction-reports.js',
   './data/cities.json',
   './data/search-index.json',
   './manifest.webmanifest',

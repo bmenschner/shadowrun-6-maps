@@ -40,6 +40,26 @@ Für die lokale Vorschau genügt unter Windows ein Doppelklick auf `Karte-lokal-
 
 Über **„Light / Dark“** in der oberen Menüleiste lässt sich die gesamte Oberfläche umschalten. Der Lightmode übernimmt die helle Papier-, Magenta-, Anthrazit-, Türkis- und Orange-Palette der Berlin-2080-Karten v06; der gewählte Modus bleibt beim nächsten Öffnen erhalten. Marker, Gebietsstatus, exterritoriale Flächen sowie die einzeln aktivierbaren Bezirks-, Stadtteil-, Umland- und Stadtgrenzen wechseln auf abgestimmte kontrastreiche Farben, ohne ihre Ebenenfunktion zu verlieren.
 
+## Community-Korrekturmeldungen
+
+Ein Rechtsklick auf die Karte zeigt die aktuelle OSM-Geokoordinate und bietet
+Aktionen zum Kopieren der Koordinate, zum Vorschlagen eines neuen Eintrags und
+zum Melden eines fehlerhaften Grenzverlaufs. Auf Mobilgeräten startet das
+Flaggensymbol bei den Kartenwerkzeugen die Punktauswahl. Orte,
+Personen, Gruppen sowie Stadt- und Regionsprofile besitzen zusätzlich in ihrer
+Detailkarte den Button **„Fehlerhaften Eintrag melden“**.
+
+Das Korrekturformular zeigt zuerst die unveränderten Originaldaten. Darunter
+werden nur die tatsächlich korrigierten Werte eingegeben; die Originalwerte
+stehen als Platzhalter bereit und die Eintragskennung bleibt schreibgeschützt.
+Neue Einträge verwenden ein leeres Pflichtformular ohne Eintragskennung, wobei
+die auf der Karte gewählte Koordinate bereits eingetragen und weiterhin
+editierbar ist. Die Anwendung speichert keine Meldungen und verschickt selbst
+keine E-Mails. JavaScript erstellt ausschließlich einen lokalen Bericht und
+öffnet über `mailto:` das E-Mail-Programm; alternativ lässt sich die Meldung
+vollständig kopieren. Die Projektadresse wird zentral über `REPORT_EMAIL` in
+`index.html` konfiguriert.
+
 ## Anonyme Nutzungsstatistik
 
 Die veröffentlichte PWA verwendet GoatCounter unter
