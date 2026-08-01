@@ -127,6 +127,58 @@
     .support-status { margin-top: 12px !important; padding: 8px 10px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); font: 10px/1.45 ui-monospace, monospace; }
     .pwa-dialog-action { width: 100%; display: block; margin-top: 13px; padding: 9px 11px; border: 1px solid var(--pink); border-radius: 4px; background: linear-gradient(90deg, rgba(255,46,166,.14), rgba(64,248,221,.06)); color: var(--text); cursor: pointer; text-align: center; text-decoration: none; font: 700 11px/1.2 ui-monospace, monospace; }
     .pwa-dialog-action:hover { border-color: var(--cyan); color: var(--cyan); }
+    .report-dialog { position: fixed; z-index: 3500; inset: 0; display: grid; place-items: center; padding: 18px; background: rgba(0,3,7,.84); backdrop-filter: blur(7px); }
+    .report-panel { width: min(680px, 100%); max-height: min(92dvh, 900px); display: grid; grid-template-rows: auto minmax(0,1fr); overflow: hidden; border: 1px solid rgba(255,173,49,.58); border-radius: 7px; background: #070b11; box-shadow: 0 24px 100px rgba(0,0,0,.76), 0 0 34px rgba(255,173,49,.1); }
+    .report-form { min-height: 0; overflow: auto; padding: 14px; scrollbar-color: #30514d #090c12; }
+    .report-intro { margin: 0 0 12px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .report-context { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .report-context div { min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 4px; background: rgba(64,248,221,.035); }
+    .report-context small { display: block; margin-bottom: 3px; color: var(--cyan); font: 700 8px/1.2 ui-monospace, monospace; letter-spacing: .11em; text-transform: uppercase; }
+    .report-context strong { display: block; overflow-wrap: anywhere; font-size: 11px; }
+    .report-original-data { margin: 0 0 14px; padding: 11px; border: 1px solid rgba(64,248,221,.25); border-radius: 4px; background: rgba(64,248,221,.025); }
+    .report-original-data h3 { margin: 0 0 9px; color: var(--cyan); font: 800 10px/1.2 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .report-original-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 12px; margin: 0; }
+    .report-original-grid div { min-width: 0; }
+    .report-original-grid .wide { grid-column: 1 / -1; }
+    .report-original-grid dt { margin-bottom: 2px; color: var(--muted); font: 700 8px/1.2 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .report-original-grid dd { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; font-size: 11px; line-height: 1.4; }
+    .report-form-title { margin: 0 0 10px; color: var(--amber); font: 800 10px/1.2 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .report-field { min-width: 0; display: grid; gap: 5px; margin-bottom: 10px; color: var(--muted); font: 700 9px/1.3 ui-monospace, monospace; letter-spacing: .06em; text-transform: uppercase; }
+    .report-field input,
+    .report-field select,
+    .report-field textarea { width: 100%; border: 1px solid var(--line); border-radius: 4px; padding: 9px 10px; outline: 0; background: #0c1119; color: var(--text); font: 12px/1.45 Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: 0; text-transform: none; }
+    .report-field textarea { min-height: 112px; resize: vertical; }
+    .report-field input:focus,
+    .report-field select:focus,
+    .report-field textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(64,248,221,.08); }
+    .report-field input[readonly] { color: var(--cyan); background: rgba(64,248,221,.04); }
+    .report-coordinate-tools { display: grid; grid-template-columns: minmax(0,1fr) auto auto; gap: 6px; }
+    .report-small-btn { border: 1px solid var(--line); border-radius: 4px; padding: 7px 9px; background: rgba(0,0,0,.18); color: var(--text); cursor: pointer; font: 700 10px/1.2 ui-monospace, monospace; }
+    .report-small-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    .report-note { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.45; }
+    .report-note strong { color: var(--amber); }
+    .report-actions { display: grid; grid-template-columns: auto auto minmax(160px,1fr); gap: 8px; align-items: stretch; }
+    .report-action { min-height: 38px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 11px; background: rgba(0,0,0,.18); color: var(--text); cursor: pointer; font: 700 10px/1.3 ui-monospace, monospace; }
+    .report-action:hover { border-color: var(--cyan); color: var(--cyan); }
+    .report-action.primary { border-color: var(--pink); background: linear-gradient(90deg, rgba(255,46,166,.15), rgba(64,248,221,.06)); }
+    .report-action:disabled { opacity: .42; cursor: not-allowed; }
+    .report-status { min-height: 17px; margin: 9px 0 0; color: var(--muted); font: 10px/1.4 ui-monospace, monospace; }
+    .report-status[data-state="success"] { color: var(--green); }
+    .report-status[data-state="error"] { color: var(--danger); }
+    .detail-report-btn { width: 100%; margin-top: 13px; padding: 8px 10px; border: 1px solid rgba(255,173,49,.48); border-radius: 4px; background: rgba(255,173,49,.06); color: var(--amber); cursor: pointer; text-align: left; font: 700 10px/1.3 ui-monospace, monospace; }
+    .detail-report-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    .map-report-banner { position: absolute; z-index: 1090; top: 12px; left: 50%; display: flex; align-items: center; gap: 10px; max-width: calc(100% - 180px); padding: 8px 10px; transform: translateX(-50%); border: 1px solid var(--amber); border-radius: 4px; background: rgba(5,10,17,.97); box-shadow: var(--shadow); color: var(--text); font: 11px/1.35 ui-monospace, monospace; }
+    .map-report-banner span { min-width: 0; }
+    .map-report-banner button { flex: 0 0 auto; border: 1px solid var(--pink); border-radius: 3px; padding: 5px 8px; background: rgba(255,46,166,.1); cursor: pointer; }
+    #map.report-selection-active { cursor: crosshair; }
+    .report-map-control { display: grid; place-items: center; width: 30px; height: 30px; color: var(--amber) !important; font-size: 17px !important; line-height: 30px !important; }
+    .report-map-popup { min-width: 220px; color: #172229; }
+    .report-map-popup strong { display: block; margin-bottom: 3px; }
+    .report-map-popup code { display: block; margin-bottom: 8px; color: #4f2a70; font-size: 11px; }
+    .report-map-popup-actions { display: grid; gap: 5px; }
+    .report-map-popup button { width: 100%; border: 1px solid #9ba6aa; border-radius: 3px; padding: 6px 8px; background: #f7f7f3; color: #263238; cursor: pointer; text-align: left; font: 700 10px/1.25 ui-monospace, monospace; }
+    .report-map-popup button:hover { border-color: #b11267; color: #b11267; }
     .update-banner { position: absolute; z-index: 1080; top: 12px; left: 50%; display: flex; align-items: center; gap: 10px; max-width: calc(100% - 160px); padding: 8px 10px; transform: translateX(-50%); border: 1px solid var(--cyan); border-radius: 4px; background: rgba(5,10,17,.96); box-shadow: var(--shadow); color: var(--text); font: 11px/1.3 ui-monospace, monospace; }
     .update-banner span { min-width: 0; overflow-wrap: anywhere; }
     .update-banner button { flex: 0 0 auto; border: 1px solid var(--pink); border-radius: 3px; padding: 5px 8px; background: rgba(255,46,166,.1); color: var(--text); cursor: pointer; }
@@ -308,7 +360,13 @@
     :root[data-theme="light"] .map-mode-toggle,
     :root[data-theme="light"] .install-button { background: rgba(255,255,255,.48); color: #287448; }
     :root[data-theme="light"] .pwa-panel,
-    :root[data-theme="light"] .update-banner { background: #f7f7f3; color: var(--text); box-shadow: 0 18px 55px rgba(41,48,52,.22); }
+    :root[data-theme="light"] .report-panel,
+    :root[data-theme="light"] .update-banner,
+    :root[data-theme="light"] .map-report-banner { background: #f7f7f3; color: var(--text); box-shadow: 0 18px 55px rgba(41,48,52,.22); }
+    :root[data-theme="light"] .report-field input,
+    :root[data-theme="light"] .report-field select,
+    :root[data-theme="light"] .report-field textarea { background: #fafaf7; }
+    :root[data-theme="light"] .report-context div { background: rgba(11,143,155,.04); }
     :root[data-theme="light"] .support-open { background: linear-gradient(135deg, rgba(206,110,22,.12), rgba(177,18,103,.06)); color: #9b5808; }
     :root[data-theme="light"] .legal-body { scrollbar-color: #a9b1b1 #ececea; }
     :root[data-theme="light"] .atlas-open,
@@ -421,6 +479,7 @@
       #search,
       #category { font-size: 16px; }
       .update-banner { top: 8px; max-width: calc(100% - 90px); }
+      .map-report-banner { top: 8px; max-width: calc(100% - 90px); }
       .atlas-dialog { padding: 0; }
       .atlas-panel { width: 100%; height: 100%; border: 0; border-radius: 0; }
       .atlas-main { grid-template-columns: 1fr; grid-template-rows: 150px minmax(0,1fr); }
@@ -434,6 +493,15 @@
       .city-list-preference { font-size: 7px; }
       .boundary-key { display: none; }
       .pwa-dialog { padding: 10px; }
+      .report-dialog { padding: 0; }
+      .report-panel { width: 100%; height: 100%; max-height: none; border: 0; border-radius: 0; }
+      .report-grid,
+      .report-context,
+      .report-original-grid { grid-template-columns: 1fr; }
+      .report-original-grid .wide { grid-column: auto; }
+      .report-actions { grid-template-columns: 1fr 1fr; }
+      .report-action.primary { grid-column: 1 / -1; grid-row: 1; }
+      .map-report-banner { left: 8px; right: 8px; max-width: none; transform: none; }
       .legal-panel { max-height: calc(100dvh - 20px); }
       .update-banner { left: 8px; right: 8px; max-width: none; transform: none; }
       .detail-card { right: 8px; bottom: max(8px, env(safe-area-inset-bottom)); width: calc(100% - 16px); }
@@ -499,6 +567,7 @@
       <section class="map-wrap" aria-label="Zoombare Karte von Berlin 2080 und seinem Lore-Umland">
         <div id="map"></div>
         <div class="update-banner" id="update-banner" role="status" hidden><span id="update-message">Eine neue App-Version ist verfügbar.</span><button id="update-app" type="button">Aktualisieren</button></div>
+        <div class="map-report-banner" id="map-report-banner" role="status" hidden><span id="map-report-message"></span><button id="map-report-cancel" type="button">Abbrechen</button></div>
         <div class="boundary-key" aria-label="Legende der Grenzarten">
           <span class="key-title" data-legend-title="status">Gebietsstatus</span>
           <span data-legend-layer="anarcho"><i class="key-anarcho"></i>Anarcho-Gebiet</span>
@@ -529,6 +598,7 @@
               <div class="related-list" id="related-list"></div>
             </section>
             <dl class="detail-grid" id="detail-grid"></dl>
+            <button class="detail-report-btn" id="detail-report-open" type="button">⚠ Fehlerhaften Eintrag melden</button>
           </div>
         </article>
         <div class="atlas-dialog" id="atlas-dialog" role="dialog" aria-modal="true" aria-labelledby="atlas-title" hidden>
@@ -610,6 +680,10 @@
             <span><strong>Anonyme Nutzungsstatistik zulassen</strong><small id="analytics-status" role="status">Status wird ermittelt.</small></span>
           </label>
 
+          <h3>Korrekturmeldungen</h3>
+          <p>Hinweise auf fehlerhafte Orte, Personen, Gruppen oder Grenzverläufe werden ausschließlich lokal im Browser zu einer E-Mail zusammengestellt. Die App speichert und versendet die eingegebenen Inhalte nicht selbst. Erst die ausdrückliche Auswahl „E-Mail vorbereiten“ öffnet das E-Mail-Programm; der Versand erfolgt dort durch den Nutzer.</p>
+          <p>Die Meldung enthält die freiwillig eingegebenen Angaben sowie Stadt, Eintragskennung, Kartenkoordinate, Kartenlink und Datenstand. Bitte keine längeren Auszüge aus Quellenbüchern und keine unnötigen personenbezogenen Daten übermitteln.</p>
+
           <h3>Freiwillige Unterstützung</h3>
           <p>Freiwillige Unterstützungszahlungen dienen der Weiterentwicklung und dem technischen Betrieb des Fanprojekts. Sie stellen keinen Kaufpreis und keine Vergütung für Shadowrun-Inhalte dar. Alle Inhalte und Funktionen bleiben unabhängig von einer Unterstützung kostenlos zugänglich.</p>
 
@@ -618,9 +692,77 @@
         </div>
       </section>
     </div>
+    <div class="report-dialog" id="report-dialog" role="dialog" aria-modal="true" aria-labelledby="report-dialog-title" hidden>
+      <section class="report-panel">
+        <header class="pwa-head"><h2 id="report-dialog-title">Fehlerhaften Eintrag melden</h2><button class="close" id="report-close" type="button" aria-label="Korrekturmeldung schließen">×</button></header>
+        <form class="report-form" id="report-form">
+          <p class="report-intro">Die App bereitet eine strukturierte E-Mail vor. Es wird nichts automatisch gespeichert oder versendet.</p>
+          <div class="report-context">
+            <div><small>Stadt/Karte</small><strong id="report-context-city"></strong></div>
+            <div><small>Ausgewählter Eintrag</small><strong id="report-context-entry"></strong></div>
+          </div>
+          <section class="report-original-data" id="report-original-data" aria-labelledby="report-original-title">
+            <h3 id="report-original-title">Originaldaten</h3>
+            <dl class="report-original-grid">
+              <div><dt>Art</dt><dd id="report-original-kind"></dd></div>
+              <div><dt>Eintrags-ID</dt><dd id="report-original-entry-id"></dd></div>
+              <div><dt>Kategorie</dt><dd id="report-original-category"></dd></div>
+              <div><dt>Titel</dt><dd id="report-original-title-value"></dd></div>
+              <div><dt>OSM-Geokoordinate</dt><dd id="report-original-coordinate"></dd></div>
+              <div><dt>Seitenangabe</dt><dd id="report-original-page"></dd></div>
+              <div class="wide"><dt>Beschreibung</dt><dd id="report-original-description"></dd></div>
+              <div class="wide"><dt>Quelle</dt><dd id="report-original-source"></dd></div>
+            </dl>
+          </section>
+          <h3 class="report-form-title" id="report-form-title">Korrigierte Daten</h3>
+          <div class="report-grid">
+            <label class="report-field">Art
+              <select id="report-kind" required>
+                <option value="">Unverändert</option><option>Ort</option><option>Person</option><option>Gruppe</option><option>Grenze</option><option>Stadt/Region</option>
+              </select>
+            </label>
+            <label class="report-field" id="report-entry-id-field">Eintrags-ID
+              <input id="report-entry-id" type="text" readonly>
+            </label>
+            <label class="report-field">Kategorie
+              <input id="report-category" type="text" maxlength="120" required>
+            </label>
+            <label class="report-field">Titel
+              <input id="report-title" type="text" maxlength="160" required>
+            </label>
+          </div>
+          <label class="report-field">OSM-Geokoordinate
+            <span class="report-coordinate-tools">
+              <input id="report-coordinate" type="text" inputmode="decimal" required placeholder="52.520000, 13.405000">
+              <button class="report-small-btn" id="report-pick-coordinate" type="button">Auf Karte wählen</button>
+              <button class="report-small-btn" id="report-copy-coordinate" type="button">Kopieren</button>
+            </span>
+          </label>
+          <label class="report-field">Beschreibung
+            <textarea id="report-description" maxlength="1600" required placeholder="Korrigierte Beschreibung"></textarea>
+          </label>
+          <div class="report-grid">
+            <label class="report-field">Quelle
+              <input id="report-source" type="text" maxlength="400" required placeholder="Titel des Quellenbuchs">
+            </label>
+            <label class="report-field">Seitenangabe
+              <input id="report-page" type="text" maxlength="120" required placeholder="z. B. S. 42–43">
+            </label>
+          </div>
+          <p class="report-note"><strong>Bitte keine längeren Buchauszüge übermitteln.</strong> Quellenname, Seitenangabe und eine kurze Erläuterung reichen aus. Empfänger: <span id="report-recipient"></span>.</p>
+          <div class="report-actions">
+            <button class="report-action" id="report-cancel" type="button">Abbrechen</button>
+            <button class="report-action" id="report-copy" type="button">Meldung kopieren</button>
+            <button class="report-action primary" id="report-email" type="submit">E-Mail vorbereiten</button>
+          </div>
+          <p class="report-status" id="report-status" role="status">Beim Öffnen der E-Mail wird noch nichts versendet.</p>
+        </form>
+      </section>
+    </div>
   </div>
   <script src="output/map/vendor/leaflet.js"></script>
   <script src="app/city-loader.js"></script>
+  <script src="app/correction-reports.js"></script>
   <script>
     (async () => {
       const EMBEDDED_DATA = null;
@@ -628,6 +770,7 @@
       const EMBEDDED_OFFLINE_BASE = "";
       const HYBRID_APP = true;
       const SUPPORT_URL = "https://ko-fi.com/sr6maps";
+      const REPORT_EMAIL = "shadowrunmaps@gmail.com";
       const PUBLISHED_APP_URL = "https://bmenschner.github.io/shadowrun-6-maps/";
       let deferredInstallPrompt = null;
       window.addEventListener('beforeinstallprompt', event => {
@@ -1127,6 +1270,201 @@
       });
       map.attributionControl.setPrefix(false);
       L.control.zoom({ position: 'topright' }).addTo(map);
+      const mapReportBanner = document.getElementById('map-report-banner');
+      const mapReportMessage = document.getElementById('map-report-message');
+      let reportMapMode = null;
+      let activeDetailReportContext = null;
+      let correctionReports = null;
+
+      const coordinateFromFeature = feature => hasMapCoordinates(feature)
+        ? { lat: feature.geometry.coordinates[1], lng: feature.geometry.coordinates[0] }
+        : null;
+      const reportReferences = entry => {
+        const references = [...(entry.sources || []), ...(entry.map_sources || [])];
+        const unique = values => [...new Set(values.filter(Boolean))].join(' · ');
+        return {
+          source: unique(references.map(reference => reference.title || reference.source))
+            || entry.source || entry.map_source || entry.source_pages || '',
+          page: unique(references.map(reference => reference.citation || reference.page))
+            || entry.source_pages || '',
+        };
+      };
+      const publicPermalink = (parameter = '', value = '') => {
+        const target = new URL(PUBLISHED_APP_URL);
+        target.searchParams.set('city', cityContext.city.id);
+        if (parameter && value !== '') target.searchParams.set(parameter, value);
+        return target.href;
+      };
+      const featureReportContext = (feature, proposedCoordinate = null) => {
+        const properties = feature.properties;
+        const originalCoordinate = coordinateFromFeature(feature);
+        const references = reportReferences(properties);
+        return {
+          kind: 'Ort',
+          entryId: pad(properties.id),
+          category: properties.category,
+          title: properties.name,
+          description: properties.description || properties.summary || '',
+          originalCoordinate,
+          coordinate: proposedCoordinate || originalCoordinate,
+          source: references.source,
+          page: references.page,
+          permalink: publicPermalink('marker', properties.id),
+        };
+      };
+      const personReportContext = (person, proposedCoordinate = null) => {
+        const linkedFeature = (person.locations || [])
+          .map(link => DATA.geojson.features.find(feature => feature.properties.id === link.id))
+          .find(hasMapCoordinates);
+        const originalCoordinate = coordinateFromFeature(linkedFeature);
+        const references = reportReferences(person);
+        return {
+          kind: person.entity_type === 'group' ? 'Gruppe' : 'Person',
+          entryId: person.id,
+          category: person.category,
+          title: person.name,
+          description: person.description || person.summary || '',
+          originalCoordinate,
+          coordinate: proposedCoordinate || originalCoordinate,
+          source: references.source,
+          page: references.page,
+          permalink: publicPermalink('person', person.id),
+        };
+      };
+      const boundaryReportContext = (feature, coordinate, category = 'Grenzverlauf') => {
+        const properties = (feature && feature.properties) || {};
+        const references = reportReferences(properties);
+        const title = properties.label || properties.name || `${category} bei ${window.SR6CorrectionReports.formatCoordinate(coordinate)}`;
+        return {
+          kind: 'Grenze',
+          entryId: properties.entity_id || properties.id || '',
+          category,
+          title,
+          description: properties.description || properties.summary || properties.basis || '',
+          originalCoordinate: coordinate,
+          coordinate,
+          source: references.source || properties.basis || '',
+          page: references.page,
+          permalink: publicPermalink(),
+        };
+      };
+      const newPlaceReportContext = coordinate => ({
+        mode: 'new', kind: '', entryId: '', category: '', title: '', description: '',
+        originalCoordinate: null, coordinate, source: '', page: '', permalink: publicPermalink(),
+      });
+      const cityReportContext = () => {
+        const references = reportReferences(cityProfile || {});
+        const center = cityContext.manifest.center || [];
+        const coordinate = center.length >= 2 ? { lat: center[0], lng: center[1] } : map.getCenter();
+        return {
+          kind: 'Stadt/Region', entryId: cityContext.city.id,
+          category: regionalProfile ? 'Region' : 'Stadt', title: cityLabel,
+          description: cityProfile.description || cityProfile.summary || '',
+          originalCoordinate: coordinate, coordinate,
+          source: references.source, page: references.page, permalink: publicPermalink(),
+        };
+      };
+
+      const clearReportMapMode = () => {
+        reportMapMode = null;
+        mapReportBanner.hidden = true;
+        mapEl.classList.remove('report-selection-active');
+      };
+      const startReportMapMode = (type, message, options = {}) => {
+        reportMapMode = { type, ...options };
+        map.closePopup();
+        document.getElementById('detail-card').classList.remove('open');
+        mapReportMessage.textContent = message;
+        mapReportBanner.hidden = false;
+        mapEl.classList.add('report-selection-active');
+        mapEl.focus();
+      };
+      const cancelReportMapMode = () => {
+        const resumeForm = reportMapMode && reportMapMode.type === 'coordinate';
+        clearReportMapMode();
+        if (resumeForm && correctionReports && correctionReports.hasContext()) correctionReports.resume();
+      };
+      correctionReports = window.SR6CorrectionReports.create({
+        email: REPORT_EMAIL,
+        cityLabel,
+        dataVersion: `${cityLabel} · Stadtpaket ${cityContext.manifest.dataVersion || '–'}`,
+        onPickCoordinate: () => {
+          correctionReports.suspend();
+          startReportMapMode('coordinate', 'Klicke auf die gewünschte OSM-Position.');
+        },
+      });
+
+      const reportControl = L.control({ position: 'topright' });
+      reportControl.onAdd = () => {
+        const container = L.DomUtil.create('div', 'leaflet-bar');
+        const button = L.DomUtil.create('a', 'report-map-control', container);
+        button.href = '#';
+        button.textContent = '⚑';
+        button.title = 'Neuen Eintrag vorschlagen';
+        button.setAttribute('role', 'button');
+        button.setAttribute('aria-label', 'Neuen Eintrag vorschlagen');
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.on(button, 'click', event => {
+          L.DomEvent.preventDefault(event);
+          startReportMapMode('new-point', 'Klicke auf die Position des neuen Eintrags.');
+        });
+        return container;
+      };
+      reportControl.addTo(map);
+
+      const mapReportAction = (container, label, action) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = label;
+        button.addEventListener('click', action);
+        container.appendChild(button);
+      };
+      const openMapReportPopup = latlng => {
+        const root = document.createElement('div');
+        root.className = 'report-map-popup';
+        const heading = document.createElement('strong');
+        heading.textContent = 'OSM-Geokoordinate';
+        const coordinate = document.createElement('code');
+        coordinate.textContent = window.SR6CorrectionReports.formatCoordinate(latlng);
+        const actions = document.createElement('div');
+        actions.className = 'report-map-popup-actions';
+        root.append(heading, coordinate, actions);
+        mapReportAction(actions, 'Koordinate kopieren', async event => {
+          const button = event.currentTarget;
+          try {
+            await window.SR6CorrectionReports.copyText(coordinate.textContent);
+            button.textContent = '✓ Koordinate kopiert';
+          } catch (error) {
+            button.textContent = 'Kopieren fehlgeschlagen';
+          }
+        });
+        mapReportAction(actions, 'Neuen Eintrag vorschlagen', () => {
+          map.closePopup();
+          correctionReports.open(newPlaceReportContext(latlng));
+        });
+        mapReportAction(actions, 'Grenzverlauf hier melden', () => {
+          map.closePopup();
+          correctionReports.open(boundaryReportContext(null, latlng));
+        });
+        L.DomEvent.disableClickPropagation(root);
+        L.popup({ maxWidth: 300, closeButton: true }).setLatLng(latlng).setContent(root).openOn(map);
+      };
+      map.on('contextmenu', event => openMapReportPopup(event.latlng));
+      map.on('click', event => {
+        if (!reportMapMode) return;
+        if (reportMapMode.type === 'new-point') {
+          clearReportMapMode();
+          correctionReports.open(newPlaceReportContext(event.latlng));
+          return;
+        }
+        if (reportMapMode.type === 'coordinate') {
+          clearReportMapMode();
+          correctionReports.updateCoordinate(event.latlng);
+          correctionReports.resume();
+          return;
+        }
+      });
+      document.getElementById('map-report-cancel').addEventListener('click', cancelReportMapMode);
       map.createPane('offlineBasePane'); map.getPane('offlineBasePane').style.zIndex = 150;
       map.createPane('streetLabelPane'); map.getPane('streetLabelPane').style.zIndex = 397; map.getPane('streetLabelPane').style.pointerEvents = 'none';
       const offlineOverview = OFFLINE_BASE ? L.imageOverlay(OFFLINE_BASE, DATA.overlayBounds, {
@@ -1258,9 +1596,7 @@
             ? DATA.geojson.features.find(item => item.properties.id === entityId)
             : DATA.geojson.features.find(item => item.properties.name === feature.properties.name);
           if (dossier) {
-            layer.on('click', () => {
-              selectFeature(dossier);
-            });
+            layer.on('click', () => selectFeature(dossier));
           }
         }
       });
@@ -1839,6 +2175,7 @@
 
       function showDetails(feature) {
         const p = feature.properties;
+        activeDetailReportContext = featureReportContext(feature);
         const detailPlans = (p.detail_plans || []).map(key => atlasByKey.get(key)).filter(Boolean);
         document.getElementById('detail-id').textContent = pad(p.id);
         document.getElementById('detail-title').textContent = p.name;
@@ -1878,6 +2215,7 @@
       }
 
       function showPersonDetails(person) {
+        activeDetailReportContext = personReportContext(person);
         document.getElementById('detail-id').textContent = person.entity_type === 'group' ? 'GRUPPE' : 'PERSON';
         document.getElementById('detail-title').textContent = person.name;
         document.getElementById('detail-badges').innerHTML = `<span class="badge">${escapeHtml(person.category)}</span><span class="badge">${escapeHtml(person.status)}</span>${(person.editions || []).map(edition => `<span class="badge">${escapeHtml(edition)}</span>`).join('')}${person.metatype ? `<span class="badge">${escapeHtml(person.metatype)}</span>` : ''}`;
@@ -1908,6 +2246,7 @@
 
       function showCityDetails() {
         if (!cityProfile) return;
+        activeDetailReportContext = cityReportContext();
         const profileEditions = cityProfile.editions || Object.keys(cityProfile.edition_descriptions || {});
         document.getElementById('detail-id').textContent = regionalProfile ? 'REGION' : 'STADT';
         document.getElementById('detail-title').textContent = cityLabel;
@@ -2088,6 +2427,9 @@
       document.getElementById('reset').addEventListener('click', () => { document.getElementById('search').value = ''; category.value = ''; applyFilters(); map.fitBounds(DATA.regionBounds); });
       document.getElementById('detail-close').addEventListener('click', () => document.getElementById('detail-card').classList.remove('open'));
       document.getElementById('detail-plan-open').addEventListener('click', event => openAtlas(event.currentTarget.dataset.key));
+      document.getElementById('detail-report-open').addEventListener('click', () => {
+        if (activeDetailReportContext) correctionReports.open(activeDetailReportContext);
+      });
       document.getElementById('city-info-open').addEventListener('click', showCityDetails);
       document.getElementById('atlas-open').addEventListener('click', () => openAtlas());
       document.getElementById('atlas-close').addEventListener('click', closeAtlas);
@@ -2097,6 +2439,14 @@
       document.getElementById('atlas-dialog').addEventListener('click', event => { if (event.target.id === 'atlas-dialog') closeAtlas(); });
       document.addEventListener('keydown', event => {
         if (event.key !== 'Escape') return;
+        if (reportMapMode) {
+          cancelReportMapMode();
+          return;
+        }
+        if (correctionReports.isOpen()) {
+          correctionReports.close();
+          return;
+        }
         if (!document.getElementById('atlas-dialog').hidden) closeAtlas();
         if (!pwaDialog.hidden) closePwaDialog();
         if (!supportDialog.hidden) closeSupportDialog();
